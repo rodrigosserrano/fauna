@@ -11,6 +11,7 @@ $(document).ready(
                         data: formData,
                         success: function (response) {
                             alert(response.success);
+                            window.location(base_url+'home');
                         }
                     });
                 }

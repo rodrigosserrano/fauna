@@ -32,11 +32,11 @@ class Login extends CI_Controller {
                     'nivel_usuario' => $result_validate[0]->nivel_usuario
                 ];
 
-                $userdata = $this->session->set_userdata($session_data);
-                echo json_encode(['success'=>$userdata]);
+                $this->session->set_userdata($session_data);
+                echo json_encode(['success'=>'Logado com sucesso']);
             }else{ // se os dados estiverem incorretos, retorna mensagem de erro
-                $userdata = $this->session->set_flashdata('error', 'Login ou senha inválidos.');
-                echo json_encode(['error'=>$userdata]);
+                $this->session->set_flashdata('error', 'Login ou senha inválidos.');
+                echo json_encode(['error'=>'Erro ao logar']);
             }
         }else{ //caso a validação do formulário der erro, volta para página de login
             echo json_encode(['error'=>'Erro no formulário']);
