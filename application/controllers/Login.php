@@ -5,11 +5,16 @@ class Login extends CI_Controller {
 
 	public function index()
 	{
+        // if(isset($_SESSION['id'])) {
+        //     header('location: https://google.com');
+        // } verificação pagina home utilizar ele caso esteja logado 
 		$this->load->view('usuarios/login');
+        
 	}
 
     public function validateLogin() {
         header('Content-Type: application/json');
+        
         // Validação do que vem do formulário   
         $this->load->library('form_validation');
         $this->form_validation->set_rules('email', 'E-mail', 'required');

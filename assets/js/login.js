@@ -10,9 +10,13 @@ $(document).ready(
                         url: base_url +"validate",
                         data: formData,
                         success: function (response) {
-                            alert(response.success);
-                            window.location(base_url+'home');
+                            if(response.success)
+                                alert("Usuario Logado");
+                            if(response.error)
+                                alert("Usuario Invalido Por Favor Realize seu Cadastro");
+
                         }
+                        
                     });
                 }
             );
