@@ -33,12 +33,13 @@ class Login extends CI_Controller {
                 ];
 
                 $userdata = $this->session->set_userdata($session_data);
-                echo json_encode($userdata);
+                echo json_encode(['success'=>$userdata]);
             }else{ // se os dados estiverem incorretos, retorna mensagem de erro
                 $userdata = $this->session->set_flashdata('error', 'Login ou senha inválidos.');
-                echo json_encode($userdata);
+                echo json_encode(['error'=>$userdata]);
             }
         }else{ //caso a validação do formulário der erro, volta para página de login
+            echo json_encode(['error'=>'Erro no formulário']);
             $this->index();
         }
     }

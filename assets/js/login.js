@@ -7,11 +7,10 @@ $(document).ready(
                     var base_url = window.location;
                     $.ajax({
                         type: "POST",
-                        url: base_url +"/validate",
+                        url: base_url +"validate",
                         data: formData,
                         success: function (response) {
-        
-                            alert(response)
+                            alert(response.success);
                         }
                     });
                 }

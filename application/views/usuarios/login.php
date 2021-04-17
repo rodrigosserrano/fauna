@@ -9,9 +9,9 @@
         <meta name="generator" content="VS Code"/>
         <meta name="keywords" content="rede social, pets, animais"/>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="<?= base_url()?>/assets/js/login.js"></script>
+        <script src="<?= base_url()?>assets/js/login.js"></script>
         <script src="https://kit.fontawesome.com/598f8e27d9.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="<?= base_url()?>/assets/css/styleLogin.css">
+        <link rel="stylesheet" href="<?= base_url()?>assets/css/styleLogin.css">
         <title>Fauna | Login</title>
     </head>
 
@@ -28,10 +28,10 @@
             </section>
 
             <section class="login-box">
-                <img src="<?= base_url()?>/assets/img/cachorro_login.png" id="pet-login">
+                <img src="<?= base_url()?>assets/img/cachorro_login.png" id="pet-login">
 
                 <div class="container">
-                    <img class="paw-icon" src="<?= base_url()?>/assets/img/paw.png">
+                    <img class="paw-icon" src="<?= base_url()?>assets/img/paw.png">
                     <p>Entre com sua conta</p>
 
                     <form id="form-login" class="form-login">
