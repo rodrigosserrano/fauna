@@ -80,8 +80,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<span class="text-danger"><?php echo form_error('email')?></span>
 
 		<p>Password:</p>
-		<input type="password" name="password" id="">
-		<span class="text-danger"><?php echo form_error('password')?></span>
+		<input type="password" name="senha" id="">
+		<span class="text-danger"><?php echo form_error('senha')?></span>
 
 		<p></p>
 		<button type="submit">Entrar</button>

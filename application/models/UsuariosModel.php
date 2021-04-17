@@ -2,15 +2,19 @@
 
 class UsuariosModel extends CI_Model {
 
-    public function validateLoginModel($email, $password){
-        $this->db->where('email', $email);   
-        $this->db->where('senha', $password);   
+    public function validateLoginModel($email, $senha){
+        $dados_login = [
+            'email' => $email,
+            'senha' => $senha
+        ]; 
 
-        $query = $this->db->get('usuario');
+        $query = $this->db->where($dados_login)
+                          ->get('usuario');
 
-        if($query->num_rows() > 0){
+        if($query->num_rows() == 1){
             // return $query->result;
-            return true;
+            // return true;
+            return $query->result();
         }else{
             return false;
         }   
