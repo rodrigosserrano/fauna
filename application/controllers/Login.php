@@ -17,6 +17,24 @@ class Login extends CI_Controller {
         if($this->form_validation->run()){
             $email = $this->input->post('email');
             $password = $this->input->post('password');
+            
+            $this->load->model('UsuariosModel');
+            $result_validate = $this->UsuariosModel->validateLoginModel($email, $password);
+            
+            if($result_validate){
+                print_r('caiu aqui');
+                $session_data = [
+                    'id' => $$result_validate['id'],
+                    'email' => $$result_validate['email'],
+                    'usuario' => $$result_validate['nome_usuario'],
+                    'nivel_usuario' => $$result_validate['nivel_usuario']
+                ];
+
+                $this->session->set_userdata($session_data);
+                redirect('http://google.com');
+            }else{
+                $this->session->set_flashdata('error', 'Login ou senha inválidos.');
+            }
         }else{
             $this->index();
         }
