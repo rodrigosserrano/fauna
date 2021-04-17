@@ -2,7 +2,9 @@
     --background-color: #FCF8EC;
     --container-color: #CDB28A;
     --link-color: #0870AB;
+    --link-hover-color: #01446b;
     --darker-color: #7A6448;
+    --darker-hover-color: #584833;
     --font-color: #3A3A3A;
     --input-color: #F3F3F3;
 }
@@ -93,6 +95,11 @@ a, .mini-container p {
 a.link {
     margin-top: 15px;
     color: var(--link-color);
+    transition: 0.2s;
+}
+
+a.link:hover {
+    color: var(--link-hover-color);
 }
 
 .mini-container p a.link {
@@ -143,6 +150,13 @@ a.link {
     margin-top: 40px;
     color: white;
     height: 35px;
+    
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-login:hover {
+    background-color: var(--darker-hover-color);
 }
 
 @media screen and (max-width: 950px) {
