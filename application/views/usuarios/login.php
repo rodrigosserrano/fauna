@@ -8,7 +8,8 @@
         <meta name="author" content="André, Gabriel, João, Jonatha, Nathan, Rodrigo"/>
         <meta name="generator" content="VS Code"/>
         <meta name="keywords" content="rede social, pets, animais"/>
-
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="<?= base_url()?>/assets/js/login.js"></script>
         <script src="https://kit.fontawesome.com/598f8e27d9.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="<?= base_url()?>/assets/css/styleLogin.css">
         <title>Fauna | Login</title>
@@ -33,13 +34,13 @@
                     <img class="paw-icon" src="<?= base_url()?>/assets/img/paw.png">
                     <p>Entre com sua conta</p>
 
-                    <form class="form-login">
+                    <form id="form-login" class="form-login">
                         <input class="form-input" type="email" name="email" placeholder="Email">
                         <input class="form-input" type="password" name="senha" placeholder="Senha">
 
                         <div class="bar"></div>
 
-                        <button type="submit" class="btn-login">Entrar</button>
+                        <button id="btn-login" type="button" class="btn-login">Entrar</button>
                     </form>
 
                     <a href="" class="link">Esqueci minha senha</a>

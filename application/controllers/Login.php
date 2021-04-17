@@ -9,6 +9,7 @@ class Login extends CI_Controller {
 	}
 
     public function validateLogin() {
+        header('Content-Type: application/json');
         // Validação do que vem do formulário   
         $this->load->library('form_validation');
         $this->form_validation->set_rules('email', 'E-mail', 'required');
@@ -31,10 +32,11 @@ class Login extends CI_Controller {
                     'nivel_usuario' => $result_validate[0]->nivel_usuario
                 ];
 
-                $this->session->set_userdata($session_data);
-                redirect(base_url().'home');
+                $userdata = $this->session->set_userdata($session_data);
+                echo json_encode($userdata);
             }else{ // se os dados estiverem incorretos, retorna mensagem de erro
-                $this->session->set_flashdata('error', 'Login ou senha inválidos.');
+                $userdata = $this->session->set_flashdata('error', 'Login ou senha inválidos.');
+                echo json_encode($userdata);
             }
         }else{ //caso a validação do formulário der erro, volta para página de login
             $this->index();
