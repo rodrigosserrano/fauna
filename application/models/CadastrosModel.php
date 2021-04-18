@@ -17,7 +17,6 @@ class UsuariosModel extends CI_Model {
     }
 
     public function cadastroModel(array $dados_cadastro){
-
         extract($dados_cadastro);
 
         if($senha == $repetir_senha){
@@ -35,7 +34,6 @@ class UsuariosModel extends CI_Model {
         $id_usuario = $this->cadastroUsuarioModel($dados_usuario);
 
         if($id_usuario){
-
             $dados_animal = [   
                 'id_usuario' => $id_usuario, 
                 'foto_animal' => $foto_animal,
@@ -46,28 +44,22 @@ class UsuariosModel extends CI_Model {
             ];
 
             if($this->cadastroPetModel($dados_animal))  
-                return ['bn' => true, "mensagem" =>  "Registrado com Sucesso"];
+                return ['bn'=>true, 'mensagem'=>'Registrado com Sucesso'];
         }else{
-
-            return ['bn' => false, "mensagem" =>  "Erro ao Registrar"];
-
+            return ['bn'=>false, 'mensagem'=>'Erro ao Registrar'];
         }
         
         }else{
-            return ['bn' => false, "mensagem" =>  "Senhas diferentes, favor verificar"];
-
+            return ['bn'=>false, 'mensagem'=>'Senhas diferentes, favor verificar'];
         }
     }
 
     public function cadastroUsuarioModel(array $dados_usuario){
-
         if($this->db->insert('usuario', $dados_usuario))
             return $this->db->select_max('id_usuario')->get('usuario');
-
     }
 
     public function cadastroPetModel(array $dados_animal){
-
         if($this->db->insert('animal', $dados_animal))
             return true;
     }
