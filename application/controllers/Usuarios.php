@@ -9,14 +9,13 @@ class Usuarios extends CI_Controller {
         // } verificação pagina home utilizar ele caso esteja logado 
         $dados['title'] = 'Login';
         $dados['style'] = base_url().'assets/css/styleLogin.css';
-        
+
         $this->load->view('template/header', $dados);
 		$this->load->view('usuarios/login');
 	}
 
     public function validateLogin() {
         header('Content-Type: application/json');
-        
         // Validação do que vem do formulário   
         $this->load->library('form_validation');
         $this->form_validation->set_rules('email', 'E-mail', 'required');
@@ -40,14 +39,13 @@ class Usuarios extends CI_Controller {
                 ];
 
                 $this->session->set_userdata($session_data);
-                echo json_encode(['success'=>'Logado com sucesso']);
+                echo json_encode(['mensagem'=>'Logado com sucesso']);
             }else{ // se os dados estiverem incorretos, retorna mensagem de erro
                 $this->session->set_flashdata('error', 'Login ou senha inválidos.');
-                echo json_encode(['error'=>'Erro ao logar']);
+                echo json_encode(['mensagem'=>'Erro ao logar']);
             }
         }else{ //caso a validação do formulário der erro, volta para página de login
-            echo json_encode(['error'=>'Erro no formulário']);
-            $this->index();
+            echo json_encode(['mensagem'=>'Erro no formulário']);
         }
     }
 
@@ -106,8 +104,7 @@ class Usuarios extends CI_Controller {
                 echo json_encode(['mensagem'=>$verifica_cadastro['mensagem']]);
             }
         }else{ //caso a validação do formulário der erro, volta para página de login
-            echo json_encode(['error'=>'Erro no formulário']);
-            $this->registerPage();
+            echo json_encode(['mensagem'=>'Erro no formulário']);
         }
     }
 }

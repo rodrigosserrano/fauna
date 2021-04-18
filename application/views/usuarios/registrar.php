@@ -1,4 +1,3 @@
-
 <body>
     <header>
         <div class="logo"><span><a style="text-decoration:none; color: black;" href="<?= base_url() ?>">Fauna</a></span></div>
