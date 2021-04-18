@@ -9,7 +9,7 @@
         <meta name="generator" content="VS Code"/>
         <meta name="keywords" content="rede social, pets, animais"/>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="<?= base_url()?>assets/js/login.js"></script>
+        <script src="<?= base_url()?>assets/js/usuario.js"></script>
         <script src="https://kit.fontawesome.com/598f8e27d9.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="<?= base_url()?>assets/css/styleLogin.css">
         <title>Fauna | Login</title>
