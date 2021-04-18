@@ -1,6 +1,8 @@
 <?php
 
-class UsuariosModel extends CI_Model {
+class CadastrosModel extends CI_Model {
+
+    private $id_usuario;
 
     public function verificaCadastroModel($email){
         $query = $this->db->where('email',$email)->get('usuario');
@@ -20,19 +22,21 @@ class UsuariosModel extends CI_Model {
             $dados_usuario = [  
                 'email' => $email, 
                 'senha'=> $senha, 
-                'foto_usuario' => $foto_usuario, 
+                // 'foto_usuario' => $foto_usuario, 
                 'nome_usuario' =>  $nome_usuario, 
                 'telefone' => $telefone, 
                 'sexo_usuario' =>  $sexo_usuario,
                 'data_nascimento' => $data_nascimento
             ];
 
-            $retorno_cadastro_usuario = $this->cadastroUsuarioModel($dados_usuario);
+            if($this->cadastroUsuarioModel($dados_usuario)){
+                $id_usuario = $this->getUltimoIdUsuario();
+            }
 
-            if($retorno_cadastro_usuario != null){
+            if($id_usuario !== null && !empty($id_usuario)){
                 $dados_animal = [   
                     'id_usuario' => $id_usuario, 
-                    'foto_animal' => $foto_animal,
+                    // 'foto_animal' => $foto_animal,
                     'nome_animal' => $nome_animal, 
                     'tipo' => $tipo, 
                     'raca' => $raca,
@@ -51,14 +55,16 @@ class UsuariosModel extends CI_Model {
     }
 
     public function cadastroUsuarioModel(array $dados_usuario){
-        $id_ultimo_usuario = null;
-
         if($this->db->insert('usuario', $dados_usuario)){
-            $id_ultimo_usuario = $this->db->select_max('id_usuario')->get('usuario');
-            return $id_ultimo_usuario;
+            $this->id_usuario = $this->db->insert_id();
+
+            return true;
         }else{
-            return $id_ultimo_usuario;
+            return false;
         }
+    }
+    public function getUltimoIdUsuario(){
+        return $this->id_usuario;
     }
 
     public function cadastroPetModel(array $dados_animal){

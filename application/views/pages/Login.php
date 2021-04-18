@@ -17,7 +17,7 @@
                 <div class="container">
                     <img class="paw-icon" src="<?= base_url()?>assets/img/paw.png">
                     <p>Entre com sua conta</p>
-                    <div class="btn-primary"></div>
+
                     <form id="form-login" class="form-login">
                         <input class="form-input" type="email" name="email" placeholder="Email">
                         <input class="form-input" type="password" name="senha" placeholder="Senha">
@@ -39,4 +39,3 @@
             </section>
         </main>
     </body>
-</html>

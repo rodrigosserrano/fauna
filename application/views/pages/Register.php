@@ -3,7 +3,7 @@
         <div class="logo"><span><a style="text-decoration:none; color: black;" href="<?= base_url() ?>">Fauna</a></span></div>
     </header>
     <main>
-        <form id="form-login">
+        <form id="form-register">
             <div class="sections-container">
                 <section class="left-form-container">
                     <div class="description">
@@ -13,7 +13,7 @@
                     <div class="inputs-container">
                         <input type="email" name="email" placeholder="E-mail" required>
                         <input type="password" name="senha" placeholder="Senha" required>
-                        <input type="password" name="repetir-senha" placeholder="Confirmar senha" required>
+                        <input type="password" name="repetir_senha" placeholder="Confirmar senha" required>
                     </div>
                 </section>
                 <section class="middle-form-container">
@@ -25,7 +25,7 @@
                         <div>+</div>
                         <span>Adicione sua foto</span>
                     </label>
-                    <div id="file-input1" class="file-input-container"><input type="file" name="foto" enctype="multipart/form-data"></div>
+                    <div id="file-input1" class="file-input-container"><input type="file" name="foto_usuario" enctype="multipart/form-data"></div>
                     <!--input file ainda com funcionamento pendente-->
                     <div class="inputs-container">
                         <input type="text" name="nome_usuario" placeholder="Nome" required>
@@ -46,7 +46,7 @@
                         <span>Adicione a foto do seu pet</span>
                     </label>
                     <!--input file ainda com funcionamento pendente-->
-                    <div id="file-input2" class="file-input-container"><input type="file" name="foto" enctype="multipart/form-data"></div>
+                    <div id="file-input2" class="file-input-container"><input type="file" name="foto_animal" enctype="multipart/form-data"></div>
                     <div class="inputs-container">
                         <input type="text" name="nome_animal" placeholder="Nome" required>
                         <select id="animal" name="tipo" required>
@@ -84,4 +84,3 @@
 
     </footer>
 </body>
-</html>
