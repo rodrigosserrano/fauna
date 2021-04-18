@@ -16,7 +16,7 @@ class LoginController extends Fauna_Controller {
          /**            |DADOS| |VIEW| |TRUE/FALSE|
          * $this->show($dados, $view, $navbar); */
 
-         
+
         $dados = $this->dadosShow('Login', 'assets/css/styleLogin.css');
 		$view = $this->load->view('pages/Login', null, true);
 
@@ -27,7 +27,7 @@ class LoginController extends Fauna_Controller {
         header('Content-Type: application/json');
         // Validação do que vem do formulário   
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('email', 'E-mail', 'required');
+        $this->form_validation->set_rules('email', 'E-mail', 'required|valid_email');
         $this->form_validation->set_rules('senha', 'Senha', 'required');
 
         if($this->form_validation->run()){

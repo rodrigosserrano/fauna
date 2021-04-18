@@ -10,7 +10,7 @@ public function index() {
         /**            |DADOS| |VIEW| |TRUE/FALSE|
          * $this->show($dados, $view, $navbar); */
 
-         
+
         $dados = $this->dadosShow('Cadastrar-se', 'assets/css/styleRegister.css');
 		$view = $this->load->view('pages/Register', null, true);
         $this->show($dados, $view);
@@ -20,7 +20,7 @@ public function index() {
         header('Content-Type: application/json');
         // Validação do que vem do formulário usuario
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('email', 'E-mail', 'required');
+        $this->form_validation->set_rules('email', 'E-mail', 'required|valid_email');
         $this->form_validation->set_rules('senha', 'Senha', 'required');
         $this->form_validation->set_rules('repetir-senha', 'repetir-Senha', 'required');
         $this->form_validation->set_rules('foto_usuario', 'foto_usuario', 'required');
@@ -59,8 +59,10 @@ public function index() {
             $verifica_cadastro = $this->CadastrodModel->verificaCadastroModel($dados_cadastro['email']);
             $verifica_cadastro = $verifica_cadastro ? $this->CadastrosModel->cadastroModel($dados_cadastro) : $verifica_cadastro['bn'] = false;
          
-            if($verifica_cadastro['bn']){
-                echo json_encode(['mensagem'=>$verifica_cadastro['mensagem']]);
+            if($verifica_cadastro){
+                echo json_encode(['mensagem'=>'Cadastrado com sucesso !']);
+            }else{
+                echo json_encode(['mensagem'=>'Erro ao cadastrar.']);
             }
         }else{ //caso a validação do formulário der erro, volta para página de login
             echo json_encode(['mensagem'=>'Erro no formulário']);
