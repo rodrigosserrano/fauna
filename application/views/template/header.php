@@ -13,6 +13,7 @@
         <script src="https://kit.fontawesome.com/598f8e27d9.js" crossorigin="anonymous"></script>
         <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&display=swap" rel="stylesheet"> 
+        <link rel="stylesheet" href="<?= base_url() ?>assets/css/common.css">
         <link rel="stylesheet" href="<?= $style ?>">
         <title>Fauna | <?= $title ?></title>
     </head>

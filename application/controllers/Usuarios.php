@@ -11,6 +11,7 @@ class Usuarios extends CI_Controller {
         $dados['style'] = base_url().'assets/css/styleLogin.css';
 
         $this->load->view('template/header', $dados);
+        $this->load->view('template/nav');
 		$this->load->view('usuarios/login');
 	}
 
