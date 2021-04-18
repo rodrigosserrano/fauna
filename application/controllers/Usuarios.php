@@ -1,15 +1,17 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Usuario extends CI_Controller {
+class Usuarios extends CI_Controller {
 
-	public function index()
-	{
+	public function index() {
         // if(isset($_SESSION['id'])) {
         //     header('location: https://google.com');
         // } verificação pagina home utilizar ele caso esteja logado 
-		$this->load->view('usuarios/login');
+        $dados['title'] = 'Login';
+        $dados['style'] = base_url().'assets/css/styleLogin.css';
         
+        $this->load->view('template/header', $dados);
+		$this->load->view('usuarios/login');
 	}
 
     public function validateLogin() {
@@ -49,9 +51,16 @@ class Usuario extends CI_Controller {
         }
     }
 
+    public function registerPage() {
+        $dados['title'] = 'Cadastrar-se';
+        $dados['style'] = base_url().'assets/css/styleRegister.css';
+
+        $this->load->view('template/header', $dados);
+        $this->load->view('usuarios/registrar');
+    }
+
     public function cadastroUsuarioPet() {
         header('Content-Type: application/json');
-        
         // Validação do que vem do formulário usuario
         $this->load->library('form_validation');
         $this->form_validation->set_rules('email', 'E-mail', 'required');
@@ -94,13 +103,11 @@ class Usuario extends CI_Controller {
             $verifica_cadastro = $verifica_cadastro ? $this->CadastrosModel->cadastroModel($dados_cadastro) : $verifica_cadastro['bn'] = false;
          
             if($verifica_cadastro['bn']){
-                echo json_encode(['success'=>$verifica_cadastro['mensagem']]);
-            }else{
-                echo json_encode(['error'=>$verifica_cadastro['mensagem']]);
+                echo json_encode(['mensagem'=>$verifica_cadastro['mensagem']]);
             }
         }else{ //caso a validação do formulário der erro, volta para página de login
             echo json_encode(['error'=>'Erro no formulário']);
-            $this->index();
+            $this->registerPage();
         }
     }
 }
