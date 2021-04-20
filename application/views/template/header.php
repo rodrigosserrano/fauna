@@ -19,6 +19,7 @@
         <link rel="stylesheet" href="<?php echo base_url()."assets/css/bootstrap/bootstrap-grid.min.css.map"?>">
         <link rel="stylesheet" href="<?php echo base_url()."assets/css/bootstrap/bootstrap-utilities.min.css"?>">
         <link rel="stylesheet" href="<?php echo base_url()."assets/css/bootstrap/bootstrap-utilities.min.css.map"?>">
+        <link rel="stylesheet" href="<?= base_url() ?>assets/css/common.css">
         <link rel="stylesheet" href="<?= $style ?>">
         <title>Fauna | <?= $title ?></title>
     </head>

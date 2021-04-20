@@ -1,0 +1,181 @@
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 100vh;
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background-color);
+}
+
+#config {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 715px;
+    height: 416px;
+}
+
+/* Menu */
+
+#config-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+    height: 55px;
+}
+
+.config-option, .config-option-selected {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10pt;
+
+    width: 178px;
+    height: 100%;
+}
+
+.config-option {
+    background-color: var(--darker-color);
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.config-option:hover {
+    background-color:var(--darker-hover-color);
+}
+
+.config-option-selected {
+    background-color: var(--container-color);
+    margin-bottom: -2px;
+    font-weight: lighter;
+    cursor: default;
+}
+
+/* Display */
+
+#config-info {
+    width: 715px;
+    height: 360px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--container-color);
+}
+
+h1.info-title {
+    font-weight: lighter;
+    margin: 50px 0;
+}
+
+/* Formulário */
+
+#form_alterar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+#form_alterar section {
+    margin: 0 20px;
+}
+
+.form-user-pic {
+    background-color: white;
+    /* background-color depois pode ser removido */
+
+    width: 140px;
+    height: 190px;
+    border-radius: 3px;
+    transition: 0.2s;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-user-pic:hover {
+    filter: opacity(80%);
+}
+
+.form-user-pic #pic {
+    position: absolute;
+    max-width: 140px;
+    max-height: 190px;
+}
+
+#form-user-data {
+    display: flex;
+    flex-direction: center;
+    align-items: center;
+    flex-direction: column;
+
+    width: 425px;
+    height: 100%;
+}
+
+#form-user-fields {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.form-input, .form-btn {
+    border-radius: 3px;
+    border: none;
+    font-family: 'Roboto', sans-serif;
+}
+
+.form-input {
+    width: 200px;
+    height: 30px;
+    margin-bottom: 20px;
+    padding: 5px;
+    padding-left: 15px;
+    border: 1px #ccc solid;
+    background-color: var(--input-color);
+}
+
+input.form-input::placeholder, select.form-input, input.form-input[type="date"]{
+    font-size: 16px;
+    opacity: 100%;
+    color: #888;
+}
+
+input[type="file"] {
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.form-btn {
+    width: 100%;
+    height: 40px;
+    background-color: var(--darker-color);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.form-btn:hover {
+    background-color: var(--darker-hover-color);
+}
+
+/* Excluir */
+
+#config-terms {
+    width: 540px;
+    height: 190px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
