@@ -3,6 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class LoginController extends Fauna_Controller {
 
+    protected $session_data;
+
 	public function index() {
         /**  verificação pagina home utilizar ele caso esteja logado */
         
@@ -58,6 +60,5 @@ class LoginController extends Fauna_Controller {
             echo json_encode(['mensagem'=>'Erro no formulário']);
         }
     }
-
 
 }

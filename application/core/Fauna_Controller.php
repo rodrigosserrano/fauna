@@ -30,12 +30,12 @@ class Fauna_Controller extends CI_Controller{
     }
 
     public function createSession($session_data){
-        return $this->session->set_userdata($session_data);
+        $this->session->set_userdata($session_data);
     }
 
     
     public function unsetSession(){
-        return $this->session->sess_destroy();
+        $this->session->sess_destroy();
     }
 }
 
