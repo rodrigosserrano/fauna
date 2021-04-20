@@ -18,6 +18,7 @@ final class ColunaTipo extends AbstractMigration
      */
     public function change(): void
     {
-        $this->execute("ALTER TABLE animal ADD COLUMN tipo INT ADD CONSTRAINT FOREIGN KEY 'restricao_tipo' REFERENCES tipo(id_tipo)");
+        $this->execute("ALTER TABLE animal ADD COLUMN tipo int");
+        $this->execute("ALTER TABLE animal ADD CONSTRAINT restricao_tipo FOREIGN KEY(tipo) REFERENCES tipo(id_tipo)");
     }
 }

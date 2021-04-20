@@ -24,7 +24,7 @@ class Fauna_Controller extends CI_Controller{
     }
 
     public function verifySession($id){
-        if(!isset($_SESSION[$id])){
+        if(!isset($this->session->userdata("id"))){
             redirect("login");
        }else{
             redirect("");
