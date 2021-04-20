@@ -21,7 +21,6 @@ class UsuariosModel extends CI_Model {
 
         $this->db->update('Table', $dados_alterados, $id_usuario);
         
-
     }
 
 

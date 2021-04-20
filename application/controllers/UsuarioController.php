@@ -4,13 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class UsuarioController extends Fauna_Controller {
 
 public function index() {
-        /**                 | OBRIGATÓRIO |  |  NÃO OBRIGATÓRIO  |
-         * $this->dadosShow('titulo_pagina', 'link_css', 'link_js') */
+
         
-        /**            |DADOS| |VIEW| |TRUE/FALSE|
-         * $this->show($dados, $view, $navbar); */
-
-
         $dados = $this->dadosShow('Feed', 'assets/css/style');
 		$view = $this->load->view('/template/navbar', null, true);
         $this->show($dados, $view);
