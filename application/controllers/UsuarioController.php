@@ -12,8 +12,22 @@ public function index() {
 
 
         $dados = $this->dadosShow('Feed', 'assets/css/style');
-		$view = $this->load->view('/template/nav', null, true);
+		$view = $this->load->view('/template/navbar', null, true);
         $this->show($dados, $view);
+    }
+
+    public function dadosContaView() {
+        /**                 | OBRIGATÓRIO |  |  NÃO OBRIGATÓRIO  |
+         * $this->dadosShow('titulo_pagina', 'link_css', 'link_js') */
+        
+        /**            |DADOS| |VIEW| |TRUE/FALSE|
+         * $this->show($dados, $view, $navbar); */
+
+
+        $dados = $this->dadosShow('Dados Conta', 'assets/css/styleConfig.css');
+		$navbar = $this->load->view('/template/navbar', null, true);
+        $view = $this->load->view('/pages/config-dados', null, true);
+        $this->show($dados, $view, $navbar);
     }
 
 public function deletaContaView() {
