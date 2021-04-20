@@ -47,7 +47,8 @@ class LoginController extends Fauna_Controller {
                     'nivel_usuario' => $result_validate[0]->nivel_usuario
                 ];
 
-                $this->session->set_userdata($session_data);
+                $this->createSession($session_data);
+                
                 echo json_encode(['mensagem'=>'Logado com sucesso']);
             }else{ // se os dados estiverem incorretos, retorna mensagem de erro
                 $this->session->set_flashdata('error', 'Login ou senha inválidos.');
@@ -57,5 +58,6 @@ class LoginController extends Fauna_Controller {
             echo json_encode(['mensagem'=>'Erro no formulário']);
         }
     }
+
 
 }

@@ -21,14 +21,21 @@ class Fauna_Controller extends CI_Controller{
         ];
 
         return $dados;
+    }   
+
+    public function verifySession(){
+        if(!$this->session->has_userdata('id')){
+            redirect("login");
+        }
     }
 
-    public function verifySession($id){
-        if(!isset($this->session->userdata("id"))){
-            redirect("login");
-       }else{
-            redirect("");
-       }
+    public function createSession($session_data){
+        return $this->session->set_userdata($session_data);
+    }
+
+    
+    public function unsetSession(){
+        return $this->session->sess_destroy();
     }
 }
 
