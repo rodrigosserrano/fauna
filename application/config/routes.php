@@ -60,3 +60,8 @@ $route['validate']['post'] = 'LoginController/validateLogin'; //REQUISIÇÃO POS
 //Usuario registro
 $route['register'] = 'RegisterController';
 $route['register-validate']['post'] = 'RegisterController/validateRegister'; //REQUISIÇÃO POST
+
+//Feed
+$route['usuario'] = 'UsuarioController';
+$route['usuario-deleta']  = 'UsuarioController/deletaContaView';
+$route['usuario-altera']  = 'UsuarioController/alteraContaView';

@@ -16,4 +16,19 @@ class UsuariosModel extends CI_Model {
             return false;
         }   
     }
+
+    public function alteraDados($id_usuario,$dados_alterados){
+
+        $this->db->update('Table', $dados_alterados, $id_usuario);
+        
+
+    }
+
+
+    public function deletaDados($id_usuario){
+
+        $this->db->delete('Usuario', $id_usuario);
+
+    }
+
 }

@@ -3,9 +3,9 @@
             <section id="config">
                 <section id="config-menu">
                     <a class="config-option">Suas informações</a>
-                    <a class="config-option">Algo</a>
+                    <a class="config-option">Seus  pets</a>
                     <a class="config-option-selected">Alterar dados</a>
-                    <a class="config-option">Excluir conta</a>
+                    <a class="config-option" href="<?= base_url()?>/usuario-deletap">Excluir conta</a>
                 </section>
                 
                 <section id="config-info">

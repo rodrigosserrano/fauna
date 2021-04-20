@@ -18,9 +18,9 @@ final class AlteracaoFotoUsuarioAnimal extends AbstractMigration
      */
     public function change(): void
     {   //altera o nome da coluna para foto_usuario
-        $this->execute("ALTER TABLE usuario RENAME COLUMN foto TO foto_usuario");
+        $this->execute("ALTER TABLE usuario CHANGE COLUMN foto foto_usuario  varchar(100)");
 
         //altera o nome da coluna para foto_animal
-        $this->execute("ALTER TABLE animal RENAME COLUMN foto TO foto_animal");
+         $this->execute("ALTER TABLE animal CHANGE COLUMN foto TO foto_animal varchar(100)");
     }
 }
