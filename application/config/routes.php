@@ -54,15 +54,15 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 //Usuario Login
-$route['login'] = $route['default_controller'];
 $route['validate']['post'] = 'LoginController/validateLogin'; //REQUISIÇÃO POST
+$route['logout'] = 'LoginController/logout';
 
 //Usuario registro
 $route['register'] = 'RegisterController';
 $route['register-validate']['post'] = 'RegisterController/validateRegister'; //REQUISIÇÃO POST
 
 //Feed
-$route['home'] = 'UsuarioController';
+$route['home'] = 'HomeController';
 
 $route['usuario-dados']  = 'UsuarioController/dadosContaView';
 $route['usuario-deleta']  = 'UsuarioController/deletaContaView';
