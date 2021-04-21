@@ -13,7 +13,7 @@
                     <div id="config-terms">
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam doloribus similique iusto quisquam, amet sit obcaecati unde, quod officiis commodi ratione officia cumque quo accusamus velit sed possimus labore culpa.</p>
 
-                        <button id="btn-excluir" class="form-btn" type="button">Tenho certeza que quero excluir!</button>
+                        <button id="btn-excluir-usuario" class="form-btn" type="button">Tenho certeza que quero excluir!</button>
                     </div>
                     
                 </section>

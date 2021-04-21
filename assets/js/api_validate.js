@@ -29,7 +29,6 @@ $(document).ready(function(){
             }
         });
     });
-
     //request logout
     $("#btn-logout").click(function() {
         $.ajax({

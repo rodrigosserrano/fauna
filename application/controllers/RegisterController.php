@@ -43,11 +43,12 @@ public function index() {
                 "email" => $this->input->post('email'),
                 "senha" => $this->input->post('senha'),
                 "repetir_senha" => $this->input->post('repetir_senha'),
-                // "foto_usuario" => $this->input->post('foto_usuario'),
+                // "foto_usuario" => $this->uploadFotoUsuario($this->input->post('email')),
                 "nome_usuario" => $this->input->post('nome_usuario'),
                 "telefone" => $this->input->post('telefone'),
                 "sexo_usuario" => $this->input->post('sexo_usuario'),
                 "data_nascimento" => $this->input->post('data_nascimento'),
+
                 //animal
                 // "foto_animal" => $this->input->post('foto_animal'),
                 "nome_animal" => $this->input->post('nome_animal'),
@@ -67,6 +68,32 @@ public function index() {
             }
         }else{ //caso a validação do formulário der erro, volta para página de login
             echo json_encode(['mensagem'=>'Erro no formulário']);
+        }
+    }
+    //falta mexer MUITA coisa ainda
+    public function uploadFotoUsuario($email){
+
+        $foto_usuario = $_FILES['foto_usuario'];
+        $extensao = strtolower(substr($_FILES['foto_usuario']['name'], -4));
+        $nomefoto = md5(time()).$extensao;
+
+        $config = array(
+            'upload_path'   => base_url().'assets/img/user/'.$email,
+            'allowed_types' => 'png|jpg',
+            'file_name'     => $nomefoto,
+        );
+        if(!$config['upload_path']){
+            mkdir($config['upload_path']);
+        }
+
+        $this->load->library('upload');
+        $this->upload->initialize($config);
+
+        if ($this->upload->do_upload('foto_usuario')) {
+            return $foto_usuario;
+        }
+        else {
+            return false;
         }
     }
 }

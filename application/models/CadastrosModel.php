@@ -21,7 +21,7 @@ class CadastrosModel extends CI_Model {
         if($senha == $repetir_senha){
             $dados_usuario = [  
                 'email' => $email, 
-                'senha'=> $senha, 
+                'senha'=> md5($senha), 
                 // 'foto_usuario' => $foto_usuario, 
                 'nome_usuario' =>  $nome_usuario, 
                 'telefone' => $telefone, 
@@ -32,7 +32,7 @@ class CadastrosModel extends CI_Model {
             if($this->cadastroUsuarioModel($dados_usuario)){
                 $id_usuario = $this->getUltimoIdUsuario();
             }
-
+            
             if($id_usuario !== null && !empty($id_usuario)){
                 $dados_animal = [   
                     'id_usuario' => $id_usuario, 
@@ -63,6 +63,7 @@ class CadastrosModel extends CI_Model {
             return false;
         }
     }
+
     public function getUltimoIdUsuario(){
         return $this->id_usuario;
     }

@@ -61,9 +61,13 @@ $route['logout'] = 'LoginController/logout';
 $route['register'] = 'RegisterController';
 $route['register-validate']['post'] = 'RegisterController/validateRegister'; //REQUISIÇÃO POST
 
+//Usuários configs
+$route['usuario-dados']  = 'UserController';
+$route['usuario-deleta']  = 'UserController/deletaContaView';
+$route['usuario-altera']  = 'UserController/alteraContaView';
+
+$route['delete'] = 'UserController/delete';
+
 //Feed
 $route['home'] = 'HomeController';
 
-$route['usuario-dados']  = 'UsuarioController/dadosContaView';
-$route['usuario-deleta']  = 'UsuarioController/deletaContaView';
-$route['usuario-altera']  = 'UsuarioController/alteraContaView';
