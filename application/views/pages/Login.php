@@ -19,8 +19,10 @@
                     <p>Entre com sua conta</p>
 
                     <form id="form-login" class="form-login">
-                        <input class="form-input" type="email" name="email" placeholder="Email">
-                        <input class="form-input" type="password" name="senha" placeholder="Senha">
+                        <div class="box-mensagem hidden"><p id="mensagem"></p></div>
+
+                        <input class="form-input" type="email" name="email" placeholder="Email" required>
+                        <input class="form-input" type="password" name="senha" placeholder="Senha" required>
 
                         <div class="bar"></div>
 

@@ -4,6 +4,7 @@ $(document).ready(function(){
     }else{
         base_url = 'http://localhost/fauna/';
     }
+
     //request Login
     $("#btn-login").click(function() {
         var formData = $("#form-login").serialize();
@@ -13,10 +14,13 @@ $(document).ready(function(){
             data: formData,
             success: function (response) {
                 if(response.mensagem){
-                    alert(response.mensagem);
+                    $(".box-mensagem").removeClass("hidden");
+                    $("#mensagem").html(response.mensagem);
                 }
-
+                
                 if(response.is_logado){
+                    $(".box-mensagem").addClass("box-mensagem-success");
+                    $(".box-mensagem").addClass("box-mensagem-success");
                     window.location.reload();
                 }
             },
@@ -34,6 +38,7 @@ $(document).ready(function(){
             success: function (response) {
                 if(response.mensagem)
                     alert(response.mensagem);
+                    window.location.reload();
             },
             error: function (request, status, error) {
                 console.log(request.responseText);

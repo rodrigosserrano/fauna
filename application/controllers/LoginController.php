@@ -44,10 +44,10 @@ class LoginController extends Fauna_Controller {
 
                 echo json_encode(['mensagem'=>'Logado com sucesso', 'is_logado'=>true]);
             }else{ // se os dados estiverem incorretos, retorna mensagem de erro
-                echo json_encode(['mensagem'=>'Erro ao logar', 'is_logado'=>false]);
+                echo json_encode(['mensagem'=>'E-mail ou senha inválidos.', 'is_logado'=>false]);
             }
         }else{ //caso a validação do formulário der erro, volta para página de login
-            echo json_encode(['mensagem'=>'Erro no formulário', 'is_logado'=>false]);
+            echo json_encode(['mensagem'=>'Preencha corretamente o formulário', 'is_logado'=>false]);
         }
     }
 
@@ -56,6 +56,7 @@ class LoginController extends Fauna_Controller {
 
         if($this->session->has_userdata('id')){
             $this->destroySession();
+            echo json_encode(['mensagem'=>'Até mais !']);
         }else{
             echo json_encode(['mensagem'=>'Você não está logado.']);
         }

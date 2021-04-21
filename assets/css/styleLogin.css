@@ -72,8 +72,8 @@ img.paw-icon {
     width: 200px;
     height: 1px;
     background-color: var(--darker-color);
-    position: absolute;
-    margin-top: 40px;
+    position: inherit;
+    margin-top: 10%;
 }
 
 a, .mini-container p {
@@ -109,7 +109,7 @@ a.link:hover {
 }
 
 .form-login {
-    margin-top: 30px;
+    margin-top: 3%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -136,7 +136,7 @@ a.link:hover {
 
 .btn-login {
     background-color: var(--darker-color);
-    margin-top: 40px;
+    margin-top: 10%;
     color: white;
     height: 35px;
     
@@ -147,6 +147,38 @@ a.link:hover {
 .btn-login:hover {
     background-color: var(--darker-hover-color);
 }
+
+.box-mensagem {
+    padding: 2%;
+    margin-bottom: 2%;
+    border: 1px solid rgb(196, 12, 12);
+    border-radius: 2px;
+    width: 100%;
+    text-align: center;
+    background-color: rgba(252, 67, 67, 0.808);
+    color: rgb(124, 4, 4);
+}
+
+.box-mensagem p{
+    text-shadow: 0.03em 0.04em 0.01em rgb(224, 117, 117)
+}
+
+
+.box-mensagem-success{
+    border: 1px solid rgb(49, 196, 12) !important;
+    background-color: rgba(119, 250, 152, 0.808) !important;
+    color: rgb(4, 124, 10) !important;
+}
+
+.box-mensagem-success p{
+    text-shadow: 0.03em 0.04em 0.01em rgb(117, 224, 122) !important;
+}
+
+.hidden {
+    opacity: 0%;
+    transition-duration: 2s;
+}
+
 
 @media screen and (max-width: 950px) {
     section#slogan {
