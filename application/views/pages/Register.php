@@ -1,5 +1,3 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
-
 <!-- Separar essa porra em outro arquivo depois :) -->
 <script>
     $(document).ready(function() {
