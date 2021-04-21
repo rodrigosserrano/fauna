@@ -1,14 +1,3 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
-
-<!-- Separar essa porra em outro arquivo depois :) -->
-<script>
-    $(document).ready(function() {
-
-        $("#telefone").mask('(00) 0000-0000');
-
-    });
-</script>
-
 <body>
     <header>
         <div class="logo"><span><a style="text-decoration:none; color: black;" href="<?= base_url() ?>">Fauna</a></span></div>
@@ -40,7 +29,7 @@
                     <!--input file ainda com funcionamento pendente-->
                     <div class="inputs-container">
                         <input type="text" name="nome_usuario" placeholder="Nome" required>
-                        <input type="text" name="telefone" id="telefone" placeholder="Telefone" required>
+                        <input type="text" name="telefone" placeholder="Telefone" required>
                         <select name="sexo_usuario" required>
                             <option disabled selected>Gênero</option>
                             <option value="1">Masculino</option>
