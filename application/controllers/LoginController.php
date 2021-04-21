@@ -8,16 +8,9 @@ class LoginController extends Fauna_Controller {
 	public function index() {
         /**  verificação pagina home utilizar ele caso esteja logado */
         
-		// if($this->session->userdata("id")){
-		// 	redirect("home");
-        // } 
-
-        /**                 | OBRIGATÓRIO |  |  NÃO OBRIGATÓRIO  |
-         * $this->dadosShow('titulo_pagina', 'link_css', 'link_js') */
-
-         /**            |DADOS| |VIEW| |TRUE/FALSE|
-         * $this->show($dados, $view, $navbar); */
-
+		if($this->session->userdata('id')){
+			redirect("home");
+        } 
 
         $dados = $this->dadosShow('Login', 'assets/css/styleLogin.css');
 		$view = $this->load->view('pages/Login', null, true);
@@ -50,7 +43,7 @@ class LoginController extends Fauna_Controller {
                 ];
 
                 $this->createSession($session_data);
-                
+
                 echo json_encode(['mensagem'=>'Logado com sucesso']);
             }else{ // se os dados estiverem incorretos, retorna mensagem de erro
                 $this->session->set_flashdata('error', 'Login ou senha inválidos.');
@@ -61,4 +54,7 @@ class LoginController extends Fauna_Controller {
         }
     }
 
+    public function logout(){
+        $this->destroySession();
+    }
 }

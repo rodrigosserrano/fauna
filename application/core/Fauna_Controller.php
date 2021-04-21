@@ -4,8 +4,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Fauna_Controller extends CI_Controller{
 
     public function show(array $dados, $view, $nav = false){
+        $dados_usuario = [];
         $estrutura = $this->load->view('template/header', $dados, true);
-        $nav ? $estrutura .= $this->load->view('template/navbar', $dados, true) : null;
+        $nav ? $estrutura .= $this->load->view('template/navbar', $dados_usuario, true) : null;
         
         $estrutura .= $view;
 
@@ -34,7 +35,7 @@ class Fauna_Controller extends CI_Controller{
     }
 
     
-    public function unsetSession(){
+    public function destroySession(){
         $this->session->sess_destroy();
     }
 }
