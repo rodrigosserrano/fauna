@@ -42,17 +42,22 @@ class LoginController extends Fauna_Controller {
 
                 $this->createSession($session_data);
 
-                echo json_encode(['mensagem'=>'Logado com sucesso']);
+                echo json_encode(['mensagem'=>'Logado com sucesso', 'is_logado'=>true]);
             }else{ // se os dados estiverem incorretos, retorna mensagem de erro
-                $this->session->set_flashdata('error', 'Login ou senha inválidos.');
-                echo json_encode(['mensagem'=>'Erro ao logar']);
+                echo json_encode(['mensagem'=>'Erro ao logar', 'is_logado'=>false]);
             }
         }else{ //caso a validação do formulário der erro, volta para página de login
-            echo json_encode(['mensagem'=>'Erro no formulário']);
+            echo json_encode(['mensagem'=>'Erro no formulário', 'is_logado'=>false]);
         }
     }
 
     public function logout(){
-        $this->destroySession();
+        header('Content-Type: application/json');
+
+        if($this->session->has_userdata('id')){
+            $this->destroySession();
+        }else{
+            echo json_encode(['mensagem'=>'Você não está logado.']);
+        }
     }
 }
