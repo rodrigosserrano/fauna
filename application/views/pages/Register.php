@@ -22,10 +22,10 @@
                     </div>
                     <div class="description"><span>Cadastre suas informações</span></div>
                     <label for="file-input1" class="file-label">
-                        <div>+</div>
-                        <span>Adicione sua foto</span>
+                        <div><span>+</span></div>
+                        <span id="user-pic">Adicione sua foto</span>
                     </label>
-                    <div id="file-input1" class="file-input-container"><input type="file" name="foto_usuario" enctype="multipart/form-data"></div>
+                    <input id="file-input1" type="file" name="foto_usuario" enctype="multipart/form-data">
                     <!--input file ainda com funcionamento pendente-->
                     <div class="inputs-container">
                         <input type="text" name="nome_usuario" placeholder="Nome" required>
@@ -42,11 +42,11 @@
                 <section class="right-form-container">
                     <div class="description"><span>Cadastre as informações do seu pet</span></div>
                     <label for="file-input2" class="file-label">
-                        <div>+</div>
-                        <span>Adicione a foto do seu pet</span>
+                        <div><span>+</span></div>
+                        <span id="pet-pic">Adicione a foto do seu pet</span>
                     </label>
                     <!--input file ainda com funcionamento pendente-->
-                    <div id="file-input2" class="file-input-container"><input type="file" name="foto_animal" enctype="multipart/form-data"></div>
+                    <input id="file-input2" type="file" name="foto_animal" enctype="multipart/form-data">
                     <div class="inputs-container">
                         <input type="text" name="nome_animal" placeholder="Nome" required>
                         <select id="animal" name="tipo" required>
@@ -83,4 +83,15 @@
     <footer>
 
     </footer>
+
+    <script>
+        document.querySelector('#file-input1').addEventListener('input', e => {
+            document.querySelector('#user-pic').textContent = e.target.files[0].name;
+        });
+        document.querySelector('#file-input2').addEventListener('input', e => {
+            /*document.querySelector('#pet-pic').style.maxWidth = "150px";
+            document.querySelector('#pet-pic').style.overflow = "hidden";*/
+            document.querySelector('#pet-pic').textContent = e.target.files[0].name;
+        });
+    </script>
 </body>
