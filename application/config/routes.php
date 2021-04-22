@@ -67,7 +67,7 @@ $route['usuario-deleta']  = 'UserController/deletaContaView';
 
 $route['delete'] = 'UserController/delete';
 
-$route['altera'] = 'UserController/altera';
+$route['edit'] = 'UserController/edit';
 
 //Feed
 $route['home'] = 'HomeController';

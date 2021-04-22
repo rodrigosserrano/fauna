@@ -17,8 +17,19 @@ class UsuariosModel extends CI_Model {
         }   
     }
 
-    public function alterarDadosModel($id_usuario,$dados_alterados){
-        $this->db->update('usuario', $dados_alterados, $id_usuario);    
+    public function alterarDadosModel($id_usuario,$dados_update){
+        extract($dados_update);
+
+        $dados = [
+            'email' => $email,
+            'senha' => md5($senha),
+            'nome_usuario' => $nome_usuario,
+            'telefone' => $telefone,
+            'data_nascimento' => $data_nascimento,
+        ];
+        
+        $this->db->where('id_usuario', $id_usuario);
+        return $this->db->update('usuario', $dados);
     }
 
     public function deleteModel($id_usuario){

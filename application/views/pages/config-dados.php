@@ -21,7 +21,7 @@
                         <section id="form-user-data">
                             <div id="form-user-fields">
                                 <!-- <input type="hidden" name="id">??? -->
-                                <input type="hidden" name="email">
+                                <input type="hidden" name="email" value="<?=$dados_usuario[0]->email?>">
                                 <input type="text" value="<?=$dados_usuario[0]->nome_usuario?>" class="form-input" name="nome_usuario" placeholder="Nome" required>
                                 <input type="date" value="<?=$dados_usuario[0]->data_nascimento?>" class="form-input" name="data_nascimento">
                                 <input type="password" class="form-input" name="senha" placeholder="Senha" required>
@@ -38,7 +38,7 @@
                                 </select> -->
                             </div>
 
-                            <button id="btn-alterar" class="form-btn" type="button">Atualizar</button>
+                            <button id="btn-altera-dados-usuario" class="form-btn" type="button">Atualizar</button>
                         </section>
                     </form>
                 </section>

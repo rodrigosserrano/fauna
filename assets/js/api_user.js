@@ -22,4 +22,23 @@ $(document).ready(function(){
             }
         });
     });
+
+    //Alterar dados conta
+    $("#btn-altera-dados-usuario").click(function(){
+        var formData = $("#form_alterar").serialize();
+        $.ajax({
+            type: "POST",
+            url: base_url+"edit",
+            data: formData,
+            success: function (response) {
+                if(response.mensagem){
+                    alert(response.mensagem);
+                    window.location.reload();
+                }
+            },
+            error: function (request, status, error) {
+                console.log(request.responseText);
+            }
+        });
+    });
 });
