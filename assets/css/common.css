@@ -65,6 +65,7 @@
 #navbar #nav-user #btn-config {
     transition: 0.2s;
     cursor: pointer;
+    vertical-align:-20%;
 }
 
 #navbar #nav-user #btn-config:hover {
