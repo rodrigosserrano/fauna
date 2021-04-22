@@ -64,9 +64,10 @@ $route['register-validate']['post'] = 'RegisterController/validateRegister'; //R
 //Usuários configs
 $route['usuario-dados']  = 'UserController';
 $route['usuario-deleta']  = 'UserController/deletaContaView';
-$route['usuario-altera']  = 'UserController/alteraContaView';
 
 $route['delete'] = 'UserController/delete';
+
+$route['altera'] = 'UserController/altera';
 
 //Feed
 $route['home'] = 'HomeController';

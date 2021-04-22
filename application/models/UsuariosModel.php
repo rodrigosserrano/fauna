@@ -17,12 +17,17 @@ class UsuariosModel extends CI_Model {
         }   
     }
 
-    public function alterarDados($id_usuario,$dados_alterados){
+    public function alterarDadosModel($id_usuario,$dados_alterados){
         $this->db->update('usuario', $dados_alterados, $id_usuario);    
     }
 
     public function deleteModel($id_usuario){
         return $this->db->where('id_usuario', $id_usuario)->delete('usuario');
+    }
+
+    public function getDadosUsuarioModel($id_usuario){
+        $query = $this->db->where(['id_usuario' => $id_usuario])->get('usuario');
+        return $query->result(); 
     }
 
 }
