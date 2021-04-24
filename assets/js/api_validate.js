@@ -36,7 +36,6 @@ $(document).ready(function(){
             url: base_url+"logout",
             success: function (response) {
                 if(response.mensagem)
-                    alert(response.mensagem);
                     window.location.href = base_url;
             },
             error: function (request, status, error) {
