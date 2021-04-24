@@ -41,9 +41,10 @@
                         <input type="text" name="telefone" id="telefone" placeholder="Telefone" required>
                         <select name="sexo_usuario" required>
                             <option disabled selected>Gênero</option>
-                            <option value="1">Masculino</option>
-                            <option value="2">Feminino</option>
-                            <option value="3">Outros</option>
+                            <?php 
+                            foreach($sexo as $list_sexo)
+                             echo "<option value=".$list_sexo->id_sexo.">$list_sexo->descricao</option>";
+                            ?>
                         </select>
                         <input type="date" name="data_nascimento" placeholder="Data de nascimento" required>
                     </div>
@@ -59,29 +60,19 @@
                     <div class="inputs-container">
                         <input type="text" name="nome_animal" placeholder="Nome" required>
                         <select id="animal" name="tipo" required>
-                            <option selected disabled>Tipo de animal</option>
-                            <option value="1">Cachorros</option>
-                            <option value="2">Gatos</option>
-                            <option value="3">Peixes</option>
-                            <option value="4">Aves</option>
-                            <option value="5">Roedores</option>
-                            <option value="6">Coelhos</option>
-                            <option value="7">Tartarugas</option>
-                            <option value="8">Bovinos</option>
-                            <option value="9">Capríneos</option>
-                            <option value="10">Equídeos</option>
-                            <option value="11">Suínos</option>
-                            <option value="12">Cobras</option>
-                            <option value="13">Lagartos</option>
-                            <option value="14">Macacos</option>
-                            <option value="15">Insetos/aracnídeos</option>
-                            <option value="16">Outros</option>
+                            <option selected disabled>Tipo de animal</option>    
+                            <?php 
+                            foreach($tipo as $list_tipo)
+                             echo "<option value=".$list_tipo->id_tipo.">$list_tipo->descricao</option>";
+                            ?>
                         </select>
                         <input type="text" name="raca" placeholder="Raça">
                         <select name="sexo_animal" required>
-                            <option selected disabled>Gênero</option>
-                            <option value="1">Masculino</option>
-                            <option value="2">Feminino</option>
+                            <option disabled selected>Gênero</option>
+                            <?php 
+                            foreach($sexo as $list_sexo)
+                             echo "<option value=".$list_sexo->id_sexo.">$list_sexo->descricao</option>";
+                            ?>
                         </select>
                     </div>
                 </section>

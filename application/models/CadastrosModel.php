@@ -72,4 +72,14 @@ class CadastrosModel extends CI_Model {
         if($this->db->insert('animal', $dados_animal))
             return true;
     }
+
+    public function getSexoModel(){
+        $query = $this->db->get('sexo');
+        return $query->result();    
+     }
+
+     public function getTipoModel(){
+        $query = $this->db->get('tipo');
+        return $query->result();    
+     }
 }

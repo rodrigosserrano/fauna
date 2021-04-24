@@ -9,11 +9,13 @@ public function index() {
         
         /**            |DADOS| |VIEW| |TRUE/FALSE|
          * $this->show($dados, $view, $navbar); */
+        $this->load->model('CadastrosModel');
+        $dados['sexo'] = $this->CadastrosModel->getSexoModel();
+        $dados['tipo'] = $this->CadastrosModel->getTipoModel();
 
-
-        $dados = $this->dadosShow('Cadastrar-se', 'assets/css/styleRegister.css');
-		$view = $this->load->view('pages/Register', null, true);
-        $this->show($dados, $view);
+        $dados_view = $this->dadosShow('Cadastrar-se', 'assets/css/styleRegister.css');
+		$view = $this->load->view('pages/Register', $dados, true);
+        $this->show($dados_view, $view);
     }
     //Validação de registro Usuário e pet --- PRIMEIRO REGISTRO
     public function validateRegister() {
