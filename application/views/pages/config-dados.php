@@ -10,16 +10,16 @@
                 <section id="config-info">
                     <h1 class="info-title">Altere os dados da sua conta</h1>
 
-                    <form id="form_alterar">
-                        <section id="form-user-pic-area">
-                            <div class="form-user-pic">
+                    <form class="frm" id="form_alterar">
+                        <section id="form-pic-area">
+                            <div class="form-pic">
                                 <!-- <img id="pic" src="<?= base_url() ?>assets/img/user/" alt="Nome" title="Nome"> -->
                                 <input type="file" name="foto" enctype="multipart/form-data">
                             </div>
                         </section>
 
-                        <section id="form-user-data">
-                            <div id="form-user-fields">
+                        <section id="form-data">
+                            <div id="form-fields">
                                 <!-- <input type="hidden" name="id">??? -->
                                 <input type="hidden" name="email" value="<?=$dados_usuario[0]->email?>">
                                 <label> Nome de Usuario:</label>

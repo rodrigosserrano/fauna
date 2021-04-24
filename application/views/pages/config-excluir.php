@@ -11,7 +11,9 @@
                     <h1 class="info-title">Excluir conta</h1>
 
                     <div id="config-terms">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam doloribus similique iusto quisquam, amet sit obcaecati unde, quod officiis commodi ratione officia cumque quo accusamus velit sed possimus labore culpa.</p>
+                        <p>CUIDADO! Essa ação é irreversível, pense com muito cuidado antes de excluir sua conta, pois todas as suas postagens serão perdidas e seus seguidores sentirão sua falta.</p>
+
+                        <img src="<?= base_url() ?>assets/img/icon/sad-cat.png" alt="Gato triste">
 
                         <button id="btn-excluir-usuario" class="form-btn" type="button">Tenho certeza que quero excluir!</button>
                     </div>

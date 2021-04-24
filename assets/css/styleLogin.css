@@ -46,7 +46,7 @@ img.paw-icon {
     justify-content: center;
     align-items: center;
 
-    box-shadow: 2px 2px 2px var(--darker-color);
+    /* box-shadow: 2px 2px 2px var(--darker-color); */
     border-radius: 3px;
 }
 
@@ -95,6 +95,10 @@ a.link:hover {
     font-weight: bold;
 }
 
+.mini-container p {
+    margin: auto 0;
+}
+
 /* Login */
 .login-box {
     position: relative;
@@ -109,7 +113,7 @@ a.link:hover {
 }
 
 .form-login {
-    margin-top: 3%;
+    margin-top: -5%;
     display: flex;
     justify-content: center;
     align-items: center;
