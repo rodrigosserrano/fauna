@@ -64,10 +64,15 @@ $route['register-validate']['post'] = 'RegisterController/validateRegister'; //R
 //Usuários configs
 $route['usuario-dados']  = 'UserController';
 $route['usuario-deleta']  = 'UserController/deletaContaView';
+$route['usuario-pet'] = 'UserController/petDadosView';
 
 $route['delete'] = 'UserController/delete';
-
 $route['edit'] = 'UserController/edit';
+
+//Pet configs
+$route['delete-pet/(:num)'] = 'UserController/deletePet/$id';
+$route['edit-pet/(:num)'] = 'UserController/editPet/$id';
+$route['create-pet'] = 'UserController/createPet';
 
 //Feed
 $route['home'] = 'HomeController';

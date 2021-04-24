@@ -22,10 +22,9 @@ class UsuariosModel extends CI_Model {
 
         $dados = [
             'email' => $email,
-            'senha' => md5($senha),
             'nome_usuario' => $nome_usuario,
             'telefone' => $telefone,
-            'data_nascimento' => $data_nascimento,
+            'data_nascimento' => $data_nascimento
         ];
         
         $this->db->where('id_usuario', $id_usuario);
@@ -33,6 +32,7 @@ class UsuariosModel extends CI_Model {
     }
 
     public function deleteModel($id_usuario){
+        if($this->db->where('id_usuario', $id_usuario)->delete('animal'))
         return $this->db->where('id_usuario', $id_usuario)->delete('usuario');
     }
 

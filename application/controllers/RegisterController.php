@@ -34,7 +34,7 @@ public function index() {
         // $this->form_validation->set_rules('foto_animal', 'foto_animal', 'required');
         $this->form_validation->set_rules('nome_animal', 'nome_animal', 'required');
         $this->form_validation->set_rules('tipo', 'tipo', 'required');
-        $this->form_validation->set_rules('raca', 'raca', 'required');
+        $this->form_validation->set_rules('raca', 'raca');
         $this->form_validation->set_rules('sexo_animal', 'sexo_animal', 'required');
 
         if($this->form_validation->run()){

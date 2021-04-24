@@ -22,20 +22,12 @@
                             <div id="form-user-fields">
                                 <!-- <input type="hidden" name="id">??? -->
                                 <input type="hidden" name="email" value="<?=$dados_usuario[0]->email?>">
+                                <label> Nome de Usuario:</label>
                                 <input type="text" value="<?=$dados_usuario[0]->nome_usuario?>" class="form-input" name="nome_usuario" placeholder="Nome" required>
+                                <label> Data de Nascimento:</label>
                                 <input type="date" value="<?=$dados_usuario[0]->data_nascimento?>" class="form-input" name="data_nascimento">
-                                <input type="password" class="form-input" name="senha" placeholder="Senha" required>
-                                <!--Melhorar ter  senha antiga
-                                    <input type="password" class="form-input" name="senha" placeholder="Senha" required> -->
+                                <label> Núemro de Telefone</label>
                                 <input type="text" value="<?=$dados_usuario[0]->telefone?>" class="form-input" name="telefone" placeholder="Telefone">
-                                <!-- 
-                                    Melhorar
-                                    <select name="sexo_usuario" class="form-input" required>
-                                    <option disabled selected>Gênero</option>
-                                    <option value="1">Masculino</option>
-                                    <option value="2">Feminino</option>
-                                    <option value="3">Outros</option>
-                                </select> -->
                             </div>
 
                             <button id="btn-altera-dados-usuario" class="form-btn" type="button">Atualizar</button>

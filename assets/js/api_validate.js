@@ -37,7 +37,7 @@ $(document).ready(function(){
             success: function (response) {
                 if(response.mensagem)
                     alert(response.mensagem);
-                    window.location.reload();
+                    window.location.href = base_url;
             },
             error: function (request, status, error) {
                 console.log(request.responseText);
@@ -53,8 +53,10 @@ $(document).ready(function(){
             url: base_url+"register-validate",
             data: formData,
             success: function (response) {
-                if(response.mensagem)
+                if(response.mensagem){
                     alert(response.mensagem);
+                    window.location.href= base_url;
+                }
             },
             error: function (request, status, error) {
                 console.log(request.responseText);
