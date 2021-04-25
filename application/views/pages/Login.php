@@ -1,6 +1,8 @@
 
     <body>
+        <div class="alertArea"></div>
         <main>
+
             <section id="slogan">
                 <p class="slogan-text">
                     Entre e divirta-se em uma comunidade que ama animais de estimação.
@@ -41,3 +43,4 @@
             </section>
         </main>
     </body>
+        
