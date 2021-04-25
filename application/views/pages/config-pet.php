@@ -20,13 +20,13 @@
                                     <form class="frm" id="form-alterar-pet">
                                         <section id="form-pic-area">
                                             <div class="form-pic">
-                                                <!-- <img id="pet-pic" src="<?= base_url() ?>assets/img/user/" alt="Nome" title="Nome"> -->
+                                                <!-- class="form-pet-pic" id="form-pet-pic-alterar" src="<?= base_url() ?>assets/img/user/" alt="Nome" title="Nome"> -->
                                                 <input type="file" name="foto_animal" enctype="multipart/form-data" value="<?=$foto_animal?>">
                                             </div>
                                         </section>
 
                                         <section id="form-data">
-                                            <h1 class="form-title">Altere os dados da sua conta</h1>
+                                            <h1 class="form-title">Altere as informações de NOME</h1>
 
                                             <div id="form-fields">
                                                 <input id="frm_alterar_id_animal" type="hidden" name="id_animal" value="<?=$id_animal?>">

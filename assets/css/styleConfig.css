@@ -113,6 +113,7 @@ h1.info-title {
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
 .form-pic p {
@@ -125,10 +126,13 @@ h1.info-title {
     filter: opacity(80%);
 }
 
-.form-pic #pic {
+.form-pic .pic, .form-pet-pic {
     position: absolute;
     max-width: 140px;
     max-height: 190px;
+    min-width: 140px;
+    min-height: 190px;
+    border-radius: 3px;
 }
 
 #form-data {
@@ -169,6 +173,17 @@ input.form-input::placeholder, select.form-input, input.form-input[type="date"]{
     color: #888;
 }
 
+.form-fields-edit-user-data {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.form-fields-edit-user-data label {
+    margin-top: -18px;
+}
+
 input[type="file"] {
     opacity: 0;
     width: 100%;
@@ -200,6 +215,10 @@ input[type="file"] {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+}
+
+#config-terms img {
+    margin-top: -25px;
 }
 
 /* Pet */
@@ -286,13 +305,110 @@ input[type="file"] {
 }
 
 .pet-icon-edit {
-    margin-top: -90px;
+    margin-top: -80px;
 }
 
 .pet-icon-delete {
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
 .modal-pet-item {
     margin: 20px 0;
+}
+
+@media screen and (max-width: 740px) {
+    #config, #config-info {
+        width: 100%;
+    }
+
+    .form-input {
+        width: 100%;
+        margin: auto;
+        margin-bottom: 10px;
+        padding: 5px;
+    }
+
+    input.form-input::placeholder, select.form-input, input.form-input[type="date"]{
+        font-size: 10pt;
+    }
+
+    .form-btn-pet {
+        width: 80%;
+    }
+
+    .form-btn, .form-btn-pet {
+        margin-top: 20px;
+    }
+
+    .form-pic {
+        width: 70px;
+        height: 95px;
+        border-radius: 3px;
+    }
+
+    .form-pic .pic, .form-pet-pic {
+        max-width: 70px;
+        max-height: 95px;
+        min-width: 70px;
+        min-height: 95px;
+        border-radius: 3px;
+    }
+    
+    #form-data {    
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    #form-fields label {
+        font-size: 10pt;
+    }
+
+    .form-pic p {
+        margin-top: 20px;
+    }
+
+    .form-title {
+        display: none;
+    }
+
+    .frm {
+        flex-direction: column;
+        width: 95%;
+    }
+
+    #config-terms {
+        width: 90%;
+        height: 60%;
+    }
+
+    #config-terms p {
+        font-size: 10pt;
+    }
+
+    #config-terms img {
+        margin: 0;
+    }
+
+    h1.info-title {
+        margin: 30px 0;
+    }
+
+    .form-data-edit-user .form-btn {
+        margin: -10px;
+    }
+
+    .form-fields-edit-user-data {
+        flex-direction: column;
+        justify-content: center;
+        width: 48%;
+        margin: 10px 0;
+    }
+
+    .form-fields-edit-user {
+        display: flex;
+    }
+
+    .form-fields-edit-user .form-input {
+        width: 100%;
+    }
 }
