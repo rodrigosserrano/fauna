@@ -32,10 +32,9 @@
                         <input type="text" name="telefone" id="telefone" placeholder="Telefone" required>
                         <select name="sexo_usuario" required>
                             <option disabled selected>Gênero</option>
-                            <?php 
-                            foreach($sexo as $list_sexo)
-                             echo "<option value=".$list_sexo->id_sexo.">$list_sexo->descricao</option>";
-                            ?>
+                            <?php foreach($sexo as $list_sexo) : ?>
+                                <option value="<?=$list_sexo->id_sexo?>"><?= ucfirst($list_sexo->descricao)?></option>
+                            <?php endforeach; ?>
                         </select>
                         <input type="date" name="data_nascimento" placeholder="Data de nascimento" required>
                     </div>
@@ -52,18 +51,16 @@
                         <input type="text" name="nome_animal" placeholder="Nome" required>
                         <select id="animal" name="tipo" required>
                             <option selected disabled>Tipo de animal</option>    
-                            <?php 
-                            foreach($tipo as $list_tipo)
-                             echo "<option value=".$list_tipo->id_tipo.">$list_tipo->descricao</option>";
-                            ?>
+                            <?php foreach($tipo as $list_tipo) : ?>
+                                <option value="<?=$list_tipo->id_tipo?>"><?= ucfirst($list_tipo->descricao)?></option>
+                            <?php endforeach; ?>
                         </select>
                         <input type="text" name="raca" placeholder="Raça">
                         <select name="sexo_animal" required>
                             <option disabled selected>Gênero</option>
-                            <?php 
-                            foreach($sexo as $list_sexo)
-                             echo "<option value=".$list_sexo->id_sexo.">$list_sexo->descricao</option>";
-                            ?>
+                            <?php foreach($sexo as $list_sexo) : ?>
+                                <option value="<?=$list_sexo->id_sexo?>"><?= ucfirst($list_sexo->descricao)?></option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
                 </section>

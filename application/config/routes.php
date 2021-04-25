@@ -66,13 +66,13 @@ $route['usuario-dados']  = 'UserController';
 $route['usuario-deleta']  = 'UserController/deletaContaView';
 $route['usuario-pet'] = 'UserController/petDadosView';
 
-$route['delete'] = 'UserController/delete';
-$route['edit'] = 'UserController/edit';
+$route['delete']['post'] = 'UserController/delete';
+$route['edit']['post'] = 'UserController/edit';
 
 //Pet configs
-$route['delete-pet/(:num)'] = 'UserController/deletePet/$id';
-$route['edit-pet/(:num)'] = 'UserController/editPet/$id';
-$route['create-pet'] = 'UserController/createPet';
+$route['delete-pet']['post'] = 'UserController/deletePet';
+$route['edit-pet']['post'] = 'UserController/editPet';
+$route['create-pet']['post'] = 'UserController/createPet';
 
 //Feed
 $route['home'] = 'HomeController';

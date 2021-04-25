@@ -1,19 +1,28 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class UserController extends Fauna_Controller {
+class UserController extends Fauna_Controller {    
 
     public function __construct()
     {
         parent::__construct();
-            $this->verifySession();
+        $this->verifySession();
+
+        $this->id_usuario = $_SESSION['id'];
     }
 
     public function index() {
         
-        $id = $_SESSION['id'];
         $this->load->model('UsuariosModel');
-        $dados['dados_usuario'] = $this->UsuariosModel->getDadosUsuarioModel($id);
+        $dados_usuario = $this->UsuariosModel->getDadosUsuarioModel($this->id_usuario);
+        $dados_usuario = $dados_usuario[0];
+
+        $dados = [
+            'email' => $dados_usuario->email,
+            'nome_usuario' => $dados_usuario->nome_usuario,
+            'data_nascimento' => $dados_usuario->data_nascimento,
+            'telefone' => $dados_usuario->telefone
+        ];
 
         $dados_view = $this->dadosShow('Altera Conta', 'assets/css/styleConfig.css');
         $view = $this->load->view('/pages/config-dados', $dados, true);
@@ -23,8 +32,6 @@ class UserController extends Fauna_Controller {
 
     public function edit() {
         header('Content-Type: application/json');
-        
-        $id = $_SESSION['id'];
         
         $this->load->library('form_validation');
         
@@ -50,7 +57,7 @@ class UserController extends Fauna_Controller {
         }
 
         $this->load->model('UsuariosModel');
-        if($this->UsuariosModel->alterarDadosModel($id, $dados_cadastro)){
+        if($this->UsuariosModel->alterarDadosModel($this->id_usuario, $dados_cadastro)){
             echo json_encode(['mensagem'=>'Dados Alterados com sucesso.']);
         }else{
             echo json_encode(['mensagem'=>'Erro ao alterar dados']);
@@ -67,10 +74,8 @@ class UserController extends Fauna_Controller {
     public function delete() {
         header('Content-Type: application/json');
         
-        $id = $_SESSION['id'];
-        
         $this->load->model('UsuariosModel');
-        if($this->UsuariosModel->deleteModel($id)){
+        if($this->UsuariosModel->deleteModel($this->id_usuario)){
             echo json_encode(['mensagem'=>'Conta excluida com sucesso.']);
             $this->destroySession();
         }else{
@@ -79,11 +84,35 @@ class UserController extends Fauna_Controller {
         
     }
 
-    public function petDadosView() {
-        $dados = $this->dadosShow('Pet Dados', 'assets/css/styleConfig.css');
-        $view = $this->load->view('/pages/config-pet', null, true);
+    /**
+     * DADOS PET 
+     * create, edit & delete
+     */
 
-        $this->show($dados, $view, true);
+    public function petDadosView() {
+        $dados_view = $this->dadosShow('Pet Dados', 'assets/css/styleConfig.css');
+        
+
+        $this->load->model('PetsModel');
+        $dados_pet = $this->PetsModel->getDadosPetModel($this->id_usuario);
+        $dados_pet = $dados_pet[0];
+        
+        $this->load->model('CadastrosModel');
+        $sexo = $this->CadastrosModel->getSexoModel();
+        $tipo = $this->CadastrosModel->getTipoModel();
+        
+        $dados = [
+            'id_animal' => $dados_pet->id_animal,
+            'id_usuario' => $this->id_usuario,
+            'nome_animal' => $dados_pet->nome_animal,
+            'foto_animal' => $dados_pet->foto_animal,
+            'sexo' => $sexo,
+            'tipo' => $tipo
+        ];
+
+        $view = $this->load->view('/pages/config-pet', $dados, true);
+
+        $this->show($dados_view, $view, true);
     }
 
     public function createPet() {
@@ -119,7 +148,7 @@ class UserController extends Fauna_Controller {
         }
     }
 
-    public function editPet($id) {
+    public function editPet() {
         header('Content-Type: application/json');
         $this->load->library('form_validation');
         
@@ -140,7 +169,7 @@ class UserController extends Fauna_Controller {
             ];
             
             $this->load->model('PetModel');
-            $verifica_cadastro = $this->PetModel->alterarDadosPetModel($id,$dados_cadastro);
+            $verifica_cadastro = $this->PetModel->alterarDadosPetModel($this->id_animal,$dados_cadastro);
          
             if($verifica_cadastro){
                 echo json_encode(['mensagem'=>'Pet alterado com sucesso !']);
@@ -152,11 +181,11 @@ class UserController extends Fauna_Controller {
         }
     }
 
-    public function deletePet($id) {
+    public function deletePet() {
         header('Content-Type: application/json');
         
         $this->load->model('PetsModel');
-        if($this->PetsModel->deleteModel($id)){
+        if($this->PetsModel->deleteModel($this->id_animal)){
             echo json_encode(['mensagem'=>'Pet excluido com sucesso.']);
             $this->destroySession();
         }else{

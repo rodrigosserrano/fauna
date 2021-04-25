@@ -1,6 +1,6 @@
 <?php
 
-class PetModel extends CI_Model {
+class PetsModel extends CI_Model {
 
     public function alterarDadosPetModel($id_animal,$dados_update){
         extract($dados_update);

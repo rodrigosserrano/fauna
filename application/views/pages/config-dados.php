@@ -21,13 +21,13 @@
                         <section id="form-data">
                             <div id="form-fields">
                                 <!-- <input type="hidden" name="id">??? -->
-                                <input type="hidden" name="email" value="<?=$dados_usuario[0]->email?>">
+                                <input type="hidden" name="email" value="<?=$email?>">
                                 <label> Nome de Usuario:</label>
-                                <input type="text" value="<?=$dados_usuario[0]->nome_usuario?>" class="form-input" name="nome_usuario" placeholder="Nome" required>
+                                <input type="text" value="<?=$nome_usuario?>" class="form-input" name="nome_usuario" placeholder="Nome" required>
                                 <label> Data de Nascimento:</label>
-                                <input type="date" value="<?=$dados_usuario[0]->data_nascimento?>" class="form-input" name="data_nascimento">
+                                <input type="date" value="<?=$data_nascimento?>" class="form-input" name="data_nascimento">
                                 <label> Núemro de Telefone</label>
-                                <input type="text" value="<?=$dados_usuario[0]->telefone?>" class="form-input" name="telefone" placeholder="Telefone">
+                                <input type="text" value="<?=$telefone?>" class="form-input" name="telefone" placeholder="Telefone">
                             </div>
 
                             <button id="btn-altera-dados-usuario" class="form-btn" type="button">Atualizar</button>
