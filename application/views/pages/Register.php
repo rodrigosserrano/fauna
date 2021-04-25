@@ -1,6 +1,6 @@
 <body>
     <header>
-        <div class="logo"><span><a style="text-decoration:none; color: black;" href="<?= base_url() ?>">Fauna</a></span></div>
+        <div class="logo"><span><a style="text-decoration:none; color: #fff;" href="<?= base_url() ?>">Fauna</a></span></div>
     </header>
     <main>
         <form id="form-register">

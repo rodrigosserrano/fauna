@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Fauna, rede social de pets"/>
-        <meta name="author" content="André, Gabriel, João, Jonatha, Nathan, Rodrigo"/>
+        <meta name="author" content="André Seike, Gabriel Sá, João Bruzetti, Jonatha Wagner, Nathan Holanda, Rodrigo Serrano"/>
         <meta name="generator" content="VS Code"/>
         <meta name="keywords" content="rede social, pets, animais"/>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
