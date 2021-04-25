@@ -3,7 +3,7 @@
             <section id="config">
 
                 <section class="nav" id="config-menu" role="tablist">  
-                    <button class="config-option" id="config-dados-tab" data-bs-toggle="tab" data-bs-target="#config-dados" type="button" role="tab" aria-controls="config-dados" aria-selected="true">Alterar dados</button>
+                    <button class="config-option-selected" id="config-dados-tab" data-bs-toggle="tab" data-bs-target="#config-dados" type="button" role="tab" aria-controls="config-dados" aria-selected="true">Alterar dados</button>
                     <button class="config-option" id="config-pet-tab" data-bs-toggle="tab" data-bs-target="#config-pet" type="button" role="tab" aria-controls="config-pet" aria-selected="false">Seus pets</button>
                     <button class="config-option" id="config-excluir-tab" data-bs-toggle="tab" data-bs-target="#config-excluir" type="button" role="tab" aria-controls="config-excluir" aria-selected="false">Excluir conta</button>
                 </section>

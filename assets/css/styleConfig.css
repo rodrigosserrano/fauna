@@ -34,6 +34,7 @@ main {
     justify-content: center;
     align-items: center;
     font-size: 10pt;
+    border: none;
 
     width: 33.2%;
     height: 100%;
