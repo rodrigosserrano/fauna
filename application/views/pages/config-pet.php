@@ -3,7 +3,7 @@
             <section id="config">
                 <section id="config-menu">
                     <a class="config-option" href="<?= base_url()?>usuario-dados">Alterar dados</a>
-                    <a class="config-option-selected">Seus pets</a>
+                    <a class="config-option" href="<?= base_url()?>usuario-pet">Seus pets</a>
                     <a class="config-option" href="<?= base_url()?>usuario-deleta">Excluir conta</a>
                 </section>
 
@@ -95,7 +95,7 @@
                                             <h1 class="form-title">Adicionar novo pet</h1>
 
                                             <div id="form-fields">
-                                                <input id="frm_criar_id_usuario" type="hidden" name="id_usuario">
+                                                <!-- <input id="frm_criar_id_usuario" type="hidden" name="id_usuario"> -->
                                                 <input id="frm_criar_nome_animal" type="text" value="" class="form-input" name="nome_animal" placeholder="Nome" required>
                                                 <select id="frm_criar_tipo" class="form-input" name="tipo" required>
                                                     <option selected disabled>Tipo de animal</option>
@@ -162,19 +162,47 @@
     // só pra exemplificar + campos
     
     $(document).ready(function() {
-        // document.querySelector('#frm_alterar_nome_animal').value = "teste"
-        // $(#frm_alterar_id_animal)
-        // $(#frm_alterar_id_usuario)
-        // $(#frm_alterar_nome_animal)
-        // $(#frm_alterar_raca)
-        // $(#frm_alterar_sexo_animal)
-        // $(#frm_alterar_tipo)
+        if(window.location.origin != 'http://localhost'){
+            base_url = 'http://lds.codeigniter-dev/';
+        }else{
+            base_url = 'http://localhost/fauna/';
+        }
 
+        $("#btn-cria-pet").click(function(){
+            var formData = $("#form-criar-pet").serialize();
+            $.ajax({
+                type: "POST",
+                url: base_url+"create-pet",
+                data: formData,
+                success: function (response) {
+                    if(response.mensagem){
+                        alert(response.mensagem);
+                        window.location.reload();
+                    }
+                },
+                error: function (request, status, error) {
+                    console.log(request.responseText);
+                }
+            });
+        });
 
-        // $(#frm_criar_id_usuario)
-        // $(#frm_criar_nome_animal)
-        // $(#frm_criar_raca)
-        // $(#frm_criar_sexo_animal)
-        // $(#frm_criar_tipo)
+        $("#btn-altera-dados-pet").click(function(){
+            var formData = $("#form-alterar-pet").serialize();
+            $.ajax({
+                type: "POST",
+                url: base_url+"edit-pet",
+                data: formData,
+                success: function (response) {
+                    if(response.mensagem){
+                        alert(response.mensagem);
+                        window.location.reload();
+                    }
+                },
+                error: function (request, status, error) {
+                    console.log(request.responseText);
+                }
+            });
+        });
+        
     })
 </script>

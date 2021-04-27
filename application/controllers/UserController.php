@@ -129,6 +129,7 @@ class UserController extends Fauna_Controller {
             $dados_cadastro = [
                 //animal
                 // "foto_animal" => $this->input->post('foto_animal'),
+                "id_usuario" => $_SESSION['id'],
                 "nome_animal" => $this->input->post('nome_animal'),
                 "tipo" => $this->input->post('tipo'),
                 "raca" => $this->input->post('raca'),
@@ -137,7 +138,7 @@ class UserController extends Fauna_Controller {
             
             $this->load->model('CadastrosModel');
             $verifica_cadastro = $this->CadastrosModel->cadastroPetModel($dados_cadastro);
-         
+    
             if($verifica_cadastro){
                 echo json_encode(['mensagem'=>'Pet cadastrado com sucesso !']);
             }else{
