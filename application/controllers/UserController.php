@@ -9,6 +9,7 @@ class UserController extends Fauna_Controller {
         $this->verifySession();
 
         $this->id_usuario = $_SESSION['id'];
+        $this->id_animal = isset($_POST['id_animal']) ? $_POST['id_animal'] : '';
     }
 
     public function index() {
@@ -119,7 +120,7 @@ class UserController extends Fauna_Controller {
         header('Content-Type: application/json');
         $this->load->library('form_validation');
         
-        $this->form_validation->set_rules('id_usuario', 'id_usuario',);
+        $this->form_validation->set_rules('id_usuario', 'id_usuario');
         // $this->form_validation->set_rules('foto_animal', 'foto_animal', 'required');
         $this->form_validation->set_rules('nome_animal', 'nome_animal', 'required');
         $this->form_validation->set_rules('tipo', 'tipo', 'required');
@@ -185,11 +186,10 @@ class UserController extends Fauna_Controller {
 
     public function deletePet() {
         header('Content-Type: application/json');
-        
+
         $this->load->model('PetsModel');
-        if($this->PetsModel->deleteModel($this->id_animal)){
-            echo json_encode(['mensagem'=>'Pet excluido com sucesso.']);
-            $this->destroySession();
+        if($this->PetsModel->deletePetModel($this->id_animal)){
+            echo json_encode(['mensagem'=>'Pet excluido com sucesso. ' . $this->id_animal]);
         }else{
             echo json_encode(['mensagem'=>'Erro ao deletar']);
         }

@@ -67,10 +67,11 @@ $(document).ready(function(){
 
       //Excluir pet
       $("#btn-excluir-pet-id").click(function(){
-        
+        var id = $("#btn-excluir-pet-id").data('id');
         $.ajax({
             type: "POST",
             url: base_url+"delete-pet",
+            data: {id_animal:id},
             success: function (response) {
                 if(response.mensagem){
                     alert(response.mensagem);

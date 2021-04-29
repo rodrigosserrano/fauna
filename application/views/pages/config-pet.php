@@ -72,7 +72,7 @@
                         </div>
                     </div>
                 </div>
-
+                
                 <div class="modal fade" id="pet-criar-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
@@ -134,7 +134,7 @@
                                 <button id="edit-pet-x" class="pet-icon-edit" data-bs-toggle="modal" data-bs-target="#pet-alterar-modal">
                                     <img src="<?= base_url() ?>assets/img/icon/edit.png" title="Editar pet">
                                 </button>
-                                <button id="btn-excluir-pet-id" class="pet-icon-delete">
+                                <button id="btn-excluir-pet-id" class="pet-icon-delete" data-id="<?= $id_animal?>" data-bs-toggle="modal" data-bs-target="#pet-excluir-modal">
                                     <img src="<?= base_url() ?>assets/img/icon/delete.png" title="Deletar pet">
                                 </button>
                             </div>
