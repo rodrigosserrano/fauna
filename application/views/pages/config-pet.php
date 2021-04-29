@@ -72,6 +72,35 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="modal fade" id="pet-excluir-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Deletar Pet</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="modal-pet-item">
+                                    <form class="frm" id="form-alterar-pet">
+                                        <section id="form-data">
+                                            <h1 class="form-title">Você deseja realmente excluir <strong><?=$nome_animal?></strong> ? :(</h1>
+
+                                            <div id="config-terms">
+                                                <p>CUIDADO! Essa ação é irreversível, pense com muito cuidado antes de excluir sua conta, pois todas as suas postagens serão perdidas e seus seguidores sentirão sua falta.</p>
+
+                                                <img src="<?= base_url() ?>assets/img/icon/sad-cat.png" alt="Gato triste">
+
+                                                <button id="btn-excluir-pet-id" class="form-btn" data-id="<?= $id_animal?>" type="button">Tenho certeza que quero excluir!</button>
+                                            </div>
+
+                                        </section>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 
                 <div class="modal fade" id="pet-criar-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
@@ -95,7 +124,6 @@
                                             <h1 class="form-title">Adicionar novo pet</h1>
 
                                             <div id="form-fields">
-                                                <input id="frm_criar_id_usuario" type="hidden" name="id_usuario" value="<?=$id_usuario?>"> 
                                                 <input id="frm_criar_nome_animal" type="text" value="" class="form-input" name="nome_animal" placeholder="Nome" required>
                                                 <select id="frm_criar_tipo" class="form-input" name="tipo" required>
                                                     <option selected disabled>Tipo de animal</option>
@@ -104,7 +132,7 @@
                                                     <?php endforeach; ?>
                                                 </select>
                                                 
-                                                <input id="frm_criar_raca" type="text" class="form-input" name="raca" placeholder="Raça" required>
+                                                <input id="frm_criar_raca" type="text" value="" class="form-input" name="raca" placeholder="Raça" required>
 
                                                 <select id="frm_criar_sexo_animal" name="sexo_animal" class="form-input" required>
                                                     <option disabled selected>Gênero</option>
@@ -127,6 +155,7 @@
                 
                 <section id="config-info">
 
+                <?php if($mensagem == '') : ?>
                     <section id="user-pets">
                         <!-- Loop de pets -->
                         <div class="pet">
@@ -134,7 +163,7 @@
                                 <button id="edit-pet-x" class="pet-icon-edit" data-bs-toggle="modal" data-bs-target="#pet-alterar-modal">
                                     <img src="<?= base_url() ?>assets/img/icon/edit.png" title="Editar pet">
                                 </button>
-                                <button id="btn-excluir-pet-id" class="pet-icon-delete" data-id="<?= $id_animal?>" data-bs-toggle="modal" data-bs-target="#pet-excluir-modal">
+                                <button id="delete-pet-x" class="pet-icon-delete" data-bs-toggle="modal" data-bs-target="#pet-excluir-modal">
                                     <img src="<?= base_url() ?>assets/img/icon/delete.png" title="Deletar pet">
                                 </button>
                             </div>
@@ -150,7 +179,11 @@
                         </div>
                         <!--  -->
                     </section>
-
+                    <?php else :?>
+                        <section id="user-pets">
+                            <h2 style="padding:10% 0% 0% 27%;"><?=$mensagem?></h2>
+                        </section>
+                    <?php endif; ?>
                     <button id="btn-criar-pet" class="form-btn-pet" type="button" data-bs-toggle="modal" data-bs-target="#pet-criar-modal">Adicionar novo pet</button>
                 </section>
             </section>

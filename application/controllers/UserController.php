@@ -96,20 +96,37 @@ class UserController extends Fauna_Controller {
 
         $this->load->model('PetsModel');
         $dados_pet = $this->PetsModel->getDadosPetModel($this->id_usuario);
-        $dados_pet = $dados_pet[0];
         
         $this->load->model('CadastrosModel');
         $sexo = $this->CadastrosModel->getSexoModel();
+        $sexo = array_slice($sexo, 0, 2);
+
         $tipo = $this->CadastrosModel->getTipoModel();
-        
-        $dados = [
-            'id_animal' => $dados_pet->id_animal,
-            'id_usuario' => $this->id_usuario,
-            'nome_animal' => $dados_pet->nome_animal,
-            'foto_animal' => $dados_pet->foto_animal,
-            'sexo' => $sexo,
-            'tipo' => $tipo
-        ];
+
+        if(!empty($dados_pet)){
+            $dados_pet = $dados_pet[0];
+            
+            $dados = [
+                'id_animal' => $dados_pet->id_animal,
+                'id_usuario' => $this->id_usuario,
+                'nome_animal' => $dados_pet->nome_animal,
+                'foto_animal' => $dados_pet->foto_animal,
+                'sexo' => $sexo,
+                'tipo' => $tipo,
+                'mensagem' => ''
+            ];
+        }else{
+            $dados = [
+                'mensagem' => 'Você não possuí pets.',
+                'id_animal' => '',
+                'id_usuario' => '',
+                'nome_animal' => '',
+                'foto_animal' => '',
+                'sexo' => $sexo,
+                'tipo' => $tipo
+            ];
+        }
+
 
         $view = $this->load->view('/pages/config-pet', $dados, true);
 
@@ -131,7 +148,7 @@ class UserController extends Fauna_Controller {
             $dados_cadastro = [
                 //animal
                 // "foto_animal" => $this->input->post('foto_animal'),
-                "id_usuario" => $this->input->post('id_usuario'),
+                "id_usuario" => $this->id_usuario,
                 "nome_animal" => $this->input->post('nome_animal'),
                 "tipo" => $this->input->post('tipo'),
                 "raca" => $this->input->post('raca'),
