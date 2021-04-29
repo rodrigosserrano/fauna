@@ -67,6 +67,7 @@ $(document).ready(function(){
 
       //Excluir pet
       $("#btn-excluir-pet-id").click(function(){
+        
         $.ajax({
             type: "POST",
             url: base_url+"delete-pet",
