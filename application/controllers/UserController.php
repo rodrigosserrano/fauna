@@ -119,6 +119,7 @@ class UserController extends Fauna_Controller {
         header('Content-Type: application/json');
         $this->load->library('form_validation');
         
+        $this->form_validation->set_rules('id_usuario', 'id_usuario',);
         // $this->form_validation->set_rules('foto_animal', 'foto_animal', 'required');
         $this->form_validation->set_rules('nome_animal', 'nome_animal', 'required');
         $this->form_validation->set_rules('tipo', 'tipo', 'required');
@@ -129,7 +130,7 @@ class UserController extends Fauna_Controller {
             $dados_cadastro = [
                 //animal
                 // "foto_animal" => $this->input->post('foto_animal'),
-                "id_usuario" => $_SESSION['id'],
+                "id_usuario" => $this->input->post('id_usuario'),
                 "nome_animal" => $this->input->post('nome_animal'),
                 "tipo" => $this->input->post('tipo'),
                 "raca" => $this->input->post('raca'),

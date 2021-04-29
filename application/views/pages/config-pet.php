@@ -95,7 +95,7 @@
                                             <h1 class="form-title">Adicionar novo pet</h1>
 
                                             <div id="form-fields">
-                                                <!-- <input id="frm_criar_id_usuario" type="hidden" name="id_usuario"> -->
+                                                <input id="frm_criar_id_usuario" type="hidden" name="id_usuario" value="<?=$id_usuario?>"> 
                                                 <input id="frm_criar_nome_animal" type="text" value="" class="form-input" name="nome_animal" placeholder="Nome" required>
                                                 <select id="frm_criar_tipo" class="form-input" name="tipo" required>
                                                     <option selected disabled>Tipo de animal</option>
@@ -157,52 +157,3 @@
         </main>
     </body>
 </html>
-
-<script>
-    // só pra exemplificar + campos
-    
-    $(document).ready(function() {
-        if(window.location.origin != 'http://localhost'){
-            base_url = 'http://lds.codeigniter-dev/';
-        }else{
-            base_url = 'http://localhost/fauna/';
-        }
-
-        $("#btn-cria-pet").click(function(){
-            var formData = $("#form-criar-pet").serialize();
-            $.ajax({
-                type: "POST",
-                url: base_url+"create-pet",
-                data: formData,
-                success: function (response) {
-                    if(response.mensagem){
-                        alert(response.mensagem);
-                        window.location.reload();
-                    }
-                },
-                error: function (request, status, error) {
-                    console.log(request.responseText);
-                }
-            });
-        });
-
-        $("#btn-altera-dados-pet").click(function(){
-            var formData = $("#form-alterar-pet").serialize();
-            $.ajax({
-                type: "POST",
-                url: base_url+"edit-pet",
-                data: formData,
-                success: function (response) {
-                    if(response.mensagem){
-                        alert(response.mensagem);
-                        window.location.reload();
-                    }
-                },
-                error: function (request, status, error) {
-                    console.log(request.responseText);
-                }
-            });
-        });
-        
-    })
-</script>

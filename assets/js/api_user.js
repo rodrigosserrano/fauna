@@ -43,12 +43,30 @@ $(document).ready(function(){
             }
         });
     });
-
-        //PET
-
+     //PET
+    
+     //Cadastrar Pet
+     
+    $("#btn-cria-pet").click(function(){
+        var formData = $("#form-criar-pet").serialize();
+        $.ajax({
+            type: "POST",
+            url: base_url+"create-pet",
+            data: formData,
+            success: function (response) {
+                if(response.mensagem){
+                    alert(response.mensagem);
+                    window.location.reload();
+                }
+            },
+            error: function (request, status, error) {
+                console.log(request.responseText);
+            }
+        });
+    });
 
       //Excluir pet
-      $("#btn-excluir-pet").click(function(){
+      $("#btn-excluir-pet-id").click(function(){
         $.ajax({
             type: "POST",
             url: base_url+"delete-pet",
@@ -82,24 +100,4 @@ $(document).ready(function(){
             }
         });
     });
-
-     //Cadastrar Pet
-     $("#btn-novo-pet").click(function(){
-        var formData = $("#form-cria-pet").serialize();
-        $.ajax({
-            type: "POST",
-            url: base_url+"create-pet",
-            data: formData,
-            success: function (response) {
-                if(response.mensagem){
-                    alert(response.mensagem);
-                    window.location.reload();
-                }
-            },
-            error: function (request, status, error) {
-                console.log(request.responseText);
-            }
-        });
-    });
-
 });
