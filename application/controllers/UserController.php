@@ -173,23 +173,22 @@ class UserController extends Fauna_Controller {
         $this->load->library('form_validation');
         
         // $this->form_validation->set_rules('foto_animal', 'foto_animal', 'required');
+        $this->form_validation->set_rules('id_usuario', 'id_usuario');
+        $this->form_validation->set_rules('id_animal', 'id_animal');
         $this->form_validation->set_rules('nome_animal', 'nome_animal', 'required');
-        $this->form_validation->set_rules('tipo', 'tipo', 'required');
-        $this->form_validation->set_rules('raca', 'raca');
-        $this->form_validation->set_rules('sexo_animal', 'sexo_animal', 'required');
+        
 
         if($this->form_validation->run()){
             $dados_cadastro = [
                 //animal
                 // "foto_animal" => $this->input->post('foto_animal'),
-                "nome_animal" => $this->input->post('nome_animal'),
-                "tipo" => $this->input->post('tipo'),
-                "raca" => $this->input->post('raca'),
-                "sexo_animal" => $this->input->post('sexo_animal'),
+                "id_usuario" => $this->input->post('id_usuario'),
+                "id_animal" => $this->input->post('id_animal'),
+                "nome_animal" => $this->input->post('nome_animal')
             ];
             
-            $this->load->model('PetModel');
-            $verifica_cadastro = $this->PetModel->alterarDadosPetModel($this->id_animal,$dados_cadastro);
+            $this->load->model('PetsModel');
+            $verifica_cadastro = $this->PetsModel->alterarDadosPetModel($dados_cadastro);
          
             if($verifica_cadastro){
                 echo json_encode(['mensagem'=>'Pet alterado com sucesso !']);
