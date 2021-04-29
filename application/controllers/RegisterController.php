@@ -11,7 +11,6 @@ public function index() {
          * $this->show($dados, $view, $navbar); */
         $this->load->model('CadastrosModel');
         $sexo = $this->CadastrosModel->getSexoModel();
-        $sexo = array_slice($sexo, 0, 2);
         
         $tipo = $this->CadastrosModel->getTipoModel();
 

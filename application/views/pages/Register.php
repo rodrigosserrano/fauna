@@ -58,7 +58,8 @@
                         <input type="text" name="raca" placeholder="Raça">
                         <select name="sexo_animal" required>
                             <option disabled selected>Gênero</option>
-                            <?php foreach($sexo as $list_sexo) : ?>
+                            <?php $sexo = array_slice($sexo, 0, 2);
+                             foreach($sexo as $list_sexo) : ?>
                                 <option value="<?=$list_sexo->id_sexo?>"><?= ucfirst($list_sexo->descricao)?></option>
                             <?php endforeach; ?>
                         </select>
