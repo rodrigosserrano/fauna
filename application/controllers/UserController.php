@@ -212,7 +212,6 @@ class UserController extends Fauna_Controller {
         
     }
 
-<<<<<<< HEAD
       /**
      * DADOS Postagem 
      * create, edit & delete
@@ -418,12 +417,10 @@ class UserController extends Fauna_Controller {
     }
 
 
-=======
     public function viewTeste() {
         $dados = $this->dadosShow('Configurações do Usuário', 'assets/css/styleConfig.css', 'assets/js/userConfig.js');
 		$view = $this->load->view('pages/userConfigIdeia2', null, true);
         $this->show($dados, $view);
     }
 
->>>>>>> 69cb8beb5fffc78c5f6977164f3ced9c898b93c4
 }
