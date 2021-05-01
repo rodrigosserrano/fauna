@@ -2,8 +2,8 @@
         <main>
             <section id="config">
                 <section id="config-menu">
-                     <a class="config-option" href="<?= base_url()?>usuario-dados">Alterar dados</a>
-                    <a class="config-option" href="<?= base_url()?>usuario-pet">Seus pets</a>
+                     <a class="config-option" href="<?= base_url()?>settings">Alterar dados</a>
+                    <a class="config-option" href="<?= base_url()?>settings/pet">Seus pets</a>
                     <a class="config-option-selected">Excluir conta</a>
                 </section>
                 

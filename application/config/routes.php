@@ -62,9 +62,13 @@ $route['register'] = 'RegisterController';
 $route['register-validate']['post'] = 'RegisterController/validateRegister'; //REQUISIÇÃO POST
 
 //Usuários configs
-$route['usuario-dados']  = 'UserController';
-$route['usuario-deleta']  = 'UserController/deletaContaView';
-$route['usuario-pet'] = 'UserController/petDadosView';
+// $route['usuario-dados']  = 'UserController';
+// $route['usuario-deleta']  = 'UserController/deletaContaView';
+// $route['usuario-pet'] = 'UserController/petDadosView';
+
+$route['settings']  = 'UserController';
+// $route['settings/delete']  = 'UserController/deletaContaView';
+// $route['settings/pet'] = 'UserController/petDadosView';
 
 $route['delete']['post'] = 'UserController/delete';
 $route['edit']['post'] = 'UserController/edit';
@@ -86,6 +90,3 @@ $route['create-postagem']['post'] = 'UserController/createPostagem';
 $route['delete-comentario']['post'] = 'UserController/deleteComentario';
 $route['edit-comentario']['post'] = 'UserController/editComentario';
 $route['create-comentario']['post'] = 'UserController/createComentario';
-
-
-$route['usuario-config2'] = 'UserController/viewTeste';

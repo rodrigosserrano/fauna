@@ -15,6 +15,13 @@ class UserController extends Fauna_Controller {
     public function index() {
         
         $this->load->model('UsuariosModel');
+        $this->load->model('PetsModel');
+        $this->load->model('CadastrosModel');
+
+        $sexo = $this->CadastrosModel->getSexoModel();
+        $sexo = array_slice($sexo, 0, 2);
+        $tipo = $this->CadastrosModel->getTipoModel();
+
         $dados_usuario = $this->UsuariosModel->getDadosUsuarioModel($this->id_usuario);
         $dados_usuario = $dados_usuario[0];
 
@@ -25,8 +32,34 @@ class UserController extends Fauna_Controller {
             'telefone' => $dados_usuario->telefone
         ];
 
+        $dados_pet = $this->PetsModel->getDadosPetModel($this->id_usuario);
+
+        if(!empty($dados_pet)){
+            $dados_pet = $dados_pet[0];
+            
+            $dados = [
+                'id_animal' => $dados_pet->id_animal,
+                'id_usuario' => $this->id_usuario,
+                'nome_animal' => $dados_pet->nome_animal,
+                'foto_animal' => $dados_pet->foto_animal,
+                'sexo' => $sexo,
+                'tipo' => $tipo,
+                'mensagem' => ''
+            ];
+        }else{
+            $dados = [
+                'mensagem' => 'Você não possuí pets.',
+                'id_animal' => '',
+                'id_usuario' => '',
+                'nome_animal' => '',
+                'foto_animal' => '',
+                'sexo' => $sexo,
+                'tipo' => $tipo
+            ];
+        }
+
         $dados_view = $this->dadosShow('Altera Conta', 'assets/css/styleConfig.css');
-        $view = $this->load->view('/pages/config-dados', $dados, true);
+        $view = $this->load->view('/pages/Settings', $dados, true);
 
         $this->show($dados_view, $view, true);
     }
@@ -65,12 +98,12 @@ class UserController extends Fauna_Controller {
         }
     }
 
-    public function deletaContaView() {
-        $dados = $this->dadosShow('Deletar Conta', 'assets/css/styleConfig.css');
-        $view = $this->load->view('/pages/config-excluir', null, true);
+    // public function deletaContaView() {
+    //     $dados = $this->dadosShow('Deletar Conta', 'assets/css/styleConfig.css');
+    //     $view = $this->load->view('/pages/config-excluir', null, true);
 
-        $this->show($dados, $view, true);
-    }
+    //     $this->show($dados, $view, true);
+    // }
 
     public function delete() {
         header('Content-Type: application/json');
@@ -90,48 +123,48 @@ class UserController extends Fauna_Controller {
      * create, edit & delete
      */
 
-    public function petDadosView() {
-        $dados_view = $this->dadosShow('Pet Dados', 'assets/css/styleConfig.css');
+    // public function petDadosView() {
+    //     $dados_view = $this->dadosShow('Pet Dados', 'assets/css/styleConfig.css');
         
 
-        $this->load->model('PetsModel');
-        $dados_pet = $this->PetsModel->getDadosPetModel($this->id_usuario);
+    //     $this->load->model('PetsModel');
+    //     $dados_pet = $this->PetsModel->getDadosPetModel($this->id_usuario);
         
-        $this->load->model('CadastrosModel');
-        $sexo = $this->CadastrosModel->getSexoModel();
-        $sexo = array_slice($sexo, 0, 2);
+    //     $this->load->model('CadastrosModel');
+    //     $sexo = $this->CadastrosModel->getSexoModel();
+    //     $sexo = array_slice($sexo, 0, 2);
 
-        $tipo = $this->CadastrosModel->getTipoModel();
+    //     $tipo = $this->CadastrosModel->getTipoModel();
 
-        if(!empty($dados_pet)){
-            $dados_pet = $dados_pet[0];
+    //     if(!empty($dados_pet)){
+    //         $dados_pet = $dados_pet[0];
             
-            $dados = [
-                'id_animal' => $dados_pet->id_animal,
-                'id_usuario' => $this->id_usuario,
-                'nome_animal' => $dados_pet->nome_animal,
-                'foto_animal' => $dados_pet->foto_animal,
-                'sexo' => $sexo,
-                'tipo' => $tipo,
-                'mensagem' => ''
-            ];
-        }else{
-            $dados = [
-                'mensagem' => 'Você não possuí pets.',
-                'id_animal' => '',
-                'id_usuario' => '',
-                'nome_animal' => '',
-                'foto_animal' => '',
-                'sexo' => $sexo,
-                'tipo' => $tipo
-            ];
-        }
+    //         $dados = [
+    //             'id_animal' => $dados_pet->id_animal,
+    //             'id_usuario' => $this->id_usuario,
+    //             'nome_animal' => $dados_pet->nome_animal,
+    //             'foto_animal' => $dados_pet->foto_animal,
+    //             'sexo' => $sexo,
+    //             'tipo' => $tipo,
+    //             'mensagem' => ''
+    //         ];
+    //     }else{
+    //         $dados = [
+    //             'mensagem' => 'Você não possuí pets.',
+    //             'id_animal' => '',
+    //             'id_usuario' => '',
+    //             'nome_animal' => '',
+    //             'foto_animal' => '',
+    //             'sexo' => $sexo,
+    //             'tipo' => $tipo
+    //         ];
+    //     }
 
 
-        $view = $this->load->view('/pages/config-pet', $dados, true);
+    //     $view = $this->load->view('/pages/Settings', $dados, true);
 
-        $this->show($dados_view, $view, true);
-    }
+    //     $this->show($dados_view, $view, true);
+    // }
 
     public function createPet() {
         header('Content-Type: application/json');
@@ -414,13 +447,6 @@ class UserController extends Fauna_Controller {
             echo json_encode(['mensagem'=>'Erro ao deletar']);
         }
         
-    }
-
-
-    public function viewTeste() {
-        $dados = $this->dadosShow('Configurações do Usuário', 'assets/css/styleConfig.css', 'assets/js/userConfig.js');
-		$view = $this->load->view('pages/userConfigIdeia2', null, true);
-        $this->show($dados, $view);
     }
 
 }
