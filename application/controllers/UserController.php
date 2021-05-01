@@ -212,4 +212,8 @@ class UserController extends Fauna_Controller {
         
     }
 
+    public function viewTeste() {
+        $this->load->view('userConfigIdeia2');
+    }
+
 }

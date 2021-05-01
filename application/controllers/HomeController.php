@@ -11,7 +11,7 @@ class HomeController extends Fauna_Controller {
 
     public function index() {
         $dados = $this->dadosShow('Feed', 'assets/css/style');
-		$view = '<h1>Feed</h1>';
+		$view = $this->load->view('pages/common-feed', null, true);
 
         $this->show($dados, $view, true);
     }

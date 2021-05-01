@@ -88,3 +88,4 @@ $route['edit-comentario']['post'] = 'UserController/editComentario';
 $route['create-comentario']['post'] = 'UserController/createComentario';
 
 
+$route['usuario-config-2'] = 'UserController/viewTeste';
