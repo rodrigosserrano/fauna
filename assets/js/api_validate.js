@@ -1,10 +1,8 @@
 $(document).ready(function(){
-    if(window.location.origin != 'http://localhost' && window.location.origin != 'http://lds.codeigniter-dev/'){
-        return base_url = 'http://localhost:81/fauna/';
-    }else if(window.location.origin != 'http://localhost'){
-        return base_url = 'http://lds.codeigniter-dev/';
+    if(window.location.origin != 'http://localhost'){
+        base_url = 'http://lds.codeigniter-dev/';
     }else{
-        return base_url = 'http://localhost/fauna/';
+        base_url = 'http://localhost/fauna/';
     }
 
     //request Login
