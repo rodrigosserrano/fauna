@@ -1,4 +1,4 @@
-    <body>
+<body>
         <main>
             <section id="config">
 
@@ -24,21 +24,21 @@
                             <section id="form-data" class="form-data-edit-user">
                                 <div id="form-fields" class="form-fields-edit-user">
                                     <!-- <input type="hidden" name="id">??? -->
-                                    <input type="hidden" name="email" value="<?=$email?>">
+                                    <input type="hidden" name="email" value="">
 
                                     <div class="form-fields-edit-user-data">
                                         <label> Nome de Usuario:</label>
-                                        <input type="text" value="<?=$nome_usuario?>" class="form-input" name="nome_usuario" placeholder="Nome" required>
+                                        <input type="text" value="" class="form-input" name="nome_usuario" placeholder="Nome" required>
                                     </div>
 
                                     <div class="form-fields-edit-user-data">
                                         <label> Data de Nascimento:</label>
-                                        <input type="date" value="<?=$data_nascimento?>" class="form-input" name="data_nascimento">
+                                        <input type="date" value="" class="form-input" name="data_nascimento">
                                     </div>
 
                                     <div class="form-fields-edit-user-data">
                                         <label> Núemro de Telefone</label>
-                                        <input type="text" value="<?=$telefone?>" class="form-input" name="telefone" placeholder="Telefone">
+                                        <input type="text" value="" class="form-input" name="telefone" placeholder="Telefone">
                                     </div>
                                 </div>
 
@@ -64,7 +64,7 @@
                                                 <section id="form-pic-area">
                                                     <div class="form-pic">
                                                         <!-- class="form-pet-pic" id="form-pet-pic-alterar" src="<?= base_url() ?>assets/img/user/" alt="Nome" title="Nome"> -->
-                                                        <input type="file" name="foto_animal" enctype="multipart/form-data" value="<?=$foto_animal?>">
+                                                        <input type="file" name="foto_animal" enctype="multipart/form-data" value="">
                                                     </div>
                                                 </section>
 
@@ -72,9 +72,9 @@
                                                     <h1 class="form-title">Altere as informações de NOME</h1>
 
                                                     <div id="form-fields">
-                                                        <input id="frm_alterar_id_animal" type="hidden" name="id_animal" value="<?=$id_animal?>">
-                                                        <input id="frm_alterar_id_usuario"  type="hidden" name="id_usuario" value="<?=$id_usuario?>">
-                                                        <input id="frm_alterar_nome_animal" type="text" class="form-input" name="nome_animal" placeholder="Nome" required value="<?=$nome_animal?>">
+                                                        <input id="frm_alterar_id_animal" type="hidden" name="id_animal" value="">
+                                                        <input id="frm_alterar_id_usuario"  type="hidden" name="id_usuario" value="">
+                                                        <input id="frm_alterar_nome_animal" type="text" class="form-input" name="nome_animal" placeholder="Nome" required value="">
                                                         <!-- <select id="frm_alterar_tipo" class="form-input" name="tipo" required>
                                                             <option selected disabled>Tipo de animal</option>
                                                             <option value="1">Cachorros</option>
@@ -142,18 +142,12 @@
                                                         <input id="frm_criar_nome_animal" type="text" value="" class="form-input" name="nome_animal" placeholder="Nome" required>
                                                         <select id="frm_criar_tipo" class="form-input" name="tipo" required>
                                                             <option selected disabled>Tipo de animal</option>
-                                                            <?php foreach($tipo as $list_tipo) : ?>
-                                                                <option value="<?=$list_tipo->id_tipo?>"><?= ucfirst($list_tipo->descricao)?></option>
-                                                            <?php endforeach; ?>
                                                         </select>
                                                         
                                                         <input id="frm_criar_raca" type="text" class="form-input" name="raca" placeholder="Raça" required>
 
                                                         <select id="frm_criar_sexo_animal" name="sexo_animal" class="form-input" required>
                                                             <option disabled selected>Gênero</option>
-                                                            <?php foreach($sexo as $list_sexo) : ?>
-                                                                <option value="<?=$list_sexo->id_sexo?>"><?= ucfirst($list_sexo->descricao)?></option>
-                                                            <?php endforeach; ?>
                                                         </select>
                                                     </div>
 
@@ -181,13 +175,10 @@
                                 </div>
                                 
                                 <button class="pet-pic-area" type="button">
-                                    <?php if(isset($foto_animal) || empty($foto_animal)) : ?>
                                         <img class="pet-pic" src="<?= base_url() ?>assets/img/cachorro_login.png">
-                                    <?php else : ?>
-                                        <img class="pet-pic" src="<?= $foto_animal ?>">
-                                    <?php endif; ?>
+                                        <img class="pet-pic" src="">
                                 </button>
-                                <span class="pet-name"><?=$nome_animal?></span>
+                                <span class="pet-name"></span>
                             </div>
                             <!--  -->
                         </section>
