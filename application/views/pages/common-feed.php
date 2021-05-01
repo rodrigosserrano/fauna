@@ -125,7 +125,7 @@
             </div>
             <div class="copyright">
                 <span class="lang">Português (Brasil)</span>
-                <span class="copyright-desc">© FAUNA<!--<?php echo date("Y");--> 2021</span>
+                <span class="copyright-desc">© FAUNA<?php echo date("Y");?></span>
             </div>
         </section>
     </main>
