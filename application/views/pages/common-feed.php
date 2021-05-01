@@ -62,7 +62,7 @@
                 <div class="write-comments">
                     <form action="" method="post">
                         <textarea id="message">Escreva um comentário</textarea>
-                        <!--<button id="send-comment" type="submit">➝</button>-->
+                        <button id="send-comment" type="submit">➝</button>
                     </form>
                 </div>
             </div>
