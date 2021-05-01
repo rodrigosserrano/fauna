@@ -77,3 +77,14 @@ $route['create-pet']['post'] = 'UserController/createPet';
 //Feed
 $route['home'] = 'HomeController';
 
+//Posts
+$route['delete-postagem']['post'] = 'UserController/deletePostagem';
+$route['edit-postagem']['post'] = 'UserController/editPostagem';
+$route['create-postagem']['post'] = 'UserController/createPostagem';
+
+//Comentario
+$route['delete-comentario']['post'] = 'UserController/deleteComentario';
+$route['edit-comentario']['post'] = 'UserController/editComentario';
+$route['create-comentario']['post'] = 'UserController/createComentario';
+
+
