@@ -1,18 +1,13 @@
+import { BaseURL } from 'base_url.js';
 
-$(document).ready(function(){
-    if(window.location.origin != 'http://localhost'){
-        base_url = 'http://lds.codeigniter-dev/';
-    }else{
-        base_url = 'http://localhost/fauna/';
-    }
-
+$(document).ready(function(){    
     //USUARIO
 
     //Excluir conta
     $("#btn-excluir-usuario").click(function(){
         $.ajax({
             type: "POST",
-            url: base_url+"delete",
+            url: BaseURL+"delete",
             success: function (response) {
                 if(response.mensagem){
                     alert(response.mensagem);
@@ -30,7 +25,7 @@ $(document).ready(function(){
         var formData = $("#form_alterar").serialize();
         $.ajax({
             type: "POST",
-            url: base_url+"edit",
+            url: BaseURL+"edit",
             data: formData,
             success: function (response) {
                 if(response.mensagem){
@@ -51,7 +46,7 @@ $(document).ready(function(){
         var formData = $("#form-criar-pet").serialize();
         $.ajax({
             type: "POST",
-            url: base_url+"create-pet",
+            url: BaseURL+"create-pet",
             data: formData,
             success: function (response) {
                 if(response.mensagem){
@@ -70,7 +65,7 @@ $(document).ready(function(){
         var id = $("#btn-excluir-pet-id").data('id');
         $.ajax({
             type: "POST",
-            url: base_url+"delete-pet",
+            url: BaseURL+"delete-pet",
             data: {id_animal:id},
             success: function (response) {
                 if(response.mensagem){
@@ -89,7 +84,7 @@ $(document).ready(function(){
         var formData = $("#form-alterar-pet").serialize();
         $.ajax({
             type: "POST",
-            url: base_url+"edit-pet",
+            url: BaseURL+"edit-pet",
             data: formData,
             success: function (response) {
                 if(response.mensagem){
