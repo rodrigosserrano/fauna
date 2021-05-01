@@ -27,4 +27,9 @@ class PetsModel extends CI_Model {
         return $this->db->where('id_comentario', $id_comentario)->delete('comentario');
     }
 
+    public function getDadosComentarioModel($id_postagem){
+        $query = $this->db->where(['id_postagem' => $id_postagem])->get('comentario');
+        return $query->result(); 
+    }
+
 }

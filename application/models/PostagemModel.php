@@ -27,7 +27,7 @@ class PetsModel extends CI_Model {
         return $this->db->where('id_postagem', $id_postagem)->delete('postagem');
     }
 
-    public function getDadosPostagemModel($id_usuario){
+    public function getDadosPostagemModel(){
         $query = $this->db->get('postagem');
         return $query->result(); 
     }
