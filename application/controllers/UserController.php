@@ -25,19 +25,19 @@ class UserController extends Fauna_Controller {
         $dados_usuario = $this->UsuariosModel->getDadosUsuarioModel($this->id_usuario);
         $dados_usuario = $dados_usuario[0];
 
-        $dados = [
+        $dados_pet = $this->PetsModel->getDadosPetModel($this->id_usuario);
+        
+        $usuario = [
             'email' => $dados_usuario->email,
             'nome_usuario' => $dados_usuario->nome_usuario,
             'data_nascimento' => $dados_usuario->data_nascimento,
             'telefone' => $dados_usuario->telefone
         ];
 
-        $dados_pet = $this->PetsModel->getDadosPetModel($this->id_usuario);
-
         if(!empty($dados_pet)){
             $dados_pet = $dados_pet[0];
             
-            $dados = [
+            $pet = [
                 'id_animal' => $dados_pet->id_animal,
                 'id_usuario' => $this->id_usuario,
                 'nome_animal' => $dados_pet->nome_animal,
@@ -47,7 +47,7 @@ class UserController extends Fauna_Controller {
                 'mensagem' => ''
             ];
         }else{
-            $dados = [
+            $pet = [
                 'mensagem' => 'Você não possuí pets.',
                 'id_animal' => '',
                 'id_usuario' => '',
@@ -57,7 +57,12 @@ class UserController extends Fauna_Controller {
                 'tipo' => $tipo
             ];
         }
-
+        
+        $dados = [
+            'usuario' => $usuario,
+            'pet' => $pet
+        ];
+    
         $dados_view = $this->dadosShow('Altera Conta', 'assets/css/styleConfig.css');
         $view = $this->load->view('/pages/Settings', $dados, true);
 
@@ -238,7 +243,7 @@ class UserController extends Fauna_Controller {
 
         $this->load->model('PetsModel');
         if($this->PetsModel->deletePetModel($this->id_animal)){
-            echo json_encode(['mensagem'=>'Pet excluido com sucesso. ' . $this->id_animal]);
+            echo json_encode(['mensagem'=>'Pet excluido com sucesso.']);
         }else{
             echo json_encode(['mensagem'=>'Erro ao deletar']);
         }
