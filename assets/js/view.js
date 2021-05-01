@@ -9,9 +9,9 @@ $(document).ready(function() {
         setTimeout(function() { document.querySelector('.alertArea').removeChild(alertBox) }, 4000)
     }
 
-    document.querySelector('#btn-login').addEventListener('click', () => {
-        alertFunc('Testem ae dps')
-    })
+    // document.querySelector('#btn-login').addEventListener('click', () => {
+    //     alertFunc('Testem ae dps')
+    // })
     // 
 
     $("#telefone").mask('(00) 00000-0000');

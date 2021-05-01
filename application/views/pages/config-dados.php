@@ -3,7 +3,7 @@
             <section id="config">
                 <section id="config-menu">
                     <a class="config-option-selected">Alterar dados</a>
-                    <a class="config-option">Seus pets</a>
+                    <a class="config-option" href="<?= base_url()?>usuario-pet">Seus pets</a>
                     <a class="config-option" href="<?= base_url()?>usuario-deleta">Excluir conta</a>
                 </section>
                 
