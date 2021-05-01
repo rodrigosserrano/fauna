@@ -34,7 +34,7 @@
                                 </div>
 
                                 <div class="form-fields-edit-user-data">
-                                    <label> Núemro de Telefone</label>
+                                    <label> Número de Telefone</label>
                                     <input type="text" value="<?=$telefone?>" class="form-input" name="telefone" placeholder="Telefone">
                                 </div>
                             </div>

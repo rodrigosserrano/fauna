@@ -9,13 +9,26 @@ ul{
 .myDropdown-list{
     display: none;
     position: absolute;
-    background-color: #fff;
-    padding: 10px;
+    left: -100px;
+    top: -5px;
+    background-color: #bbb;
     width: 110px;
 }
 
+.myDropdown-list ul{
+    margin: 0;
+    padding: 0;
+}
+
 .myDropdown-list li{
-    margin-bottom: 5px;
+    width: 100%;
+    text-align:center;
+    padding: 10px;
+}
+
+.myDropdown-list li:hover{
+    background-color: #eee;
+    cursor: pointer
 }
 
 .myDropdown-menu:hover .myDropdown-list{

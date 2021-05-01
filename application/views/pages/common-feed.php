@@ -1,28 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <!--Fiz em HTML pra depois passar pro .php. Fiz isso porque não tinha controller ainda e pra desligar meu servidor porque o PC é uma bostar.
-    Mas foi por isso que eu repeti código do header e do style-->
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Fauna, rede social de pets"/>
-    <meta name="author" content="André Seike, Gabriel Sá, João Bruzetti, Jonatha Wagner, Nathan Holanda, Rodrigo Serrano"/>
-    <meta name="generator" content="VS Code"/>
-    <meta name="keywords" content="rede social, pets, animais"/>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="<?= base_url()?>assets/js/api_validate.js"></script>
-    <script src="<?= base_url()?>assets/js/api_user.js"></script>
-    <script src="https://kit.fontawesome.com/598f8e27d9.js" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&display=swap" rel="stylesheet"> 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
-    <title>Fauna</title>
-</head>
 <body>
     <main>
         <section class="posts">
-            <!--as divs post devem ser geradas de forma dinâmica pelo JS através de conteúdo fornecido pelo backend e recuperado por um AJAX. Utilizei ids para identificar e facilitar inserção em potenciais campos dinâmicos-->
             <div class="post">
                 <div class="info-post">
                     <div class="profile-info">
@@ -38,7 +17,7 @@
                 <div class="desc-n-menu">
                     <div class="desc">Legenda da foto</div>
                     <div class="myDropdown-menu">
-                        <span class="myDropdown-icon">myDropdown-icon</span>
+                        <span class="myDropdown-icon"><i class="fas fa-ellipsis-v"></i></span>
                         <div class="myDropdown-list">
                             <ul>
                                 <li id="edit-post" style="cursor:pointer;">Editar post</li>
@@ -114,21 +93,6 @@
         </section>
     </main>
 </body>
-
-
-<style>
-    :root {
-    --background-color: #D7EDC5;
-    --container-color: #FFF;
-    --link-color: #0870AB;
-    --link-hover-color: #01446b;
-    --darker-color: #413E42;
-    --darker-hover-color: #727171;
-    --font-color: #3A3A3A;
-    --input-color: #F3F3F3;
-}
-
-</style>
 
 <script>
     document.getElementById("message").addEventListener("focus", e => {
