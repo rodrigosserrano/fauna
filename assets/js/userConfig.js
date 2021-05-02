@@ -22,4 +22,12 @@ $(document).ready(function() {
             tab.className = 'config-option-selected'
         }
     }
+
+    let selectElement = document.getElementsByTagName('select');
+
+    for(let i = 0; i < selectElement.length; i++) {
+        selectElement[i].addEventListener('change', function() {
+            selectElement[i].style.color = "#000";
+        });
+    }
 });

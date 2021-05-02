@@ -89,7 +89,7 @@ section input, section select{
     background-color: var(--input-color);
 }
 
-input::placeholder, select, input[type="date"]{
+input::placeholder, select, select option, input[type="date"]{
     font-size: 16px;
     opacity: 100%;
     color: #888;
