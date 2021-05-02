@@ -30,6 +30,13 @@ section{
     box-shadow: 0px 0px 15px #0000002e;
 }
 
+.posts{
+    width: 520px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .info-post{
     display:flex;
     justify-content:space-between;
@@ -52,6 +59,14 @@ section{
     flex-direction: column;
 }
 
+#pet-name{
+    font-size: 14px;
+}
+
+.date-post{
+    font-size:14px;
+}
+
 .desc-n-menu{
     padding: 15px 3px;
     display: flex;
@@ -67,7 +82,7 @@ section{
     cursor: pointer;
     display: inline-block;
     border-radius: 50%;
-    padding: 0 4px;
+    padding: 0 6px;
     background-color: rgba(0,0,0,0);
     transition: 0.4s;
 }
@@ -99,7 +114,7 @@ section{
     transform: rotate(45deg);
     position: absolute;
     top: -7px;
-    left: 92px;
+    left: 95px;
     border-bottom-right-radius: 100%;
 }
 
@@ -126,13 +141,20 @@ section{
 .post-photo{
     width: 500px;
     height: 300px;
-    background-color: #ccc;
+    /*background-color: #ccc;*/
     margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.post-photo img{
+    height: 100%;
 }
 
 .post-likes{
     display: flex;
     align-items: baseline;
+    margin-bottom: 10px;
 }
 
 #like-icon{
@@ -147,6 +169,12 @@ section{
     transform: scale(1, 1.3);
 }
 
+.line{
+    width: 100%;
+    height: 1px;
+    background-color: #ddd;
+}
+
 .comments{
     margin-top: 10px;
     margin-bottom: 10px;
@@ -155,14 +183,33 @@ section{
 .comment{
     display: flex;
     align-items: center;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
 }
 
 .comment-content{
     display: flex;
+    flex-direction:column;
     width: 100%;
-    justify-content: space-between;
     padding: 5px 0;
+}
+
+.comment-info{
+    margin-bottom: 2px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.comment-text{
+    margin-bottom: 0;
+    background-color:#ddd;
+    border-radius: 10px;
+    padding: 5px 5px 5px 10px;
+    width: 100%;
+    /* word-break:break-all; */
+    word-wrap:break-word;
+    /* display: inline-block;
+    display: flex;
+    flex-wrap: wrap; */
 }
 
 .comment-user-photo{
@@ -180,7 +227,7 @@ section{
 .dropdown-comment-list{
     position: absolute;
     top: 25px;
-    right: -7px;
+    right: -6px;
     z-index: 10;
     background-color: #fff;
     color: #000;
@@ -193,7 +240,7 @@ section{
 .dropdown-comment-list:before{
     position: absolute;
     top: -7px;
-    left: 96px;
+    left: 95px;
     content: "";
     width: 13px;
     height: 13px;
@@ -240,6 +287,7 @@ section{
     outline: none;
     padding: 0 30px 0 5px;
     width: 100%;
+    border: 1px solid #aaa;
 }
 
 #send-comment{

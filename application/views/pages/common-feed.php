@@ -5,94 +5,101 @@
             <div class="post">
                 <div class="info-post">
                     <div class="profile-info">
-                        <div class="profile-photo"></div>
+                        <img src="<?= base_url()?>assets/teste/d_pedro_ii.png" class="profile-photo">
                         <div class="user-pet-name">
-                            <b><span id="user-name">João Araujo</span></b>
-                            <span id="pet-name">Muzaretti</span>
+                            <b><span id="user-name">Dom Pedro II</span></b>
+                            <span id="pet-name">Beethoven</span>
                         </div>
                     </div>
                     <div class="date-post"><span id="date-post">19/07/2021</span></div>
                 </div>
                 
                 <div class="desc-n-menu">
-                    <div class="desc">Legenda da foto</div>
+                    <div class="desc">Esse é o meninão do papai feliz da vida :)</div>
                     <div class="dropdown-post-menu">
                         <span class="menu-icon dropdown-post-icon"><i class="fas fa-ellipsis-h fa-xs"></i></i></span>
                         <div class="list-opts display-none dropdown-post-list menu-list">
                             <ul>
-                                <li id="edit-post" style="cursor:pointer;">Editar postagem</li>
-                                <li id="delete-post" style="cursor:pointer;">Apagar postagem</li>
+                                <li id="edit-post" style="cursor:pointer;">Editar publicação</li>
+                                <li id="delete-post" style="cursor:pointer;">Apagar publicação</li>
                             </ul>
                         </div>
                     </div>
                 </div>
                 
-                <div class="post-photo"></div>
+                <div class="post-photo"><img src="<?= base_url()?>assets/teste/pitbull.png"></div>
                 <div class="post-likes">
                     <a id="like-icon">
                         <img src="<?= base_url()?>assets/img/icon/paw-like-unset.png">
                     </a>
                     <b><span id="likes-amount">55 pessoas curtiram isso</span></b>
                 </div>
+                <div class="line"></div>
                 <div class="comments">
                     <!--Comentários também devem ser gerados com a mesma lógica das postagens-->
                     <div class="comment">
-                        <div class="comment-user-photo"></div> <!--Foto inserida com background-image-->
                         <div class="comment-content">
-                            <div>
-                                <b><span class="comment-user">Nathan Holanda:</span></b>
-                                <span class="comment-text">Achei uma bosta</span>
-                            </div>
-                            <div class="dropdown-comment-menu">
-                                <span class="menu-icon dropdown-comment-icon"><i class="fas fa-ellipsis-h fa-xs"></i></i></span>
-                                <div class="list-opts dropdown-comment-list menu-list display-none">
-                                    <ul>
-                                        <li id="edit-comment" style="cursor:pointer;">Editar comentário</li>
-                                        <li id="delete-comment" style="cursor:pointer;">Apagar comentário</li>
-                                    </ul>
+                            <div class="comment-info">
+                                <div class="comment-info">
+                                    <img src="<?= base_url()?>assets/teste/deodoro_da_fonseca.png" class="comment-user-photo">
+                                    <b><span class="comment-user">Deodoro da Fonseca:</span></b>
                                 </div>
+                                <div class="dropdown-comment-menu">
+                                    <span class="menu-icon dropdown-comment-icon"><i class="fas fa-ellipsis-h fa-xs"></i></i></span>
+                                    <div class="list-opts dropdown-comment-list menu-list display-none">
+                                        <ul>
+                                            <li id="edit-comment" style="cursor:pointer;">Editar comentário</li>
+                                            <li id="delete-comment" style="cursor:pointer;">Apagar comentário</li>
+                                        </ul>
+                                    </div>
+                                </div> 
                             </div>
+                            <p class="comment-text">Fica esperto, fi! Vou derrubar a monarquia e pegar seu cachorro pra mim, seu vacilão!</p>
                         </div>
                     </div>
                     <div class="comment">
-                        <div class="comment-user-photo"></div> <!--Foto inserida com background-image-->
                         <div class="comment-content">
-                            <div>
-                                <b><span class="comment-user">Nathan Holanda:</span></b>
-                                <span class="comment-text">Achei uma bosta</span>
-                            </div>
-                            <div class="dropdown-comment-menu">
-                                <span class="menu-icon dropdown-comment-icon"><i class="fas fa-ellipsis-h fa-xs"></i></i></span>
-                                <div class="list-opts dropdown-comment-list menu-list display-none">
-                                    <ul>
-                                        <li id="edit-comment" style="cursor:pointer;">Editar comentário</li>
-                                        <li id="delete-comment" style="cursor:pointer;">Apagar comentário</li>
-                                    </ul>
+                            <div class="comment-info">
+                                <div class="comment-info">
+                                <img src="<?= base_url()?>assets/teste/napoleao.png" class="comment-user-photo"> 
+                                    <b><span class="comment-user">Napoleão Bonaparte:</span></b>
                                 </div>
+                                <div class="dropdown-comment-menu">
+                                    <span class="menu-icon dropdown-comment-icon"><i class="fas fa-ellipsis-h fa-xs"></i></i></span>
+                                    <div class="list-opts dropdown-comment-list menu-list display-none">
+                                        <ul>
+                                            <li id="edit-comment" style="cursor:pointer;">Editar comentário</li>
+                                            <li id="delete-comment" style="cursor:pointer;">Apagar comentário</li>
+                                        </ul>
+                                    </div>
+                                </div> 
                             </div>
+                            <p class="comment-text">De quelle couleur est mon cheval blanc?</p>
                         </div>
                     </div>
                     <div class="comment">
-                        <div class="comment-user-photo"></div> <!--Foto inserida com background-image-->
                         <div class="comment-content">
-                            <div>
-                                <b><span class="comment-user">Nathan Holanda:</span></b>
-                                <span class="comment-text">Achei uma bosta</span>
-                            </div>
-                            <div class="dropdown-comment-menu">
-                                <span class="menu-icon dropdown-comment-icon"><i class="fas fa-ellipsis-h fa-xs"></i></i></span>
-                                <div class="list-opts dropdown-comment-list menu-list display-none">
-                                    <ul>
-                                        <li id="edit-comment" style="cursor:pointer;">Editar comentário</li>
-                                        <li id="delete-comment" style="cursor:pointer;">Apagar comentário</li>
-                                    </ul>
+                            <div class="comment-info">
+                                <div class="comment-info">
+                                <img src="<?= base_url()?>assets/teste/machado_de_assis.png" class="comment-user-photo"> 
+                                    <b><span class="comment-user">Machado de Assis:</span></b>
                                 </div>
+                                <div class="dropdown-comment-menu">
+                                    <span class="menu-icon dropdown-comment-icon"><i class="fas fa-ellipsis-h fa-xs"></i></i></span>
+                                    <div class="list-opts dropdown-comment-list menu-list display-none">
+                                        <ul>
+                                            <li id="edit-comment" style="cursor:pointer;">Editar comentário</li>
+                                            <li id="delete-comment" style="cursor:pointer;">Apagar comentário</li>
+                                        </ul>
+                                    </div>
+                                </div> 
                             </div>
+                            <p class="comment-text">Vocês nunca saberão se Capitu traiu Bentinho... Muahahahahahaha!</p>
                         </div>
                     </div>
                 </div>
                 <div id="more-comments">
-                    <a style="color: #00f; cursor: pointer;">Mais comentários</a>
+                    <a style="color: #0870AB; cursor: pointer;">Mais comentários...</a>
                 </div>
                 <div class="write-comments">
                     <form action="" method="post">
@@ -151,12 +158,13 @@
         el.addEventListener("click", e => {
             e.stopPropagation();
             const listOpts = Array.from(document.querySelectorAll(".list-opts"));
-            listOpts.forEach(el => {
-                if(el.classList.contains("display-block")){
-                    el.classList.remove("display-block")
-                    el.classList.add("display-none");
-                }
-            });
+            for(j in listOpts){
+                if(j != i)
+                    if(listOpts[j].classList.contains("display-block")){
+                        listOpts[j].classList.remove("display-block");
+                        listOpts[j].classList.add("display-none");
+                    }
+            }
 
             if(listOpts[i].classList.contains("display-none")){
                 listOpts[i].classList.remove("display-none");
