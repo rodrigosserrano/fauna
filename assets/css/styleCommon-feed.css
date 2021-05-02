@@ -2,45 +2,12 @@ ul{
     list-style-type: none;
 }
 
-.dropdown-post-menu{
-    position: relative;
-}
-
-.dropdown-post-menu span{
-    cursor: pointer;
-}
-
-.dropdown-post-list{
-    display: none;
-    position: absolute;
-    overflow: hidden;
-    left: -100px;
-    top: 20px;
-    background-color: #fff;
-    color: #000;
-    border: 1px solid #bbb;
-    border-radius: 5px;
-    font-size: 12px;
-    width: 120px;
-}
-
-.dropdown-post-list ul{
-    margin: 0;
-    padding: 0;
-}
-
-.dropdown-post-list li{
-    width: 100%;
-    padding: 5px;
-}
-
-.dropdown-post-list li:hover{
-    background-color: #eee;
-    cursor: pointer
-}
-
-.dropdown-post-menu:hover .dropdown-post-list{
+.display-block{
     display: block;
+}
+
+.display-none{
+    display: none;
 }
 
 body{
@@ -88,8 +55,73 @@ section{
 .desc-n-menu{
     padding: 15px 3px;
     display: flex;
+    align-items: center;
     justify-content:space-between;
 }
+
+.dropdown-post-menu{
+    position: relative;
+}
+
+.menu-icon{
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 50%;
+    padding: 0 4px;
+    background-color: rgba(0,0,0,0);
+    transition: 0.4s;
+}
+
+.menu-icon:hover{
+    background-color: rgba(0,0,0,0.2);
+}
+
+.dropdown-post-list{
+    position: absolute;
+    left: -90px;
+    top: 25px;
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+    font-size: 12px;
+    width: 120px;
+}
+
+.dropdown-post-list:before{
+    content: "";
+    width: 13px;
+    height: 13px;
+    background-color: #fff;
+    border: 1px solid #bbb;
+    border-right: none;
+    border-bottom: none;
+    transform: rotate(45deg);
+    position: absolute;
+    top: -7px;
+    left: 92px;
+    border-bottom-right-radius: 100%;
+}
+
+.dropdown-post-list ul{
+    margin: 0;
+    padding: 3px 0;
+}
+
+.dropdown-post-list li{
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.dropdown-post-list li:hover{
+    background-color: #eee;
+    cursor: pointer
+}
+
+/* .dropdown-post-menu:hover .dropdown-post-list{
+    display: block;
+} */
 
 .post-photo{
     width: 500px;
@@ -145,16 +177,10 @@ section{
     position: relative;
 }
 
-.dropdown-comment-menu span{
-    cursor: pointer;
-}
-
 .dropdown-comment-list{
-    display: none;
     position: absolute;
-    overflow: hidden;
-    top: 16px;
-    right: 0px;
+    top: 25px;
+    right: -7px;
     z-index: 10;
     background-color: #fff;
     color: #000;
@@ -164,17 +190,33 @@ section{
     width: 120px;
 }
 
-.dropdown-comment-menu:hover .dropdown-comment-list{
-    display: block;
+.dropdown-comment-list:before{
+    position: absolute;
+    top: -7px;
+    left: 96px;
+    content: "";
+    width: 13px;
+    height: 13px;
+    background-color: #fff;
+    border: #bbb 1px solid;
+    transform: rotate(45deg);
+    border-right: none;
+    border-bottom: none;
+    border-bottom-right-radius: 100%;
 }
 
+/* .dropdown-comment-menu:hover .dropdown-comment-list{
+    display: block;
+} */
+
 .dropdown-comment-list ul{
-    padding: 0;
+    padding: 3px 0;
     margin: 0;
 }
 
 .dropdown-comment-list li{
     padding: 5px;
+    border-radius: 5px;
 }
 
 .dropdown-comment-list li:hover{
@@ -207,7 +249,7 @@ section{
     border: none;
     height: 40px;
     background-color: rgba(0,0,0,0);
-    transition: 0.6s;
+    transition: 0.4s;
 }
 
 #send-comment:hover{

@@ -17,8 +17,8 @@
                 <div class="desc-n-menu">
                     <div class="desc">Legenda da foto</div>
                     <div class="dropdown-post-menu">
-                        <span class="dropdown-post-icon"><i class="fas fa-ellipsis-v fa-xs"></i></span>
-                        <div class="dropdown-post-list">
+                        <span class="menu-icon dropdown-post-icon"><i class="fas fa-ellipsis-h fa-xs"></i></i></span>
+                        <div class="list-opts display-none dropdown-post-list menu-list">
                             <ul>
                                 <li id="edit-post" style="cursor:pointer;">Editar postagem</li>
                                 <li id="delete-post" style="cursor:pointer;">Apagar postagem</li>
@@ -44,8 +44,8 @@
                                 <span class="comment-text">Achei uma bosta</span>
                             </div>
                             <div class="dropdown-comment-menu">
-                                <span class="dropdown-comment-icon"><i class="fas fa-ellipsis-h fa-xs"></i></i></span>
-                                <div class="dropdown-comment-list">
+                                <span class="menu-icon dropdown-comment-icon"><i class="fas fa-ellipsis-h fa-xs"></i></i></span>
+                                <div class="list-opts dropdown-comment-list menu-list display-none">
                                     <ul>
                                         <li id="edit-comment" style="cursor:pointer;">Editar comentário</li>
                                         <li id="delete-comment" style="cursor:pointer;">Apagar comentário</li>
@@ -62,8 +62,8 @@
                                 <span class="comment-text">Achei uma bosta</span>
                             </div>
                             <div class="dropdown-comment-menu">
-                                <span class="dropdown-comment-icon"><i class="fas fa-ellipsis-h fa-xs"></i></i></span>
-                                <div class="dropdown-comment-list">
+                                <span class="menu-icon dropdown-comment-icon"><i class="fas fa-ellipsis-h fa-xs"></i></i></span>
+                                <div class="list-opts dropdown-comment-list menu-list display-none">
                                     <ul>
                                         <li id="edit-comment" style="cursor:pointer;">Editar comentário</li>
                                         <li id="delete-comment" style="cursor:pointer;">Apagar comentário</li>
@@ -80,8 +80,8 @@
                                 <span class="comment-text">Achei uma bosta</span>
                             </div>
                             <div class="dropdown-comment-menu">
-                                <span class="dropdown-comment-icon"><i class="fas fa-ellipsis-h fa-xs"></i></i></span>
-                                <div class="dropdown-comment-list">
+                                <span class="menu-icon dropdown-comment-icon"><i class="fas fa-ellipsis-h fa-xs"></i></i></span>
+                                <div class="list-opts dropdown-comment-list menu-list display-none">
                                     <ul>
                                         <li id="edit-comment" style="cursor:pointer;">Editar comentário</li>
                                         <li id="delete-comment" style="cursor:pointer;">Apagar comentário</li>
@@ -145,6 +145,37 @@
         }
         else
             e.target.setAttribute("src", "<?= base_url()?>assets/img/icon/paw-like-unset.png");
+    })
+
+    Array.from(document.querySelectorAll(".menu-icon")).forEach((el, i) => {
+        el.addEventListener("click", e => {
+            e.stopPropagation();
+            const listOpts = Array.from(document.querySelectorAll(".list-opts"));
+            listOpts.forEach(el => {
+                if(el.classList.contains("display-block")){
+                    el.classList.remove("display-block")
+                    el.classList.add("display-none");
+                }
+            });
+
+            if(listOpts[i].classList.contains("display-none")){
+                listOpts[i].classList.remove("display-none");
+                listOpts[i].classList.add("display-block");
+            }
+            else if(listOpts[i].classList.contains("display-block")){
+                listOpts[i].classList.remove("display-block");
+                listOpts[i].classList.add("display-none");
+            }
+        })
+    })
+
+    document.getElementsByTagName("body")[0].addEventListener("click", () => {
+        Array.from(document.querySelectorAll(".menu-list")).forEach(el => {
+            if(el.classList.contains("display-block")){
+                el.classList.remove("display-block");
+                el.classList.add("display-none");
+            }
+        })
     })
 </script>
 </html>
