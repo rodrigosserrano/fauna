@@ -29,7 +29,9 @@
                 
                 <div class="post-photo"></div>
                 <div class="post-likes">
-                    <div id="like-icon" style="background-image: url('<?= base_url()?>assets/img/icon/paw-like-unset.png')"></div>
+                    <a id="like-icon">
+                        <img src="<?= base_url()?>assets/img/icon/paw-like-unset.png">
+                    </a>
                     <b><span id="likes-amount">55 pessoas curtiram isso</span></b>
                 </div>
                 <div class="comments">
@@ -137,12 +139,12 @@
             e.target.value = "Escreva um comentário";
     })
 
-    document.getElementById("like-icon").addEventListener("click", e => {
-        console.log(e.target.style.backgroundImage)
-        if(e.target.style.backgroundImage === "url('<?= base_url()?>assets/img/icon/paw-like-unset.png')")
-            e.target.style.backgroundImage = "url('<?= base_url()?>assets/img/icon/paw-like-set.png')"
+    document.querySelector("#like-icon").addEventListener("click", e => {
+        if(e.target.getAttribute("src") === "<?= base_url()?>assets/img/icon/paw-like-unset.png"){
+            e.target.setAttribute("src", "<?= base_url()?>assets/img/icon/paw-like-set.png");
+        }
         else
-            e.target.style.backgroundImage = "url('<?= base_url()?>assets/img/icon/paw-like-unset.png')"
+            e.target.setAttribute("src", "<?= base_url()?>assets/img/icon/paw-like-unset.png");
     })
 </script>
 </html>
