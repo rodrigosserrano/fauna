@@ -200,7 +200,37 @@
                                 </div>
                             </div>
                         </div>
+                        
                         <?php if($mensagem == '') : ?> 
+                        <div class="modal fade" id="pet-excluir-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdropLabel">Deletar Pet</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="modal-pet-item">
+                                            <form class="frm" id="form-alterar-pet">
+                                                <section id="form-data">
+                                                    <h1 class="form-title">Você deseja realmente excluir <strong></strong> ? :(</h1>
+
+                                                    <div id="config-terms-modal">
+                                                        <p>CUIDADO! Essa ação é irreversível, pense com muito cuidado antes de excluir sua conta, pois todas as suas postagens serão perdidas e seus seguidores sentirão sua falta.</p>
+
+                                                        <img src="<?= base_url() ?>assets/img/icon/sad-cat.png" alt="Gato triste">
+
+                                                        <button id="btn-excluir-pet-id" class="form-btn" data-id="" type="button">Tenho certeza que quero excluir!</button>
+                                                    </div>
+
+                                                </section>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <section id="user-pets">
                             <!-- Loop de pets -->
                             <div class="pet">

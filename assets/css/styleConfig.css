@@ -215,8 +215,7 @@ input[type="file"] {
 
 /* Excluir */
 
-#config-terms {
-    width: 540px;
+#config-terms, #config-terms-modal {
     height: 190px;
     display: flex;
     flex-direction: column;
@@ -225,7 +224,15 @@ input[type="file"] {
     margin: 0 auto;
 }
 
-#config-terms img {
+#config-terms {
+    width: 540px;
+}
+
+#config-terms-modal {
+    width: 100%;
+}
+
+#config-terms img, #config-terms-modal img {
     margin-top: -25px;
 }
 
@@ -385,17 +392,21 @@ input[type="file"] {
         width: 95%;
     }
 
-    #config-terms {
+    #config-terms, #config-terms-modal {
         width: 90%;
         height: 60%;
     }
 
-    #config-terms p {
+    #config-terms p, #config-terms-modal p {
         font-size: 10pt;
     }
 
-    #config-terms img {
+    #config-terms img, #config-terms-modal img {
         margin: 0;
+    }
+
+    #config-terms-modal .form-btn {
+        font-size: 10pt;
     }
 
     h1.info-title {
