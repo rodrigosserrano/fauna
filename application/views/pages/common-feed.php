@@ -36,7 +36,6 @@
                 </div>
                 <div class="line"></div>
                 <div class="comments">
-                    <!--Comentários também devem ser gerados com a mesma lógica das postagens-->
                     <div class="comment">
                         <div class="comment-content">
                             <div class="comment-info">
@@ -135,8 +134,8 @@
         </section>
     </main>
 </body>
-
 <script>
+window.onload = function(){
     document.getElementById("message").addEventListener("focus", e => {
         if(e.target.value === "Escreva um comentário")
             e.target.value = ""; 
@@ -185,5 +184,6 @@
             }
         })
     })
+}
 </script>
 </html>
