@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class HomeController extends Fauna_Controller {
+class HomeController extends PostController {
 
     public function __construct()
     {
