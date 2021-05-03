@@ -41,7 +41,7 @@ main {
     position: relative;
 }
 
-#user-profile-info {
+.profile-info {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -51,7 +51,7 @@ main {
     position: relative;
 }
 
-.user-profile-info-half {
+.profile-info-half {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -71,7 +71,6 @@ main {
 }
 
 .btn-follow {
-    background-color: #A1C087;
     border-radius: 10px;
     border: 1px solid #90B074;
 
@@ -84,7 +83,15 @@ main {
     transition: 0.2s;
 }
 
-.btn-follow:hover {
+#btn-seguir {
+    background-color: #A1C087;
+}
+
+#btn-deixar-seguir {
+    background-color: #829D6C;
+}
+
+#btn-seguir:hover {
     background-color:#90B074;
 }
 
@@ -108,11 +115,12 @@ main {
 }
 
 .btn-option:hover {
-    color: #8a8989;
+    background-color: #dddddd;
 }
 
 /* Foto e Nome */
-.user-profile-pic {
+.profile-pic {
+    background-color: #efefef;
     margin-top: 30px;
 
     display: flex;
@@ -127,16 +135,16 @@ main {
     transition: 0.2s;
 }
 
-.user-profile-pic:hover {
+.profile-pic:hover {
     opacity: 80%;
 }
 
-.user-profile-pic img {
+.profile-pic img {
     max-width: 140px;
     max-height: 140px;
 }
 
-.user-profile-name {
+.profile-name {
     font-size: 18pt;
     font-weight: lighter;
     margin: 0;
@@ -190,6 +198,17 @@ main {
     opacity: 70%;
 }
 
+.locked {
+    width: 128px;
+    height: 128px;
+    overflow: hidden;
+    transition: 0.2s;
+}
+
+.locked:hover {
+    opacity: 80%;
+}
+
 /* Área do Pet */
 #user-profile-pet-area {
     width: 95%;
@@ -240,6 +259,9 @@ main {
     align-items: center;
     cursor: pointer;
     border: none;
+
+    text-decoration: none;
+    color: unset;
 }
 
 .unit-pic-area {
@@ -413,11 +435,17 @@ main {
     justify-content: center;
 }
 
-.like-icon {
+.like-icon, .like-icon-set {
     width: 32px;
     height: 32px;
     border: none;
     background-color: unset;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.like-icon:hover, .like-icon-set:hover {
+    opacity: 50%;
 }
 
 .like-amount {
@@ -439,4 +467,187 @@ main {
 .more:hover {
     color: var(--link-hover-color);
     background-color: #e7e7e7;
+}
+
+/* Dropdown */
+.option-dropdown, .option-dropdown-close {
+    background-color: #EFEFEF;
+    position: absolute;
+    border-radius: 3px;
+    box-shadow: 0 0 3px black;
+    
+    padding: 0;
+    z-index: 3;
+
+    margin-top: 35px;
+    margin-right: -9px;
+}
+
+.option-dropdown {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.option-dropdown-close {
+    display: none;
+}
+
+.option-dropdown li, .option-dropdown-close li {
+    list-style: none;
+    z-index: 4;
+    font-size: 12pt;
+    font-weight: lighter;
+}
+
+.option-dropdown .btn-dropdown, .option-dropdown-close .btn-dropdown {
+    border: none;
+    background-color: #EFEFEF;
+    width: 150px;
+    text-align: left;
+    padding: 3px 0 3px 10px;
+    transition: 0.2s;
+    border-radius: 3px;
+    z-index: 4;
+}
+
+.option-dropdown .btn-dropdown:hover, .option-dropdown-close .btn-dropdown:hover {
+    background-color: #c7c1c1;
+}
+
+.option-dropdown::before, .option-dropdown-close::before {
+    content: "";
+    width: 25px;
+    height: 25px;
+
+    background-color: #EFEFEF;
+    position: absolute;
+    transform: rotate(45deg);
+    border-radius: 3px;
+
+    top: -10px;
+    right: 11px;
+    z-index: 2;
+    box-shadow: 0 0 1px black;
+}
+
+#div-option-dropdown {
+    margin-top: 170px;
+    margin-right: 0;
+}
+
+@media screen and (max-width: 760px) {
+    .profile-section {
+        margin-bottom: 0;
+        width: 100%;
+        border-radius: 0;
+    }
+}
+
+@media screen and (max-width: 470px) {
+    #user-profile-title {
+        justify-content: flex-start;
+        padding-left: 15px;
+    
+        font-size: 16pt;
+        font-weight: normal;
+    }
+
+    .profile-info {
+        height: unset;
+        padding-bottom: 30px;
+        flex-direction: column;
+    }
+
+    .info-item-area {
+        margin: 15px 0;
+        display: flex;
+        width: 100%;
+        align-items: flex-start;
+    }
+
+    .info-item {
+        justify-content: center;
+        width: 33.3%;
+        margin: 0 auto;
+        flex-direction: column;
+    }
+
+    .profile-info-half {  
+        width: 100%;
+    }
+
+    .info-item-icon {
+        margin-right: 0;
+    }
+
+    .info-item + .info-item {
+        margin-top: 0;
+    }
+    
+    .info-item-description {
+        text-align: center;
+        font-size: 9pt;
+        font-weight: normal;
+    }
+
+    .btn-visibility {
+        width: unset;
+        right: unset;
+    }
+
+    #user-profile-pet-area {
+        height: 80px;
+    }
+
+    .unit {
+        height: 80px;
+    }
+
+    .unit-pic-area {       
+        width: 40px;
+        height: 40px;
+    }
+    
+    .unit-pic {
+        max-width: 40px;
+        max-height: 40px;
+    }
+    
+    .unit-name {
+        font-size: 10pt;
+    }
+
+    .profile-pic {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .profile-pic img {
+        max-width: 100px;
+        max-height: 100px;
+    }
+
+    .locked {
+        width: 32px;
+        height: 32px;
+    }
+
+    .more {
+        height: 40px;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .info-item-description {
+        font-size: 7.5pt;
+    }
+
+    .post-description {
+        font-size: 10pt;
+    }
+    
+    .post-date {
+        font-size: 8pt;
+    }
 }

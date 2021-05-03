@@ -6,17 +6,36 @@ $(document).ready(function() {
     btnFollowElement.addEventListener('click', () => {
 
         if(btnFollowElement.id == 'btn-seguir') {
-            btnFollowElement.style.backgroundColor = '#829D6C';
             btnFollowElement.innerText = 'Seguindo'
             btnFollowElement.id = 'btn-deixar-seguir'
         } else {
-            btnFollowElement.style.backgroundColor = '#A1C087';
             btnFollowElement.innerText = 'Seguir'
             btnFollowElement.id = 'btn-seguir'
         }
     })
 
     // Botão Opções do Usuário
+    let btnOptionArray = document.getElementsByClassName('btn-option');
+
+    for(let i = 0; i < btnOptionArray.length; i++) {
+        btnOptionArray[i].addEventListener('click', () => {
+
+            if(btnOptionArray[i]) {
+                let menu = document.getElementsByTagName('ul')[i];
+    
+                if(menu.className == 'option-dropdown') {
+                    menu.className = 'option-dropdown-close';
+                } else {
+                    let alreadyPoppedUp = document.querySelector('.option-dropdown');
+                    if(alreadyPoppedUp) {
+                        alreadyPoppedUp.className = 'option-dropdown-close';
+                    }
+                    menu.className = 'option-dropdown';
+                }
+            }
+
+        })
+    }
 
     // Botão Visibilidade
     let visibilityElement = document.querySelector('.btn-visibility');
@@ -49,14 +68,38 @@ $(document).ready(function() {
 
     function selectTab(tab) {
         if(tab.className == 'profile-option active') {
-            document.querySelector('.profile-option-selected').className = 'profile-option'
-            tab.className = 'profile-option-selected'
+            document.querySelector('.profile-option-selected').className = 'profile-option';
+            tab.className = 'profile-option-selected';
         }
     }
 
     // Botão Opções da Postagem
 
     // Botão Like
+    let likeBtn = document.querySelector('.like-icon');
+    
+    likeBtn.addEventListener('click', () => {
+        if(likeBtn.className == 'like-icon') {
+            document.querySelector('.like-icon img').src = 'assets/img/icon/paw-like-set.png';
+            document.querySelector('.like-icon img').style.width = '50%';
+            document.querySelector('.like-icon img').style.height = '100%';
+            setTimeout(function() {
+                document.querySelector('.like-icon img').style.width = '24px';
+                document.querySelector('.like-icon img').style.height = '24px';
+                likeBtn.className = 'like-icon-set'
+            }, 50);
+            
+        } else {
+            document.querySelector('.like-icon-set img').src = 'assets/img/icon/paw-like-unset.png';
+            document.querySelector('.like-icon-set img').style.width = '50%';
+            document.querySelector('.like-icon-set img').style.height = '100%';
+            setTimeout(function() {
+                document.querySelector('.like-icon-set img').style.width = '24px';
+                document.querySelector('.like-icon-set img').style.height = '24px';
+                likeBtn.className = 'like-icon'
+            }, 50);
+        }
+    })
 
     // Botão Mais Postagens
 });
