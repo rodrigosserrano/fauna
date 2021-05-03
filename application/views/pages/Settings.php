@@ -20,7 +20,7 @@
                         <form class="frm" id="form_alterar">
                             <section id="form-pic-area">
                                 <div class="form-pic">
-                                    <!-- <img class="pic" src="<?= base_url() ?>assets/img/user/" alt="Nome" title="Nome"> -->
+                                    <img class="pic" src="" alt="Nome" title="Nome">
                                     <input type="file" name="foto" enctype="multipart/form-data">
                                 </div>
                             </section>
@@ -67,7 +67,7 @@
                                             <form class="frm" id="form-alterar-pet">
                                                 <section id="form-pic-area">
                                                     <div class="form-pic">
-                                                        <!-- class="form-pet-pic" id="form-pet-pic-alterar" src="<?= base_url() ?>assets/img/user/" alt="Nome" title="Nome"> -->
+                                                        <img class="form-pet-pic" id="form-pet-pic-alterar" src="" alt="Nome" title="Nome">
                                                         <input type="file" name="foto_animal" enctype="multipart/form-data" value="<?=$foto_animal?>">
                                                     </div>
                                                 </section>
@@ -162,6 +162,7 @@
                                             <form class="frm" id="form-criar-pet">
                                                 <section id="form-pic-area">
                                                     <div class="form-pic">
+                                                    <img class="form-pet-pic" src="">
                                                         <p>+</p>
                                                         <input type="file" name="foto_animal" enctype="multipart/form-data">
                                                     </div>

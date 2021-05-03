@@ -63,7 +63,7 @@ class UserController extends Fauna_Controller {
             'pet' => $pet
         ];
     
-        $dados_view = $this->dadosShow('Altera Conta', 'assets/css/styleConfig.css');
+        $dados_view = $this->dadosShow('Altera Conta', 'assets/css/styleConfig.css', 'assets/js/userConfig.js');
         $view = $this->load->view('/pages/Settings', $dados, true);
 
         $this->show($dados_view, $view, true);
