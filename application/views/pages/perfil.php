@@ -211,7 +211,8 @@
                             </div>
 
                             <div class="post-option">
-                                <button class="btn-option" type="button">•••</button>
+                                <div></div>
+                                <!-- <button class="btn-option" type="button">•••</button>
                                 <ul class="option-dropdown-close">
                                     <li>
                                         <button id="" type="button" class="btn-dropdown">Botão</button>
@@ -222,7 +223,7 @@
                                     <li>
                                         <button id="" type="button" class="btn-dropdown">Botão</button>
                                     </li>
-                                </ul>
+                                </ul> -->
 
                                 <div class="like-area">
                                     <!-- Com like -->
