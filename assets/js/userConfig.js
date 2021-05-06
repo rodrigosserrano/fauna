@@ -51,9 +51,24 @@ $(document).ready(function() {
                 var reader = new FileReader();
 
                 reader.addEventListener('load', (event) => {
-                    let imageElement = document.getElementsByClassName('form-pic')[index].childNodes[1];
-                    imageElement.src = event.target.result;
-                    console.log(imageElement);
+                    let imageAreaElement = document.getElementsByClassName('form-pic')[index];
+                    let imageElement = imageAreaElement.childNodes[1];
+
+                    if(imageElement.className == 'form-pet-pic' || imageElement.className == 'pic') {
+                        imageElement.src = event.target.result;
+
+                        if(imageAreaElement.childNodes[2].innerText == '+') {
+                            imageAreaElement.removeChild( imageAreaElement.childNodes[2] );
+                        }
+                    } else {
+                        imageAreaElement.style.backgroundImage = "url('" + event.target.result + "')";
+                        imageAreaElement.style.backgroundSize = 'cover';
+                        imageAreaElement.style.backgroundRepeat = 'no-repeat';
+                        
+                        if(imageAreaElement.childNodes[1].innerText == '+') {
+                            imageAreaElement.removeChild( imageAreaElement.childNodes[1] );
+                        }
+                    }
                 });
                 reader.readAsDataURL(imageFileElements[index].files[0]);
             }

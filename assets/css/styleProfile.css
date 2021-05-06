@@ -140,8 +140,9 @@ main {
 }
 
 .profile-pic img {
-    max-width: 140px;
-    max-height: 140px;
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
 }
 
 .profile-name {
@@ -279,8 +280,9 @@ main {
 }
 
 .unit-pic {
-    max-width: 60px;
-    max-height: 60px;
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
 }
 
 .unit-name {
@@ -388,8 +390,9 @@ main {
 }
 
 .post-pic img {
-    max-width: 100px;
-    max-height: 100px;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
 }
 
 /* Informações da Postagem */
@@ -604,28 +607,18 @@ main {
         height: 80px;
     }
 
-    .unit-pic-area {       
+    .unit-pic-area, .unit-pic {       
         width: 40px;
         height: 40px;
-    }
-    
-    .unit-pic {
-        max-width: 40px;
-        max-height: 40px;
     }
     
     .unit-name {
         font-size: 10pt;
     }
 
-    .profile-pic {
+    .profile-pic, .profile-pic img {
         width: 100px;
         height: 100px;
-    }
-    
-    .profile-pic img {
-        max-width: 100px;
-        max-height: 100px;
     }
 
     .locked {

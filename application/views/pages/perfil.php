@@ -7,8 +7,7 @@
     btn-ativar-visibilidade
     btn-desativar-visibilidade
 
-    btn-like
-    btn-remover-like
+    btn-like é único
  -->
 
 <body>
