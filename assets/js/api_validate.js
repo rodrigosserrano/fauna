@@ -1,9 +1,8 @@
 $(document).ready(function(){
-    var getUrl = window.location;
-    if(getUrl.host.split('/')[1] != undefined){
-        var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1] + "/" + getUrl.pathname.split('/')[2];
+    if(window.location.origin != 'http://localhost'){
+        base_url = 'http://lds.codeigniter-dev/';
     }else{
-        var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+        base_url = 'http://localhost/fauna/';
     }
 
     //request Login
@@ -11,7 +10,7 @@ $(document).ready(function(){
         var formData = $("#form-login").serialize();
         $.ajax({
             type: "POST",
-            url: baseUrl+"validate",
+            url: base_url+"validate",
             data: formData,
             success: function (response) {
                 if(response.mensagem){
@@ -32,13 +31,12 @@ $(document).ready(function(){
     });
     //request logout
     $("#btn-logout").click(function() {
-        // console.log( getUrl.host.split('/')[0]);
         $.ajax({
             type: "POST",
-            url: baseUrl+"logout",
+            url: base_url+"logout",
             success: function (response) {
                 if(response.mensagem)
-                    window.location.href = baseUrl;
+                    window.location.href = base_url;
             },
             error: function (request, status, error) {
                 console.log(request.responseText);
@@ -51,12 +49,12 @@ $(document).ready(function(){
         var formData = $("#form-register").serialize();
         $.ajax({
             type: "POST",
-            url: baseUrl+"register-validate",
+            url: base_url+"register-validate",
             data: formData,
             success: function (response) {
                 if(response.mensagem){
                     alert(response.mensagem);
-                    window.location.href= baseUrl;
+                    window.location.href= base_url;
                 }
             },
             error: function (request, status, error) {

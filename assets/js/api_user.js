@@ -1,7 +1,10 @@
 
 $(document).ready(function(){
-    var getUrl = window.location;
-    var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+    if(window.location.origin != 'http://localhost'){
+        base_url = 'http://lds.codeigniter-dev/';
+    }else{
+        base_url = 'http://localhost/fauna/';
+    }
 
     //USUARIO
 
@@ -9,7 +12,7 @@ $(document).ready(function(){
     $("#btn-excluir-usuario").click(function(){
         $.ajax({
             type: "POST",
-            url: baseUrl+"delete",
+            url: base_url+"delete",
             success: function (response) {
                 if(response.mensagem){
                     alert(response.mensagem);
@@ -27,7 +30,7 @@ $(document).ready(function(){
         var formData = $("#form_alterar").serialize();
         $.ajax({
             type: "POST",
-            url: baseUrl+"edit",
+            url: base_url+"edit",
             data: formData,
             success: function (response) {
                 if(response.mensagem){
@@ -48,7 +51,7 @@ $(document).ready(function(){
         var formData = $("#form-criar-pet").serialize();
         $.ajax({
             type: "POST",
-            url: baseUrl+"create-pet",
+            url: base_url+"create-pet",
             data: formData,
             success: function (response) {
                 if(response.mensagem){
@@ -67,7 +70,7 @@ $(document).ready(function(){
         var id = $("#btn-excluir-pet-id").data('id');
         $.ajax({
             type: "POST",
-            url: baseUrl+"delete-pet",
+            url: base_url+"delete-pet",
             data: {id_animal:id},
             success: function (response) {
                 if(response.mensagem){
@@ -86,7 +89,7 @@ $(document).ready(function(){
         var formData = $("#form-alterar-pet").serialize();
         $.ajax({
             type: "POST",
-            url: baseUrl+"edit-pet",
+            url: base_url+"edit-pet",
             data: formData,
             success: function (response) {
                 if(response.mensagem){
