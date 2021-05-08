@@ -1,7 +1,7 @@
 $(document).ready(function(){
     var getUrl = window.location;
     if(getUrl.host.split('/')[1] != undefined){
-        var baseUrl = getUrl.protocol + "//" + getUrl.host.split('/')[1] + "/" + getUrl.pathname.split('/')[2];
+        var baseUrl = getUrl.protocol + "//" + getUrl.host.split('/')[1] + "//" + getUrl.pathname.split('/')[2];
     }else{
         var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
     }
