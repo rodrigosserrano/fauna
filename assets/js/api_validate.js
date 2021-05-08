@@ -1,6 +1,10 @@
 $(document).ready(function(){
     var getUrl = window.location;
-    var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+    if(getUrl.host.split('/')[1] != undefined){
+        var baseUrl = getUrl.protocol + "//" + getUrl.host.split('/')[1] + "/" + getUrl.pathname.split('/')[2];
+    }else{
+        var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+    }
 
     //request Login
     $("#btn-login").click(function() {
@@ -28,6 +32,7 @@ $(document).ready(function(){
     });
     //request logout
     $("#btn-logout").click(function() {
+        // console.log( getUrl.host.split('/')[0]);
         $.ajax({
             type: "POST",
             url: baseUrl+"logout",
