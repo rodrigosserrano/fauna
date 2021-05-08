@@ -19,7 +19,7 @@ public function index() {
             'tipo'=>$tipo
         ];
 
-        $dados_view = $this->dadosShow('Cadastrar-se', 'assets/css/styleRegister.css');
+        $dados_view = $this->dadosShow('Cadastrar-se', 'assets/css/styleRegister.css', "assets/js/register_scripts.js");
 		$view = $this->load->view('pages/Register', $dados, true);
         $this->show($dados_view, $view);
     }

@@ -17,16 +17,13 @@
                     </div>
                 </section>
                 <section class="middle-form-container">
-                    <div class="cat">
-                        <!-- <img src="<?= base_url()?>assets/img/gato_registrar.png" id="pet-login"> -->
-                    </div>
+                    <div class="cat"></div>
                     <div class="description"><span>Cadastre suas informações</span></div>
                     <label for="file-input1" class="file-label">
                         <div><span>+</span></div>
                         <span id="user-pic">Adicione sua foto</span>
                     </label>
-                    <input id="file-input1" type="file" name="foto_usuario" enctype="multipart/form-data">
-                    <!--input file ainda com funcionamento pendente-->
+                    <input id="file-input1" type="file" name="foto_usuario" enctype="multipart/form-data" class="file-input">
                     <div class="inputs-container">
                         <input type="text" name="nome_usuario" placeholder="Nome" required>
                         <input type="text" name="telefone" id="telefone" placeholder="Telefone" required>
@@ -45,8 +42,7 @@
                         <div><span>+</span></div>
                         <span id="pet-pic">Adicione a foto do seu pet</span>
                     </label>
-                    <!--input file ainda com funcionamento pendente-->
-                    <input id="file-input2" type="file" name="foto_animal" enctype="multipart/form-data">
+                    <input id="file-input2" type="file" name="foto_animal" enctype="multipart/form-data" class="file-input">
                     <div class="inputs-container">
                         <input type="text" name="nome_animal" placeholder="Nome" required>
                         <select id="animal" name="tipo" required>
