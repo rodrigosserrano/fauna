@@ -50,30 +50,6 @@ $(document).ready(function() {
         }
     }
 
-    // Botão Visibilidade
-    let visibilityElement = document.querySelector('.btn-visibility');
-
-    visibilityElement.addEventListener('click', () => {
-
-        if(visibilityElement.id == "btn-ativar-visibilidade") {
-            setPrivacyPublic(visibilityElement)
-        } else {
-            setPrivacyPrivate(visibilityElement)
-        }
-    })
-
-    function setPrivacyPublic(btn) {
-        document.querySelector('#visibility-icon').src = "assets/img/icon/visibility-open.png";
-        document.querySelector('#visibility-description').innerText = 'Informações visíveis';
-        btn.id = 'btn-desativar-visibilidade';
-    }
-
-    function setPrivacyPrivate(btn) {
-        document.querySelector('#visibility-icon').src = "assets/img/icon/visibility-close.png";
-        document.querySelector('#visibility-description').innerText = 'Informações ocultadas';
-        btn.id = 'btn-ativar-visibilidade';
-    }
-
     // Botões do Menu
     let tabBtns = [];
 
@@ -94,86 +70,6 @@ $(document).ready(function() {
         }
     }
 
-    // Botão Opções da Postagem
-
-    // Botão Like
-    refreshLikeFunction();
-
-    function refreshLikeFunction() {
-        var likeBtnsAll = document.getElementsByClassName('like-icon');
-        var likeBtns = [];
-
-        for(btn of likeBtnsAll) {
-            likeBtns.push(btn);
-        }
-
-        likeBtns.map((btn) => {
-            btn.addEventListener('click', () => {
-                if(btn.className == 'like-icon') {
-                    giveLike(btn);
-                } else {
-                    removeLike(btn);
-                }
-            });
-        });
-    }
-
-    function giveLike(btn) {
-        let likeAmountArea;
-        let index = [];
-
-        if(btn.childNodes[1]) {
-            // Indexes 1-13 e 0-1 representam a ordem de parentesco
-            // No post original, a imagem e o número de likes são os filhos 1 e 13 da div
-            // Enquanto nos posts adicionados pelo botão tem como filho nas posições 0 e 1
-            index = [1, 13];
-        } else {
-            index = [0, 1];
-        }
-
-        // Basicamente isso aumenta o número dos likes em 1
-        btn.childNodes[index[0]].src = 'assets/img/icon/paw-like-set.png';
-        likeAmountArea = btn.parentNode.childNodes[index[1]];
-        likeAmountArea.innerText = Number(likeAmountArea.innerText) + 1;
-        
-        animateLike(btn, 'like-icon-set');
-    }
-
-    function removeLike(btn) {
-        if(btn.childNodes[1]) {
-            index = [1, 13];
-        } else {
-            index = [0, 1];
-        }
-
-        // Aqui diminui o número de likes em 1
-        btn.childNodes[index[0]].src = 'assets/img/icon/paw-like-unset.png';
-        likeAmountArea = btn.parentNode.childNodes[index[1]];
-        likeAmountArea.innerText = Number(likeAmountArea.innerText) - 1;
-
-        
-        animateLike(btn, 'like-icon');
-    }
-
-                 // Elemento |  ID  | Classe a ser editada
-    function animateLike(btn, btnID) {
-        let i;
-
-        if(btn.childNodes[1]) {
-            i = 1;
-        } else {
-            i = 0;
-        }
-
-        btn.childNodes[i].style.width = '50%';
-        btn.childNodes[i].style.height = '100%';
-        setTimeout(function() {
-            btn.childNodes[i].style.width = '24px';
-            btn.childNodes[i].style.height = '24px';
-            btn.className = btnID;
-        }, 50);
-    }
-
     // Botão Mais Postagens
     let btnMorePosts = document.querySelector('#btn-exibir-mais');
     
@@ -182,25 +78,24 @@ $(document).ready(function() {
         postArea.removeChild(btnMorePosts);
 
         let posts = []
-                        // nome                 imagem                           descrição               data    like-icon ou like-icon-unset    paw-like-set ou unset,  qtd de likes
-        posts.push(newPost('NOME DA POSTAGEM', 'assets/img/cachorro_login.png', 'DESCRIÇÃO DA POSTAGEM', '10/04/2021', 'like-icon', 'assets/img/icon/paw-like-unset.png', '10'));
-        posts.push(newPost('NOME DA POSTAGEM', 'assets/img/cachorro_login.png', 'DESCRIÇÃO DA POSTAGEM', '10/04/2021', 'like-icon', 'assets/img/icon/paw-like-unset.png', '10'));
-        posts.push(newPost('NOME DA POSTAGEM', 'assets/img/cachorro_login.png', 'DESCRIÇÃO DA POSTAGEM', '10/04/2021', 'like-icon', 'assets/img/icon/paw-like-unset.png', '10'));
+                        // nome                 imagem                           descrição               data           paw-like-set ou unset,              qtd de likes
+        posts.push(newPost('home', 'NOME DA POSTAGEM', 'assets/img/cachorro_login.png', 'DESCRIÇÃO DA POSTAGEM', '10/04/2021', 'assets/img/icon/paw-like-unset.png', '10'));
+        posts.push(newPost('home', 'NOME DA POSTAGEM', 'assets/img/cachorro_login.png', 'DESCRIÇÃO DA POSTAGEM', '10/04/2021', 'assets/img/icon/paw-like-unset.png', '10'));
+        posts.push(newPost('home', 'NOME DA POSTAGEM', 'assets/img/cachorro_login.png', 'DESCRIÇÃO DA POSTAGEM', '10/04/2021', 'assets/img/icon/paw-like-unset.png', '10'));
         
         for(post of posts) {
             postArea.appendChild(post);
         }
-        refreshLikeFunction();
         
         postArea.appendChild(btnMorePosts);
     })
 
-    function newPost(name, imgSrc, description, date, btnLikeClass, likeIcon, likeAmount) {
-        let cardElement                 = document.createElement('div');
-        cardElement.className           = 'post-card';
+    function newPost(link, name, imgSrc, description, date, likeIcon, likeAmount) {
+        let cardElement                  = document.createElement('div');
+        cardElement.className            = 'post-card';
     
         // Elementos do Post
-        let picAreaElement              = document.createElement('div');
+        let picAreaElement              = document.createElement('a');
         picAreaElement.className        = 'post-pic';
 
         let picElement                  = document.createElement('img');
@@ -260,12 +155,13 @@ $(document).ready(function() {
 
 
         // Informações do Post
+        picAreaElement.href                = link;
         picElement.alt                  = name;
         picElement.src                  = imgSrc;
         descriptionElement.innerText    = description;
         dateElement.innerText           = date;
 
-        btnLikeElement.className        = btnLikeClass;
+        btnLikeElement.className        = 'like-icon';
         likeIconElement.src             = likeIcon;
         likeAmountElement.innerText     = likeAmount;
 

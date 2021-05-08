@@ -172,7 +172,7 @@ main {
 }
 
 /* Botão de visibilidade */
-.btn-visibility {
+/* .btn-visibility {
     background-color: unset;
     width: 200px;
     height: 30px;
@@ -208,7 +208,7 @@ main {
 
 .locked:hover {
     opacity: 80%;
-}
+} */
 
 /* Área do Pet */
 #user-profile-pet-area {
@@ -558,7 +558,7 @@ main {
 
     .profile-info {
         height: unset;
-        padding-bottom: 30px;
+        /* padding-bottom: 30px; */
         flex-direction: column;
     }
 
@@ -594,10 +594,10 @@ main {
         font-weight: normal;
     }
 
-    .btn-visibility {
+    /* .btn-visibility {
         width: unset;
         right: unset;
-    }
+    } */
 
     #user-profile-pet-area {
         height: 80px;
@@ -621,10 +621,10 @@ main {
         height: 100px;
     }
 
-    .locked {
+    /* .locked {
         width: 32px;
         height: 32px;
-    }
+    } */
 
     .more {
         height: 40px;

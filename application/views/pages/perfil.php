@@ -3,11 +3,6 @@
     Neste arquivo separei a função de cada botão pelos IDs, exemplo:
     o Botão de seguir tem ID btn-seguir para começar a seguir
     e btn-deixar-seguir para deixar de seguir
-
-    btn-ativar-visibilidade
-    btn-desativar-visibilidade
-
-    btn-like é único
  -->
 
 <body>
@@ -54,7 +49,6 @@
                 </div>
                 <div class="profile-info-half">
 
-                    <!-- Caso as informações estejam públicas num perfil de terceiro -->
                     <div class="info-item-area">
                         <div class="info-item">
                             <img class="info-item-icon" src="<?= base_url() ?>assets/img/icon/calendar.png" alt="Calendário" title="Data de Nascimento">
@@ -78,30 +72,7 @@
                             </p>
                         </div>
                     </div>
-                    <!--  -->
-
-                    <!-- Caso estejam privadas -->
-                    <!-- <img class="locked" src="<?= base_url() ?>assets/img/icon/lock.png" alt="Privado" title="Essas informações estão privadas"> -->
-                    <!--  -->
                 </div>
-
-                <!-- Não sei se terá opção de privacidade -->
-                
-                <!-- Caso a visibilidade esteja como privado -->
-                <button id="btn-ativar-visibilidade" class="btn-visibility" type="button">
-                    <img id="visibility-icon" src="<?= base_url() ?>assets/img/icon/visibility-close.png" alt="Oculto" title="Oculto">
-                    <p id="visibility-description">Informações ocultadas</p>
-                </button>
-                <!--  -->
-
-                <!-- Caso a visibilidade esteja pública -->
-
-                <!-- <button id="btn-desativar-visibilidade" class="btn-visibility" type="button">
-                    <img id="visibility-icon" src="<?= base_url() ?>assets/img/icon/visibility-open.png" alt="Oculto" title="Oculto">
-                    <p id="visibility-description">Informações visíveis</p>
-                </button> -->
-
-                <!--  -->
             </div>
 
             <div class="bar"></div>
@@ -195,9 +166,9 @@
 
                         <!-- Loop de Post -->
                         <div class="post-card">
-                            <div class="post-pic">
+                            <a href="home" class="post-pic">
                                 <img src="https://avatars.githubusercontent.com/u/51789589?v=4" alt="Postagem">
-                            </div>
+                            </a>
 
                             <div class="post-info">
                                 <p class="post-description">
@@ -211,31 +182,11 @@
 
                             <div class="post-option">
                                 <div></div>
-                                <!-- <button class="btn-option" type="button">•••</button>
-                                <ul class="option-dropdown-close">
-                                    <li>
-                                        <button id="" type="button" class="btn-dropdown">Botão</button>
-                                    </li>
-                                    <li>
-                                        <button id="" type="button" class="btn-dropdown">Botão</button>
-                                    </li>
-                                    <li>
-                                        <button id="" type="button" class="btn-dropdown">Botão</button>
-                                    </li>
-                                </ul> -->
 
                                 <div class="like-area">
-                                    <!-- Com like -->
                                     <button id="btn-like" class="like-icon">
                                         <img src="<?= base_url() ?>assets/img/icon/paw-like-unset.png" alt="Curtida" title="Curtida">
                                     </button>
-                                    <!--  -->
-
-                                    <!-- Sem like -->
-                                    <!-- <button id="btn-like" class="like-icon-set">
-                                        <img src="<?= base_url() ?>assets/img/icon/paw-like-set.png" alt="Curtida" title="Curtida">
-                                    </button> -->
-                                    <!--  -->
 
                                     <p class="like-amount">
                                         55
@@ -243,7 +194,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!--  -->
 
                         <button class="more" id="btn-exibir-mais" type="button">
                             Mais postagens
