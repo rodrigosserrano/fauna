@@ -33,7 +33,7 @@
                                 <option value="<?=$list_sexo->id_sexo?>"><?= ucfirst($list_sexo->descricao)?></option>
                             <?php endforeach; ?>
                         </select>
-                        <input type="date" name="data_nascimento" placeholder="Data de nascimento" required>
+                        <input type="text" id="birth_date" name="data_nascimento" placeholder="Data de nascimento" required>
                     </div>
                 </section>
                 <section class="right-form-container">
@@ -64,6 +64,34 @@
             </div>
             <button id="btn-register" type="button" >Cadastrar</button>
         </form>
+
+        <script>
+            const selects = Array.from(document.getElementsByTagName("select"))
+            
+            selects.forEach(select => {
+                let options = Array.from(select.querySelectorAll("option"))
+                select.addEventListener("change", e => {
+                    options.forEach(opt => {
+                        let optText = opt.textContent
+                        if(opt.value == e.target.value){
+                            if(optText == "Gênero" || optText == "Tipo de animal")
+                                e.target.style.color = "#777"
+                            else
+                                e.target.style.color = "#000"
+                        }
+                        opt.style.color = "#777"
+                    })
+                })
+            })
+
+            document.querySelector("#birth_date").addEventListener("focus", e => {
+                e.target.setAttribute("type", "date")
+            })
+            document.querySelector("#birth_date").addEventListener("blur", e => {
+                if(e.target.value == "")
+                    e.target.setAttribute("type", "text")
+            })
+        </script>
     </main>
     <footer>
     </footer>
