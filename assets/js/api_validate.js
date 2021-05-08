@@ -1,16 +1,13 @@
 $(document).ready(function(){
-    if(window.location.origin != 'http://localhost'){
-        base_url = 'http://lds.codeigniter-dev/';
-    }else{
-        base_url = 'http://localhost/fauna/';
-    }
+    var getUrl = window.location;
+    var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
 
     //request Login
     $("#btn-login").click(function() {
         var formData = $("#form-login").serialize();
         $.ajax({
             type: "POST",
-            url: base_url+"validate",
+            url: baseUrl+"validate",
             data: formData,
             success: function (response) {
                 if(response.mensagem){
@@ -33,10 +30,10 @@ $(document).ready(function(){
     $("#btn-logout").click(function() {
         $.ajax({
             type: "POST",
-            url: base_url+"logout",
+            url: baseUrl+"logout",
             success: function (response) {
                 if(response.mensagem)
-                    window.location.href = base_url;
+                    window.location.href = baseUrl;
             },
             error: function (request, status, error) {
                 console.log(request.responseText);
@@ -49,12 +46,12 @@ $(document).ready(function(){
         var formData = $("#form-register").serialize();
         $.ajax({
             type: "POST",
-            url: base_url+"register-validate",
+            url: baseUrl+"register-validate",
             data: formData,
             success: function (response) {
                 if(response.mensagem){
                     alert(response.mensagem);
-                    window.location.href= base_url;
+                    window.location.href= baseUrl;
                 }
             },
             error: function (request, status, error) {
