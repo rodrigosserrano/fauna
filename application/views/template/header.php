@@ -29,5 +29,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
         <link rel="stylesheet" href="<?= base_url() ?>assets/css/common.css">
         <link rel="stylesheet" href="<?= $style ?>">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
         <title>Fauna | <?= $title ?></title>
     </head>

@@ -1,4 +1,14 @@
 <body>
+    <!-- Top Navigation Menu -->
+    <div class="topnav">
+        <!-- Navigation links (hidden by default) -->
+        <div id="myLinks">
+            <a href="#news">Explorar</a>
+            <h5>Categoria de posts</h5>
+            <a href="#contact">Adoção</a>
+            <a href="#about">Animais Perdidos</a>
+        </div>
+    </div>
     <main>
         <section class="posts">
             <div class="post">

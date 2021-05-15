@@ -1,4 +1,8 @@
 <nav id="navbar">
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+      <i class="fa fa-bars"></i>
+    </a>
+
     <a href="<?= base_url() ?>" id="nav-logo">Fauna</a>
 
     <!-- se o usuário estiver logado aparecer também -->
@@ -11,6 +15,8 @@
         <!-- da pra rodar um scriptzinho com btn-config pra redirecionar ou colocar dentro de um 'a' -->
         <div class="vertical-bar"></div>
         <a href="" id="btn-logout" class="logout">Sair ➝</a>
+
     </div>
+
     <!-- -->
 </nav>
