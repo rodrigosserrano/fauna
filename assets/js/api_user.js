@@ -85,21 +85,53 @@ $(document).ready(function(){
     });
 
     //Alterar dados pet
-    $("#btn-altera-dados-pet").click(function(){
-        var formData = $("#form-alterar-pet").serialize();
-        $.ajax({
-            type: "POST",
-            url: base_url+"edit-pet",
-            data: formData,
-            success: function (response) {
-                if(response.mensagem){
-                    alert(response.mensagem);
-                    window.location.reload();
+
+    let btnsTypeEditPet = document.getElementsByClassName('btn-type');
+    
+    for(btnsEdit of btnsTypeEditPet) {
+        let btn = btnsEdit.parentNode;
+        let id = btn.id;
+
+        btn.addEventListener('click', () => {
+            let formData = $(`#form-alterar-pet-${id}`).serialize();
+            $.ajax({
+                type: "POST",
+                url: base_url+"edit-pet",
+                data: formData,
+                success: function (response) {
+                    if(response.mensagem){
+                        alert(response.mensagem);
+                        window.location.reload();
+                    }
+                },
+                error: function (request, status, error) {
+                    console.log(request.responseText);
                 }
-            },
-            error: function (request, status, error) {
-                console.log(request.responseText);
-            }
-        });
-    });
+            });
+        })
+    }
+
+    // document.querySelector('#btn-altera-dados-pet').addEventListener('click', (event) => {
+    //     console.log(event.target.childNodes[1].innerText);
+    //     console.log(event.target);
+    // })
+
+    // $("#btn-altera-dados-pet").click(function(){
+
+    //     var formData = $("#form-alterar-pet").serialize();
+    //     $.ajax({
+    //         type: "POST",
+    //         url: base_url+"edit-pet",
+    //         data: formData,
+    //         success: function (response) {
+    //             if(response.mensagem){
+    //                 alert(response.mensagem);
+    //                 window.location.reload();
+    //             }
+    //         },
+    //         error: function (request, status, error) {
+    //             console.log(request.responseText);
+    //         }
+    //     });
+    // });
 });

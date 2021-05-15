@@ -64,7 +64,7 @@
                                     <div class="modal-body">
 
                                         <div class="modal-pet-item">
-                                            <form class="frm" id="form-alterar-pet">
+                                            <form class="frm" id="form-alterar-pet-<?= $dado_pet->id_animal ?>">
                                                 <section id="form-pic-area">
                                                     <div class="form-pic">
                                                         <img class="form-pet-pic" id="form-pet-pic-alterar" src="" alt="Nome" title="Nome">
@@ -109,7 +109,10 @@
                                                         </select> -->
                                                     </div>
 
-                                                    <button class="form-btn" id="btn-altera-dados-pet" type="button">Alterar</button>
+                                                    <button class="form-btn" id="<?= $dado_pet->id_animal ?>" type="button">
+                                                        Alterar
+                                                        <p class="btn-type">edit-pet</p>
+                                                    </button>
                                                 </section>
                                             </form>
                                         </div>
