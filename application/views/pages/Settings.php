@@ -134,7 +134,7 @@
                                                     <h1 class="form-title">Você deseja realmente excluir <strong><?=$nome_animal?></strong> ? :(</h1>
 
                                                     <div id="config-terms">
-                                                        <p>CUIDADO! Essa ação é irreversível, pense com muito cuidado antes de excluir sua conta, pois todas as suas postagens serão perdidas e seus seguidores sentirão sua falta.</p>
+                                                        <p>CUIDADO! Essa ação é irreversível, pense com muito cuidado antes de excluir seu Pet, pois todos os seus dados e postagens relacionadas a ele serão perdidas.</p>
 
                                                         <img src="<?= base_url() ?>assets/img/icon/sad-cat.png" alt="Gato triste">
 
