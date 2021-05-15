@@ -17,11 +17,11 @@
                     <div class="tab-pane fade show active" id="config-dados" role="tabpanel" aria-labelledby="config-dados-tab">
                         <h1 class="info-title">Altere os dados da sua conta</h1>
 
-                        <form class="frm" id="form_alterar">
+                        <form class="frm" id="form_alterar" enctype="multipart/form-data">
                             <section id="form-pic-area">
                                 <div class="form-pic">
                                     <img class="pic" src="" alt="Nome" title="Nome">
-                                    <input type="file" name="foto" enctype="multipart/form-data">
+                                    <input type="file" id="foto_usuario" name="foto_usuario">
                                 </div>
                             </section>
 

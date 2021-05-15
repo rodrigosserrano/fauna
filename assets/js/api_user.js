@@ -1,9 +1,9 @@
-
 $(document).ready(function(){
-    if(window.location.origin != 'http://localhost'){
+    if(window.location.origin != 'https://localhost'){
         base_url = 'http://lds.codeigniter-dev/';
+        //console.log(window.location.origin);
     }else{
-        base_url = 'http://localhost/fauna/';
+        base_url = 'https://localhost/fauna/';
     }
 
     //USUARIO
@@ -26,12 +26,23 @@ $(document).ready(function(){
     });
 
     //Alterar dados conta
+    var foto_usuario = null;
+    document.querySelector('#foto_usuario').addEventListener('change', (event) => {
+        foto_usuario = event.target.files;
+    })
+
     $("#btn-altera-dados-usuario").click(function(){
         var formData = $("#form_alterar").serialize();
+        console.log(foto_usuario);
+        var nomeF = (foto_usuario[0].name);
+        var blob = (foto_usuario[0].blob);
+
+        formData += `&nomeF=${nomeF}`; 
+        console.log(formData);
         $.ajax({
             type: "POST",
             url: base_url+"edit",
-            data: formData,
+            data: formData, 
             success: function (response) {
                 if(response.mensagem){
                     alert(response.mensagem);

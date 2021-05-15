@@ -24,7 +24,8 @@ class UsuariosModel extends CI_Model {
             'email' => $email,
             'nome_usuario' => $nome_usuario,
             'telefone' => $telefone,
-            'data_nascimento' => $data_nascimento
+            'data_nascimento' => $data_nascimento,
+            'foto_usuario' => $foto_usuario
         ];
         
         $this->db->where('id_usuario', $id_usuario);

@@ -30,6 +30,7 @@ $base_url .= str_replace(basename($_SERVER['SCRIPT_NAME']), "", $_SERVER['SCRIPT
 
 $config['base_url'] = $base_url;
 
+
 /*
 |--------------------------------------------------------------------------
 | Index File

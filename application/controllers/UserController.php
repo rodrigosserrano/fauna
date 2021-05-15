@@ -70,13 +70,15 @@ class UserController extends Fauna_Controller {
     }
 
     public function edit() {
-        header('Content-Type: application/json');
+        header('Content-Type: application/json');        
         
         $this->load->library('form_validation');
         
         $this->form_validation->set_rules('email', 'E-mail', 'required|valid_email');
         // $this->form_validation->set_rules('senha', 'Senha', 'required');
-        // $this->form_validation->set_rules('foto_usuario', 'foto_usuario', 'required');
+        
+        $this->form_validation->set_rules('foto_usuario', 'foto_usuario', 'required');
+        
         $this->form_validation->set_rules('nome_usuario', 'nome_usuario', 'required');
         $this->form_validation->set_rules('telefone', 'telefone', 'required');
         $this->form_validation->set_rules('data_nascimento', 'data_nascimento', 'required');
@@ -87,7 +89,8 @@ class UserController extends Fauna_Controller {
                 //usuário
                 "email" => $this->input->post('email'),
                 // "senha" => $this->input->post('senha'),
-                // "foto_usuario" => $this->uploadFotoUsuario($this->input->post('email')),
+                
+                "foto_usuario" => $this->do_upload('user'),
                 "nome_usuario" => $this->input->post('nome_usuario'),
                 "telefone" => $this->input->post('telefone'),
                 // "sexo_usuario" => $this->input->post('sexo_usuario'),
@@ -212,5 +215,30 @@ class UserController extends Fauna_Controller {
      * create, edit & delete
      */
 
-    
+    public function salvar($tipo)
+    {
+        $foto = $_FILES['foto_usuario'];
+        $config['file_name'] = md5(time());
+        $config['upload_path'] = base_url . 'assets/img/'.$tipo.'/';
+        $config['allowed_types'] = 'jpg|png';
+        $config['max_size'] = 10240; # 10 MB
+        $config['max_width'] = 1024;
+        $config['max_height'] = 768;
+
+        $this->load->library('upload', $config);
+
+        if ( ! $this->upload->do_upload($foto['name']))
+        {
+            $error = array('error' => $this->upload->display_errors());
+            $this->load->view('upload_form', $error);
+        }
+        /*
+        else
+        {
+            $data = array('upload_data' => $this->upload->data());
+            $this->load->view('upload_success', $data);
+        }
+        */
+        return $this->upload->data('file_name');
+    }    
 }
