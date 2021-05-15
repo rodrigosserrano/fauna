@@ -58,7 +58,7 @@
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                    <h5 class="modal-title" id="staticBackdropLabel">Nome do Pet</h5>
+                                    <h5 class="modal-title" id="staticBackdropLabel"><?= $dado_pet->nome_animal ?></h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
@@ -122,9 +122,9 @@
                                 </div>
                             </div> 
                         </div> 
-                        <?php endforeach;?>
+                        
 
-                        <!-- <div class="modal fade" id="pet-excluir-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal fade" id="pet-excluir-modal-<?= $dado_pet->id_animal ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -135,14 +135,17 @@
                                         <div class="modal-pet-item">
                                             <form class="frm" id="form-alterar-pet">
                                                 <section id="form-data">
-                                                    <h1 class="form-title">Você deseja realmente excluir <strong><?=$nome_animal?></strong> ? :(</h1>
+                                                    <h1 class="form-title">Você deseja realmente excluir <strong><?= $dado_pet->nome_animal ?></strong> ? :(</h1>
 
                                                     <div id="config-terms">
                                                         <p>CUIDADO! Essa ação é irreversível, pense com muito cuidado antes de excluir seu Pet, pois todos os seus dados e postagens relacionadas a ele serão perdidas.</p>
 
                                                         <img src="<?= base_url() ?>assets/img/icon/sad-cat.png" alt="Gato triste">
 
-                                                        <button id="btn-excluir-pet-id" class="form-btn" data-id="<?= $id_animal?>" type="button">Tenho certeza que quero excluir!</button>
+                                                        <button id="<?= $dado_pet->id_animal ?>" class="form-btn" data-id="<?= $dado_pet->id_animal ?>" type="button">
+                                                            Tenho certeza que quero excluir!
+                                                            <p class="btn-type">delete-pet</p>
+                                                        </button>
                                                     </div>
 
                                                 </section>
@@ -151,7 +154,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> -->
+                        </div>
+                        <?php endforeach;?>
 
                         <div class="modal fade" id="pet-criar-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg">
@@ -206,7 +210,7 @@
                             </div>
                         </div>
                         
-                         <?php if($mensagem == '') : ?> 
+                         <!-- <?php if($mensagem == '') : ?> 
                         <div class="modal fade" id="pet-excluir-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
@@ -234,7 +238,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                           
                         <section id="user-pets">
@@ -245,7 +249,7 @@
                                     <button id="edit-pet-x" class="pet-icon-edit" data-bs-toggle="modal" data-bs-target="#pet-alterar-modal-<?=$dado_pet->id_animal?>">
                                         <img src="<?= base_url() ?>assets/img/icon/edit.png" title="Editar pet">
                                     </button>
-                                    <button id="delete-pet-x" class="pet-icon-delete" data-bs-toggle="modal" data-bs-target="#pet-excluir-modal">
+                                    <button id="delete-pet-x" class="pet-icon-delete" data-bs-toggle="modal" data-bs-target="#pet-excluir-modal-<?= $dado_pet->id_animal ?>">
                                         <img src="<?= base_url() ?>assets/img/icon/delete.png" title="Deletar pet">
                                     </button>
                                 </div>
