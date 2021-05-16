@@ -6,7 +6,23 @@ $(document).ready(function(){
     }
 
     //request Login
+    const inputsLogin = document.querySelectorAll('#form-login .form-input');
+    if(inputsLogin.length) {
+        for(input of inputsLogin) {
+            
+            input.addEventListener('keydown', (event) => {
+                if(event.code == 'Enter') {
+                    login();
+                }
+            })
+        }
+    }
+
     $("#btn-login").click(function() {
+        login();
+    });
+
+    function login() {
         var formData = $("#form-login").serialize();
         $.ajax({
             type: "POST",
@@ -28,7 +44,7 @@ $(document).ready(function(){
                 console.log(request.responseText);
             }
         });
-    });
+    }
     //request logout
     $("#btn-logout").click(function() {
         $.ajax({
