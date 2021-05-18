@@ -133,11 +133,11 @@
                                     </div>
                                     <div class="modal-body">
                                         <div class="modal-pet-item">
-                                            <form class="frm" id="form-alterar-pet">
+                                            <form class="frm">
                                                 <section id="form-data">
                                                     <h1 class="form-title">Você deseja realmente excluir <strong><?= $dado_pet->nome_animal ?></strong> ? :(</h1>
 
-                                                    <div id="config-terms">
+                                                    <div id="config-terms-modal">
                                                         <p>CUIDADO! Essa ação é irreversível, pense com muito cuidado antes de excluir seu Pet, pois todos os seus dados e postagens relacionadas a ele serão perdidas.</p>
 
                                                         <img src="<?= base_url() ?>assets/img/icon/sad-cat.png" alt="Gato triste">
