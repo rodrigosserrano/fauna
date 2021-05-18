@@ -1,4 +1,6 @@
 <body>
+    <!-- MENU MOBILE -->
+
     <button type="button" class="icon" id="navigation-menu-mobile">
         <!-- <i class="fa fa-bars"></i> -->
         <p class="mobile-bars">—</p>
@@ -14,8 +16,64 @@
             <a class="menu-mobile-item" href="#about">Animais Perdidos</a>
         </div>
     </div>
+
+    <!--  -->
+
     
     <main>
+
+        <!-- MODAL CRIAR POSTAGEM -->
+        
+        <div class="modal fade" id="new-post-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="new-post-area" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Nova Postagem</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+
+                    <div class="modal-body">
+                        <form id="form-criar-post">
+                            <div>
+                                <!-- colocar um overflow auto para aparecer a barra de rolagem -->
+                                <textarea name="descricao" placeholder="Escreva uma mensagem..." rows="4" cols="40"></textarea>
+                                <br>
+                                <!-- br pode ser removido dps -->
+                                <input type="file" name="midia">
+                                <label for="midia">Inserir mídia</label>
+                            </div>
+
+                            <br><br>
+
+                            <select name="id_categoria">
+                                <option selected disabled>Categoria</option>
+                                <!-- Loop de categorias -->
+                            </select>
+
+                            <br><br>
+
+                            <select name="id_animal">
+                                <option selected disabled>Pet relacionado</option>
+                                <!-- Loop de pets -->
+                            </select>
+
+                            <br><br>
+                            
+                            <button type="button" id="#btn-cria-postagem">Criar Postagem</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <button id="btn-new-post" data-bs-toggle="modal" data-bs-target="#new-post-modal"></button>
+
+        <!--  -->
+
+
         <section class="posts">
             <div class="post">
                 <div class="info-post">

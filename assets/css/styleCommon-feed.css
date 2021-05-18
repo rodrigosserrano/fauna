@@ -13,6 +13,7 @@ ul{
 body{
     background-color: var(--background-color);
     font-family: Roboto, sans-serif;
+    position: relative;
 }
 
 main{
@@ -374,6 +375,25 @@ button.icon {
     min-width: 155px;
 }
 
+/* RELACIONADO AO MODAL */
+#btn-new-post {
+    background-color: white;
+    width: 50px;
+    height: 50px;
+
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+
+    border-radius: 50%;
+    border: none;
+    transition: 0.2s;
+}
+
+#btn-new-post:hover {
+    background-color: #c0c0c0;
+}
+/*  */
 
 @media (max-width: 1000px){
     .navigation{
