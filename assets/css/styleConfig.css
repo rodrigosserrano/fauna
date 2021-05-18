@@ -432,3 +432,7 @@ input[type="file"] {
         width: 100%;
     }
 }
+
+.btn-type {
+    display: none;
+}

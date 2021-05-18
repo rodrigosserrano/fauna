@@ -35,18 +35,21 @@ class UserController extends Fauna_Controller {
         ];
 
         if(!empty($dados_pet)){
-            $dados_pet = $dados_pet[0];
+            $mensagem = '';
+            //$dados_pet = $dados_pet[0];
             
-            $pet = [
-                'id_animal' => $dados_pet->id_animal,
-                'id_usuario' => $this->id_usuario,
-                'nome_animal' => $dados_pet->nome_animal,
-                'foto_animal' => $dados_pet->foto_animal,
-                'sexo' => $sexo,
-                'tipo' => $tipo,
-                'mensagem' => ''
-            ];
+            // $pet = [
+            //     'id_animal' => $dados_pet->id_animal,
+            //     'id_usuario' => $this->id_usuario,
+            //     'nome_animal' => $dados_pet->nome_animal,
+            //     'foto_animal' => $dados_pet->foto_animal,
+            //     'sexo' => $sexo,
+            //     'tipo' => $tipo,
+            //     'mensagem' => ''
+            // ];
         }else{
+
+            $mensagem = 'Você não possui pets';
             $pet = [
                 'mensagem' => 'Você não possuí pets.',
                 'id_animal' => '',
@@ -60,7 +63,8 @@ class UserController extends Fauna_Controller {
         
         $dados = [
             'usuario' => $usuario,
-            'pet' => $pet
+            'pet' => $dados_pet,
+            'mensagem' =>  $mensagem
         ];
     
         $dados_view = $this->dadosShow('Altera Conta', 'assets/css/styleConfig.css', 'assets/js/userConfig.js');
