@@ -1,0 +1,646 @@
+body {
+    background-color: var(--background-color);
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bar {
+    width: 95%;
+    height: 1px;
+    background-color: #ECECEC;
+    border-radius: 3px;
+}
+
+.profile-section {
+    background-color: var(--container-color);
+    padding-bottom: 10px;
+    margin-top: 60px;
+    margin-bottom: 100px;
+    width: 760px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 3px;
+    box-shadow: 0 0 5px var(--darker-color);
+}
+
+#user-profile-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 60px;
+
+    font-size: 18pt;
+    font-weight: bold;
+    position: relative;
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 230px;
+
+    position: relative;
+}
+
+.profile-info-half {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    height: 100%;
+    width: 50%;
+}
+
+/* Botões no canto superior direito*/
+#btns-area {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 15px;
+}
+
+.btn-follow {
+    border-radius: 10px;
+    border: 1px solid #90B074;
+
+    width: 100px;
+    height: 40px;
+    font-size: 14pt;
+    color: white;
+
+    margin-right: 5px;
+    transition: 0.2s;
+}
+
+#btn-seguir {
+    background-color: #A1C087;
+}
+
+#btn-deixar-seguir {
+    background-color: #829D6C;
+}
+
+#btn-seguir:hover {
+    background-color:#90B074;
+}
+
+.btn-option {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 12pt;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    background-color: unset;
+
+    transition: 0.2s;
+}
+
+#btn-option-user {
+    transform: rotate(90deg);
+}
+
+.btn-option:hover {
+    background-color: #dddddd;
+}
+
+/* Foto e Nome */
+.profile-pic {
+    background-color: #efefef;
+    margin-top: 30px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 140px;
+    height: 140px;
+
+    overflow: hidden;
+    border-radius: 3px;
+    transition: 0.2s;
+}
+
+.profile-pic:hover {
+    opacity: 80%;
+}
+
+.profile-pic img {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+}
+
+.profile-name {
+    font-size: 18pt;
+    font-weight: lighter;
+    margin: 0;
+}
+
+/* Informações */
+.info-item {
+    display: flex;
+    align-items: center;
+}
+
+.info-item + .info-item {
+    margin-top: 20px;
+}
+
+.info-item-icon {
+    margin-right: 5px;
+}
+
+.info-item-description {
+    margin: 0;
+    font-size: 15pt;
+    font-weight: lighter;
+}
+
+/* Botão de visibilidade */
+/* .btn-visibility {
+    background-color: unset;
+    width: 200px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+    border: none;
+    transition: 0.2s;
+}
+
+.btn-visibility #visibility-icon {
+    margin-right: 5px;
+}
+
+.btn-visibility #visibility-description {
+    font-weight: lighter;
+    margin: 0;
+}
+
+.btn-visibility:hover {
+    opacity: 70%;
+}
+
+.locked {
+    width: 128px;
+    height: 128px;
+    overflow: hidden;
+    transition: 0.2s;
+}
+
+.locked:hover {
+    opacity: 80%;
+} */
+
+/* Área do Pet */
+#user-profile-pet-area {
+    width: 95%;
+    height: 120px;
+
+    display: flex;
+    flex-wrap: wrap;
+    overflow: auto;
+}
+
+/* Scrollbar */
+#user-profile-pet-area::-webkit-scrollbar {
+    width: 8px;
+}
+  
+#user-profile-pet-area::-webkit-scrollbar-track {
+    margin: 10px 0;
+    border-radius: 5px;
+    background: #DAD9D9;
+}
+
+#user-profile-pet-area::-webkit-scrollbar-thumb {
+    background: #C4C4C4;
+    border-radius: 5px;
+    transition: 0.2s;
+}
+
+#user-profile-pet-area::-webkit-scrollbar-thumb:hover {
+    background: #a5a5a5; 
+}
+
+/* Card de Perfil */
+.unit {
+    width: 20%;
+    height: 120px;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: default;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+
+    text-decoration: none;
+    color: unset;
+}
+
+.unit-pic-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+    background-color: #ececec;
+    border-radius: 50%;
+
+    transition: 0.2s;
+}
+
+.unit-pic {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+}
+
+.unit-name {
+    font-size: 13pt;
+    margin: 0;
+    transition: 0.2s;
+}
+
+.unit-pic-area:hover {
+    opacity: 80%;
+}
+
+.unit-name:hover, .card:hover .unit-name {
+    color: var(--link-color);
+}
+
+/* Menu de Informações do Usuário */
+#user-menu {
+    width: 98%;
+    border: 1px solid #F0F0F0;
+    border-radius: 4px;
+}
+
+#profile-menu {
+    width: 100%;
+    height: 45px;
+    margin: 0 auto;
+    
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Opções do Menu */
+.profile-option, .profile-option-selected {
+    width: 33%;
+    border: none;
+    border-radius: 2px;
+}
+
+.profile-option {
+    background-color: var(--darker-color);
+    color: white;
+    transition: 0.2s;
+}
+
+.profile-option:hover {
+    background-color: var(--darker-hover-color);
+}
+
+.profile-option-selected {
+    background-color: unset;
+}
+
+/* Área da Informação */
+#profile-user-info {
+    width: 100%;
+}
+
+/* Seguidores e Seguindo */
+.follow-area {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Postagem */
+.post-card {
+    display: flex;
+    align-items: center;
+
+    margin: 25px auto;
+    width: 90%;
+    height: 100px;
+    position: relative;
+    transition: 0.2s;
+    border-radius: 3px;
+    padding-right: 10px;
+}
+
+.post-card:hover {
+    background-color: #ececec;
+}
+
+.post-card::after {
+    content: "";
+    width: 100%;
+    height: 1px;
+    background-color: #ECECEC;
+    border-radius: 3px;
+    position: absolute;
+    bottom: -12.5px;
+}
+
+/* Imagem da Postagem */
+.post-pic {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.post-pic img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+/* Informações da Postagem */
+.post-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding-left: 20px;
+    width: 75%;
+}
+
+.post-info p {
+    margin: 0;
+}
+
+.post-description {
+    font-weight: lighter;
+    font-size: 13pt;
+    max-height: 70%;
+    overflow: hidden;
+}
+
+.post-date {
+    font-weight: lighter;
+    font-size: 11pt;
+    color: #A9A9A9;
+}
+
+/* Botões da Postagem */
+.post-option {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+    height: 100%;
+    width: 10%;
+}
+
+.like-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.like-icon, .like-icon-set {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background-color: unset;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.like-icon:hover, .like-icon-set:hover {
+    opacity: 50%;
+}
+
+.like-amount {
+    margin: 0;
+    font-weight: bold;
+}
+
+/* Mais postagens */
+.more {
+    border: none;
+    width: 90%;
+    height: 80px;
+    background-color: unset;
+    color: var(--link-color);
+    transition: 0.2s;
+    margin: 0 5% 12.5px;
+}
+
+.more:hover {
+    color: var(--link-hover-color);
+    background-color: #e7e7e7;
+}
+
+/* Dropdown */
+.option-dropdown, .option-dropdown-close {
+    background-color: #EFEFEF;
+    position: absolute;
+    border-radius: 3px;
+    box-shadow: 0 0 3px black;
+    
+    padding: 5px 0;
+    z-index: 3;
+
+    margin-top: 35px;
+    margin-right: -9px;
+}
+
+.option-dropdown {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.option-dropdown-close {
+    display: none;
+}
+
+.option-dropdown li, .option-dropdown-close li {
+    list-style: none;
+    z-index: 4;
+    font-size: 12pt;
+    font-weight: lighter;
+}
+
+.option-dropdown .btn-dropdown, .option-dropdown-close .btn-dropdown {
+    border: none;
+    background-color: #EFEFEF;
+    width: 150px;
+    text-align: left;
+    padding: 3px 0 3px 10px;
+    transition: 0.2s;
+    border-radius: 3px;
+    z-index: 4;
+}
+
+.option-dropdown .btn-dropdown:hover, .option-dropdown-close .btn-dropdown:hover {
+    background-color: #c7c1c1;
+}
+
+.option-dropdown::before, .option-dropdown-close::before {
+    content: "";
+    width: 25px;
+    height: 25px;
+
+    background-color: #EFEFEF;
+    position: absolute;
+    transform: rotate(45deg);
+    border-radius: 3px;
+
+    top: -11px;
+    right: 11px;
+    z-index: 2;
+    box-shadow: -1px -1px 1px #a5a5a5;
+}
+
+#div-option-dropdown {
+    margin-top: 170px;
+    margin-right: 0;
+}
+
+@media screen and (max-width: 760px) {
+    .profile-section {
+        margin-bottom: 0;
+        width: 100%;
+        border-radius: 0;
+    }
+}
+
+@media screen and (max-width: 470px) {
+    #user-profile-title {
+        justify-content: flex-start;
+        padding-left: 15px;
+    
+        font-size: 16pt;
+        font-weight: normal;
+    }
+
+    .profile-info {
+        height: unset;
+        /* padding-bottom: 30px; */
+        flex-direction: column;
+    }
+
+    .info-item-area {
+        margin: 15px 0;
+        display: flex;
+        width: 100%;
+        align-items: flex-start;
+    }
+
+    .info-item {
+        justify-content: center;
+        width: 33.3%;
+        margin: 0 auto;
+        flex-direction: column;
+    }
+
+    .profile-info-half {  
+        width: 100%;
+    }
+
+    .info-item-icon {
+        margin-right: 0;
+    }
+
+    .info-item + .info-item {
+        margin-top: 0;
+    }
+    
+    .info-item-description {
+        text-align: center;
+        font-size: 9pt;
+        font-weight: normal;
+    }
+
+    /* .btn-visibility {
+        width: unset;
+        right: unset;
+    } */
+
+    #user-profile-pet-area {
+        height: 80px;
+    }
+
+    .unit {
+        height: 80px;
+    }
+
+    .unit-pic-area, .unit-pic {       
+        width: 40px;
+        height: 40px;
+    }
+    
+    .unit-name {
+        font-size: 10pt;
+    }
+
+    .profile-pic, .profile-pic img {
+        width: 100px;
+        height: 100px;
+    }
+
+    /* .locked {
+        width: 32px;
+        height: 32px;
+    } */
+
+    .more {
+        height: 40px;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .info-item-description {
+        font-size: 7.5pt;
+    }
+
+    .post-description {
+        font-size: 10pt;
+    }
+    
+    .post-date {
+        font-size: 8pt;
+    }
+}

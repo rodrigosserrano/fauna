@@ -112,10 +112,10 @@ h1.info-title {
     background-color: white;
     /* background-color depois pode ser removido */
     border: 1px solid black;
-    width: 140px;
-    height: 190px;
     border-radius: 3px;
     transition: 0.2s;
+    width: 140px;
+    height: 190px;
 
     display: flex;
     justify-content: center;
@@ -135,11 +135,13 @@ h1.info-title {
 
 .form-pic .pic, .form-pet-pic {
     position: absolute;
-    max-width: 140px;
-    max-height: 190px;
-    min-width: 140px;
-    min-height: 190px;
+    width: 140px;
+    height: 190px;
     border-radius: 3px;
+}
+
+.pic, .form-pet-pic {
+    object-fit: cover;
 }
 
 #form-data {
@@ -192,7 +194,7 @@ input.form-input::placeholder, select.form-input, input.form-input[type="date"]{
 }
 
 input[type="file"] {
-    opacity: 0;
+    opacity: 0%;
     width: 100%;
     height: 100%;
 }
@@ -363,10 +365,8 @@ input[type="file"] {
     }
 
     .form-pic .pic, .form-pet-pic {
-        max-width: 70px;
-        max-height: 95px;
-        min-width: 70px;
-        min-height: 95px;
+        width: 70px;
+        height: 95px;
         border-radius: 3px;
     }
     

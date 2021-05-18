@@ -36,4 +36,15 @@ window.onload = function(){
         document.querySelector('#pet-pic').textContent = e.target.files[0].name;
         readImage(e.target.files[0], e.target);
     }); 
+
+    // Forma que achei pra "arrumar" (Seiki)
+    // Não é a melhor forma mas foi oq veio na cabeça
+    let selectElement = document.getElementsByTagName('select');
+
+    // Usei for assim pois ele consegue diferenciar cada item
+    for(let i = 0; i < selectElement.length; i++) {
+        selectElement[i].addEventListener('change', function() {
+            selectElement[i].style.color = "#000";
+        });
+    }
 }

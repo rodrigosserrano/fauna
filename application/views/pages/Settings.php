@@ -162,7 +162,6 @@
                                             <form class="frm" id="form-criar-pet">
                                                 <section id="form-pic-area">
                                                     <div class="form-pic">
-                                                    <img class="form-pet-pic" src="">
                                                         <p>+</p>
                                                         <input type="file" name="foto_animal" enctype="multipart/form-data">
                                                     </div>
