@@ -1,8 +1,4 @@
 <nav id="navbar">
-  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-      <i class="fa fa-bars"></i>
-    </a>
-
     <a href="<?= base_url() ?>" id="nav-logo">Fauna</a>
 
     <!-- se o usuário estiver logado aparecer também -->

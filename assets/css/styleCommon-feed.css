@@ -362,13 +362,16 @@ section{
     margin-bottom: 3px;
 }
 
-a.icon {
+button.icon {
     display: none;
 }
   
 /* Hide the links inside the navigation menu (except for logo/home) */
-.topnav #myLinks {
+.topnav #navigation-links-mobile {
     display: none;
+    z-index: 101;
+    flex-direction: column;
+    min-width: 155px;
 }
 
 
@@ -383,44 +386,82 @@ a.icon {
 
         /* Style the navigation menu */
     .topnav {
-        margin-top: 45px;
+        top: 50px;
         overflow: hidden;
         background-color: #333;
         position: fixed;
-        width: 35%;
+        border-radius: 0 0 5px 0; 
+        z-index: 101;
     }
     
     
     /* Style navigation menu links */
-    .topnav a {
-        color: white;
-        padding: 14px 16px;
+    .topnav a.menu-mobile-item {
+        padding: 10px;
         text-decoration: none;
+        color: white;
         font-size: 17px;
         display: block;
+        /* position: absolute; */
+        /* margin-top: 500px; */
+        transition: 0.2s;
     }
 
-    .topnav h5 {
+    /* .topnav h5 {
         color: rgb(12, 12, 12);
         background-color: #b9b9b9;
         padding: 14px 16px;
         text-decoration: none;
         font-size: 20px;
         display: block;
-    }
+    } */
 
     /* Style the hamburger menu */
-    a.icon {
-        display: block;
+    button.icon {
+        width: 40px;
+        height: 40px;
+
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+
         position: absolute;
-        left: 10px;
-        top:3px;
+        background-color: unset;
+
+        top: 5px;
+        left: 5px;
         font-size: 30px;
+        color: white;
+        z-index: 101;
+        transition: 0.2s;
+
+        overflow: hidden;
+
+        border: 1px solid white;
+        border-radius: 5px;
+    }
+
+    button.icon:hover {
+        background-color: white;
         color: black;
+    }
+
+    button.icon .mobile-bars {
+        margin: 0;
+        width: 100%;
+        height: 25%;
+
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 7px;
+        transition: 0.2s;
     }
     
     /* Add a grey background color on mouse-over */
-    .topnav a:hover {
+    .topnav a.menu-mobile-item:hover {
         background-color: #ddd;
         color: black;
     }
@@ -432,7 +473,7 @@ a.icon {
     }
 
     #navbar #nav-logo{
-        margin-left: 50px;
+        margin-left: 60px;
     }
         
 }

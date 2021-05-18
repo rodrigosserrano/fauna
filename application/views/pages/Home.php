@@ -1,14 +1,20 @@
 <body>
+    <button type="button" class="icon" id="navigation-menu-mobile">
+        <!-- <i class="fa fa-bars"></i> -->
+        <p class="mobile-bars">—</p>
+        <p class="mobile-bars">—</p>
+        <p class="mobile-bars">—</p>
+    </button>
     <!-- Top Navigation Menu -->
     <div class="topnav">
         <!-- Navigation links (hidden by default) -->
-        <div id="myLinks">
-            <a href="#news">Explorar</a>
-            <h5>Categoria de posts</h5>
-            <a href="#contact">Adoção</a>
-            <a href="#about">Animais Perdidos</a>
+        <div id="navigation-links-mobile">
+            <a class="menu-mobile-item" href="#news">Explorar</a>
+            <a class="menu-mobile-item" href="#contact">Adoção</a>
+            <a class="menu-mobile-item" href="#about">Animais Perdidos</a>
         </div>
     </div>
+    
     <main>
         <section class="posts">
             <div class="post">
@@ -193,6 +199,35 @@ window.onload = function(){
             }
         })
     })
+
+    // Menu Mobile
+    const mobileMenuButton = document.getElementById("navigation-menu-mobile");
+    const mobileMenu = document.getElementById("navigation-links-mobile");
+
+
+    mobileMenuButton.addEventListener('click', () => {
+        let menuBars = document.querySelectorAll('.mobile-bars');
+        
+
+        if (mobileMenu.style.display === "flex") {
+            mobileMenu.style.display = "none";
+
+            menuBars[0].style.marginBottom = "0";
+            menuBars[0].style.transform = 'rotate(0deg)';
+            menuBars[1].style.transform = 'rotate(0deg)';
+            menuBars[2].style.display = "flex";
+
+
+        } else {
+            mobileMenu.style.display = "flex";
+            
+            menuBars[0].style.marginBottom = "-10px";
+            menuBars[0].style.transform = 'rotate(45deg)';
+            menuBars[1].style.transform = 'rotate(-45deg)';
+            menuBars[2].style.display = "none";
+        }
+    })
 }
+
 </script>
 </html>
