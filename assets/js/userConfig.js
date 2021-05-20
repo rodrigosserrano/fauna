@@ -64,6 +64,7 @@ $(document).ready(function() {
                         imageAreaElement.style.backgroundImage = "url('" + event.target.result + "')";
                         imageAreaElement.style.backgroundSize = 'cover';
                         imageAreaElement.style.backgroundRepeat = 'no-repeat';
+                        imageAreaElement.style.backgroundPosition = 'center';
                         
                         if(imageAreaElement.childNodes[1].innerText == '+') {
                             imageAreaElement.removeChild( imageAreaElement.childNodes[1] );
