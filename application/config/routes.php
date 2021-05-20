@@ -67,6 +67,7 @@ $route['register-validate']['post'] = 'RegisterController/validateRegister'; //R
 // $route['usuario-pet'] = 'UserController/petDadosView';
 
 $route['settings']  = 'UserController';
+$route['profile']  = 'UserController/profile';
 // $route['settings/delete']  = 'UserController/deletaContaView';
 // $route['settings/pet'] = 'UserController/petDadosView';
 

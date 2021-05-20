@@ -3,9 +3,9 @@
 
     <!-- se o usuário estiver logado aparecer também -->
     <div id="nav-user">
-        <div class="nav-userpic-area">
+        <a href="<?= base_url() ?>profile" class="nav-userpic-area">
             <img class="nav-userpic" src="assets/img/user/unknown.jpg" title="Nome" alt="Nome">
-        </div>
+        </a>
 
         <a id="config-anchor" href="<?= base_url()?>settings" class="link"><img id="btn-config" src="<?= base_url() ?>assets/img/icon/config.png" alt="Configurações" title="Configurações"></a>
         <!-- da pra rodar um scriptzinho com btn-config pra redirecionar ou colocar dentro de um 'a' -->

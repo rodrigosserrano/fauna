@@ -128,6 +128,13 @@ class UserController extends Fauna_Controller {
         
     }
 
+    public function profile() {
+        $dados = $this->dadosShow('Perfil', 'assets/css/styleProfile.css', 'assets/js/profile_scripts');
+		$view = $this->load->view('pages/Profile', null, true);
+
+        $this->show($dados, $view, true);
+    }
+
     /**
      * DADOS PET 
      * create, edit & delete
