@@ -19,7 +19,12 @@
                         <form class="frm" id="form_alterar">
                             <section id="form-pic-area">
                                 <div class="form-pic">
-                                    <img class="pic" src="" alt="Nome" title="Nome">
+                                    <?php if(empty($foto_usuario)) : ?>
+                                        <img class="pic" src="assets/img/user/unknown.jpg" alt="Foto do <?= $nome_usuario ?>" title="<?= $nome_usuario ?>">
+                                    <?php else : ?>
+                                        <img class="pic" src="assets/img/user/<?= $foto_usuario ?>" alt="Foto do <?= $nome_usuario ?>" title="<?= $nome_usuario ?>">
+                                    <?php endif; ?>
+                                    
                                     <input type="file" name="foto" enctype="multipart/form-data">
                                 </div>
                             </section>
@@ -67,7 +72,13 @@
                                             <form class="frm" id="form-alterar-pet-<?= $dado_pet->id_animal ?>">
                                                 <section id="form-pic-area">
                                                     <div class="form-pic">
-                                                        <img class="form-pet-pic" id="form-pet-pic-alterar" src="" alt="Nome" title="Nome">
+                                                        
+                                                        
+                                                        <?php if(empty($dado_pet->foto_animal)) : ?>
+                                                            <img class="form-pet-pic" id="form-pet-pic-alterar" src="<?= base_url() ?>assets/img/pet/unknown.jpg" alt="<?= $dado_pet->nome_animal ?>" title="<?= $dado_pet->nome_animal ?>">
+                                                        <?php else : ?>
+                                                            <img class="form-pet-pic" id="form-pet-pic-alterar" src="assets/img/pet/<?= $dado_pet->foto_animal ?>" alt="<?= $dado_pet->nome_animal ?>" title="<?= $dado_pet->nome_animal ?>">
+                                                        <?php endif; ?>
                                                         <input type="file" name="foto_animal" enctype="multipart/form-data" value="<?=$dado_pet->foto_animal?>">
                                                     </div>
                                                 </section>
@@ -254,10 +265,10 @@
                                 </div>
                                 
                                 <button class="pet-pic-area" type="button">
-                                    <?php if(isset($dado_pet->foto_animal) || empty($dado_pet->foto_animal)) : ?>
-                                        <img class="pet-pic" src="<?= base_url() ?>assets/img/cachorro_login.png">
+                                    <?php if(empty($dado_pet->foto_animal)) : ?>
+                                        <img class="pet-pic" src="<?= base_url() ?>assets/img/pet/unknown.jpg">
                                     <?php else : ?>
-                                        <img class="pet-pic" src="<?= $dado_pet->foto_animal ?>">
+                                        <img class="pet-pic" src="assets/img/pet/<?= $dado_pet->foto_animal ?>">
                                     <?php endif; ?>
                                 </button>
                                 <span class="pet-name"><?=$dado_pet->nome_animal?></span>

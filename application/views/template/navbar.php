@@ -4,7 +4,7 @@
     <!-- se o usuário estiver logado aparecer também -->
     <div id="nav-user">
         <div class="nav-userpic-area">
-            <!-- <img class="nav-userpic" src="<?= base_url() ?>assets/img/user/foto.png" title="Nome" alt="Nome"> -->
+            <img class="nav-userpic" src="assets/img/user/unknown.jpg" title="Nome" alt="Nome">
         </div>
 
         <a id="config-anchor" href="<?= base_url()?>settings" class="link"><img id="btn-config" src="<?= base_url() ?>assets/img/icon/config.png" alt="Configurações" title="Configurações"></a>

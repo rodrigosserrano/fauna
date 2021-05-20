@@ -272,11 +272,15 @@ input[type="file"] {
     transition: 0.2s;
     cursor: pointer;
     z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .pet-pic {
-    max-width: 70px;
-    max-height: 70px;
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
 }
 
 .pet-name {
@@ -468,8 +472,8 @@ input[type="file"] {
     }
     
     .pet-pic {
-        max-width: 45px;
-        max-height: 45px;
+        width: 45px;
+        height: 45px;
     }
     
     .pet-name {

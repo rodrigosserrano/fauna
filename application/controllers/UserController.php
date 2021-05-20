@@ -31,7 +31,8 @@ class UserController extends Fauna_Controller {
             'email' => $dados_usuario->email,
             'nome_usuario' => $dados_usuario->nome_usuario,
             'data_nascimento' => $dados_usuario->data_nascimento,
-            'telefone' => $dados_usuario->telefone
+            'telefone' => $dados_usuario->telefone,
+            'foto_usuario' => $dados_usuario->foto_usuario
         ];
 
         if(!empty($dados_pet)){
