@@ -84,38 +84,27 @@ public function index() {
         }
     } */
 
+    public function uploadImage($arquivo, $tipo) {
+        $extensao = strtolower(substr($arquivo['name'], -4));
+        $nomefoto = md5(time()).$extensao;
+        $upload_path = getcwd().'/assets/img/user/';
+
+        move_uploaded_file($arquivo['tmp_name'], $upload_path.$nomefoto);
+
+        return $nomefoto;
+    }
+
     public function validateRegister(){
         header('Content-Type: application/json');
 
-        /* $ext = strtolower(substr($this->upload->data('file_name'), -4)); */
-
-        /* print_r($_FILE["foto_usuario"]); */
-        $config['upload_path']          = '../uploads/img';
-        $config['allowed_types']        = 'gif|jpg|png';
-        /* $config['file_name']            = md5(time()).$ext; */
-        $config['max_size']             = 100;
-        $config['max_width']            = 1024;
-        $config['max_height']           = 768;
-
-        $this->load->library('upload', $config);
-
-        if(!$this->upload->do_upload($_FILES['foto_usuario'])){
-                $error = array('error' => $this->upload->display_errors("erro"));
-
-                $this->load->view('upload_form', $error);
-        }
-        else{
-                $data = array('upload_data' => $this->upload->data());
-
-                $this->load->view('upload_success', $data);
-        }
+        
         
         $dados_cadastro = [
             //usuário
             "email" => $this->input->post('email'),
             "senha" => $this->input->post('senha'),
             "repetir_senha" => $this->input->post('repetir_senha'),
-            "foto_usuario" => $this->input->post("foto_usuario"),
+            "foto_usuario" => $this->uploadImage($_FILES['foto_usuario'], 'user'),
             "nome_usuario" => $this->input->post('nome_usuario'),
             "telefone" => $this->input->post('telefone'),
             "sexo_usuario" => $this->input->post('sexo_usuario'),
@@ -129,32 +118,33 @@ public function index() {
             "sexo_animal" => $this->input->post('sexo_animal'),
         ];
 
-        print_r($this->request->getJSON());
+        print_r($dados_cadastro);
     }
     //falta mexer MUITA coisa ainda
-    public function uploadFotoUsuario($email){
+    // public function uploadFoto($foto, $tipo){
 
-        $foto_usuario = $_FILES['foto_usuario'];
-        $extensao = strtolower(substr($_FILES['foto_usuario']['name'], -4));
-        $nomefoto = md5(time()).$extensao;
+    //     $extensao = strtolower(substr($foto['name'], -4));
+    //     $nomefoto = md5(time()).$extensao;
 
-        $config = array(
-            'upload_path'   => base_url().'assets/img/user/'.$email,
-            'allowed_types' => 'png|jpg',
-            'file_name'     => $nomefoto,
-        );
-        if(!$config['upload_path']){
-            mkdir($config['upload_path']);
-        }
+    //     $config = array(
+    //         'upload_path'   => base_url().'assets/img/'.$tipo.'/',
+    //         'allowed_types' => 'png|jpg',
+    //         'file_name'     => $nomefoto,
+    //     );
+    //     if(!$config['upload_path']){
+    //         mkdir($config['upload_path']);
+    //     }
 
-        $this->load->library('upload');
-        $this->upload->initialize($config);
+    //     $this->load->library('upload');
+    //     $this->upload->initialize($config);
 
-        if ($this->upload->do_upload('foto_usuario')) {
-            return $foto_usuario;
-        }
-        else {
-            return false;
-        }
-    }
+    //     if ($this->upload->do_upload($foto['name'])) {
+    //         // return $foto_usuario;
+    //         return $nomefoto;
+    //     }
+    //     else {
+    //         // return false;
+    //         return null;
+    //     }
+    // }
 }
