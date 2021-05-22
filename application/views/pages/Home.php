@@ -75,20 +75,24 @@
 
 
         <section class="posts">
-            <div class="post">
-                <div class="info-post">
-                    <div class="profile-info">
-                        <img src="<?= base_url()?>assets/teste/d_pedro_ii.png" class="profile-photo">
-                        <div class="user-pet-name">
-                            <b><span id="user-name">Dom Pedro II</span></b>
-                            <span id="pet-name">Beethoven</span>
+
+            <?php foreach ($postagens as $postagem):?>
+                <div class="post">
+                    <div class="info-post">
+                        <div class="profile-info">
+                            <img src="<?= base_url()?>assets/teste/d_pedro_ii.png" class="profile-photo">
+                            <div class="user-pet-name">
+                                <b><span id="user-name"><?php echo $postagem->usuario;?></span></b>
+                                <span id="pet-name"><?php echo $postagem->animal;?></span>
+                            </div>
                         </div>
+                        <div class="date-post"><span id="date-post"><?php echo date("d/m/Y", strtotime($postagem->dh_post));?></span></div>
                     </div>
-                    <div class="date-post"><span id="date-post">19/07/2021</span></div>
-                </div>
+                
+                
                 
                 <div class="desc-n-menu">
-                    <div class="desc">Esse é o meninão do papai feliz da vida :)</div>
+                    <div class="desc"><?php echo $postagem->descricao;?></div>
                     <div class="dropdown-post-menu">
                         <span class="menu-icon dropdown-post-icon"><i class="fas fa-ellipsis-h fa-xs"></i></i></span>
                         <div class="list-opts display-none dropdown-post-list menu-list">
@@ -108,6 +112,7 @@
                     <b><span id="likes-amount">55 pessoas curtiram isso</span></b>
                 </div>
                 <div class="line"></div>
+                <!--  
                 <div class="comments">
                     <div class="comment">
                         <div class="comment-content">
@@ -170,9 +175,12 @@
                         </div>
                     </div>
                 </div>
+                
                 <div id="more-comments">
                     <a style="color: #0870AB; cursor: pointer;">Mais comentários...</a>
                 </div>
+            -->
+
                 <div class="write-comments">
                     <form action="" method="post">
                         <textarea id="message">Escreva um comentário</textarea>
@@ -180,6 +188,7 @@
                     </form>
                 </div>
             </div>
+            <?php endforeach;?>
         </section>
         <section class="navigation">
             <div class="nav-container">

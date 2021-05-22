@@ -7,13 +7,21 @@ class HomeController extends Fauna_Controller {
     {
         parent::__construct();
             $this->verifySession();
+            $this->id_usuario = $_SESSION['id'];
     }
 
     public function index() {
-        $dados = $this->dadosShow('Feed', 'assets/css/styleCommon-feed.css');
-		$view = $this->load->view('pages/Home', null, true);
+        $this->load->model('PostagemModel');
+        $postagens = $this->PostagemModel->getDadosPostagemModel();
+        $dados = [
+            'id_usuario' => $this->id_usuario,
+            'postagens'=> $postagens
+        ];
 
-        $this->show($dados, $view, true);
+        $dados_view = $this->dadosShow('Feed', 'assets/css/styleCommon-feed.css');
+		$view = $this->load->view('pages/Home', $dados, true);
+
+        $this->show($dados_view, $view, true);
     }
 
 }
