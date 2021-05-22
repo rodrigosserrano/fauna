@@ -13,6 +13,12 @@ class HomeController extends Fauna_Controller {
     public function index() {
         $this->load->model('PostagemModel');
         $postagens = $this->PostagemModel->getDadosPostagemModel();
+        $this->load->model('ComentarioModel');
+        /*
+        $dados_postagens = []
+        foreach $dados_postagens as $dados_postagem
+        */
+
         $dados = [
             'id_usuario' => $this->id_usuario,
             'postagens'=> $postagens
