@@ -73,9 +73,7 @@
 
         <!--  -->
 
-
         <section class="posts">
-
             <?php foreach ($postagens as $postagem):?>
                 <div class="post">
                     <div class="info-post">
@@ -112,14 +110,17 @@
                     <b><span id="likes-amount">55 pessoas curtiram isso</span></b>
                 </div>
                 <div class="line"></div>
-                <!--  
+
+
+
                 <div class="comments">
+                    <?php foreach ($postagem->comentarios as $comentario):?>
                     <div class="comment">
                         <div class="comment-content">
                             <div class="comment-info">
                                 <div class="comment-info">
                                     <img src="<?= base_url()?>assets/teste/deodoro_da_fonseca.png" class="comment-user-photo">
-                                    <b><span class="comment-user">Deodoro da Fonseca:</span></b>
+                                    <b><span class="comment-user"><?php echo $comentario->usuario; ?>:</span></b>
                                 </div>
                                 <div class="dropdown-comment-menu">
                                     <span class="menu-icon dropdown-comment-icon"><i class="fas fa-ellipsis-h fa-xs"></i></i></span>
@@ -131,55 +132,15 @@
                                     </div>
                                 </div> 
                             </div>
-                            <p class="comment-text">Fica esperto, fi! Vou derrubar a monarquia e pegar seu cachorro pra mim, seu vacilão!</p>
+                            <p class="comment-text"><?php echo $comentario->texto; ?></p>
                         </div>
                     </div>
-                    <div class="comment">
-                        <div class="comment-content">
-                            <div class="comment-info">
-                                <div class="comment-info">
-                                <img src="<?= base_url()?>assets/teste/napoleao.png" class="comment-user-photo"> 
-                                    <b><span class="comment-user">Napoleão Bonaparte:</span></b>
-                                </div>
-                                <div class="dropdown-comment-menu">
-                                    <span class="menu-icon dropdown-comment-icon"><i class="fas fa-ellipsis-h fa-xs"></i></i></span>
-                                    <div class="list-opts dropdown-comment-list menu-list display-none">
-                                        <ul>
-                                            <li id="edit-comment" style="cursor:pointer;">Editar comentário</li>
-                                            <li id="delete-comment" style="cursor:pointer;">Apagar comentário</li>
-                                        </ul>
-                                    </div>
-                                </div> 
-                            </div>
-                            <p class="comment-text">De quelle couleur est mon cheval blanc?</p>
-                        </div>
-                    </div>
-                    <div class="comment">
-                        <div class="comment-content">
-                            <div class="comment-info">
-                                <div class="comment-info">
-                                <img src="<?= base_url()?>assets/teste/machado_de_assis.png" class="comment-user-photo"> 
-                                    <b><span class="comment-user">Machado de Assis:</span></b>
-                                </div>
-                                <div class="dropdown-comment-menu">
-                                    <span class="menu-icon dropdown-comment-icon"><i class="fas fa-ellipsis-h fa-xs"></i></i></span>
-                                    <div class="list-opts dropdown-comment-list menu-list display-none">
-                                        <ul>
-                                            <li id="edit-comment" style="cursor:pointer;">Editar comentário</li>
-                                            <li id="delete-comment" style="cursor:pointer;">Apagar comentário</li>
-                                        </ul>
-                                    </div>
-                                </div> 
-                            </div>
-                            <p class="comment-text">Vocês nunca saberão se Capitu traiu Bentinho... Muahahahahahaha!</p>
-                        </div>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
                 
                 <div id="more-comments">
                     <a style="color: #0870AB; cursor: pointer;">Mais comentários...</a>
                 </div>
-            -->
 
                 <div class="write-comments">
                     <form action="" method="post">

@@ -1,6 +1,6 @@
 <?php
 
-class PetsModel extends CI_Model {
+class ComentarioModel extends CI_Model {
 
     public function cadastroComentarioModel(array $dados_comentario){
         if($this->db->insert('comentario', $dados_comentario))
