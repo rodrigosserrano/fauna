@@ -62,12 +62,18 @@ $(document).ready(function(){
 
     //request Register
     $("#btn-register").click(function() {
-        var formData = $("#form-register").serialize();
+        let form = new FormData(document.getElementById("form-register"));
+        // var formData = $("#form-register").serialize();
+        /* let file = document.getElementById("file-input1").files[0];
+        console.log(file); */
         $.ajax({
             type: "POST",
             url: base_url+"register-validate",
-            data: formData,
-            success: function (response) {
+            data: form,
+            processData: false,
+            contentType: false,
+            success: data => console.log(data)
+           /*  success: function (response) {
                 if(response.mensagem){
                     alert(response.mensagem);
                     window.location.href= base_url;
@@ -75,7 +81,7 @@ $(document).ready(function(){
             },
             error: function (request, status, error) {
                 console.log(request.responseText);
-            }
+            } */
         });
     });
 });

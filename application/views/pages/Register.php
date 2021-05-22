@@ -3,7 +3,7 @@
         <div class="logo"><span><a style="text-decoration:none; color: #fff;" href="<?= base_url() ?>">Fauna</a></span></div>
     </header>
     <main>
-        <form id="form-register">
+        <form id="form-register" enctype="multipart/form-data">
             <div class="sections-container">
                 <section class="left-form-container">
                     <div class="description">
@@ -23,7 +23,7 @@
                         <div><span>+</span></div>
                         <span id="user-pic">Adicione sua foto</span>
                     </label>
-                    <input id="file-input1" type="file" name="foto_usuario" enctype="multipart/form-data" class="file-input">
+                    <input id="file-input1" type="file" name="foto_usuario" class="file-input">
                     <div class="inputs-container">
                         <input type="text" name="nome_usuario" placeholder="Nome" required>
                         <input type="text" name="telefone" id="telefone" placeholder="Telefone" required>
@@ -42,7 +42,7 @@
                         <div><span>+</span></div>
                         <span id="pet-pic">Adicione a foto do seu pet</span>
                     </label>
-                    <input id="file-input2" type="file" name="foto_animal" enctype="multipart/form-data" class="file-input">
+                    <input id="file-input2" type="file" name="foto_animal" class="file-input">
                     <div class="inputs-container">
                         <input type="text" name="nome_animal" placeholder="Nome" required>
                         <select id="animal" name="tipo" required>
