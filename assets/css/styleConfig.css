@@ -84,10 +84,14 @@ main {
     text-align: center;
 }
 
-h1.info-title {
+h1.info-title, h1.info-title-pets {
     font-weight: lighter;
     margin: 50px 0;
     font-size: 16pt;
+}
+
+h1.info-title-pets {
+    margin: 60px auto 0;
 }
 
 /* Formulário */

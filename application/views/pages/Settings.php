@@ -220,7 +220,7 @@
                             </div>
                         </div>
                         
-                         <!-- <?php if($mensagem == '') : ?> 
+                         <!-- 
                         <div class="modal fade" id="pet-excluir-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
@@ -253,36 +253,47 @@
                           
                         <section id="user-pets">
                             <!-- Loop de pets -->
-                            <?php foreach($pet as $dado_pet): ?> 
-                            <div class="pet">
-                                <div class="pet-config">
-                                    <button id="edit-pet-x" class="pet-icon-edit" data-bs-toggle="modal" data-bs-target="#pet-alterar-modal-<?=$dado_pet->id_animal?>">
-                                        <img src="<?= base_url() ?>assets/img/icon/edit.png" title="Editar pet">
+                            <?php if($mensagem == '') : ?>
+
+
+
+                                <?php foreach($pet as $dado_pet): ?> 
+                                <div class="pet">
+                                    <div class="pet-config">
+                                        <button id="edit-pet-x" class="pet-icon-edit" data-bs-toggle="modal" data-bs-target="#pet-alterar-modal-<?=$dado_pet->id_animal?>">
+                                            <img src="<?= base_url() ?>assets/img/icon/edit.png" title="Editar pet">
+                                        </button>
+                                        <button id="delete-pet-x" class="pet-icon-delete" data-bs-toggle="modal" data-bs-target="#pet-excluir-modal-<?= $dado_pet->id_animal ?>">
+                                            <img src="<?= base_url() ?>assets/img/icon/delete.png" title="Deletar pet">
+                                        </button>
+                                    </div>
+                                    
+                                    <button class="pet-pic-area" type="button">
+                                        <?php if(empty($dado_pet->foto_animal)) : ?>
+                                            <img class="pet-pic" src="<?= base_url() ?>assets/img/pet/unknown.jpg">
+                                        <?php else : ?>
+                                            <img class="pet-pic" src="assets/img/pet/<?= $dado_pet->foto_animal ?>">
+                                        <?php endif; ?>
                                     </button>
-                                    <button id="delete-pet-x" class="pet-icon-delete" data-bs-toggle="modal" data-bs-target="#pet-excluir-modal-<?= $dado_pet->id_animal ?>">
-                                        <img src="<?= base_url() ?>assets/img/icon/delete.png" title="Deletar pet">
-                                    </button>
-                                </div>
+                                    <span class="pet-name"><?=$dado_pet->nome_animal?></span>
                                 
-                                <button class="pet-pic-area" type="button">
-                                    <?php if(empty($dado_pet->foto_animal)) : ?>
-                                        <img class="pet-pic" src="<?= base_url() ?>assets/img/pet/unknown.jpg">
-                                    <?php else : ?>
-                                        <img class="pet-pic" src="assets/img/pet/<?= $dado_pet->foto_animal ?>">
-                                    <?php endif; ?>
-                                </button>
-                                <span class="pet-name"><?=$dado_pet->nome_animal?></span>
-                               
-                            </div>
-                            <?php endforeach;?>
+                                </div>
+                                <?php endforeach;?>
+
+
+
+                            <?php else : ?>
+                                <!-- <section id="user-pets">
+                                    <h2 style="padding:10% 0% 0% 27%;"><?=$mensagem?></h2>
+                                </section> -->
+                                <h1 class="info-title-pets">Não há pets cadastrados!</h1>
+                            <?php endif; ?>
                             <!--  -->
                         </section>
                        
-                        <?php else : ?>
-                            <section id="user-pets">
-                                <h2 style="padding:10% 0% 0% 27%;"><?=$mensagem?></h2>
-                            </section>
-                        <?php endif; ?>
+                        
+                            
+                        
                         <button id="btn-criar-pet" class="form-btn-pet" type="button" data-bs-toggle="modal" data-bs-target="#pet-criar-modal">Adicionar novo pet</button>
                     </div>
 
