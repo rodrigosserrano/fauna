@@ -8,12 +8,14 @@ class HomeController extends Fauna_Controller {
         parent::__construct();
             $this->verifySession();
             $this->id_usuario = $_SESSION['id'];
+            $this->email = $_SESSION['email'];
     }
 
     public function index() {
         $this->load->model('PostagemModel');
-        $postagens = $this->PostagemModel->getDadosPostagemModel();
         $this->load->model('ComentarioModel');
+
+        $postagens = $this->PostagemModel->getDadosPostagemModel();
 
         $dados_postagens = array();
 
@@ -21,6 +23,8 @@ class HomeController extends Fauna_Controller {
             $postagem = [
                 'usuario' => $postagem->usuario,
                 'animal' => $postagem->animal,
+                'email' => $postagem->email,
+                'foto_usuario' => $postagem->foto_usuario,
                 'descricao' => $postagem->descricao,
                 'midia' => $postagem->midia,
                 'dh_post' => $postagem->dh_post,
@@ -29,9 +33,14 @@ class HomeController extends Fauna_Controller {
 
             array_push($dados_postagens, (object) $postagem);
         }
+        
+        $usuario = [
+            'id_usuario' => $this->id_usuario,
+            'email' => $this->email
+        ];
 
         $dados = [
-            'id_usuario' => $this->id_usuario,
+            'usuario' => $usuario,
             'postagens'=> $dados_postagens,
         ];
 

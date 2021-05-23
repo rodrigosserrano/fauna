@@ -128,9 +128,38 @@ class UserController extends Fauna_Controller {
         
     }
 
-    public function profile() {
+    // precisa mudar o id default dps
+    public function profile($id = '1') {
+        $this->load->model('UsuariosModel');
+        $this->load->model('PetsModel');
+
+        $dados_usuario = $this->UsuariosModel->getDadosUsuarioModel($id);
+        $dados_usuario = $dados_usuario[0];
+
+        $dados_pet = $this->PetsModel->getDadosPetModel($id);
+
+        $usuario = [
+            'email' => $dados_usuario->email,
+            'nome_usuario' => $dados_usuario->nome_usuario,
+            'data_nascimento' => $dados_usuario->data_nascimento,
+            'telefone' => $dados_usuario->telefone,
+            'foto_usuario' => $dados_usuario->foto_usuario
+        ];
+
+        if(!empty($dados_pet)){
+            $mensagem = '';
+        }else{
+            $mensagem = 'Você não possui pets';
+        }
+        
+        $dados = [
+            'usuario' => $usuario,
+            'pet' => $dados_pet,
+            'mensagem' =>  $mensagem
+        ];
+
         $dados = $this->dadosShow('Perfil', 'assets/css/styleProfile.css', 'assets/js/profile_scripts');
-		$view = $this->load->view('pages/Profile', null, true);
+		$view = $this->load->view('pages/Profile', $dados, true);
 
         $this->show($dados, $view, true);
     }

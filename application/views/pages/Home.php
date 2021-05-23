@@ -78,7 +78,15 @@
                 <div class="post">
                     <div class="info-post">
                         <div class="profile-info">
-                            <img src="<?= base_url()?>assets/teste/d_pedro_ii.png" class="profile-photo">
+
+
+                            <?php if(empty($postagem->foto_usuario)) : ?>
+                                <img src="<?= base_url()?>assets/img/user/unknown.jpg" class="profile-photo">
+                            <?php else : ?>
+                                <img src="<?= base_url()?>assets/img/user/<?php echo $postagem->email.'/'.$postagem->foto_usuario; ?>" class="profile-photo">
+                            <?php endif; ?>
+
+
                             <div class="user-pet-name">
                                 <b><span id="user-name"><?php echo $postagem->usuario;?></span></b>
                                 <span id="pet-name"><?php echo $postagem->animal;?></span>
@@ -119,7 +127,15 @@
                         <div class="comment-content">
                             <div class="comment-info">
                                 <div class="comment-info">
-                                    <img src="<?= base_url()?>assets/teste/deodoro_da_fonseca.png" class="comment-user-photo">
+
+
+                                    <?php if(empty($comentario->foto_usuario)) : ?>
+                                        <img src="<?= base_url()?>assets/img/user/unknown.jpg" class="profile-photo">
+                                    <?php else : ?>
+                                        <img src="<?= base_url()?>assets/img/user/<?php echo $comentario->email.'/'.$comentario->foto_usuario; ?>" class="comment-user-photo">
+                                    <?php endif; ?>
+
+
                                     <b><span class="comment-user"><?php echo $comentario->usuario; ?>:</span></b>
                                 </div>
                                 <div class="dropdown-comment-menu">

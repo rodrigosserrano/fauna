@@ -70,8 +70,8 @@ class RegisterController extends Fauna_Controller {
                 "sexo_animal" => $this->input->post('sexo_animal'),
             ];
             
-/** */      print_r($dados_cadastro);
-/** */      die();
+// /** */      print_r($dados_cadastro);
+// /** */      die();
             $this->load->model('CadastrosModel');
             $verifica_cadastro = $this->CadastrosModel->verificaCadastroModel($dados_cadastro['email']);
             $verifica_cadastro = $verifica_cadastro ? $this->CadastrosModel->cadastroModel($dados_cadastro) : $verifica_cadastro = false;

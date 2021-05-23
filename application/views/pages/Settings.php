@@ -22,7 +22,7 @@
                                     <?php if(empty($foto_usuario)) : ?>
                                         <img class="pic" src="assets/img/user/unknown.jpg" alt="Foto do <?= $nome_usuario ?>" title="<?= $nome_usuario ?>">
                                     <?php else : ?>
-                                        <img class="pic" src="assets/img/user/<?= $foto_usuario ?>" alt="Foto do <?= $nome_usuario ?>" title="<?= $nome_usuario ?>">
+                                        <img class="pic" src="assets/img/user/<?= $email.'/'.$foto_usuario ?>" alt="Foto do <?= $nome_usuario ?>" title="<?= $nome_usuario ?>">
                                     <?php endif; ?>
                                     
                                     <input type="file" name="foto" enctype="multipart/form-data">
@@ -59,7 +59,7 @@
                     <!-- pet-view -->
                      <div class="tab-pane fade" id="config-pet" role="tabpanel" aria-labelledby="config-pet-tab">
                         <?php foreach($pet as $dado_pet):?>
-                        <div class="modal fade" id="pet-alterar-modal-<?=$dado_pet->id_animal?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal fade" id="pet-alterar-modal-<?= $dado_pet->id_animal?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -77,7 +77,7 @@
                                                         <?php if(empty($dado_pet->foto_animal)) : ?>
                                                             <img class="form-pet-pic" id="form-pet-pic-alterar" src="<?= base_url() ?>assets/img/pet/unknown.jpg" alt="<?= $dado_pet->nome_animal ?>" title="<?= $dado_pet->nome_animal ?>">
                                                         <?php else : ?>
-                                                            <img class="form-pet-pic" id="form-pet-pic-alterar" src="assets/img/pet/<?= $dado_pet->foto_animal ?>" alt="<?= $dado_pet->nome_animal ?>" title="<?= $dado_pet->nome_animal ?>">
+                                                            <img class="form-pet-pic" id="form-pet-pic-alterar" src="assets/img/pet/<?= $email.'/'.$dado_pet->foto_animal ?>" alt="<?= $dado_pet->nome_animal ?>" title="<?= $dado_pet->nome_animal ?>">
                                                         <?php endif; ?>
                                                         <input type="file" name="foto_animal" enctype="multipart/form-data" value="<?=$dado_pet->foto_animal?>">
                                                     </div>
@@ -272,7 +272,7 @@
                                         <?php if(empty($dado_pet->foto_animal)) : ?>
                                             <img class="pet-pic" src="<?= base_url() ?>assets/img/pet/unknown.jpg">
                                         <?php else : ?>
-                                            <img class="pet-pic" src="assets/img/pet/<?= $dado_pet->foto_animal ?>">
+                                            <img class="pet-pic" src="assets/img/pet/<?= $email.'/'.$dado_pet->foto_animal ?>">
                                         <?php endif; ?>
                                     </button>
                                     <span class="pet-name"><?=$dado_pet->nome_animal?></span>
@@ -286,7 +286,7 @@
                                 <!-- <section id="user-pets">
                                     <h2 style="padding:10% 0% 0% 27%;"><?=$mensagem?></h2>
                                 </section> -->
-                                <h1 class="info-title-pets">Não há pets cadastrados!</h1>
+                                <h1 class="info-title-pets"><?= $mensagem ?></h1>
                             <?php endif; ?>
                             <!--  -->
                         </section>
