@@ -31,7 +31,7 @@ class ComentarioModel extends CI_Model {
         //$query = $this->db->where(['id_postagem' => $id_postagem])->get('comentario');
         
         
-        $this->db->select('u.nome_usuario as usuario, c.texto, c.dh_comentario');
+        $this->db->select('u.nome_usuario as usuario, u.foto_usuario, u.email, c.texto, c.dh_comentario');
         $this->db->from('comentario c'); 
         $this->db->join('postagem p', 'c.id_postagem = p.id_postagem', 'left');
         $this->db->join('usuario u', 'u.id_usuario = c.id_usuario', 'left');

@@ -291,6 +291,7 @@ input[type="file"] {
     margin-top: 10px;
     font-size: 14pt;
     transition: 0.2s;
+    height: 25px;
 }
 
 .pet:hover .pet-pic-area {
