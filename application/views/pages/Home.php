@@ -73,8 +73,9 @@
 
         <!--  -->
 
+    <div class="posts">
+        <?php foreach ($postagens as $postagem):?>
         <section class="posts">
-            <?php foreach ($postagens as $postagem):?>
                 <div class="post">
                     <div class="info-post">
                         <div class="profile-info">
@@ -165,8 +166,11 @@
                     </form>
                 </div>
             </div>
-            <?php endforeach;?>
         </section>
+        <br>
+        <?php endforeach;?>
+        </div>
+        
         <section class="navigation">
             <div class="nav-container">
                 <div id="explore" class="nav-btns">
