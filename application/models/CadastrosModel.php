@@ -22,7 +22,7 @@ class CadastrosModel extends CI_Model {
             $dados_usuario = [  
                 'email' => $email, 
                 'senha'=> md5($senha), 
-                // 'foto_usuario' => $foto_usuario, 
+                'foto_usuario' => $foto_usuario, 
                 'nome_usuario' =>  $nome_usuario, 
                 'telefone' => $telefone, 
                 'sexo_usuario' =>  $sexo_usuario,
@@ -36,7 +36,7 @@ class CadastrosModel extends CI_Model {
             if($id_usuario !== null && !empty($id_usuario)){
                 $dados_animal = [   
                     'id_usuario' => $id_usuario, 
-                    // 'foto_animal' => $foto_animal,
+                    'foto_animal' => $foto_animal,
                     'nome_animal' => $nome_animal, 
                     'tipo' => $tipo, 
                     'raca' => $raca,

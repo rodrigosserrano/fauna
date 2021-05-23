@@ -63,25 +63,24 @@ $(document).ready(function(){
     //request Register
     $("#btn-register").click(function() {
         let form = new FormData(document.getElementById("form-register"));
-        // var formData = $("#form-register").serialize();
-        /* let file = document.getElementById("file-input1").files[0];
-        console.log(file); */
+        
         $.ajax({
             type: "POST",
             url: base_url+"register-validate",
             data: form,
             processData: false,
             contentType: false,
-            success: data => console.log(data)
-           /*  success: function (response) {
-                if(response.mensagem){
+            success: function (response) {
+                if(response.mensagem)
                     alert(response.mensagem);
+                
+                if(response.error == 0)
                     window.location.href= base_url;
-                }
+                
             },
             error: function (request, status, error) {
                 console.log(request.responseText);
-            } */
+            } 
         });
     });
 });

@@ -2,6 +2,16 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Fauna_Controller extends CI_Controller{
+
+    private $path_user;
+    private $path_pet;
+
+    public function __construct(){
+       parent:: __construct();
+
+       $this->path_user = getcwd().'/assets/img/user';
+       $this->path_pet = getcwd().'/assets/img/pet';
+    }
     
     public function show(array $dados, $view, $nav = false){
         $dados_usuario = [];
@@ -42,37 +52,40 @@ class Fauna_Controller extends CI_Controller{
     // TEM QUE MEXER PARA APAGAR O ARQUIVO TEMPORARIO
     public function uploadImage($arquivo = false, $email = false, $is_user = false) {
         $extensao = trim(substr(strchr($arquivo['name'], '.'), 0));
-        $nomefoto = md5(time()).$extensao;
-        $upload_path = $this->localUpload($is_user, $email);
-
+        
+        if($is_user){
+            $nomefoto = md5($email.time()).$extensao;
+            $upload_path = $this->localUpload($is_user, $email);
+        }else{
+            $nomefoto = md5(time()).$extensao;
+            $upload_path = $this->localUpload($is_user, $email);
+            
+        }
+        
         move_uploaded_file($arquivo['tmp_name'], $upload_path.$nomefoto);
-
+        
         return $nomefoto;
     }
 
     // AJUSTAR O CHDIR OU ACHAR UMA FORMA MELHOR PARA CRIAR PASTA
     public function localUpload($is_user = true, $email){
-        $path_user = getcwd().'/assets/img/user';
-        $path_pet = getcwd().'/assets/img/pet';
-
         if($is_user){
-            if(!is_dir($path_user.'/'.$email)){
-                chdir($path_user);
-                mkdir($email);
-                return $path_user.'/'.$email.'/';
-            }else{
-                return $path_user.'/'.$email.'/';
-            }
+            return $this->path_user.'/'.$email.'/'; 
         }else{
-            if(!is_dir($path_pet.'/'.$email)){
-                chdir($path_pet);
-                mkdir($email);
-                return $path_pet.'/'.$email.'/';
-            }else{
-                return $path_pet.'/'.$email.'/';
-            }
+            return $this->path_pet.'/'.$email.'/';
         }
     }
+
+    public function createLocalUpload($email){
+        if(!is_dir($this->path_user.'/'.$email)){
+            mkdir($this->path_user.'/'.$email);
+        }
+    
+        if(!is_dir($this->path_pet.'/'.$email)){
+            mkdir($this->path_pet.'/'.$email);
+        }
+    }
+    
 }
 
 

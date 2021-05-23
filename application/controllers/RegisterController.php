@@ -51,6 +51,8 @@ class RegisterController extends Fauna_Controller {
         $this->form_validation->set_rules('sexo_animal', 'sexo_animal', 'required');
 
         if($this->form_validation->run()){
+            $this->createLocalUpload($this->input->post('email'));
+
             $dados_cadastro = [
                 //usuário
                 "email" => $this->input->post('email'),
@@ -70,16 +72,16 @@ class RegisterController extends Fauna_Controller {
                 "sexo_animal" => $this->input->post('sexo_animal'),
             ];
             
-/** */      print_r($dados_cadastro);
-/** */      die();
+// /** */      print_r($dados_cadastro);
+// /** */      die();
             $this->load->model('CadastrosModel');
             $verifica_cadastro = $this->CadastrosModel->verificaCadastroModel($dados_cadastro['email']);
             $verifica_cadastro = $verifica_cadastro ? $this->CadastrosModel->cadastroModel($dados_cadastro) : $verifica_cadastro = false;
          
             if($verifica_cadastro){
-                echo json_encode(['mensagem'=>'Cadastrado com sucesso !']);
+                echo json_encode(['error'=> 0, 'mensagem'=>'Cadastrado com sucesso !']);
             }else{
-                echo json_encode(['mensagem'=>'Erro ao cadastrar.']);
+                echo json_encode(['error'=> 1, 'mensagem'=>'Erro ao cadastrar.']);
             }
         }else{ //caso a validação do formulário der erro, volta para página de login
             echo json_encode(['mensagem'=>'Erro no formulário']);
