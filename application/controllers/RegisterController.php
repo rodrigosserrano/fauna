@@ -3,12 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class RegisterController extends Fauna_Controller {
 
-public function __construct(){
-    parent::__construct();
-    $this->load->helper(array('form', 'url'));
-}
+    public function __construct(){
+        parent::__construct();
+        
+    }
 
-public function index() {
+    public function index() {
         /**                 | OBRIGATÓRIO |  |  NÃO OBRIGATÓRIO  |
          * $this->dadosShow('titulo_pagina', 'link_css', 'link_js') */
         
@@ -29,11 +29,11 @@ public function index() {
         $this->show($dados_view, $view);
     }
     //Validação de registro Usuário e pet --- PRIMEIRO REGISTRO
-    /* public function validateRegister() {
+     public function validateRegister() {
         header('Content-Type: application/json');
         // Validação do que vem do formulário usuario
         $this->load->library('form_validation');
-        
+
         $this->form_validation->set_rules('email', 'E-mail', 'required|valid_email');
         $this->form_validation->set_rules('senha', 'Senha', 'required');
         $this->form_validation->set_rules("repetir_senha', 'repetir-Senha', 'required|matches['senha']");
@@ -56,20 +56,22 @@ public function index() {
                 "email" => $this->input->post('email'),
                 "senha" => $this->input->post('senha'),
                 "repetir_senha" => $this->input->post('repetir_senha'),
-                // "foto_usuario" => $this->uploadFotoUsuario($this->input->post('email')),
+                "foto_usuario" => $this->uploadImage($_FILES['foto_usuario'], $this->input->post('email'), true),
                 "nome_usuario" => $this->input->post('nome_usuario'),
                 "telefone" => $this->input->post('telefone'),
                 "sexo_usuario" => $this->input->post('sexo_usuario'),
                 "data_nascimento" => $this->input->post('data_nascimento'),
 
                 //animal
-                // "foto_animal" => $this->input->post('foto_animal'),
+                "foto_animal" => $this->uploadImage($_FILES['foto_animal'], $this->input->post('email'), false),
                 "nome_animal" => $this->input->post('nome_animal'),
                 "tipo" => $this->input->post('tipo'),
                 "raca" => $this->input->post('raca'),
                 "sexo_animal" => $this->input->post('sexo_animal'),
             ];
             
+/** */      print_r($dados_cadastro);
+/** */      die();
             $this->load->model('CadastrosModel');
             $verifica_cadastro = $this->CadastrosModel->verificaCadastroModel($dados_cadastro['email']);
             $verifica_cadastro = $verifica_cadastro ? $this->CadastrosModel->cadastroModel($dados_cadastro) : $verifica_cadastro = false;
@@ -82,69 +84,8 @@ public function index() {
         }else{ //caso a validação do formulário der erro, volta para página de login
             echo json_encode(['mensagem'=>'Erro no formulário']);
         }
-    } */
+    } 
 
-    public function uploadImage($arquivo, $tipo) {
-        $extensao = strtolower(substr($arquivo['name'], -4));
-        $nomefoto = md5(time()).$extensao;
-        $upload_path = getcwd().'/assets/img/user/';
 
-        move_uploaded_file($arquivo['tmp_name'], $upload_path.$nomefoto);
 
-        return $nomefoto;
-    }
-
-    public function validateRegister(){
-        header('Content-Type: application/json');
-
-        
-        
-        $dados_cadastro = [
-            //usuário
-            "email" => $this->input->post('email'),
-            "senha" => $this->input->post('senha'),
-            "repetir_senha" => $this->input->post('repetir_senha'),
-            "foto_usuario" => $this->uploadImage($_FILES['foto_usuario'], 'user'),
-            "nome_usuario" => $this->input->post('nome_usuario'),
-            "telefone" => $this->input->post('telefone'),
-            "sexo_usuario" => $this->input->post('sexo_usuario'),
-            "data_nascimento" => $this->input->post('data_nascimento'),
-
-            //animal
-            // "foto_animal" => $this->input->post('foto_animal'),
-            "nome_animal" => $this->input->post('nome_animal'),
-            "tipo" => $this->input->post('tipo'),
-            "raca" => $this->input->post('raca'),
-            "sexo_animal" => $this->input->post('sexo_animal'),
-        ];
-
-        print_r($dados_cadastro);
-    }
-    //falta mexer MUITA coisa ainda
-    // public function uploadFoto($foto, $tipo){
-
-    //     $extensao = strtolower(substr($foto['name'], -4));
-    //     $nomefoto = md5(time()).$extensao;
-
-    //     $config = array(
-    //         'upload_path'   => base_url().'assets/img/'.$tipo.'/',
-    //         'allowed_types' => 'png|jpg',
-    //         'file_name'     => $nomefoto,
-    //     );
-    //     if(!$config['upload_path']){
-    //         mkdir($config['upload_path']);
-    //     }
-
-    //     $this->load->library('upload');
-    //     $this->upload->initialize($config);
-
-    //     if ($this->upload->do_upload($foto['name'])) {
-    //         // return $foto_usuario;
-    //         return $nomefoto;
-    //     }
-    //     else {
-    //         // return false;
-    //         return null;
-    //     }
-    // }
 }
