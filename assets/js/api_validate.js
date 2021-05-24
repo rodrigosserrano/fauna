@@ -29,14 +29,14 @@ $(document).ready(function(){
             url: base_url+"validate",
             data: formData,
             success: function (response) {
-                if(response.mensagem){
+                if(response.mensagem && !response.is_logado){
                     $(".box-mensagem").removeClass("hidden");
                     $("#mensagem").html(response.mensagem);
                 }
                 
                 if(response.is_logado){
-                    $(".box-mensagem").addClass("box-mensagem-success");
-                    $(".box-mensagem").addClass("box-mensagem-success");
+                    // $(".box-mensagem").addClass("box-mensagem-success");
+                    // $(".box-mensagem").addClass("box-mensagem-success");
                     window.location.reload();
                 }
             },
