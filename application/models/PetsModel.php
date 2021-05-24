@@ -7,6 +7,7 @@ class PetsModel extends CI_Model {
 
         $dados = [
             'nome_animal' => $nome_animal,
+            'foto_animal' => $foto_animal,
             /*
                 'tipo' => $tipo,
                 'raca' =>  $raca_animal,

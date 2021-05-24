@@ -23,6 +23,7 @@ class UsuariosModel extends CI_Model {
         $dados = [
             'email' => $email,
             'nome_usuario' => $nome_usuario,
+            'foto_usuario' => $foto_usuario, 
             'telefone' => $telefone,
             'data_nascimento' => $data_nascimento
         ];
@@ -39,6 +40,19 @@ class UsuariosModel extends CI_Model {
     public function getDadosUsuarioModel($id_usuario){
         $query = $this->db->where(['id_usuario' => $id_usuario])->get('usuario');
         return $query->result(); 
+    }
+
+    public function returnDadosTratadoUserModel($id_usuario){
+        $query = $this->db->where(['id_usuario' => $id_usuario])->get('usuario');
+        $result = $query->result(); 
+        $r = $result[0];
+
+        return [
+            'nome_user' => $r->nome_usuario,
+            'foto_user' => $this->user_foto.'/'.$r->email.'/'.$r->foto_usuario,
+            'email_user' => $r->email
+        ];
+
     }
 
 }

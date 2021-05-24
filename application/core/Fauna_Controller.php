@@ -8,13 +8,25 @@ class Fauna_Controller extends CI_Controller{
 
     public function __construct(){
        parent:: __construct();
-
+        
+       //path save
        $this->path_user = getcwd().'/assets/img/user';
        $this->path_pet = getcwd().'/assets/img/pet';
+       //path use
+       $this->user_foto = base_url().'/assets/img/user';
+       $this->pet_foto = base_url().'/assets/img/pet';
     }
     
     public function show(array $dados, $view, $nav = false){
-        $dados_usuario = [];
+        $id = isset($_SESSION['id']) ? $_SESSION['id'] : '';
+        $this->load->model('UsuariosModel');
+        $usuario = $this->UsuariosModel->returnDadosTratadoUserModel($id);
+
+        $dados_usuario = [
+            'foto_user' => $usuario['foto_user'],
+            'nome_user' => $usuario['nome_user']
+        ];
+
         $estrutura = $this->load->view('template/header', $dados, true);
         $nav ? $estrutura .= $this->load->view('template/navbar', $dados_usuario, true) : null;
         
@@ -51,20 +63,22 @@ class Fauna_Controller extends CI_Controller{
 
     // TEM QUE MEXER PARA APAGAR O ARQUIVO TEMPORARIO
     public function uploadImage($arquivo = false, $email = false, $is_user = false) {
-        $extensao = trim(substr(strchr($arquivo['name'], '.'), 0));
-        
-        if($is_user){
-            $nomefoto = md5($email.time()).$extensao;
-            $upload_path = $this->localUpload($is_user, $email);
-        }else{
-            $nomefoto = md5(time()).$extensao;
-            $upload_path = $this->localUpload($is_user, $email);
+        if($arquivo['name'] != ''){
+            $extensao = trim(substr(strchr($arquivo['name'], '.'), 0));
             
+            if($is_user){
+                $nomefoto = md5($email.time()).$extensao;
+                $upload_path = $this->localUpload($is_user, $email);
+            }else{
+                $nomefoto = md5(time()).$extensao;
+                $upload_path = $this->localUpload($is_user, $email);
+                
+            }
+            
+            move_uploaded_file($arquivo['tmp_name'], $upload_path.$nomefoto);
+            
+            return $nomefoto;
         }
-        
-        move_uploaded_file($arquivo['tmp_name'], $upload_path.$nomefoto);
-        
-        return $nomefoto;
     }
 
     // AJUSTAR O CHDIR OU ACHAR UMA FORMA MELHOR PARA CRIAR PASTA

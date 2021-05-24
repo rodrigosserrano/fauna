@@ -25,7 +25,7 @@
                                         <img class="pic" src="assets/img/user/<?= $email.'/'.$foto_usuario ?>" alt="Foto do <?= $nome_usuario ?>" title="<?= $nome_usuario ?>">
                                     <?php endif; ?>
                                     
-                                    <input type="file" name="foto" enctype="multipart/form-data">
+                                    <input type="file" name="foto_usuario" enctype="multipart/form-data">
                                 </div>
                             </section>
 

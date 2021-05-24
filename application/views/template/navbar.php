@@ -4,7 +4,11 @@
     <!-- se o usuário estiver logado aparecer também -->
     <div id="nav-user">
         <a href="<?= base_url() ?>profile" class="nav-userpic-area">
-            <img class="nav-userpic" src="assets/img/user/unknown.jpg" title="Nome" alt="Nome">
+            <?php if(substr(strchr($foto_user, '.'), 0) != '') :?>
+                <img class="nav-userpic" src="<?= $foto_user ?>" title="<?=$nome_user?>" alt="<?=$nome_user?>">
+            <?php else :?>
+                <img class="nav-userpic" src="assets/img/user/unknown.jpg" title="Nome" alt="Nome">
+            <?php endif; ?>
         </a>
 
         <a id="config-anchor" href="<?= base_url()?>settings" class="link"><img id="btn-config" src="<?= base_url() ?>assets/img/icon/config.png" alt="Configurações" title="Configurações"></a>

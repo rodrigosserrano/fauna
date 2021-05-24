@@ -10,14 +10,13 @@ class UserController extends Fauna_Controller {
 
         $this->id_usuario = $_SESSION['id'];
         $this->id_animal = isset($_POST['id_animal']) ? $_POST['id_animal'] : '';
-    }
 
-    public function index() {
-        
         $this->load->model('UsuariosModel');
         $this->load->model('PetsModel');
         $this->load->model('CadastrosModel');
+    }
 
+    public function index() {
         $sexo = $this->CadastrosModel->getSexoModel();
         $sexo = array_slice($sexo, 0, 2);
         $tipo = $this->CadastrosModel->getTipoModel();
@@ -81,7 +80,6 @@ class UserController extends Fauna_Controller {
         
         $this->form_validation->set_rules('email', 'E-mail', 'required|valid_email');
         // $this->form_validation->set_rules('senha', 'Senha', 'required');
-        // $this->form_validation->set_rules('foto_usuario', 'foto_usuario', 'required');
         $this->form_validation->set_rules('nome_usuario', 'nome_usuario', 'required');
         $this->form_validation->set_rules('telefone', 'telefone', 'required');
         $this->form_validation->set_rules('data_nascimento', 'data_nascimento', 'required');
@@ -92,7 +90,7 @@ class UserController extends Fauna_Controller {
                 //usuário
                 "email" => $this->input->post('email'),
                 // "senha" => $this->input->post('senha'),
-                // "foto_usuario" => $this->uploadFotoUsuario($this->input->post('email')),
+                "foto_usuario" => $this->uploadImage($_FILES['foto_usuario'], $this->input->post('email'), true),
                 "nome_usuario" => $this->input->post('nome_usuario'),
                 "telefone" => $this->input->post('telefone'),
                 // "sexo_usuario" => $this->input->post('sexo_usuario'),
@@ -100,7 +98,6 @@ class UserController extends Fauna_Controller {
             ];
         }
 
-        $this->load->model('UsuariosModel');
         if($this->UsuariosModel->alterarDadosModel($this->id_usuario, $dados_cadastro)){
             echo json_encode(['mensagem'=>'Dados Alterados com sucesso.']);
         }else{
@@ -118,7 +115,6 @@ class UserController extends Fauna_Controller {
     public function delete() {
         header('Content-Type: application/json');
         
-        $this->load->model('UsuariosModel');
         if($this->UsuariosModel->deleteModel($this->id_usuario)){
             echo json_encode(['mensagem'=>'Conta excluida com sucesso.']);
             $this->destroySession();
@@ -130,9 +126,6 @@ class UserController extends Fauna_Controller {
 
     // precisa mudar o id default dps
     public function profile($id = '1') {
-        $this->load->model('UsuariosModel');
-        $this->load->model('PetsModel');
-
         $dados_usuario = $this->UsuariosModel->getDadosUsuarioModel($id);
         $dados_usuario = $dados_usuario[0];
 
@@ -191,7 +184,6 @@ class UserController extends Fauna_Controller {
                 "sexo_animal" => $this->input->post('sexo_animal'),
             ];
             
-            $this->load->model('CadastrosModel');
             $verifica_cadastro = $this->CadastrosModel->cadastroPetModel($dados_cadastro);
     
             if($verifica_cadastro){
@@ -208,22 +200,21 @@ class UserController extends Fauna_Controller {
         header('Content-Type: application/json');
         $this->load->library('form_validation');
         
-        // $this->form_validation->set_rules('foto_animal', 'foto_animal', 'required');
         $this->form_validation->set_rules('id_usuario', 'id_usuario');
         $this->form_validation->set_rules('id_animal', 'id_animal');
         $this->form_validation->set_rules('nome_animal', 'nome_animal', 'required');
         
 
         if($this->form_validation->run()){
+            $usuario = $this->UsuariosModel->returnDadosTratadoUserModel($this->id_usuario);
             $dados_cadastro = [
                 //animal
-                // "foto_animal" => $this->input->post('foto_animal'),
+                "foto_animal" => $this->uploadImage($_FILES['foto_animal'], $usuario['email_user'], false),
                 "id_usuario" => $this->input->post('id_usuario'),
                 "id_animal" => $this->input->post('id_animal'),
                 "nome_animal" => $this->input->post('nome_animal')
             ];
             
-            $this->load->model('PetsModel');
             $verifica_cadastro = $this->PetsModel->alterarDadosPetModel($dados_cadastro);
          
             if($verifica_cadastro){
@@ -239,7 +230,6 @@ class UserController extends Fauna_Controller {
     public function deletePet() {
         header('Content-Type: application/json');
 
-        $this->load->model('PetsModel');
         if($this->PetsModel->deletePetModel($this->id_animal)){
             echo json_encode(['mensagem'=>'Pet excluido com sucesso.']);
         }else{

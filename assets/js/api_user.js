@@ -27,11 +27,14 @@ $(document).ready(function(){
 
     //Alterar dados conta
     $("#btn-altera-dados-usuario").click(function(){
-        var formData = $("#form_alterar").serialize();
+        let form = new FormData(document.getElementById("form_alterar"));
+        
         $.ajax({
             type: "POST",
             url: base_url+"edit",
-            data: formData,
+            data: form,
+            processData: false,
+            contentType: false,
             success: function (response) {
                 if(response.mensagem){
                     alert(response.mensagem);
@@ -106,11 +109,15 @@ $(document).ready(function(){
             let id = btn.id;
 
             btn.addEventListener('click', () => {
-                let formData = $(`#form-alterar-pet-${id}`).serialize();
+                // let formData = $(`#form-alterar-pet-${id}`).serialize();
+                let form = new FormData(document.getElementById(`form-alterar-pet-${id}`));
+        
                 $.ajax({
                     type: "POST",
                     url: base_url+"edit-pet",
-                    data: formData,
+                    data: form,
+                    processData: false,
+                    contentType: false,
                     success: function (response) {
                         if(response.mensagem){
                             alert(response.mensagem);
