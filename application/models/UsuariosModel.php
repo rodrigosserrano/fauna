@@ -23,10 +23,14 @@ class UsuariosModel extends CI_Model {
         $dados = [
             'email' => $email,
             'nome_usuario' => $nome_usuario,
-            'foto_usuario' => $foto_usuario, 
+            // 'foto_usuario' => $foto_usuario, 
             'telefone' => $telefone,
             'data_nascimento' => $data_nascimento
         ];
+
+        if($foto_usuario) {
+            $dados['foto_usuario'] = $foto_usuario;
+        }
         
         $this->db->where('id_usuario', $id_usuario);
         return $this->db->update('usuario', $dados);
@@ -49,7 +53,7 @@ class UsuariosModel extends CI_Model {
 
         return [
             'nome_user' => $r->nome_usuario,
-            'foto_user' => $this->user_foto.'/'.$r->email.'/'.$r->foto_usuario,
+            'foto_user' => $r->foto_usuario ? $this->user_foto.'/'.$r->email.'/'.$r->foto_usuario : '',
             'email_user' => $r->email
         ];
 

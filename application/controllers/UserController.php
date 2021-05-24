@@ -104,36 +104,47 @@ class UserController extends Fauna_Controller {
     }
 
     // precisa mudar o id default dps
-    public function profile($id = '1') {
+    public function profile($id = false) {
+        if(!$id) {
+            $id = $this->id_usuario;
+        }
+
         $dados_usuario = $this->UsuariosModel->getDadosUsuarioModel($id);
-        $dados_usuario = $dados_usuario[0];
 
-        $dados_pet = $this->PetsModel->getDadosPetModel($id);
+        if($dados_usuario) {
+            $dados_usuario = $dados_usuario[0];
 
-        $usuario = [
-            'email' => $dados_usuario->email,
-            'nome_usuario' => $dados_usuario->nome_usuario,
-            'data_nascimento' => $dados_usuario->data_nascimento,
-            'telefone' => $dados_usuario->telefone,
-            'foto_usuario' => $dados_usuario->foto_usuario
-        ];
+            $dados_pet = $this->PetsModel->getDadosPetModel($id);
 
-        if(!empty($dados_pet)){
-            $mensagem = '';
-        }else{
-            $mensagem = 'Você não possui pets';
+            $usuario = [
+                'email' => $dados_usuario->email,
+                'nome_usuario' => $dados_usuario->nome_usuario,
+                'data_nascimento' => $dados_usuario->data_nascimento,
+                'telefone' => $dados_usuario->telefone,
+                'sexo_usuario' => $dados_usuario->sexo_usuario, 
+                'foto_usuario' => $dados_usuario->foto_usuario ? base_url().'assets/img/user/'.$dados_usuario->email.'/'.$dados_usuario->foto_usuario : '',
+            ];
+
+            if(!empty($dados_pet)){
+                $mensagem = '';
+            }else{
+                $mensagem = 'Você não possui pets';
+            }
+            
+            $dados_view = [
+                'usuario' => (object) $usuario,
+                'pet' => $dados_pet,
+                'mensagem' =>  $mensagem
+            ];
+
+            $dados = $this->dadosShow('Perfil', 'assets/css/styleProfile.css', 'assets/js/profile_scripts');
+            $view = $this->load->view('pages/Profile', $dados_view, true);
+
+            $this->show($dados, $view, true);
+        } else {
+            redirect('home');
         }
         
-        $dados = [
-            'usuario' => $usuario,
-            'pet' => $dados_pet,
-            'mensagem' =>  $mensagem
-        ];
-
-        $dados = $this->dadosShow('Perfil', 'assets/css/styleProfile.css', 'assets/js/profile_scripts');
-		$view = $this->load->view('pages/Profile', $dados, true);
-
-        $this->show($dados, $view, true);
     }
 
     /**

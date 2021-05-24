@@ -42,10 +42,14 @@
             <div class="profile-info">
                 <div class="profile-info-half">
                     <div class="profile-pic">
-                        <img src="https://avatars.githubusercontent.com/u/51789589?v=4" alt="NOME" title="NOME">
+                        <?php if(substr(strchr($usuario->foto_usuario, '.'), 0) != '') :?>
+                            <img src="<?= $usuario->foto_usuario ?>" alt="<?=$usuario->nome_usuario?>" title="<?=$usuario->nome_usuario?>">
+                        <?php else :?>
+                            <img src="<?= base_url() ?>assets/img/user/unknown.jpg" title="<?= $usuario->nome_usuario ?>" alt="<?= $usuario->nome_usuario ?>">
+                        <?php endif; ?>
                     </div>
 
-                    <p class="profile-name">NOME</p>
+                    <p class="profile-name"><?= $usuario->nome_usuario ?></p>
                 </div>
                 <div class="profile-info-half">
 
@@ -54,14 +58,14 @@
                             <img class="info-item-icon" src="<?= base_url() ?>assets/img/icon/calendar.png" alt="Calendário" title="Data de Nascimento">
                             <p class="info-item-description">
                                 Nasceu em
-                                01/05/2021
+                                <?= date("d/m/Y", strtotime($usuario->data_nascimento)); ?>
                             </p>
                         </div>
                         
                         <div class="info-item">
                             <img class="info-item-icon" src="<?= base_url() ?>assets/img/icon/mobile-phone.png" alt="Celular" title="Número de Celular">
                             <p class="info-item-description">
-                                +055 (11) 9xxxx-xxxx
+                                +055 <?= $usuario->telefone ?>
                             </p>
                         </div>
 
@@ -81,6 +85,7 @@
 
                     <!-- Loop de Pet -->
                     <!-- Lembrando q cada modal precisa ter o ID específico de cada pet -->
+                    <?php foreach($pet as $dado_pet) : ?>
                     <div class="modal fade" id="pet-info" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="pet-info-area" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
@@ -97,10 +102,16 @@
                                     <div class="profile-info">
                                         <div class="profile-info-half">
                                             <div class="profile-pic">
-                                                <img src="<?= base_url() ?>assets/img/cachorro_login.png" alt="NOME" title="NOME">
+
+                                                <?php if(substr(strchr($dado_pet->foto_animal, '.'), 0) != '') :?>
+                                                    <img src="<?= base_url().'assets/img/pet/'.$usuario->email.'/'.$dado_pet->foto_animal ?>" alt="<?=$dado_pet->nome_animal ?>" title="<?=$dado_pet->nome_animal ?>">
+                                                <?php else :?>
+                                                    <img src="<?= base_url() ?>assets/img/pet/unknown.jpg" title="<?= $dado_pet->nome_animal ?>" alt="<?= $dado_pet->nome_animal  ?>">
+                                                <?php endif; ?>
+
                                             </div>
 
-                                            <p class="profile-name">NOME</p>
+                                            <p class="profile-name"><?= $dado_pet->nome_animal ?></p>
                                         </div>
 
                                         <div class="profile-info-half">
@@ -117,7 +128,7 @@
                                                 <div class="info-item">
                                                     <img class="info-item-icon" src="<?= base_url() ?>assets/img/icon/kitty.png" alt="Raça" title="Raça">
                                                     <p class="info-item-description">
-                                                        Raça
+                                                        <?= $dado_pet->raca ?>
                                                     </p>
                                                 </div>
 
@@ -140,11 +151,19 @@
                     <div class="unit">
                         <button class="card" data-bs-toggle="modal" data-bs-target="#pet-info">
                             <div class="unit-pic-area">
-                                <img class="unit-pic" src="<?= base_url() ?>assets/img/cachorro_login.png" alt="NOME" title="NOME">
+
+                                <?php if(substr(strchr($dado_pet->foto_animal, '.'), 0) != '') :?>
+                                    <img class="unit-pic" src="<?= base_url().'assets/img/pet/'.$usuario->email.'/'.$dado_pet->foto_animal ?>" alt="<?=$dado_pet->nome_animal ?>" title="<?=$dado_pet->nome_animal ?>">
+                                <?php else :?>
+                                    <img class="unit-pic" src="<?= base_url() ?>assets/img/pet/unknown.jpg" title="<?= $dado_pet->nome_animal ?>" alt="<?= $dado_pet->nome_animal  ?>">
+                                <?php endif; ?>
+
+                        
                             </div>
-                            <p class="unit-name">Nome</p>
+                            <p class="unit-name"><?= $dado_pet->nome_animal ?></p>
                         </button>
                     </div>
+                    <?php endforeach; ?>
                     <!--  -->
 
             </div>

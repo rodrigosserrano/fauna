@@ -51,11 +51,18 @@
     background-color: white;
     cursor: pointer;
     margin-right: 10px;
+
+    transition: 0.2s;
+}
+
+#navbar #nav-user .nav-userpic-area:hover {
+    opacity: 60%;
 }
 
 #navbar #nav-user .nav-userpic-area .nav-userpic {
-    max-width: 30px;
-    max-height: 30px;
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
 }
 
 .nav-userpic-area, #btn-config, .vertical-bar, .logout {
