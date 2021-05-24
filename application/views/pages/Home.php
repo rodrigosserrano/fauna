@@ -161,7 +161,7 @@
 
                 <div class="write-comments">
                     <form action="" method="post">
-                        <textarea id="message">Escreva um comentário</textarea>
+                        <textarea id="message" placeholder="Escreva um comentário"></textarea>
                         <button id="send-comment">➝</button>
                     </form>
                 </div>
@@ -199,14 +199,14 @@
 </body>
 <script>
 window.onload = function(){
-    document.getElementById("message").addEventListener("focus", e => {
-        if(e.target.value === "Escreva um comentário")
-            e.target.value = ""; 
-    })
-    document.getElementById("message").addEventListener("blur", e => {
-        if(e.target.value === "")
-            e.target.value = "Escreva um comentário";
-    })
+    // document.getElementById("message").addEventListener("focus", e => {
+    //     if(e.target.value === "Escreva um comentário")
+    //         e.target.value = ""; 
+    // })
+    // document.getElementById("message").addEventListener("blur", e => {
+    //     if(e.target.value === "")
+    //         e.target.value = "Escreva um comentário";
+    // })
 
     document.querySelector("#like-icon").addEventListener("click", e => {
         if(e.target.getAttribute("src") === "<?= base_url()?>assets/img/icon/paw-like-unset.png"){
