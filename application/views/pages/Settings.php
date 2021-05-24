@@ -253,7 +253,7 @@
                           
                         <section id="user-pets">
                             <!-- Loop de pets -->
-                            <?php if($mensagem == '') : ?>
+                            <?php if(isset($mensagem)) : ?>
 
 
 
@@ -284,9 +284,9 @@
 
                             <?php else : ?>
                                 <!-- <section id="user-pets">
-                                    <h2 style="padding:10% 0% 0% 27%;"><?=$mensagem?></h2>
+                                    <h2 style="padding:10% 0% 0% 27%;">< ?=$mensagem?></h2>
                                 </section> -->
-                                <h1 class="info-title-pets"><?= $mensagem ?></h1>
+                                <h1 class="info-title-pets"><?= $mensagem = isset($mensagem) ? $mensagem : '' ;?></h1>
                             <?php endif; ?>
                             <!--  -->
                         </section>

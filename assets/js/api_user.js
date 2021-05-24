@@ -51,11 +51,15 @@ $(document).ready(function(){
      //Cadastrar Pet
      
     $("#btn-cria-pet").click(function(){
-        var formData = $("#form-criar-pet").serialize();
+        
+        let form = new FormData(document.getElementById("form-criar-pet"));
+        
         $.ajax({
             type: "POST",
             url: base_url+"create-pet",
-            data: formData,
+            data: form,
+            processData: false,
+            contentType: false,
             success: function (response) {
                 if(response.mensagem){
                     alert(response.mensagem);

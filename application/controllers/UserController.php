@@ -35,36 +35,15 @@ class UserController extends Fauna_Controller {
         ];
 
         if(!empty($dados_pet)){
-            $mensagem = '';
-            //$dados_pet = $dados_pet[0];
-            
-            // $pet = [
-            //     'id_animal' => $dados_pet->id_animal,
-            //     'id_usuario' => $this->id_usuario,
-            //     'nome_animal' => $dados_pet->nome_animal,
-            //     'foto_animal' => $dados_pet->foto_animal,
-            //     'sexo' => $sexo,
-            //     'tipo' => $tipo,
-            //     'mensagem' => ''
-            // ];
-        }else{
-
             $mensagem = 'Você não possui pets';
-            $pet = [
-                'mensagem' => 'Você não possuí pets.',
-                'id_animal' => '',
-                'id_usuario' => '',
-                'nome_animal' => '',
-                'foto_animal' => '',
-                'sexo' => $sexo,
-                'tipo' => $tipo
-            ];
         }
         
         $dados = [
             'usuario' => $usuario,
             'pet' => $dados_pet,
-            'mensagem' =>  $mensagem
+            'mensagem' =>  isset($mensagem),
+            'sexo' => $sexo,
+            'tipo' => $tipo
         ];
     
         $dados_view = $this->dadosShow('Altera Conta', 'assets/css/styleConfig.css', 'assets/js/userConfig.js');
@@ -167,16 +146,17 @@ class UserController extends Fauna_Controller {
         $this->load->library('form_validation');
         
         $this->form_validation->set_rules('id_usuario', 'id_usuario');
-        // $this->form_validation->set_rules('foto_animal', 'foto_animal', 'required');
         $this->form_validation->set_rules('nome_animal', 'nome_animal', 'required');
         $this->form_validation->set_rules('tipo', 'tipo', 'required');
         $this->form_validation->set_rules('raca', 'raca');
         $this->form_validation->set_rules('sexo_animal', 'sexo_animal', 'required');
 
         if($this->form_validation->run()){
+            $usuario = $this->UsuariosModel->returnDadosTratadoUserModel($this->id_usuario);
+
             $dados_cadastro = [
                 //animal
-                // "foto_animal" => $this->input->post('foto_animal'),
+                "foto_animal" => $this->uploadImage($_FILES['foto_animal'], $usuario['email_user'], false),
                 "id_usuario" => $this->id_usuario,
                 "nome_animal" => $this->input->post('nome_animal'),
                 "tipo" => $this->input->post('tipo'),
