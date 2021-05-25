@@ -19,14 +19,18 @@ class Fauna_Controller extends CI_Controller{
     
     public function show(array $dados, $view, $nav = false){
         $id = isset($_SESSION['id']) ? $_SESSION['id'] : '';
-        $this->load->model('UsuariosModel');
-        $usuario = $this->UsuariosModel->returnDadosTratadoUserModel($id);
+        
+        if($id != '') {
+            $this->load->model('UsuariosModel');
+            $usuario = $this->UsuariosModel->returnDadosTratadoUserModel($id);
 
-        $dados_usuario = [
-            'foto_user' => $usuario['foto_user'],
-            'nome_user' => $usuario['nome_user']
-        ];
-            // $dados_usuario = [];
+            $dados_usuario = [
+                'foto_user' => $usuario['foto_user'],
+                'nome_user' => $usuario['nome_user']
+            ];
+        } else {
+            $dados_usuario = [];
+        }
         
 
         $estrutura = $this->load->view('template/header', $dados, true);

@@ -16,7 +16,7 @@
                     <form class="frm" id="form_alterar">
                         <section id="form-pic-area">
                             <div class="form-pic">
-                                <img class="pic" src="#" alt="#" title="#" data-img-user="">
+                                <img class="pic" data-img-user="">
                                 <input type="file" name="foto_usuario" enctype="multipart/form-data">
                             </div>
                         </section>
@@ -49,7 +49,7 @@
                 <!-- pet-view -->
                     <div class="tab-pane fade" id="config-pet" role="tabpanel" aria-labelledby="config-pet-tab">
         
-                    <div class="modal fade" id="" data-id="pet-view" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal fade" id="pet-alterar-modal" data-id="pet-view" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -63,7 +63,7 @@
                                             <section id="form-pic-area">
                                                 <div class="form-pic">       
                                                     <img class="form-pet-pic" id="form-pet-pic-alterar" src="#" alt="#" title="#">
-                                                    <input type="file" id="input-foto-animal-com-foto" name="foto_animal" enctype="multipart/form-data" value="<?=$dado_pet->foto_animal?>">
+                                                    <input type="file" id="input-foto-animal-com-foto" name="foto_animal" enctype="multipart/form-data">
                                                 </div>
                                             </section>
 
@@ -76,10 +76,7 @@
                                                     <input id="frm_alterar_nome_animal" type="text" class="form-input" name="nome_animal" placeholder="Nome" required value="">
                                                 </div>
 
-                                                <button class="form-btn" id="" type="button">
-                                                    Alterar
-                                                    <p class="btn-type">edit-pet</p>
-                                                </button>
+                                                <button class="form-btn" id="btn-altera-pet" type="button">Alterar</button>
                                             </section>
                                         </form>
                                     </div>
@@ -95,7 +92,7 @@
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                <h5 class="modal-title" id="staticBackdropLabel">Deletar Pet</h5>
+                                    <h5 class="modal-title" id="staticBackdropLabel">Deletar Pet</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
@@ -109,10 +106,7 @@
 
                                                     <img src="<?= base_url() ?>assets/img/icon/sad-cat.png" alt="Gato triste">
 
-                                                    <button id="" class="form-btn del-pet-btn" data-id="" type="button">
-                                                        Tenho certeza que quero excluir!
-                                                        <p class="btn-type">delete-pet</p>
-                                                    </button>
+                                                    <button id="btn-excluir-pet" class="form-btn del-pet-btn" data-id="" type="button">Tenho certeza que quero excluir!</button>
                                                 </div>
 
                                             </section>
@@ -173,37 +167,23 @@
                         
                     <section id="user-pets">
                         <!-- Loop de pets -->
-                        <?php if(isset($mensagem)) : ?>
-
-                            <?php foreach($pet as $dado_pet): ?> 
                             <div class="pet">
                                 <div class="pet-config">
-                                    <button id="edit-pet-x" class="pet-icon-edit" data-bs-toggle="modal" data-bs-target="#pet-alterar-modal-<?=$dado_pet->id_animal?>">
+                                    <button id="edit-pet" class="pet-icon-edit" data-bs-toggle="modal" data-bs-target="#pet-alterar-modal">
                                         <img src="<?= base_url() ?>assets/img/icon/edit.png" title="Editar pet">
                                     </button>
-                                    <button id="delete-pet-x" class="pet-icon-delete" data-bs-toggle="modal" data-bs-target="#pet-excluir-modal-<?= $dado_pet->id_animal ?>">
+                                    <button id="delete-pet" class="pet-icon-delete" data-bs-toggle="modal" data-bs-target="#pet-excluir-modal">
                                         <img src="<?= base_url() ?>assets/img/icon/delete.png" title="Deletar pet">
                                     </button>
                                 </div>
                                 
                                 <button class="pet-pic-area" type="button">
-                                    <?php if(empty($dado_pet->foto_animal)) : ?>
-                                        <img class="pet-pic" src="<?= base_url() ?>assets/img/pet/unknown.jpg">
-                                    <?php else : ?>
-                                        <img class="pet-pic" src="assets/img/pet/<?= $email.'/'.$dado_pet->foto_animal ?>">
-                                    <?php endif; ?>
+                                        <img class="pet-pic" src="#">
                                 </button>
-                                <span class="pet-name"><?=$dado_pet->nome_animal?></span>
-                            
+                                <span class="pet-name">aa</span>
                             </div>
-                            <?php endforeach;?>
 
-                        <?php else : ?>
-                            <!-- <section id="user-pets">
-                                <h2 style="padding:10% 0% 0% 27%;">< ?=$mensagem?></h2>
-                            </section> -->
-                            <h1 class="info-title-pets"><?= $mensagem = isset($mensagem) ? $mensagem : '' ;?></h1>
-                        <?php endif; ?>
+                            <!-- <h1 class="info-title-pets"></h1> -->
                         <!--  -->
                     </section>       
                     

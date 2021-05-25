@@ -22,12 +22,12 @@ $(document).ready(function(){
 
             
             if(user.foto_usuario == null){
-                $('[data-img-user]').attr('src', path_user+'unknown.jpg');
+                $('[data-img-user]').attr('src', path_user+'/unknown.jpg');
             }else{
                 $('[data-img-user]').attr('src', path_user+'/'+user.email+'/'+user.foto_usuario);
-                $('[data-img-user]').attr('alt', 'Foto de '+user.nome_usuario);
-                $('[data-img-user]').attr('title', 'Foto de '+user.nome_usuario);
             }
+            $('[data-img-user]').attr('alt', 'Foto de '+user.nome_usuario);
+            $('[data-img-user]').attr('title', 'Foto de '+user.nome_usuario);
 
             //Populate form alterar dados
             $('#input-form-email').attr('value', user.email);
@@ -38,37 +38,78 @@ $(document).ready(function(){
 
             //Pet View
 
-            $(pets).each((index, pet)=>{
-                $('[data-id="pet-view"]').each(() => {
-                    // console.log($('[data-id="pet-view"]').attr('id', 'pet-alterar-modal-'+pet.id_animal));
-                    $('[data-id="pet-view"]').attr('id', 'pet-alterar-modal-'+pet.id_animal);
-                    $('#pet-nome').prepend(pet.nome_animal);
-                    $('#form-alterar-pet').attr('id', 'form-alterar-pet-'+pet.id_animal);
+            const editPetModal = document.querySelector('#pet-alterar-modal');
+            const deletePetModal = document.querySelector('#pet-excluir-modal');
 
-                    if(pet.foto_animal == null){
-                        $('#form-pet-pic-alterar').attr('src', path_pet+'unknown.jpg');
-                    }else{
-                        $('#form-pet-pic-alterar').attr('src', path_pet+'/'+user.email+'/'+pet.foto_animal);
-                        $('#form-pet-pic-alterar').attr('alt', 'Foto de '+pet.nome_animal);
-                        $('#form-pet-pic-alterar').attr('title', 'Foto de '+pet.nome_animal);
+            pets.map((pet) => {
+                let newPetContainer = document.querySelector('.pet').cloneNode(true);
+                newPetContainer.style.display = 'flex';
 
-                        $('#input-foto-animal-com-foto').attr('value', pet.foto_animal);
+                // Foto
+                if(pet.foto_animal == null) {
+                    newPetContainer.querySelector('.pet-pic').src = `${path_pet}/unknown.jpg`;
+                } else {
+                    newPetContainer.querySelector('.pet-pic').src = `${path_pet}/${user.email}/${pet.foto_animal}`;
+                }
+                
+                newPetContainer.querySelector('.pet-name').innerText = pet.nome_animal;
+
+                // Ao clicar em editar pet
+                newPetContainer.querySelector('#edit-pet').addEventListener('click', () => {
+                    if(pet.foto_animal == null) {
+                        editPetModal.querySelector('#form-pet-pic-alterar').src = `${path_pet}/unknown.jpg`;
+                    } else {
+                        editPetModal.querySelector('#form-pet-pic-alterar').src = `${path_pet}/${user.email}/${pet.foto_animal}`;
                     }
 
-                    $('#frm_alterar_id_animal').attr('value', pet.id_animal);
-                    $('#frm_alterar_id_usuario').attr('value', pet.id_usuario);
-                    $('#frm_alterar_nome_animal').attr('value', pet.nome_animal);
+                    editPetModal.querySelector('#form-pet-pic-alterar').alt = `Foto do ${pet.nome_animal}`;
+                    editPetModal.querySelector('#form-pet-pic-alterar').title = pet.nome_animal;
                     
-                    $('.form-btn').attr('id', pet.id_animal);
-                    
-                    
-                    $('#pet-excluir-modal').attr('id', 'pet-excluir-modal-'+pet.id_animal);
-                    $('#delete-pet-message').prepend('Você deseja realmente excluir '+pet.nome_animal+' ? :(');
-                    $('.del-pet-btn').attr('id', pet.id_animal);
-                    $('.del-pet-btn').attr('data-id', pet.id_animal);
+                    editPetModal.querySelector('.form-title').innerText = `Altere as informações de ${pet.nome_animal}`;
+
+                    editPetModal.querySelector('#frm_alterar_id_animal').value = pet.id_animal;
+                    editPetModal.querySelector('#frm_alterar_id_usuario').value = user.id_usuario;
+                    editPetModal.querySelector('#frm_alterar_nome_animal').value = pet.nome_animal;
                 });
 
-            });
+                // Ao clicar em remover pet
+                newPetContainer.querySelector('#delete-pet').addEventListener('click', () => {
+                    deletePetModal.querySelector('.del-pet-btn').setAttribute('data-id', pet.id_animal)
+                })
+
+                document.querySelector('#user-pets').appendChild(newPetContainer);
+            })
+
+            // $(pets).each((index, pet)=>{
+            //     $('[data-id="pet-view"]').each(() => {
+            //         // console.log($('[data-id="pet-view"]').attr('id', 'pet-alterar-modal-'+pet.id_animal));
+            //         $('[data-id="pet-view"]').attr('id', 'pet-alterar-modal-'+pet.id_animal);
+            //         $('#pet-nome').prepend(pet.nome_animal);
+            //         $('#form-alterar-pet').attr('id', 'form-alterar-pet-'+pet.id_animal);
+
+            //         if(pet.foto_animal == null){
+            //             $('#form-pet-pic-alterar').attr('src', path_pet+'unknown.jpg');
+            //         }else{
+            //             $('#form-pet-pic-alterar').attr('src', path_pet+'/'+user.email+'/'+pet.foto_animal);
+            //             $('#form-pet-pic-alterar').attr('alt', 'Foto de '+pet.nome_animal);
+            //             $('#form-pet-pic-alterar').attr('title', 'Foto de '+pet.nome_animal);
+
+            //             $('#input-foto-animal-com-foto').attr('value', pet.foto_animal);
+            //         }
+
+            //         $('#frm_alterar_id_animal').attr('value', pet.id_animal);
+            //         $('#frm_alterar_id_usuario').attr('value', pet.id_usuario);
+            //         $('#frm_alterar_nome_animal').attr('value', pet.nome_animal);
+                    
+            //         $('.form-btn').attr('id', pet.id_animal);
+                    
+                    
+            //         $('#pet-excluir-modal').attr('id', 'pet-excluir-modal-'+pet.id_animal);
+            //         $('#delete-pet-message').prepend('Você deseja realmente excluir '+pet.nome_animal+' ? :(');
+            //         $('.del-pet-btn').attr('id', pet.id_animal);
+            //         $('.del-pet-btn').attr('data-id', pet.id_animal);
+            //     });
+            // });
 
             // pets.map(({
             //     foto_animal,

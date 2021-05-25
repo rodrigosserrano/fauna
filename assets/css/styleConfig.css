@@ -258,7 +258,7 @@ input[type="file"] {
     padding: 0 5.1%;
     width: 20%;
     height: 100px;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     flex-direction: column;

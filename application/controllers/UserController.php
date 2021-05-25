@@ -18,38 +18,43 @@ class UserController extends Fauna_Controller {
     }
 
     public function index() {
-        $sexo = $this->CadastrosModel->getSexoModel();
-        $tipo = $this->CadastrosModel->getTipoModel();
+        // $sexo = $this->CadastrosModel->getSexoModel();
+        // $tipo = $this->CadastrosModel->getTipoModel();
         
-        $sexo = array_slice($sexo, 0, 2);
+        // $sexo = array_slice($sexo, 0, 2);
 
-        $dados_usuario = $this->UsuariosModel->getDadosUsuarioModel($this->id_usuario);
-        $dados_usuario = toArray($dados_usuario);
+        // $dados_usuario = $this->UsuariosModel->getDadosUsuarioModel($this->id_usuario);
+        // $dados_usuario = toArray($dados_usuario);
 
-        $dados_pet = $this->PetsModel->getDadosPetModel($this->id_usuario);
+        // $dados_pet = $this->PetsModel->getDadosPetModel($this->id_usuario);
         
-        $usuario = [
-            'email' => $dados_usuario->email,
-            'nome_usuario' => $dados_usuario->nome_usuario,
-            'data_nascimento' => $dados_usuario->data_nascimento,
-            'telefone' => $dados_usuario->telefone,
-            'foto_usuario' => $dados_usuario->foto_usuario
-        ];
+        // $usuario = [
+        //     'email' => $dados_usuario->email,
+        //     'nome_usuario' => $dados_usuario->nome_usuario,
+        //     'data_nascimento' => $dados_usuario->data_nascimento,
+        //     'telefone' => $dados_usuario->telefone,
+        //     'foto_usuario' => $dados_usuario->foto_usuario
+        // ];
 
-        if(!empty($dados_pet)){
-            $mensagem = 'Você não possui pets';
-        }
+        // if(!empty($dados_pet)){
+        //     $mensagem = 'Você não possui pets';
+        // }
         
-        $dados = [
-            'usuario' => $usuario,
-            'pet' => $dados_pet,
-            'mensagem' =>  isset($mensagem),
-            'sexo' => $sexo,
-            'tipo' => $tipo
-        ];
+        // $dados = [
+        //     'usuario' => $usuario,
+        //     'pet' => $dados_pet,
+        //     'mensagem' =>  isset($mensagem),
+        //     'sexo' => $sexo,
+        //     'tipo' => $tipo
+        // ];
     
+        // $dados_view = $this->dadosShow('Altera Conta', 'assets/css/styleConfig.css', 'assets/js/userConfig.js');
+        // $view = $this->load->view('/pages/Settings', $dados, true);
+
+        // $this->show($dados_view, $view, true);
+
         $dados_view = $this->dadosShow('Altera Conta', 'assets/css/styleConfig.css', 'assets/js/userConfig.js');
-        $view = $this->load->view('/pages/Settings', $dados, true);
+        $view = $this->load->view('/pages/Settings-PassandoParaAjax', null, true);
 
         $this->show($dados_view, $view, true);
     }
