@@ -257,7 +257,7 @@ input[type="file"] {
 .pet {
     padding: 0 5.1%;
     width: 20%;
-    height: 100px;
+    height: 120px;
     display: none;
     justify-content: center;
     align-items: center;
@@ -292,6 +292,7 @@ input[type="file"] {
     font-size: 14pt;
     transition: 0.2s;
     height: 25px;
+    white-space: nowrap;
 }
 
 .pet:hover .pet-pic-area {
@@ -334,7 +335,7 @@ input[type="file"] {
 }
 
 .pet-icon-edit {
-    margin-top: -20px;
+    margin-top: -30px;
     height: 20px;
 }
 

@@ -52,10 +52,21 @@ $(document).ready(function(){
                     newPetContainer.querySelector('.pet-pic').src = `${path_pet}/${user.email}/${pet.foto_animal}`;
                 }
                 
-                newPetContainer.querySelector('.pet-name').innerText = pet.nome_animal;
+                if(pet.nome_animal.length > 10) {
+                    newPetContainer.querySelector('.pet-name').innerText = `${pet.nome_animal.substring(0, 10)}...`;
+                } else {
+                    newPetContainer.querySelector('.pet-name').innerText = pet.nome_animal;
+                }
+                
 
                 // Ao clicar em editar pet
                 newPetContainer.querySelector('#edit-pet').addEventListener('click', () => {
+                    if(pet.nome_animal.length > 50) {
+                        editPetModal.querySelector('.modal-title').innerText = `Alterar Pet ${pet.nome_animal.substring(0, 50)}...`
+                    } else {
+                        editPetModal.querySelector('.modal-title').innerText = `Alterar Pet ${pet.nome_animal}`
+                    }
+
                     if(pet.foto_animal == null) {
                         editPetModal.querySelector('#form-pet-pic-alterar').src = `${path_pet}/unknown.jpg`;
                     } else {
@@ -65,7 +76,11 @@ $(document).ready(function(){
                     editPetModal.querySelector('#form-pet-pic-alterar').alt = `Foto do ${pet.nome_animal}`;
                     editPetModal.querySelector('#form-pet-pic-alterar').title = pet.nome_animal;
                     
-                    editPetModal.querySelector('.form-title').innerText = `Altere as informações de ${pet.nome_animal}`;
+                    if(pet.nome_animal.length > 35) {
+                        editPetModal.querySelector('.form-title').innerText = `Altere as informações de ${pet.nome_animal.substring(0, 35)}...`;
+                    } else {
+                        editPetModal.querySelector('.form-title').innerText = `Altere as informações de ${pet.nome_animal}`;
+                    }
 
                     editPetModal.querySelector('#frm_alterar_id_animal').value = pet.id_animal;
                     editPetModal.querySelector('#frm_alterar_id_usuario').value = user.id_usuario;
@@ -74,6 +89,13 @@ $(document).ready(function(){
 
                 // Ao clicar em remover pet
                 newPetContainer.querySelector('#delete-pet').addEventListener('click', () => {
+                    if(pet.nome_animal.length > 50) {
+                        deletePetModal.querySelector('.modal-title').innerText = `Deletar Pet ${pet.nome_animal.substring(0, 50)}...`
+                    } else {
+                        deletePetModal.querySelector('.modal-title').innerText = `Deletar Pet ${pet.nome_animal}`
+                    }
+
+                    
                     deletePetModal.querySelector('.del-pet-btn').setAttribute('data-id', pet.id_animal)
                 })
 
