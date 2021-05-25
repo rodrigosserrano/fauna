@@ -5,6 +5,54 @@ $(document).ready(function(){
         base_url = 'http://localhost/fauna/';
     }
 
+    $.ajax({
+        type: "GET",
+        url: base_url+"get-dados-user",
+        success: function (r) {
+            var path = base_url+'assets/img/user/';
+
+            var user = r.usuario;
+            var pets = r.pet;
+
+            console.log(r);
+            console.log(user);
+            //console.log(pet);
+
+            
+            if(user.foto_usuario == null){
+                $('[data-img-user]').attr('src', path+'unknown.jpg');
+            }else{
+                $('[data-img-user]').attr('src', path+'/'+user.email+'/'+user.foto_usuario);
+                $('[data-img-user]').attr('alt', 'Foto de '+user.nome_usuario);
+                $('[data-img-user]').attr('title', 'Foto de '+user.nome_usuario);
+            }
+
+            //Populate form alterar dados
+            $('#input-form-email').attr('value', user.email);
+            $('[name="nome_usuario"]').attr('value', user.nome_usuario);
+            $('[name="data_nascimento"]').attr('value', user.data_nascimento);
+            $('[name="telefone"]').attr('value', user.telefone);
+
+
+            //Pet View
+
+
+            $('[data-id="pet-view"]').each((pets, pet) => {
+                console.log(pet);
+                $('#pet-alterar-modal-'+pet.id_animal);
+                $('#pet-nome').prepend(pet.nome_animal);
+            });
+
+
+            console.log($('[data-img-user]').attr('src'));
+            
+            // if($(this).data('img') == 'img_usuario_settings'){
+            //     url_foto = response.
+            //     $(this).data('img').attr('src', response.);
+            // }
+        }
+    });
+
     //request Login
     const inputsLogin = document.querySelectorAll('#form-login .form-input');
     if(inputsLogin.length) {

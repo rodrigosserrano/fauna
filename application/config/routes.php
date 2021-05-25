@@ -61,6 +61,9 @@ $route['logout'] = 'LoginController/logout';
 $route['register'] = 'RegisterController';
 $route['register-validate']['post'] = 'RegisterController/validateRegister'; //REQUISIÇÃO POST
 
+//Usuário
+$route['get-dados-user'] = 'UserController/getSettingsRequest';
+
 //Usuários configs
 // $route['usuario-dados']  = 'UserController';
 // $route['usuario-deleta']  = 'UserController/deletaContaView';

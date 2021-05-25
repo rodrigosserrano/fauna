@@ -14,15 +14,17 @@ class UserController extends Fauna_Controller {
         $this->load->model('UsuariosModel');
         $this->load->model('PetsModel');
         $this->load->model('CadastrosModel');
+        $this->load->helper('Tools');
     }
 
     public function index() {
         $sexo = $this->CadastrosModel->getSexoModel();
-        $sexo = array_slice($sexo, 0, 2);
         $tipo = $this->CadastrosModel->getTipoModel();
+        
+        $sexo = array_slice($sexo, 0, 2);
 
         $dados_usuario = $this->UsuariosModel->getDadosUsuarioModel($this->id_usuario);
-        $dados_usuario = $dados_usuario[0];
+        $dados_usuario = toArray($dados_usuario);
 
         $dados_pet = $this->PetsModel->getDadosPetModel($this->id_usuario);
         
@@ -50,6 +52,42 @@ class UserController extends Fauna_Controller {
         $view = $this->load->view('/pages/Settings', $dados, true);
 
         $this->show($dados_view, $view, true);
+    }
+
+    public function getSettingsRequest() {
+        header('Content-Type: application/json');
+        
+        $sexo = $this->CadastrosModel->getSexoModel();
+        $tipo = $this->CadastrosModel->getTipoModel();
+        
+        $sexo = array_slice($sexo, 0, 2);
+
+        $dados_usuario = $this->UsuariosModel->getDadosUsuarioModel($this->id_usuario);
+        $dados_usuario = toArray($dados_usuario);
+
+        $dados_pet = $this->PetsModel->getDadosPetModel($this->id_usuario);
+        
+        $usuario = [
+            'email' => $dados_usuario->email,
+            'nome_usuario' => $dados_usuario->nome_usuario,
+            'data_nascimento' => $dados_usuario->data_nascimento,
+            'telefone' => $dados_usuario->telefone,
+            'foto_usuario' => $dados_usuario->foto_usuario
+        ];
+
+        if(!empty($dados_pet)){
+            $mensagem = 'Você não possui pets';
+        }
+        
+        $dados = [
+            'usuario' => $usuario,
+            'pet' => $dados_pet,
+            'mensagem' =>  isset($mensagem),
+            'sexo' => $sexo,
+            'tipo' => $tipo
+        ];
+    
+        echo json_encode($dados);
     }
 
     public function edit() {
