@@ -14,8 +14,13 @@ class HomeController extends Fauna_Controller {
     public function index() {
         $this->load->model('PostagemModel');
         $this->load->model('ComentarioModel');
+        $this->load->model('CadastrosModel');
+        $this->load->model('PetsModel');
 
         $postagens = $this->PostagemModel->getDadosPostagemModel();
+
+        $pets = $this->PetsModel->getDadosPetModel($this->id_usuario);
+        $categories = $this->CadastrosModel->getCategoriaModel();
 
         $dados_postagens = array();
 
@@ -27,6 +32,7 @@ class HomeController extends Fauna_Controller {
                 'foto_usuario' => $postagem->foto_usuario,
                 'descricao' => $postagem->descricao,
                 'midia' => $postagem->midia,
+                'midia_url' => $this->email.'/'.$postagem->midia,
                 'dh_post' => $postagem->dh_post,
                 'comentarios' => $this->ComentarioModel->getDadosComentarioModel($postagem->id_postagem)
             ];
@@ -42,6 +48,8 @@ class HomeController extends Fauna_Controller {
         $dados = [
             'usuario' => $usuario,
             'postagens'=> $dados_postagens,
+            'pets' => $pets,
+            'categorias' => $categories
         ];
 
         $dados_view = $this->dadosShow('Feed', 'assets/css/styleCommon-feed.css');

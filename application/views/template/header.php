@@ -11,6 +11,7 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="<?= base_url()?>assets/js/api_validate.js"></script>
         <script src="<?= base_url()?>assets/js/api_user.js"></script>
+        <script src="<?= base_url()?>assets/js/api_post.js"></script>
         <script src="<?= base_url()?>assets/js/view.js"></script>
         
         <!-- Uncaught SyntaxError: Unexpected token '<'  -->

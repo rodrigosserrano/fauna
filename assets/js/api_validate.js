@@ -2,7 +2,7 @@ $(document).ready(function(){
     if(window.location.origin != 'http://localhost'){
         base_url = 'http://lds.codeigniter-dev/';
     }else{
-        base_url = 'http://localhost/fauna/';
+        base_url = `${window.location.origin}/fauna/`;
     }
 
     $.ajax({

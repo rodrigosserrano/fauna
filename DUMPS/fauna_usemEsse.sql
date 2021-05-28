@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 24-Maio-2021 às 13:50
+-- Tempo de geração: 28-Maio-2021 às 00:49
 -- Versão do servidor: 5.7.31
 -- versão do PHP: 7.3.21
 
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `animal` (
   KEY `id_usuario` (`id_usuario`),
   KEY `tipo` (`tipo`),
   KEY `sexo` (`sexo_animal`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `animal`
@@ -48,12 +48,13 @@ CREATE TABLE IF NOT EXISTS `animal` (
 
 INSERT INTO `animal` (`id_animal`, `nome_animal`, `foto_animal`, `id_usuario`, `tipo`, `raca`, `sexo_animal`) VALUES
 (1, 'Gabriel Sá', NULL, 3, 1, '0', 1),
-(4, 'Teste', NULL, 4, 1, '0', 1),
+(4, 'Testeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee', NULL, 4, 1, '0', 1),
 (5, 'Monkey', NULL, 4, 14, '0', 1),
 (6, 'Teste 123', NULL, 4, 2, '0', 2),
 (7, 'Teste 1234', NULL, 4, 3, '0', 2),
 (8, 'Teste 12345', NULL, 4, 2, 'Fenix', 1),
-(10, 'Ab', NULL, 6, 1, 'A', 1);
+(18, 'Haibane', '5d169064ed592c7bf6512b723337008e.jpg', 9, 16, 'Celestial', 1),
+(19, 'Haibane 2', 'c822c0e4094c9eadbac51e9d147a795a.jpg', 9, 16, 'Celestial', 1);
 
 -- --------------------------------------------------------
 
@@ -103,6 +104,24 @@ INSERT INTO `comentario` (`id_comentario`, `id_usuario`, `id_postagem`, `texto`,
 (1, 1, 1, 'Legal', '2021-05-22 00:00:00'),
 (2, 3, 1, 'Bacana', '2021-05-22 00:00:00'),
 (3, 5, 1, 'Não gostei', '2021-05-22 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `curtida`
+--
+
+DROP TABLE IF EXISTS `curtida`;
+CREATE TABLE IF NOT EXISTS `curtida` (
+  `id_curtida` int(11) NOT NULL AUTO_INCREMENT,
+  `id_usuario` int(11) NOT NULL,
+  `id_postagem` int(11) DEFAULT NULL,
+  `id_comentario` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_curtida`),
+  KEY `restricao_usuario_curtida` (`id_usuario`),
+  KEY `restricao_postagem_curtida` (`id_postagem`),
+  KEY `restricao_id_comentario` (`id_comentario`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -167,15 +186,30 @@ CREATE TABLE IF NOT EXISTS `postagem` (
   KEY `restricao_id_usuario` (`id_usuario`),
   KEY `restricao_id_categoria` (`id_categoria`),
   KEY `restricao_id_animal` (`id_animal`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `postagem`
 --
 
 INSERT INTO `postagem` (`id_postagem`, `id_usuario`, `id_categoria`, `id_animal`, `descricao`, `midia`, `dh_post`) VALUES
-(1, 4, 1, 5, 'TESTE Post', 'TESTE Midia', '2021-05-22 00:00:00'),
-(2, 3, 2, 1, 'TESTE Post 2', 'TESTE Midia xxx', '2021-05-22 00:00:00');
+(1, 4, 1, 5, 'TESTE Post', NULL, '2021-05-22 00:00:00'),
+(2, 3, 2, 1, 'TESTE Post 2', NULL, '2021-05-22 00:00:00'),
+(3, 9, 1, 18, 'Grande post, olha esses camaradas', '37a1ea6598ab99de8c40dafc5116bc3d.jpg', '2021-05-27 21:29:08');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `seguir`
+--
+
+DROP TABLE IF EXISTS `seguir`;
+CREATE TABLE IF NOT EXISTS `seguir` (
+  `id_seguido` int(11) NOT NULL,
+  `id_seguidor` int(11) NOT NULL,
+  KEY `restricao_id_usuario_seguido` (`id_seguido`),
+  KEY `restricao_id_usuario_seguidor` (`id_seguidor`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -255,7 +289,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   UNIQUE KEY `email` (`email`),
   KEY `restricao_sexo` (`sexo_usuario`) USING BTREE,
   KEY `nivel_usuario_restricao` (`nivel_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `usuario`
@@ -266,7 +300,7 @@ INSERT INTO `usuario` (`id_usuario`, `nome_usuario`, `email`, `senha`, `telefone
 (3, 'Rayana Linda', 'joao.bruzetti@gmail.com', 'e8d95a51f3af4a3b134bf6bb680a213a', '(11) 95866-4500', 2, '2001-03-22', NULL, 1),
 (4, 'Jonatha 2', 'teste@j.com', '698dc19d489c4e4db73e28a713eab07b', '(11) 95866-4510', 1, '2001-07-24', NULL, 1),
 (5, 'Seiki', '', '', '', 1, '0000-00-00', NULL, 1),
-(6, 'Developer', 'dev@fauna.com', '698dc19d489c4e4db73e28a713eab07b', '(11) 91111-1111', 2, '2021-05-23', NULL, 1);
+(9, 'Developer', 'dev@fauna.com', '7815696ecbf1c96e6894b779456d330e', '(11) 91111-1111', 2, '2021-05-27', 'a0499b42ff778ec7d6e035fdb1494808.jpg', 1);
 
 --
 -- Restrições para despejos de tabelas
@@ -289,12 +323,27 @@ ALTER TABLE `comentario`
   ADD CONSTRAINT `restricao_id_usuario_comentario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`);
 
 --
+-- Limitadores para a tabela `curtida`
+--
+ALTER TABLE `curtida`
+  ADD CONSTRAINT `restricao_id_comentario` FOREIGN KEY (`id_comentario`) REFERENCES `comentario` (`id_comentario`),
+  ADD CONSTRAINT `restricao_postagem_curtida` FOREIGN KEY (`id_postagem`) REFERENCES `postagem` (`id_postagem`),
+  ADD CONSTRAINT `restricao_usuario_curtida` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`);
+
+--
 -- Limitadores para a tabela `postagem`
 --
 ALTER TABLE `postagem`
   ADD CONSTRAINT `restricao_id_animal` FOREIGN KEY (`id_animal`) REFERENCES `animal` (`id_animal`),
   ADD CONSTRAINT `restricao_id_categoria` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id_categoria`),
   ADD CONSTRAINT `restricao_id_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`);
+
+--
+-- Limitadores para a tabela `seguir`
+--
+ALTER TABLE `seguir`
+  ADD CONSTRAINT `restricao_id_usuario_seguido` FOREIGN KEY (`id_seguido`) REFERENCES `usuario` (`id_usuario`),
+  ADD CONSTRAINT `restricao_id_usuario_seguidor` FOREIGN KEY (`id_seguidor`) REFERENCES `usuario` (`id_usuario`);
 
 --
 -- Limitadores para a tabela `usuario`

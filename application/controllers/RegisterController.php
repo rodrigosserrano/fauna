@@ -58,14 +58,14 @@ class RegisterController extends Fauna_Controller {
                 "email" => $this->input->post('email'),
                 "senha" => $this->input->post('senha'),
                 "repetir_senha" => $this->input->post('repetir_senha'),
-                "foto_usuario" => $this->uploadImage($_FILES['foto_usuario'], $this->input->post('email'), true),
+                "foto_usuario" => $this->uploadImage($_FILES['foto_usuario'], $this->input->post('email'), 'user'),
                 "nome_usuario" => $this->input->post('nome_usuario'),
                 "telefone" => $this->input->post('telefone'),
                 "sexo_usuario" => $this->input->post('sexo_usuario'),
                 "data_nascimento" => $this->input->post('data_nascimento'),
 
                 //animal
-                "foto_animal" => $this->uploadImage($_FILES['foto_animal'], $this->input->post('email'), false),
+                "foto_animal" => $this->uploadImage($_FILES['foto_animal'], $this->input->post('email'), 'pet'),
                 "nome_animal" => $this->input->post('nome_animal'),
                 "tipo" => $this->input->post('tipo'),
                 "raca" => $this->input->post('raca'),

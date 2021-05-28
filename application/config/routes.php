@@ -89,11 +89,11 @@ $route['create-pet']['post'] = 'UserController/createPet';
 $route['home'] = 'HomeController';
 
 //Posts
-$route['delete-postagem']['post'] = 'UserController/deletePostagem';
-$route['edit-postagem']['post'] = 'UserController/editPostagem';
-$route['create-postagem']['post'] = 'UserController/createPostagem';
+$route['delete-postagem']['post'] = 'PostController/deletePostagem';
+$route['edit-postagem']['post'] = 'PostController/editPostagem';
+$route['create-postagem']['post'] = 'PostController/createPostagem';
 
 //Comentario
-$route['delete-comentario']['post'] = 'UserController/deleteComentario';
-$route['edit-comentario']['post'] = 'UserController/editComentario';
-$route['create-comentario']['post'] = 'UserController/createComentario';
+$route['delete-comentario']['post'] = 'PostController/deleteComentario';
+$route['edit-comentario']['post'] = 'PostController/editComentario';
+$route['create-comentario']['post'] = 'PostController/createComentario';

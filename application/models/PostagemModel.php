@@ -2,8 +2,8 @@
 
 class PostagemModel extends CI_Model {
 
-    public function cadastroPostagemModel(array $dados_animal){
-        if($this->db->insert('postagem', $dados_animal))
+    public function cadastroPostagemModel(array $dados_postagem){
+        if($this->db->insert('postagem', $dados_postagem))
             return true;
     }
 
@@ -11,15 +11,22 @@ class PostagemModel extends CI_Model {
         extract($dados_update);
 
         $dados = [
-            'nome_animal' => $nome_animal,
+            'descricao' => $descricao,
+            'midia' => $midia,
+            'id_categoria' => $id_categoria
             /*
                 'tipo' => $tipo,
                 'raca' =>  $raca_animal,
                 'sexo_animal' => $sexo_animal
             */
         ];
+
+        if($midia) {
+            $dados['midia'] = $midia;
+        }
         
         $this->db->where('id_postagem', $id_postagem);
+        $this->db->where('id_usuario', $id_usuario);
         return $this->db->update('postagem', $dados);
     }
 

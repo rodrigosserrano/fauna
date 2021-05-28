@@ -82,4 +82,9 @@ class CadastrosModel extends CI_Model {
         $query = $this->db->get('tipo');
         return $query->result();    
      }
+
+     public function getCategoriaModel() {
+         $query = $this->db->get('categoria');
+         return $query->result();
+     }
 }

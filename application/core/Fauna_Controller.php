@@ -12,9 +12,11 @@ class Fauna_Controller extends CI_Controller{
        //path save
        $this->path_user = getcwd().'/assets/img/user';
        $this->path_pet = getcwd().'/assets/img/pet';
+       $this->path_post = getcwd().'/assets/img/post';
        //path use
        $this->user_foto = base_url().'/assets/img/user';
        $this->pet_foto = base_url().'/assets/img/pet';
+       $this->pet_post = base_url().'/assets/img/post';
     }
     
     public function show(array $dados, $view, $nav = false){
@@ -68,18 +70,30 @@ class Fauna_Controller extends CI_Controller{
     }
 
     // TEM QUE MEXER PARA APAGAR O ARQUIVO TEMPORARIO
-    public function uploadImage($arquivo = false, $email = false, $is_user = false) {
+    // public function uploadImage($arquivo = false, $email = false, $is_user = false) {
+    public function uploadImage($arquivo = false, $email = false, $type) {
         if($arquivo['name'] != ''){
             $extensao = trim(substr(strchr($arquivo['name'], '.'), 0));
             
-            if($is_user){
-                $nomefoto = md5($email.time()).$extensao;
-                $upload_path = $this->localUpload($is_user, $email);
-            }else{
-                $nomefoto = md5(time()).$extensao;
-                $upload_path = $this->localUpload($is_user, $email);
-                
+            switch($type) {
+                case 'user':
+                    $nomefoto = md5($email.time()).$extensao;
+                    break;
+                default:
+                    $nomefoto = md5(time()).$extensao;
             }
+
+            $upload_path = $this->localUpload($type, $email);
+            // $upload_path = $this->localUpload($is_user, $email);
+
+            // if($is_user){
+            //     $nomefoto = md5($email.time()).$extensao;
+            //     $upload_path = $this->localUpload($is_user, $email);
+            // }else{
+            //     $nomefoto = md5(time()).$extensao;
+            //     $upload_path = $this->localUpload($is_user, $email);
+                
+            // }
             
             move_uploaded_file($arquivo['tmp_name'], $upload_path.$nomefoto);
             
@@ -88,12 +102,42 @@ class Fauna_Controller extends CI_Controller{
     }
 
     // AJUSTAR O CHDIR OU ACHAR UMA FORMA MELHOR PARA CRIAR PASTA
-    public function localUpload($is_user = true, $email){
-        if($is_user){
-            return $this->path_user.'/'.$email.'/'; 
-        }else{
-            return $this->path_pet.'/'.$email.'/';
+    // public function localUpload($is_user = true, $email){
+    //     if($is_user){
+    //         return $this->path_user.'/'.$email.'/'; 
+    //     }else{
+    //         return $this->path_pet.'/'.$email.'/';
+    //     }
+    // }
+
+    // public function createLocalUpload($email){
+    //     if(!is_dir($this->path_user.'/'.$email)){
+    //         mkdir($this->path_user.'/'.$email);
+    //     }
+    
+    //     if(!is_dir($this->path_pet.'/'.$email)){
+    //         mkdir($this->path_pet.'/'.$email);
+    //     }
+    // }
+
+    // public function localUpload($is_user = true, $email){
+    public function localUpload($type, $email){
+        switch($type) {
+            case 'user':
+                return $this->path_user.'/'.$email.'/';
+                break;
+            case 'pet':
+                return $this->path_pet.'/'.$email.'/';
+                break;
+            case 'post':
+                return $this->path_post.'/'.$email.'/';
         }
+
+        // if($is_user){
+        //     return $this->path_user.'/'.$email.'/'; 
+        // }else{
+        //     return $this->path_pet.'/'.$email.'/';
+        // }
     }
 
     public function createLocalUpload($email){
@@ -103,6 +147,10 @@ class Fauna_Controller extends CI_Controller{
     
         if(!is_dir($this->path_pet.'/'.$email)){
             mkdir($this->path_pet.'/'.$email);
+        }
+
+        if(!is_dir($this->path_post.'/'.$email)) {
+            mkdir($this->path_post.'/'.$email);
         }
     }
     

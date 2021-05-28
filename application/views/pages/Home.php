@@ -49,6 +49,9 @@
 
                             <select name="id_categoria">
                                 <option selected disabled>Categoria</option>
+                                <?php foreach($categorias as $categoria) : ?>
+                                    <option value="<?= $categoria->id_categoria ?>"><?= $categoria->descricao ?></option>
+                                <?php endforeach; ?>
                                 <!-- Loop de categorias -->
                             </select>
 
@@ -56,12 +59,15 @@
 
                             <select name="id_animal">
                                 <option selected disabled>Pet relacionado</option>
+                                <?php foreach($pets as $pet) : ?>
+                                    <option value="<?= $pet->id_animal ?>"><?= $pet->nome_animal ?></option>
+                                <?php endforeach; ?>
                                 <!-- Loop de pets -->
                             </select>
 
                             <br><br>
                             
-                            <button type="button" id="#btn-cria-postagem">Criar Postagem</button>
+                            <button type="button" id="btn-cria-postagem">Criar Postagem</button>
                         </form>
                     </div>
 
@@ -72,6 +78,67 @@
         <button id="btn-new-post" data-bs-toggle="modal" data-bs-target="#new-post-modal"></button>
 
         <!--  -->
+
+
+
+
+    <!-- MODAL EDITAR POSTAGEM -->
+        
+    <div class="modal fade" id="edit-post-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="new-post-area" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Editar Postagem</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+
+                    <div class="modal-body">
+                        <form id="form-criar-post">
+                            <div>
+                                <!-- colocar um overflow auto para aparecer a barra de rolagem -->
+                                <textarea name="descricao" rows="4" cols="40"></textarea>
+                                <br>
+                                <!-- br pode ser removido dps -->
+                                <input type="file" name="midia">
+                                <label for="midia">Escolher mídia</label>
+                            </div>
+
+                            <br><br>
+
+                            <select name="id_categoria">
+                                <option selected disabled>Categoria</option>
+                                <?php foreach($categorias as $categoria) : ?>
+                                    <option value="<?= $categoria->id_categoria ?>"><?= $categoria->descricao ?></option>
+                                <?php endforeach; ?>
+                                <!-- Loop de categorias -->
+                            </select>
+
+                            <br><br>
+
+                            <select name="id_animal">
+                                <option selected disabled>Pet relacionado</option>
+                                <?php foreach($pets as $pet) : ?>
+                                    <option value="<?= $pet->id_animal ?>"><?= $pet->nome_animal ?></option>
+                                <?php endforeach; ?>
+                                <!-- Loop de pets -->
+                            </select>
+
+                            <br><br>
+                            
+                            <button type="button" id="btn-altera-postagem">Editar Postagem</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!--  -->
+
+
+
 
     <div class="posts">
         <?php foreach ($postagens as $postagem):?>
@@ -104,14 +171,21 @@
                         <span class="menu-icon dropdown-post-icon"><i class="fas fa-ellipsis-h fa-xs"></i></i></span>
                         <div class="list-opts display-none dropdown-post-list menu-list">
                             <ul>
-                                <li id="edit-post" style="cursor:pointer;">Editar publicação</li>
+                                <li id="edit-post" data-bs-toggle="modal" data-bs-target="#edit-post-modal" style="cursor:pointer;">Editar publicação</li>
                                 <li id="delete-post" style="cursor:pointer;">Apagar publicação</li>
                             </ul>
                         </div>
                     </div>
                 </div>
                 
-                <div class="post-photo"><img src="<?= base_url()?>assets/teste/pitbull.png"></div>
+                <div class="post-photo">
+                    <?php if($postagem->midia) : ?>
+                        <img src="<?= base_url()?>assets/img/post/<?= $postagem->midia_url ?>">
+                    <?php else : ?>
+                        <img src="<?= base_url()?>assets/teste/pitbull.png">
+                    <?php endif; ?>
+                </div>
+                                
                 <div class="post-likes">
                     <a id="like-icon">
                         <img src="<?= base_url()?>assets/img/icon/paw-like-unset.png">

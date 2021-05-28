@@ -9,38 +9,39 @@ class PostController extends Fauna_Controller {
         parent::__construct();
         $this->verifySession();
 
+        $this->id_usuario = $_SESSION['id'];
+        $this->email = $_SESSION['email'];
     }
 
     public function createPostagem() {
         header('Content-Type: application/json');
         $this->load->library('form_validation');
         
-        $this->form_validation->set_rules('id_postagem', 'id_postagem');
-        $this->form_validation->set_rules('id_usuario', 'id_usuario');
-        $this->form_validation->set_rules('id_animal', 'id_animal');
-        $this->form_validation->set_rules('id_categoria', 'id_categoria');
+        // $this->form_validation->set_rules('id_postagem', 'id_postagem');
+        // $this->form_validation->set_rules('id_usuario', 'id_usuario');
+        $this->form_validation->set_rules('id_animal', 'id_animal', 'required');
+        $this->form_validation->set_rules('id_categoria', 'id_categoria', 'required');
         // Não sei se vai precisar pq o banco dados preenche  o campo com a  hr do Crud
         //$this->form_validation->set_rules('dh_postagem', 'dh_postagem', 'required');
         $this->form_validation->set_rules('descricao', 'descricao', 'required');
-        // $this->form_validation->set_rules('midia', 'midia', 'required');
 
         if($this->form_validation->run()){
             $dados_cadastro = [
-                //animal
-                // "foto_animal" => $this->input->post('foto_animal'),
                 "id_usuario" => $this->id_usuario,
                 "id_animal" => $this->input->post('id_animal'),
-                "id_tipo" => $this->input->post('tipo'),
-                "dh_postagem" => new DateTime(), //  verificar se a função está correta  
+                "id_categoria" => $this->input->post('id_categoria'),
+                // "dh_postagem" => new DateTime(), //  verificar se a função está correta  
                 "descricao" => $this->input->post('descricao'),
-                // "midia" => $this->input->post('midia')
+                "midia" => $this->uploadImage($_FILES['midia'], $this->email, 'post'),
             ];
+
+            print_r($dados_cadastro);
             
             $this->load->model('PostagemModel');
             $verifica_cadastro = $this->PostagemModel->cadastroPostagemModel($dados_cadastro);
 
             if($verifica_cadastro){
-                echo json_encode(['mensagem'=>'Postagem feita com sucesso !']);
+                echo json_encode(['mensagem'=>'Postagem feita com sucesso!']);
             }else{
                 echo json_encode(['mensagem'=>'Erro ao realizar Postagem.']);
             }
@@ -54,26 +55,26 @@ class PostController extends Fauna_Controller {
         $this->load->library('form_validation');
         
         // $this->form_validation->set_rules('foto_animal', 'foto_animal', 'required');
-        $this->form_validation->set_rules('id_usuario', 'id_usuario');
-        $this->form_validation->set_rules('id_animal', 'id_animal');
+        $this->form_validation->set_rules('id_usuario', 'id_usuario', 'required');
+        $this->form_validation->set_rules('id_animal', 'id_animal', 'required');
+        $this->form_validation->set_rules('id_categoria', 'id_categoria', 'required');
         $this->form_validation->set_rules('descricao', 'descricao', 'required');
-        $this->form_validation->set_rules('midia', 'midia', 'required');
-        
 
         if($this->form_validation->run()){
             $dados_cadastro = [
 
-                // "midia" => $this->input->post('midia'),
-                "id_usuario" => $this->input->post('id_usuario'),
+                "midia" => $this->uploadImage($_FILES['midia'], $this->email, 'post'),
+                "id_usuario" => $this->id_usuario,
                 "id_animal" => $this->input->post('id_animal'),
-                "descricao" => $this->input->post('descricao')
+                "descricao" => $this->input->post('descricao'),
+                "id_categoria" => $this->input->post('id_categoria')
             ];
             
             $this->load->model('PostagemModel');
             $verifica_cadastro = $this->PostagemModel->alterarDadosPostagemModel($dados_cadastro);
         
             if($verifica_cadastro){
-                echo json_encode(['mensagem'=>'Postagem alterado com sucesso !']);
+                echo json_encode(['mensagem'=>'Postagem alterada com sucesso!']);
             }else{
                 echo json_encode(['mensagem'=>'Erro ao alterar.']);
             }

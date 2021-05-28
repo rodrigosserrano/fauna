@@ -112,7 +112,7 @@ class UserController extends Fauna_Controller {
                 //usuário
                 "email" => $this->input->post('email'),
                 // "senha" => $this->input->post('senha'),
-                "foto_usuario" => $this->uploadImage($_FILES['foto_usuario'], $this->input->post('email'), true),
+                "foto_usuario" => $this->uploadImage($_FILES['foto_usuario'], $this->input->post('email'), 'user'),
                 "nome_usuario" => $this->input->post('nome_usuario'),
                 "telefone" => $this->input->post('telefone'),
                 // "sexo_usuario" => $this->input->post('sexo_usuario'),
@@ -210,7 +210,7 @@ class UserController extends Fauna_Controller {
 
             $dados_cadastro = [
                 //animal
-                "foto_animal" => $this->uploadImage($_FILES['foto_animal'], $usuario['email_user'], false),
+                "foto_animal" => $this->uploadImage($_FILES['foto_animal'], $usuario['email_user'], 'pet'),
                 "id_usuario" => $this->id_usuario,
                 "nome_animal" => $this->input->post('nome_animal'),
                 "tipo" => $this->input->post('tipo'),
@@ -243,7 +243,7 @@ class UserController extends Fauna_Controller {
             $usuario = $this->UsuariosModel->returnDadosTratadoUserModel($this->id_usuario);
             $dados_cadastro = [
                 //animal
-                "foto_animal" => $this->uploadImage($_FILES['foto_animal'], $usuario['email_user'], false),
+                "foto_animal" => $this->uploadImage($_FILES['foto_animal'], $usuario['email_user'], 'pet'),
                 "id_usuario" => $this->input->post('id_usuario'),
                 "id_animal" => $this->input->post('id_animal'),
                 "nome_animal" => $this->input->post('nome_animal')
