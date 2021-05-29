@@ -27,8 +27,8 @@ $(document).ready(function(){
         });
     });
 
-    let formCriarComentario = document.querySelectorAll('.submit-comment');
-    for(form of formCriarComentario) {
+    let formCriarComentario = document.querySelectorAll('.form-comment');
+    Object.values(formCriarComentario).map(form => {
         form.querySelector('.send-comment').addEventListener('click', () => {
             let formData = new FormData(form);
             $.ajax({
@@ -48,5 +48,5 @@ $(document).ready(function(){
                 }
             });
         })
-    }
+    })
 });

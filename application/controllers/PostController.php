@@ -109,7 +109,6 @@ class PostController extends Fauna_Controller {
         $this->form_validation->set_rules('texto', 'texto', 'required');
         // Não sei se vai precisar pq o banco dados preenche  o campo com a  hr do Crud
         //$this->form_validation->set_rules('dh_comentario', 'dh_comentario', 'required');
-
         if($this->form_validation->run()){
             $dados_cadastro = [
                 "id_usuario" => $this->id_usuario,
@@ -128,7 +127,6 @@ class PostController extends Fauna_Controller {
             }
         }else{ //caso a validação do formulário der erro, volta para página de login
             echo json_encode(['mensagem'=>'Erro no formulário']);
-            print_r($dados_cadastro);
         }
     }
 

@@ -227,9 +227,10 @@
                     </div>
 
                 <div class="write-comments">
-                    <form class="submit-comment" action="" method="post">
+                    <form class="form-comment">
                         <input type="hidden" name="id_postagem" value=<?=$postagem->id_postagem ?>>
-                        <textarea class="message" name="texto" type="button" placeholder="Escreva um comentário"></textarea>
+                        <textarea class="message" name="texto" placeholder="Escreva um comentário"></textarea>
+                        <!-- <input type="text" value="" class="message" name="texto" placeholder="Escreva um comentário"> -->
                         <button class="send-comment" type="button">➝</button>
                     </form>
                 </div>
