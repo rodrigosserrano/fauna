@@ -140,9 +140,8 @@
 
 
 
-    <div class="posts">
-        <?php foreach ($postagens as $postagem):?>
         <section class="posts">
+            <?php foreach ($postagens as $postagem):?>
                 <div class="post">
                     <div class="info-post">
                         <div class="profile-info">
@@ -162,88 +161,81 @@
                         </div>
                         <div class="date-post"><span id="date-post"><?php echo date("d/m/Y", strtotime($postagem->dh_post));?></span></div>
                     </div>
-                
-                
-                
-                <div class="desc-n-menu">
-                    <div class="desc"><?php echo $postagem->descricao;?></div>
-                    <div class="dropdown-post-menu">
-                        <span class="menu-icon dropdown-post-icon"><i class="fas fa-ellipsis-h fa-xs"></i></i></span>
-                        <div class="list-opts display-none dropdown-post-list menu-list">
-                            <ul>
-                                <li id="edit-post" data-bs-toggle="modal" data-bs-target="#edit-post-modal" style="cursor:pointer;">Editar publicação</li>
-                                <li id="delete-post" style="cursor:pointer;">Apagar publicação</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="post-photo">
-                    <?php if($postagem->midia) : ?>
-                        <img src="<?= base_url()?>assets/img/post/<?= $postagem->midia_url ?>">
-                    <?php else : ?>
-                        <img src="<?= base_url()?>assets/teste/pitbull.png">
-                    <?php endif; ?>
-                </div>
-                                
-                <div class="post-likes">
-                    <a id="like-icon">
-                        <img src="<?= base_url()?>assets/img/icon/paw-like-unset.png">
-                    </a>
-                    <b><span id="likes-amount">55 pessoas curtiram isso</span></b>
-                </div>
-                <div class="line"></div>
-
-
-
-                <div class="comments">
-                    <?php foreach ($postagem->comentarios as $comentario):?>
-                    <div class="comment">
-                        <div class="comment-content">
-                            <div class="comment-info">
-                                <div class="comment-info">
-
-
-                                    <?php if(empty($comentario->foto_usuario)) : ?>
-                                        <img src="<?= base_url()?>assets/img/user/unknown.jpg" class="profile-photo">
-                                    <?php else : ?>
-                                        <img src="<?= base_url()?>assets/img/user/<?php echo $comentario->email.'/'.$comentario->foto_usuario; ?>" class="comment-user-photo">
-                                    <?php endif; ?>
-
-
-                                    <b><span class="comment-user"><?php echo $comentario->usuario; ?>:</span></b>
-                                </div>
-                                <div class="dropdown-comment-menu">
-                                    <span class="menu-icon dropdown-comment-icon"><i class="fas fa-ellipsis-h fa-xs"></i></i></span>
-                                    <div class="list-opts dropdown-comment-list menu-list display-none">
-                                        <ul>
-                                            <li id="edit-comment" style="cursor:pointer;">Editar comentário</li>
-                                            <li id="delete-comment" style="cursor:pointer;">Apagar comentário</li>
-                                        </ul>
-                                    </div>
-                                </div> 
+                    <div class="desc-n-menu">
+                        <div class="desc"><?php echo $postagem->descricao;?></div>
+                        <div class="dropdown-post-menu">
+                            <span class="menu-icon dropdown-post-icon"><i class="fas fa-ellipsis-h fa-xs"></i></i></span>
+                            <div class="list-opts display-none dropdown-post-list menu-list">
+                                <ul>
+                                    <li id="edit-post" data-bs-toggle="modal" data-bs-target="#edit-post-modal" style="cursor:pointer;">Editar publicação</li>
+                                    <li id="delete-post" style="cursor:pointer;">Apagar publicação</li>
+                                </ul>
                             </div>
-                            <p class="comment-text"><?php echo $comentario->texto; ?></p>
                         </div>
                     </div>
-                    <?php endforeach; ?>
-                </div>
-                
-                <div id="more-comments">
-                    <a style="color: #0870AB; cursor: pointer;">Mais comentários...</a>
-                </div>
+                        
+                    <div class="post-photo">
+                        <?php if($postagem->midia) : ?>
+                            <img src="<?= base_url()?>assets/img/post/<?= $postagem->midia_url ?>">
+                        <?php else : ?>
+                            <img src="<?= base_url()?>assets/teste/pitbull.png">
+                        <?php endif; ?>
+                    </div>
+                                        
+                    <div class="post-likes">
+                        <a id="like-icon">
+                            <img src="<?= base_url()?>assets/img/icon/paw-like-unset.png">
+                        </a>
+                        <b><span id="likes-amount">55 pessoas curtiram isso</span></b>
+                    </div>
+                    <div class="line"></div>
+                    <div class="comments">
+                        <?php foreach ($postagem->comentarios as $comentario):?>
+                        <div class="comment">
+                            <div class="comment-content">
+                                <div class="comment-info">
+                                    <div class="comment-info">
 
-                <div class="write-comments">
-                    <form action="" method="post">
-                        <textarea id="message" placeholder="Escreva um comentário"></textarea>
-                        <button id="send-comment">➝</button>
-                    </form>
+
+                                        <?php if(empty($comentario->foto_usuario)) : ?>
+                                            <img src="<?= base_url()?>assets/img/user/unknown.jpg" class="profile-photo">
+                                        <?php else : ?>
+                                            <img src="<?= base_url()?>assets/img/user/<?php echo $comentario->email.'/'.$comentario->foto_usuario; ?>" class="comment-user-photo">
+                                        <?php endif; ?>
+
+
+                                        <b><span class="comment-user"><?php echo $comentario->usuario; ?>:</span></b>
+                                    </div>
+                                    <div class="dropdown-comment-menu">
+                                        <span class="menu-icon dropdown-comment-icon"><i class="fas fa-ellipsis-h fa-xs"></i></i></span>
+                                        <div class="list-opts dropdown-comment-list menu-list display-none">
+                                            <ul>
+                                                <li id="edit-comment" style="cursor:pointer;">Editar comentário</li>
+                                                <li id="delete-comment" style="cursor:pointer;">Apagar comentário</li>
+                                            </ul>
+                                        </div>
+                                    </div> 
+                                </div>
+                                <p class="comment-text"><?php echo $comentario->texto; ?></p>
+                            </div>
+                        </div>
+                        <?php endforeach; ?>
+                    </div>
+                    
+                    <div id="more-comments">
+                        <a style="color: #0870AB; cursor: pointer;">Mais comentários...</a>
+                    </div>
+
+                    <div class="write-comments">
+                        <form action="" method="post">
+                            <textarea id="message" placeholder="Escreva um comentário"></textarea>
+                            <button id="send-comment">➝</button>
+                        </form>
+                    </div>
                 </div>
-            </div>
+            <?php endforeach;?>              
         </section>
-        <br>
-        <?php endforeach;?>
-        </div>
+        
         
         <section class="navigation">
             <div class="nav-container">

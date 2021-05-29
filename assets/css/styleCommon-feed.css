@@ -23,12 +23,13 @@ main{
     justify-content: space-between;
 }
 
-section{
+.post{
     background-color: #fff;
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 3.8px;
+    border-radius: 5px;
     box-shadow: 0px 0px 15px #0000002e;
+    margin-bottom: 20px;
 }
 
 .posts{
@@ -36,10 +37,6 @@ section{
     display: flex;
     flex-direction: column;
     justify-content: center;
-}
-
-.post + .post {
-    margin-top: 60px;
 }
 
 .info-post{
@@ -308,6 +305,11 @@ section{
 }
 
 .navigation{
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0px 0px 15px #0000002e;
     width: 250px;
     padding: 20px;
 }
