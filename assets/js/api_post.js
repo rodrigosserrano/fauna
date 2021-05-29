@@ -44,7 +44,7 @@ $(document).ready(function(){
                 let newPost = document.querySelector('.post').cloneNode(true);
                 newPost.style.display = 'block';
 
-                newPost.id = postagem.id_postagem
+                newPost.id = postagem.id_postagem;
                 // Foto Usuário
                 if(postagem.foto_usuario == null) {
                     newPost.querySelector('.profile-photo').src = `${path_user}/unknown.jpg`;
@@ -82,7 +82,7 @@ $(document).ready(function(){
                     let newComment = document.querySelector('.comment').cloneNode(true);
                     newComment.style.display = 'flex';
                     
-                    newComment.id = comentario.id_comentario
+                    newComment.id = comentario.id_comentario;
                     //Foto usuário
                     if(comentario.foto_usuario == null) {
                         newComment.querySelector('.comment-user-photo').src = `${path_user}/unknown.jpg`;
@@ -104,7 +104,77 @@ $(document).ready(function(){
                 
                 document.querySelector('.posts').appendChild(newPost);
                 
-            })
+            }).then(() => {
+
+                document.querySelector("#like-icon").addEventListener("click", e => {
+                    if(e.target.getAttribute("src") === `${base_url}/assets/img/icon/paw-like-unset.png`){
+                        e.target.setAttribute("src", `${base_url}/assets/img/icon/paw-like-set.png)`);
+                    }
+                    else
+                        e.target.setAttribute("src", `${base_url}/assets/img/icon/paw-like-unset.png`);
+                })
+            
+                Array.from(document.querySelectorAll(".menu-icon")).forEach((el, i) => {
+                    el.addEventListener("click", e => {
+                        e.stopPropagation();
+                        const listOpts = Array.from(document.querySelectorAll(".list-opts"));
+                        for(j in listOpts){
+                            if(j != i)
+                                if(listOpts[j].classList.contains("display-block")){
+                                    listOpts[j].classList.remove("display-block");
+                                    listOpts[j].classList.add("display-none");
+                                }
+                        }
+            
+                        if(listOpts[i].classList.contains("display-none")){
+                            listOpts[i].classList.remove("display-none");
+                            listOpts[i].classList.add("display-block");
+                        }
+                        else if(listOpts[i].classList.contains("display-block")){
+                            listOpts[i].classList.remove("display-block");
+                            listOpts[i].classList.add("display-none");
+                        }
+                    })
+                })
+            
+                document.getElementsByTagName("body")[0].addEventListener("click", () => {
+                    Array.from(document.querySelectorAll(".menu-list")).forEach(el => {
+                        if(el.classList.contains("display-block")){
+                            el.classList.remove("display-block");
+                            el.classList.add("display-none");
+                        }
+                    })
+                })
+            
+                // Menu Mobile
+                const mobileMenuButton = document.getElementById("navigation-menu-mobile");
+                const mobileMenu = document.getElementById("navigation-links-mobile");
+            
+            
+                mobileMenuButton.addEventListener('click', () => {
+                    let menuBars = document.querySelectorAll('.mobile-bars');
+                    
+            
+                    if (mobileMenu.style.display === "flex") {
+                        mobileMenu.style.display = "none";
+            
+                        menuBars[0].style.marginBottom = "0";
+                        menuBars[0].style.transform = 'rotate(0deg)';
+                        menuBars[1].style.transform = 'rotate(0deg)';
+                        menuBars[2].style.display = "flex";
+            
+            
+                    } else {
+                        mobileMenu.style.display = "flex";
+                        
+                        menuBars[0].style.marginBottom = "-10px";
+                        menuBars[0].style.transform = 'rotate(45deg)';
+                        menuBars[1].style.transform = 'rotate(-45deg)';
+                        menuBars[2].style.display = "none";
+                    }
+                })
+
+                });
         }
     });
 

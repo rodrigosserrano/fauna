@@ -29,44 +29,41 @@
                 <div class="modal-content">
 
                     <div class="modal-header">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         <h5 class="modal-title" id="staticBackdropLabel">Nova Postagem</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
 
 
                     <div class="modal-body">
                         <form id="form-criar-post">
-                            <div class="post-content">
+                            <div>
                                 <!-- colocar um overflow auto para aparecer a barra de rolagem -->
-                                <div class="content-main">
-                                    <textarea name="descricao" placeholder="Escreva uma mensagem..." rows="4" cols="40"></textarea>
-                                    <div class="preview" id="new-img"><img></div>
-                                </div>
-                                <div class="line"></div>
+                                <textarea name="descricao" placeholder="Escreva uma mensagem..." rows="4" cols="40"></textarea>
+                                <br>
                                 <!-- br pode ser removido dps -->
-                                <input type="file" name="midia" id="new-post" hidden>
-                                <div class="content-footer">
-                                    <label class="file-label mt-1" for="new-post">
-                                        <i class="fas fa-paperclip"></i>
-                                        <span>Inserir mídia</span>
-                                    </label>
-                                    <select class="modal-select" name="id_categoria">
-                                        <option selected disabled>Categoria</option>
-                                        <?php foreach($categorias as $categoria) : ?>
-                                            <option value="<?= $categoria->id_categoria ?>"><?= $categoria->descricao ?></option>
-                                        <?php endforeach; ?>
-                                        <!-- Loop de categorias -->
-                                    </select>
-                                    <select class="modal-select" name="id_animal">
-                                        <option selected disabled>Pet relacionado</option>
-                                        <?php foreach($pets as $pet) : ?>
-                                            <option value="<?= $pet->id_animal ?>"><?= $pet->nome_animal ?></option>
-                                        <?php endforeach; ?>
-                                        <!-- Loop de pets -->
-                                    </select>
-                                </div>
+                                <input type="file" name="midia">
+                                <label for="midia">Inserir mídia</label>
                             </div>
-                            <div class="btn-container"><button type="button" id="btn-cria-postagem">Criar postagem</button></div>
+
+                            <br><br>
+
+                            <select name="id_categoria">
+                                <option selected disabled>Categoria</option>
+                                    <!-- <option value="< ?= $categoria->id_categoria ?>">< ?= $categoria->descricao ?></option> -->
+                                <!-- Loop de categorias -->
+                            </select>
+
+                            <br><br>
+
+                            <select name="id_animal">
+                                <option selected disabled>Pet relacionado</option>
+                                    <!-- <option value="< ?= $pet->id_animal ?>">< ?= $pet->nome_animal ?></option> -->
+                                <!-- Loop de pets -->
+                            </select>
+
+                            <br><br>
+                            
+                            <button type="button" id="btn-cria-postagem">Criar Postagem</button>
                         </form>
                     </div>
 
@@ -74,7 +71,7 @@
             </div>
         </div>
 
-        <button id="btn-new-post" data-bs-toggle="modal" data-bs-target="#new-post-modal"><i class="fa-2x fas fa-plus text-white"></i></button>
+        <button id="btn-new-post" data-bs-toggle="modal" data-bs-target="#new-post-modal"></button>
 
         <!--  -->
 
@@ -88,44 +85,39 @@
                 <div class="modal-content">
 
                     <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Editar Postagem</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        <h5 class="modal-title" id="staticBackdropLabel">Editar postagem</h5>
                     </div>
 
 
                     <div class="modal-body">
                         <form id="form-criar-post">
-                            <div class="post-content">
+                            <div>
                                 <!-- colocar um overflow auto para aparecer a barra de rolagem -->
-                                <div class="content-main">
-                                    <textarea placeholder="Teste............" name="descricao" rows="4" cols="40"></textarea>
-                                    <div class="preview" id="edit-img"><img></div>
-                                </div>
-                                <div class="line"></div>
+                                <textarea name="descricao" rows="4" cols="40"></textarea>
+                                <br>
                                 <!-- br pode ser removido dps -->
-                                <input type="file" name="midia" id="edit-post" hidden>
-                                <div class="content-footer">
-                                    <label class="file-label mt-1" for="edit-post">
-                                        <i class="fas fa-paperclip"></i>
-                                        <span>Inserir mídia</span>
-                                    </label>
-                                    <select class="modal-select" name="id_categoria">
-                                        <option selected disabled>Categoria</option>
-                                        <?php foreach($categorias as $categoria) : ?>
-                                            <option value="<?= $categoria->id_categoria ?>"><?= $categoria->descricao ?></option>
-                                        <?php endforeach; ?>
-                                        <!-- Loop de categorias -->
-                                    </select>
-                                    <select class="modal-select" name="id_animal">
-                                        <option selected disabled>Pet relacionado</option>
-                                        <?php foreach($pets as $pet) : ?>
-                                            <option value="<?= $pet->id_animal ?>"><?= $pet->nome_animal ?></option>
-                                        <?php endforeach; ?>
-                                        <!-- Loop de pets -->
-                                    </select>
-                                </div>
+                                <input type="file" name="midia">
+                                <label for="midia">Escolher mídia</label>
                             </div>
-                            <div class="btn-container"><button type="button" id="btn-altera-postagem">Editar Postagem</button></div>
+
+                            <br><br>
+
+                            <select name="id_categoria">
+                                <option selected disabled>Categoria</option>
+                                <!-- Loop de categorias -->
+                            </select>
+
+                            <br><br>
+
+                            <select name="id_animal">
+                                <option selected disabled>Pet relacionado</option>
+                                <!-- Loop de pets -->
+                            </select>
+
+                            <br><br>
+                            
+                            <button type="button" id="btn-altera-postagem">Editar Postagem</button>
                         </form>
                     </div>
 
@@ -135,29 +127,27 @@
 
         <!--  -->
 
+
         <section class="posts">
-            <?php foreach ($postagens as $postagem):?>
-                <div class="post" id="<?=$postagem->id_postagem?>">
+                <div class="post">
                     <div class="info-post">
                         <div class="profile-info">
 
-
-                            <?php if(empty($postagem->foto_usuario)) : ?>
-                                <img src="<?= base_url()?>assets/img/user/unknown.jpg" class="profile-photo">
-                            <?php else : ?>
-                                <img src="<?= base_url()?>assets/img/user/<?php echo $postagem->email.'/'.$postagem->foto_usuario; ?>" class="profile-photo">
-                            <?php endif; ?>
-
+                            <img src="" class="profile-photo">
 
                             <div class="user-pet-name">
-                                <b><span id="user-name"><?php echo $postagem->usuario;?></span></b>
-                                <span id="pet-name"><?php echo $postagem->animal;?></span>
+                                <!-- <b><span id="user-name">< ?php echo $postagem->usuario;?></span></b> -->
+                                <!-- <b><span id="user-name">< ?php echo $postagem->usuario;?></span></b> -->
+                                <b><span id="user-name"></span></b>
+                                <span id="pet-name"></span>
                             </div>
                         </div>
-                        <div class="date-post"><span id="date-post"><?php echo date("d/m/Y", strtotime($postagem->dh_post));?></span></div>
+                        <!-- <div class="date-post"><span id="date-post">< ?php echo date("d/m/Y", strtotime($postagem->dh_post));?></span></div> -->
+                        <div class="date-post"><span id="date-post"></span></div>
                     </div>
                     <div class="desc-n-menu">
-                        <div class="desc"><?php echo $postagem->descricao;?></div>
+                        <!-- <div class="desc">< ?php echo $postagem->descricao;?></div> -->
+                        <div id="desc-post" class="desc"></div>
                         <div class="dropdown-post-menu">
                             <span class="menu-icon dropdown-post-icon"><i class="fas fa-ellipsis-h fa-xs"></i></i></span>
                             <div class="list-opts display-none dropdown-post-list menu-list">
@@ -170,11 +160,11 @@
                     </div>
                         
                     <div class="post-photo">
-                        <?php if($postagem->midia) : ?>
-                            <img src="<?= base_url()?>assets/img/post/<?= $postagem->midia_url ?>">
-                        <?php else : ?>
-                            <img src="<?= base_url()?>assets/teste/pitbull.png">
-                        <?php endif; ?>
+                        <!-- < ?php //if($postagem->midia) : ?> -->
+                            <!-- <img src="< ?= base_url()?>assets/img/post/< ?= $postagem->midia_url ?>"> -->
+                        <!-- < ?php else : ?> -->
+                            <img id="post-photo" src="">
+                        <!-- < ?php endif; ?> -->
                     </div>
                                         
                     <div class="post-likes">
@@ -185,21 +175,23 @@
                     </div>
                     <div class="line"></div>
                     <div class="comments">
-                        <?php foreach ($postagem->comentarios as $comentario):?>
-                        <div class="comment" id="<?= $comentario->id_comentario?>">
+                        <!-- < ?php foreach ($postagem->comentarios as $comentario):?> -->
+                        <div class="comment">
                             <div class="comment-content">
                                 <div class="comment-info">
                                     <div class="comment-info">
 
 
-                                        <?php if(empty($comentario->foto_usuario)) : ?>
-                                            <img src="<?= base_url()?>assets/img/user/unknown.jpg" class="profile-photo">
-                                        <?php else : ?>
-                                            <img src="<?= base_url()?>assets/img/user/<?php echo $comentario->email.'/'.$comentario->foto_usuario; ?>" class="comment-user-photo">
-                                        <?php endif; ?>
+                                        <!-- < ?php if(empty($comentario->foto_usuario)) : ?> -->
+                                            <!-- <img src="" class="profile-photo"> -->
+                                            <img src="" class="comment-user-photo">
+                                        <!-- < ?php else : ?> -->
+                                            <!-- <img src="< ?= base_url()?>assets/img/user/< ?php echo $comentario->email.'/'.$comentario->foto_usuario; ?>" class="comment-user-photo"> -->
+                                        <!-- < ?php endif; ?> -->
 
 
-                                        <b><span class="comment-user"><?php echo $comentario->usuario; ?>:</span></b>
+                                        <!-- <b><span class="comment-user">< ?php echo $comentario->usuario; ?>:</span></b> -->
+                                        <b><span class="comment-user"></span></b>
                                     </div>
                                     <div class="dropdown-comment-menu">
                                         <span class="menu-icon dropdown-comment-icon"><i class="fas fa-ellipsis-h fa-xs"></i></i></span>
@@ -211,10 +203,11 @@
                                         </div>
                                     </div> 
                                 </div>
-                                <p class="comment-text"><?php echo $comentario->texto; ?></p>
+                                <!-- <p class="comment-text">< ?php echo $comentario->texto; ?></p> -->
+                                <p class="comment-text"></p>
                             </div>
                         </div>
-                        <?php endforeach; ?>
+                        <!-- < ?php endforeach; ?> -->
                     </div>
                     
                     <div id="more-comments">
@@ -222,14 +215,14 @@
                     </div>
 
                 <div class="write-comments">
-                    <form class="form-comment">
-                        <input type="hidden" name="id_postagem" value=<?=$postagem->id_postagem ?>>
-                        <textarea class="message" name="texto" placeholder="Escreva um comentário"></textarea>
-                        <!-- <input type="text" value="" class="message" name="texto" placeholder="Escreva um comentário"> -->
+                    <form class="submit-comment" action="" method="post">
+                        <!-- <input type="hidden" name="id_postagem" value=< ?=$postagem->id_postagem ?>> -->
+                        <input type="hidden" name="id_postagem" id="id_postagem" value="">
+                        <textarea class="message" name="texto" type="button" placeholder="Escreva um comentário"></textarea>
                         <button class="send-comment" type="button">➝</button>
                     </form>
                 </div>
-            <?php endforeach;?>              
+            </div>         
         </section>
         
         
@@ -270,94 +263,73 @@ window.onload = function(){
     //         e.target.value = "Escreva um comentário";
     // })
 
-    document.querySelector("#like-icon").addEventListener("click", e => {
-        if(e.target.getAttribute("src") === "<?= base_url()?>assets/img/icon/paw-like-unset.png"){
-            e.target.setAttribute("src", "<?= base_url()?>assets/img/icon/paw-like-set.png");
-        }
-        else
-            e.target.setAttribute("src", "<?= base_url()?>assets/img/icon/paw-like-unset.png");
-    })
+    // document.querySelector("#like-icon").addEventListener("click", e => {
+    //     if(e.target.getAttribute("src") === "<?= base_url()?>assets/img/icon/paw-like-unset.png"){
+    //         e.target.setAttribute("src", "<?= base_url()?>assets/img/icon/paw-like-set.png");
+    //     }
+    //     else
+    //         e.target.setAttribute("src", "<?= base_url()?>assets/img/icon/paw-like-unset.png");
+    // })
 
-    Array.from(document.querySelectorAll(".menu-icon")).forEach((el, i) => {
-        el.addEventListener("click", e => {
-            e.stopPropagation();
-            const listOpts = Array.from(document.querySelectorAll(".list-opts"));
-            for(j in listOpts){
-                if(j != i)
-                    if(listOpts[j].classList.contains("display-block")){
-                        listOpts[j].classList.remove("display-block");
-                        listOpts[j].classList.add("display-none");
-                    }
-            }
+    // Array.from(document.querySelectorAll(".menu-icon")).forEach((el, i) => {
+    //     el.addEventListener("click", e => {
+    //         e.stopPropagation();
+    //         const listOpts = Array.from(document.querySelectorAll(".list-opts"));
+    //         for(j in listOpts){
+    //             if(j != i)
+    //                 if(listOpts[j].classList.contains("display-block")){
+    //                     listOpts[j].classList.remove("display-block");
+    //                     listOpts[j].classList.add("display-none");
+    //                 }
+    //         }
 
-            if(listOpts[i].classList.contains("display-none")){
-                listOpts[i].classList.remove("display-none");
-                listOpts[i].classList.add("display-block");
-            }
-            else if(listOpts[i].classList.contains("display-block")){
-                listOpts[i].classList.remove("display-block");
-                listOpts[i].classList.add("display-none");
-            }
-        })
-    })
+    //         if(listOpts[i].classList.contains("display-none")){
+    //             listOpts[i].classList.remove("display-none");
+    //             listOpts[i].classList.add("display-block");
+    //         }
+    //         else if(listOpts[i].classList.contains("display-block")){
+    //             listOpts[i].classList.remove("display-block");
+    //             listOpts[i].classList.add("display-none");
+    //         }
+    //     })
+    // })
 
-    document.getElementsByTagName("body")[0].addEventListener("click", () => {
-        Array.from(document.querySelectorAll(".menu-list")).forEach(el => {
-            if(el.classList.contains("display-block")){
-                el.classList.remove("display-block");
-                el.classList.add("display-none");
-            }
-        })
-    })
+    // document.getElementsByTagName("body")[0].addEventListener("click", () => {
+    //     Array.from(document.querySelectorAll(".menu-list")).forEach(el => {
+    //         if(el.classList.contains("display-block")){
+    //             el.classList.remove("display-block");
+    //             el.classList.add("display-none");
+    //         }
+    //     })
+    // })
 
-    // Menu Mobile
-    const mobileMenuButton = document.getElementById("navigation-menu-mobile");
-    const mobileMenu = document.getElementById("navigation-links-mobile");
+    // // Menu Mobile
+    // const mobileMenuButton = document.getElementById("navigation-menu-mobile");
+    // const mobileMenu = document.getElementById("navigation-links-mobile");
 
 
-    mobileMenuButton.addEventListener('click', () => {
-        let menuBars = document.querySelectorAll('.mobile-bars');
+    // mobileMenuButton.addEventListener('click', () => {
+    //     let menuBars = document.querySelectorAll('.mobile-bars');
         
 
-        if (mobileMenu.style.display === "flex") {
-            mobileMenu.style.display = "none";
+    //     if (mobileMenu.style.display === "flex") {
+    //         mobileMenu.style.display = "none";
 
-            menuBars[0].style.marginBottom = "0";
-            menuBars[0].style.transform = 'rotate(0deg)';
-            menuBars[1].style.transform = 'rotate(0deg)';
-            menuBars[2].style.display = "flex";
+    //         menuBars[0].style.marginBottom = "0";
+    //         menuBars[0].style.transform = 'rotate(0deg)';
+    //         menuBars[1].style.transform = 'rotate(0deg)';
+    //         menuBars[2].style.display = "flex";
 
 
-        } else {
-            mobileMenu.style.display = "flex";
+    //     } else {
+    //         mobileMenu.style.display = "flex";
             
-            menuBars[0].style.marginBottom = "-10px";
-            menuBars[0].style.transform = 'rotate(45deg)';
-            menuBars[1].style.transform = 'rotate(-45deg)';
-            menuBars[2].style.display = "none";
-        }
-    })
-
-    //Modals de postagens
-    const editImg = document.querySelector("#edit-img > img")
-    const editPost = document.getElementById("edit-post")
-    const newImg = document.querySelector("#new-img > img")
-    const newPost = document.getElementById("new-post")
-
-    const openFile = function(e, output){
-        const input = e.target;
-         
-        const reader = new FileReader();
-        reader.onload = function(){
-            const dataURL = reader.result;
-            output.style.display = "block";
-            output.src = dataURL;
-        };
-        reader.readAsDataURL(input.files[0]);
-    };
-
-    editPost.addEventListener("input", e => openFile(e, editImg))
-    newPost.addEventListener("input", e => openFile(e, newImg))
+    //         menuBars[0].style.marginBottom = "-10px";
+    //         menuBars[0].style.transform = 'rotate(45deg)';
+    //         menuBars[1].style.transform = 'rotate(-45deg)';
+    //         menuBars[2].style.display = "none";
+    //     }
+    // })
 }
 
 </script>
