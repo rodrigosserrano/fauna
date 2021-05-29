@@ -233,6 +233,7 @@
                         <button class="send-comment" type="button">➝</button>
                     </form>
                 </div>
+            </div>
             <?php endforeach;?>              
         </section>
         
