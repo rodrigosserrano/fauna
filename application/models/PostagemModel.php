@@ -30,7 +30,8 @@ class PostagemModel extends CI_Model {
         return $this->db->update('postagem', $dados);
     }
 
-    public function deletePetModel($id_postagem){
+    public function deletePostagemModel($id_postagem){
+        if($this->db->where('id_postagem', $id_postagem)->delete('comentario'))
         return $this->db->where('id_postagem', $id_postagem)->delete('postagem');
     }
 

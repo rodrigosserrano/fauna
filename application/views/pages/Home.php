@@ -142,7 +142,7 @@
 
         <section class="posts">
             <?php foreach ($postagens as $postagem):?>
-                <div class="post">
+                <div class="post" id="<?=$postagem->id_postagem?>">
                     <div class="info-post">
                         <div class="profile-info">
 
@@ -191,7 +191,7 @@
                     <div class="line"></div>
                     <div class="comments">
                         <?php foreach ($postagem->comentarios as $comentario):?>
-                        <div class="comment">
+                        <div class="comment" id="<?= $comentario->id_comentario?>">
                             <div class="comment-content">
                                 <div class="comment-info">
                                     <div class="comment-info">
