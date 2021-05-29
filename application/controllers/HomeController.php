@@ -32,7 +32,7 @@ class HomeController extends Fauna_Controller {
                 'foto_usuario' => $postagem->foto_usuario,
                 'descricao' => $postagem->descricao,
                 'midia' => $postagem->midia,
-                'midia_url' => $this->email.'/'.$postagem->midia,
+                'midia_url' => $postagem->email.'/'.$postagem->midia,
                 'dh_post' => $postagem->dh_post,
                 'comentarios' => $this->ComentarioModel->getDadosComentarioModel($postagem->id_postagem)
             ];
