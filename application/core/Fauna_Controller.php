@@ -74,30 +74,34 @@ class Fauna_Controller extends CI_Controller{
     public function uploadImage($arquivo, $email, $type) {
         if($arquivo['name'] != ''){
             $extensao = trim(substr(strchr($arquivo['name'], '.'), 0));
-            
-            switch($type) {
-                case 'user':
-                    $nomefoto = md5($email.time()).$extensao;
-                    break;
-                default:
-                    $nomefoto = md5(time()).$extensao;
-            }
+            $acceptedTypes = ['.png', '.jpg', '.gif'];
 
-            $upload_path = $this->localUpload($type, $email);
-            // $upload_path = $this->localUpload($is_user, $email);
-
-            // if($is_user){
-            //     $nomefoto = md5($email.time()).$extensao;
-            //     $upload_path = $this->localUpload($is_user, $email);
-            // }else{
-            //     $nomefoto = md5(time()).$extensao;
-            //     $upload_path = $this->localUpload($is_user, $email);
+            if(array_search($extensao, $acceptedTypes) && $arquivo['size'] < 10000000) {
+                switch($type) {
+                    case 'user':
+                        $nomefoto = md5($email.time()).$extensao;
+                        break;
+                    default:
+                        $nomefoto = md5(time()).$extensao;
+                }
+    
+                $upload_path = $this->localUpload($type, $email);
+                // $upload_path = $this->localUpload($is_user, $email);
+    
+                // if($is_user){
+                //     $nomefoto = md5($email.time()).$extensao;
+                //     $upload_path = $this->localUpload($is_user, $email);
+                // }else{
+                //     $nomefoto = md5(time()).$extensao;
+                //     $upload_path = $this->localUpload($is_user, $email);
+                    
+                // }
                 
-            // }
+                move_uploaded_file($arquivo['tmp_name'], $upload_path.$nomefoto);
+                
+                return $nomefoto;
+            }
             
-            move_uploaded_file($arquivo['tmp_name'], $upload_path.$nomefoto);
-            
-            return $nomefoto;
         }
     }
 

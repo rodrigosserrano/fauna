@@ -9,6 +9,9 @@ class PostController extends Fauna_Controller {
         parent::__construct();
         $this->verifySession();
 
+        $this->id_postagem = isset($_POST['id_postagem']) ? $_POST['id_postagem'] : '';
+        $this->id_comentario = isset($_POST['id_comentario']) ? $_POST['id_comentario'] : '';
+
         $this->id_usuario = $_SESSION['id'];
         $this->email = $_SESSION['email'];
 
@@ -126,10 +129,10 @@ class PostController extends Fauna_Controller {
 
     public function deletePostagem() {
         header('Content-Type: application/json');
-
+        
         $this->load->model('PostagemModel');
         if($this->PostagemModel->deletePostagemModel($this->id_postagem)){
-            echo json_encode(['mensagem'=>'Postagem excluida com sucesso. ' . $this->id_postagem]);
+            echo json_encode(['mensagem'=>'Postagem excluida com sucesso.']);
         }else{
             echo json_encode(['mensagem'=>'Erro ao deletar']);
         }
@@ -150,7 +153,6 @@ class PostController extends Fauna_Controller {
         $this->form_validation->set_rules('texto', 'texto', 'required');
         // Não sei se vai precisar pq o banco dados preenche  o campo com a  hr do Crud
         //$this->form_validation->set_rules('dh_comentario', 'dh_comentario', 'required');
-
         if($this->form_validation->run()){
             $dados_cadastro = [
                 "id_usuario" => $this->id_usuario,
@@ -169,7 +171,6 @@ class PostController extends Fauna_Controller {
             }
         }else{ //caso a validação do formulário der erro, volta para página de login
             echo json_encode(['mensagem'=>'Erro no formulário']);
-            print_r($dados_cadastro);
         }
     }
 
@@ -208,7 +209,7 @@ class PostController extends Fauna_Controller {
 
         $this->load->model('ComentarioModel');
         if($this->ComentarioModel->deleteComentarioModel($this->id_comentario)){
-            echo json_encode(['mensagem'=>'Comentario excluido com sucesso. ' . $this->id_comentario]);
+            echo json_encode(['mensagem'=>'Comentario excluido com sucesso.']);
         }else{
             echo json_encode(['mensagem'=>'Erro ao deletar']);
         }     
