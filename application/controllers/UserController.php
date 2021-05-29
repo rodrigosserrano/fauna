@@ -180,7 +180,7 @@ class UserController extends Fauna_Controller {
                 'mensagem' =>  $mensagem
             ];
 
-            $dados = $this->dadosShow('Perfil', 'assets/css/styleProfile.css', 'assets/js/profile_scripts');
+            $dados = $this->dadosShow('Perfil', 'assets/css/styleProfile.css', 'assets/js/profile_scripts.js');
             $view = $this->load->view('pages/Profile', $dados_view, true);
 
             $this->show($dados, $view, true);
