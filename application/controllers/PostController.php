@@ -105,7 +105,7 @@ class PostController extends Fauna_Controller {
         $this->load->library('form_validation');
         
         $this->form_validation->set_rules('id_postagem', 'id_postagem');
-        $this->form_validation->set_rules('id_usuario', 'id_usuario');
+        //$this->form_validation->set_rules('id_usuario', 'id_usuario');
         $this->form_validation->set_rules('texto', 'texto', 'required');
         // Não sei se vai precisar pq o banco dados preenche  o campo com a  hr do Crud
         //$this->form_validation->set_rules('dh_comentario', 'dh_comentario', 'required');
@@ -114,7 +114,7 @@ class PostController extends Fauna_Controller {
             $dados_cadastro = [
                 "id_usuario" => $this->id_usuario,
                 "id_postagem" => $this->input->post('id_postagem'),
-                "dh_comentario" => new DateTime(), //  verificar se a função está correta  
+                //"dh_comentario" => new DateTime(), //  verificar se a função está correta  
                 "texto" => $this->input->post('texto')
             ];
             
@@ -128,6 +128,7 @@ class PostController extends Fauna_Controller {
             }
         }else{ //caso a validação do formulário der erro, volta para página de login
             echo json_encode(['mensagem'=>'Erro no formulário']);
+            print_r($dados_cadastro);
         }
     }
 
@@ -145,6 +146,7 @@ class PostController extends Fauna_Controller {
                 "id_usuario" => $this->input->post('id_usuario'),
                 "id_comentario" => $this->input->post('id_comentario'),
                 "texto" => $this->input->post('texto')
+                //"dh_comentario" => $now = new DateTime().getTimestamp
             ];
             
             $this->load->model('ComentarioModel');

@@ -11,7 +11,8 @@ class ComentarioModel extends CI_Model {
         extract($dados_update);
 
         $dados = [
-            'nome_animal' => $nome_animal,
+            'texto' => $texto
+            //'dh_comentario' => $dh_comentario
             /*
                 'tipo' => $tipo,
                 'raca' =>  $raca_animal,

@@ -226,12 +226,12 @@
                         <a style="color: #0870AB; cursor: pointer;">Mais comentários...</a>
                     </div>
 
-                    <div class="write-comments">
-                        <form action="" method="post">
-                            <textarea id="message" placeholder="Escreva um comentário"></textarea>
-                            <button id="send-comment">➝</button>
-                        </form>
-                    </div>
+                <div class="write-comments">
+                    <form class="submit-comment" action="" method="post">
+                        <input type="hidden" name="id_postagem" value=<?=$postagem->id_postagem ?>>
+                        <textarea class="message" name="texto" type="button" placeholder="Escreva um comentário"></textarea>
+                        <button class="send-comment" type="button">➝</button>
+                    </form>
                 </div>
             <?php endforeach;?>              
         </section>

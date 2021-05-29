@@ -26,6 +26,7 @@ class HomeController extends Fauna_Controller {
 
         foreach($postagens as $postagem) {
             $postagem = [
+                'id_postagem' => $postagem->id_postagem,
                 'usuario' => $postagem->usuario,
                 'animal' => $postagem->animal,
                 'email' => $postagem->email,

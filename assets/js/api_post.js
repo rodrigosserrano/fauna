@@ -5,8 +5,6 @@ $(document).ready(function(){
         base_url = `${window.location.origin}/fauna/`;
     }
 
-
-
     $("#btn-cria-postagem").click(function(){
         
         let form = new FormData(document.getElementById("form-criar-post"));
@@ -28,4 +26,27 @@ $(document).ready(function(){
             }
         });
     });
+
+    let formCriarComentario = document.querySelectorAll('.submit-comment');
+    for(form of formCriarComentario) {
+        form.querySelector('.send-comment').addEventListener('click', () => {
+            let formData = new FormData(form);
+            $.ajax({
+                type: "POST",
+                url: base_url+"create-comentario",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    if(response.mensagem){
+                        alert(response.mensagem);
+                        window.location.reload();
+                    }
+                },
+                error: function (request, status, error) {
+                    console.log(request.responseText);
+                }
+            });
+        })
+    }
 });

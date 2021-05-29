@@ -281,7 +281,7 @@ main{
     align-items: center;
 }
 
-#message{
+.message{
     resize: none;
     height: 40px;
     outline: none;
@@ -290,7 +290,7 @@ main{
     border: 1px solid #aaa;
 }
 
-#send-comment{
+.send-comment{
     position: absolute;
     right: 0;
     width: 30px;
@@ -300,7 +300,7 @@ main{
     transition: 0.4s;
 }
 
-#send-comment:hover{
+.send-comment:hover{
     background-color: rgba(0,0,0,0.2);
 }
 
