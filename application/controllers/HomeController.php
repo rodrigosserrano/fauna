@@ -53,7 +53,7 @@ class HomeController extends Fauna_Controller {
             'categorias' => $categories
         ];
 
-        $dados_view = $this->dadosShow('Feed', 'assets/css/styleCommon-feed.css');
+        $dados_view = $this->dadosShow('Feed', 'assets/css/styleHome.css');
 		$view = $this->load->view('pages/Home', $dados, true);
 
         $this->show($dados_view, $view, true);

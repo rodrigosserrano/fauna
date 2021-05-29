@@ -47,4 +47,36 @@ window.onload = function(){
             selectElement[i].style.color = "#000";
         });
     }
+
+    const selects = Array.from(document.getElementsByTagName("select"))
+            
+    selects.forEach(select => {
+        let options = Array.from(select.querySelectorAll("option"))
+        select.addEventListener("change", e => {
+            options.forEach(opt => {
+                let optText = opt.textContent
+                if(opt.value == e.target.value){
+                    if(optText == "Gênero" || optText == "Tipo de animal")
+                        e.target.style.color = "#777"
+                    else
+                        e.target.style.color = "#000"
+                }
+                opt.style.color = "#777"
+            })
+        })
+    })
+
+    const dateElement = document.querySelector('#birth_date');
+
+    dateElement.addEventListener("focus", e => {
+        e.target.setAttribute("type", "date")
+    })
+    dateElement.addEventListener("blur", e => {
+        if(e.target.value == "")
+            e.target.setAttribute("type", "text")
+    })
+
+    dateElement.addEventListener('input', e => {
+        e.target.style.color = 'black';
+    })
 }
