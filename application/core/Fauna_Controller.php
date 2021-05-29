@@ -71,7 +71,7 @@ class Fauna_Controller extends CI_Controller{
 
     // TEM QUE MEXER PARA APAGAR O ARQUIVO TEMPORARIO
     // public function uploadImage($arquivo = false, $email = false, $is_user = false) {
-    public function uploadImage($arquivo = false, $email = false, $type) {
+    public function uploadImage($arquivo, $email, $type) {
         if($arquivo['name'] != ''){
             $extensao = trim(substr(strchr($arquivo['name'], '.'), 0));
             
