@@ -385,14 +385,12 @@ button.icon {
 
 /* RELACIONADO AO MODAL */
 #btn-new-post {
-    background-color: white;
-    width: 50px;
-    height: 50px;
-
+    background-color: var(--darker-color);
+    width: 70px;
+    height: 70px;
     position: fixed;
     bottom: 30px;
     right: 30px;
-
     border-radius: 50%;
     border: none;
     transition: 0.2s;
@@ -400,6 +398,77 @@ button.icon {
 
 #btn-new-post:hover {
     background-color: #c0c0c0;
+}
+
+.modal-header{
+    flex-direction: column;
+}
+
+.modal-title{
+    text-align: center;
+    color: #777;
+}
+
+.post-content{
+    width: 100%;
+    border: 1px solid #777;
+    border-radius: 5px;
+    overflow: hidden;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.post-content textarea{
+    width: 100%;
+    resize: none;
+    border: none;
+    overflow-y: auto;
+    word-break: break-all;
+}
+
+.preview{
+    position: relative;
+    width: 60px;
+    height: 60px;
+    margin: 0 0 5px 5px;
+}
+
+.preview img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.file-label{
+    cursor: pointer;
+}
+
+.content-footer{
+    padding: 8px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-select{
+    padding: 5px;
+    width: 30%;
+    border: 1px solid #777;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.btn-container{
+    width: 100%;
+    text-align: center;
+}
+
+.modal-body button{
+    padding: 5px;
+    background-color: var(--darker-color);
+    color: #fff;
+    border: none;
+    border-radius: 3px;
 }
 /*  */
 
@@ -503,7 +572,6 @@ button.icon {
     #navbar #nav-logo{
         margin-left: 60px;
     }
-        
 }
 
 @media (max-width: 600px){

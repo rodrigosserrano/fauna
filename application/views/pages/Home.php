@@ -29,45 +29,44 @@
                 <div class="modal-content">
 
                     <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Nova Postagem</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <h5 class="modal-title" id="staticBackdropLabel">Nova Postagem</h5>
                     </div>
 
 
                     <div class="modal-body">
                         <form id="form-criar-post">
-                            <div>
+                            <div class="post-content">
                                 <!-- colocar um overflow auto para aparecer a barra de rolagem -->
-                                <textarea name="descricao" placeholder="Escreva uma mensagem..." rows="4" cols="40"></textarea>
-                                <br>
+                                <div class="content-main">
+                                    <textarea name="descricao" placeholder="Escreva uma mensagem..." rows="4" cols="40"></textarea>
+                                    <div class="preview" id="new-img"><img></div>
+                                </div>
+                                <div class="line"></div>
                                 <!-- br pode ser removido dps -->
-                                <input type="file" name="midia">
-                                <label for="midia">Inserir mídia</label>
+                                <input type="file" name="midia" id="new-post" hidden>
+                                <div class="content-footer">
+                                    <label class="file-label mt-1" for="new-post">
+                                        <i class="fas fa-paperclip"></i>
+                                        <span>Inserir mídia</span>
+                                    </label>
+                                    <select class="modal-select" name="id_categoria">
+                                        <option selected disabled>Categoria</option>
+                                        <?php foreach($categorias as $categoria) : ?>
+                                            <option value="<?= $categoria->id_categoria ?>"><?= $categoria->descricao ?></option>
+                                        <?php endforeach; ?>
+                                        <!-- Loop de categorias -->
+                                    </select>
+                                    <select class="modal-select" name="id_animal">
+                                        <option selected disabled>Pet relacionado</option>
+                                        <?php foreach($pets as $pet) : ?>
+                                            <option value="<?= $pet->id_animal ?>"><?= $pet->nome_animal ?></option>
+                                        <?php endforeach; ?>
+                                        <!-- Loop de pets -->
+                                    </select>
+                                </div>
                             </div>
-
-                            <br><br>
-
-                            <select name="id_categoria">
-                                <option selected disabled>Categoria</option>
-                                <?php foreach($categorias as $categoria) : ?>
-                                    <option value="<?= $categoria->id_categoria ?>"><?= $categoria->descricao ?></option>
-                                <?php endforeach; ?>
-                                <!-- Loop de categorias -->
-                            </select>
-
-                            <br><br>
-
-                            <select name="id_animal">
-                                <option selected disabled>Pet relacionado</option>
-                                <?php foreach($pets as $pet) : ?>
-                                    <option value="<?= $pet->id_animal ?>"><?= $pet->nome_animal ?></option>
-                                <?php endforeach; ?>
-                                <!-- Loop de pets -->
-                            </select>
-
-                            <br><br>
-                            
-                            <button type="button" id="btn-cria-postagem">Criar Postagem</button>
+                            <div class="btn-container"><button type="button" id="btn-cria-postagem">Criar postagem</button></div>
                         </form>
                     </div>
 
@@ -75,7 +74,7 @@
             </div>
         </div>
 
-        <button id="btn-new-post" data-bs-toggle="modal" data-bs-target="#new-post-modal"></button>
+        <button id="btn-new-post" data-bs-toggle="modal" data-bs-target="#new-post-modal"><i class="fa-2x fas fa-plus text-white"></i></button>
 
         <!--  -->
 
@@ -89,45 +88,44 @@
                 <div class="modal-content">
 
                     <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Editar Postagem</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <h5 class="modal-title" id="staticBackdropLabel">Editar postagem</h5>
                     </div>
 
 
                     <div class="modal-body">
                         <form id="form-criar-post">
-                            <div>
+                            <div class="post-content">
                                 <!-- colocar um overflow auto para aparecer a barra de rolagem -->
-                                <textarea name="descricao" rows="4" cols="40"></textarea>
-                                <br>
+                                <div class="content-main">
+                                    <textarea placeholder="Teste............" name="descricao" rows="4" cols="40"></textarea>
+                                    <div class="preview" id="edit-img"><img></div>
+                                </div>
+                                <div class="line"></div>
                                 <!-- br pode ser removido dps -->
-                                <input type="file" name="midia">
-                                <label for="midia">Escolher mídia</label>
+                                <input type="file" name="midia" id="edit-post" hidden>
+                                <div class="content-footer">
+                                    <label class="file-label mt-1" for="edit-post">
+                                        <i class="fas fa-paperclip"></i>
+                                        <span>Inserir mídia</span>
+                                    </label>
+                                    <select class="modal-select" name="id_categoria">
+                                        <option selected disabled>Categoria</option>
+                                        <?php foreach($categorias as $categoria) : ?>
+                                            <option value="<?= $categoria->id_categoria ?>"><?= $categoria->descricao ?></option>
+                                        <?php endforeach; ?>
+                                        <!-- Loop de categorias -->
+                                    </select>
+                                    <select class="modal-select" name="id_animal">
+                                        <option selected disabled>Pet relacionado</option>
+                                        <?php foreach($pets as $pet) : ?>
+                                            <option value="<?= $pet->id_animal ?>"><?= $pet->nome_animal ?></option>
+                                        <?php endforeach; ?>
+                                        <!-- Loop de pets -->
+                                    </select>
+                                </div>
                             </div>
-
-                            <br><br>
-
-                            <select name="id_categoria">
-                                <option selected disabled>Categoria</option>
-                                <?php foreach($categorias as $categoria) : ?>
-                                    <option value="<?= $categoria->id_categoria ?>"><?= $categoria->descricao ?></option>
-                                <?php endforeach; ?>
-                                <!-- Loop de categorias -->
-                            </select>
-
-                            <br><br>
-
-                            <select name="id_animal">
-                                <option selected disabled>Pet relacionado</option>
-                                <?php foreach($pets as $pet) : ?>
-                                    <option value="<?= $pet->id_animal ?>"><?= $pet->nome_animal ?></option>
-                                <?php endforeach; ?>
-                                <!-- Loop de pets -->
-                            </select>
-
-                            <br><br>
-                            
-                            <button type="button" id="btn-altera-postagem">Editar Postagem</button>
+                            <div class="btn-container"><button type="button" id="btn-altera-postagem">Editar Postagem</button></div>
                         </form>
                     </div>
 
@@ -136,9 +134,6 @@
         </div>
 
         <!--  -->
-
-
-
 
         <section class="posts">
             <?php foreach ($postagens as $postagem):?>
@@ -343,6 +338,27 @@ window.onload = function(){
             menuBars[2].style.display = "none";
         }
     })
+
+    //Modals de postagens
+    const editImg = document.querySelector("#edit-img > img")
+    const editPost = document.getElementById("edit-post")
+    const newImg = document.querySelector("#new-img > img")
+    const newPost = document.getElementById("new-post")
+
+    const openFile = function(e, output){
+        const input = e.target;
+         
+        const reader = new FileReader();
+        reader.onload = function(){
+            const dataURL = reader.result;
+            output.style.display = "block";
+            output.src = dataURL;
+        };
+        reader.readAsDataURL(input.files[0]);
+    };
+
+    editPost.addEventListener("input", e => openFile(e, editImg))
+    newPost.addEventListener("input", e => openFile(e, newImg))
 }
 
 </script>
