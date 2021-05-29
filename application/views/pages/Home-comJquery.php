@@ -49,9 +49,7 @@
 
                             <select name="id_categoria">
                                 <option selected disabled>Categoria</option>
-                                <?php foreach($categorias as $categoria) : ?>
-                                    <option value="<?= $categoria->id_categoria ?>"><?= $categoria->descricao ?></option>
-                                <?php endforeach; ?>
+                                    <!-- <option value="< ?= $categoria->id_categoria ?>">< ?= $categoria->descricao ?></option> -->
                                 <!-- Loop de categorias -->
                             </select>
 
@@ -59,9 +57,7 @@
 
                             <select name="id_animal">
                                 <option selected disabled>Pet relacionado</option>
-                                <?php foreach($pets as $pet) : ?>
-                                    <option value="<?= $pet->id_animal ?>"><?= $pet->nome_animal ?></option>
-                                <?php endforeach; ?>
+                                    <!-- <option value="< ?= $pet->id_animal ?>">< ?= $pet->nome_animal ?></option> -->
                                 <!-- Loop de pets -->
                             </select>
 
@@ -109,9 +105,6 @@
 
                             <select name="id_categoria">
                                 <option selected disabled>Categoria</option>
-                                <?php foreach($categorias as $categoria) : ?>
-                                    <option value="<?= $categoria->id_categoria ?>"><?= $categoria->descricao ?></option>
-                                <?php endforeach; ?>
                                 <!-- Loop de categorias -->
                             </select>
 
@@ -119,9 +112,6 @@
 
                             <select name="id_animal">
                                 <option selected disabled>Pet relacionado</option>
-                                <?php foreach($pets as $pet) : ?>
-                                    <option value="<?= $pet->id_animal ?>"><?= $pet->nome_animal ?></option>
-                                <?php endforeach; ?>
                                 <!-- Loop de pets -->
                             </select>
 
@@ -138,31 +128,26 @@
         <!--  -->
 
 
-
-
         <section class="posts">
-            <?php foreach ($postagens as $postagem):?>
                 <div class="post">
                     <div class="info-post">
                         <div class="profile-info">
 
-
-                            <?php if(empty($postagem->foto_usuario)) : ?>
-                                <img src="<?= base_url()?>assets/img/user/unknown.jpg" class="profile-photo">
-                            <?php else : ?>
-                                <img src="<?= base_url()?>assets/img/user/<?php echo $postagem->email.'/'.$postagem->foto_usuario; ?>" class="profile-photo">
-                            <?php endif; ?>
-
+                            <img src="" class="profile-photo">
 
                             <div class="user-pet-name">
-                                <b><span id="user-name"><?php echo $postagem->usuario;?></span></b>
-                                <span id="pet-name"><?php echo $postagem->animal;?></span>
+                                <!-- <b><span id="user-name">< ?php echo $postagem->usuario;?></span></b> -->
+                                <!-- <b><span id="user-name">< ?php echo $postagem->usuario;?></span></b> -->
+                                <b><span id="user-name"></span></b>
+                                <span id="pet-name"></span>
                             </div>
                         </div>
-                        <div class="date-post"><span id="date-post"><?php echo date("d/m/Y", strtotime($postagem->dh_post));?></span></div>
+                        <!-- <div class="date-post"><span id="date-post">< ?php echo date("d/m/Y", strtotime($postagem->dh_post));?></span></div> -->
+                        <div class="date-post"><span id="date-post"></span></div>
                     </div>
                     <div class="desc-n-menu">
-                        <div class="desc"><?php echo $postagem->descricao;?></div>
+                        <!-- <div class="desc">< ?php echo $postagem->descricao;?></div> -->
+                        <div id="desc-post" class="desc"></div>
                         <div class="dropdown-post-menu">
                             <span class="menu-icon dropdown-post-icon"><i class="fas fa-ellipsis-h fa-xs"></i></i></span>
                             <div class="list-opts display-none dropdown-post-list menu-list">
@@ -175,11 +160,11 @@
                     </div>
                         
                     <div class="post-photo">
-                        <?php if($postagem->midia) : ?>
-                            <img src="<?= base_url()?>assets/img/post/<?= $postagem->midia_url ?>">
-                        <?php else : ?>
-                            <img src="<?= base_url()?>assets/teste/pitbull.png">
-                        <?php endif; ?>
+                        <!-- < ?php //if($postagem->midia) : ?> -->
+                            <!-- <img src="< ?= base_url()?>assets/img/post/< ?= $postagem->midia_url ?>"> -->
+                        <!-- < ?php else : ?> -->
+                            <img id="post-photo" src="">
+                        <!-- < ?php endif; ?> -->
                     </div>
                                         
                     <div class="post-likes">
@@ -190,21 +175,23 @@
                     </div>
                     <div class="line"></div>
                     <div class="comments">
-                        <?php foreach ($postagem->comentarios as $comentario):?>
+                        <!-- < ?php foreach ($postagem->comentarios as $comentario):?> -->
                         <div class="comment">
                             <div class="comment-content">
                                 <div class="comment-info">
                                     <div class="comment-info">
 
 
-                                        <?php if(empty($comentario->foto_usuario)) : ?>
-                                            <img src="<?= base_url()?>assets/img/user/unknown.jpg" class="profile-photo">
-                                        <?php else : ?>
-                                            <img src="<?= base_url()?>assets/img/user/<?php echo $comentario->email.'/'.$comentario->foto_usuario; ?>" class="comment-user-photo">
-                                        <?php endif; ?>
+                                        <!-- < ?php if(empty($comentario->foto_usuario)) : ?> -->
+                                            <!-- <img src="" class="profile-photo"> -->
+                                            <img src="" class="comment-user-photo">
+                                        <!-- < ?php else : ?> -->
+                                            <!-- <img src="< ?= base_url()?>assets/img/user/< ?php echo $comentario->email.'/'.$comentario->foto_usuario; ?>" class="comment-user-photo"> -->
+                                        <!-- < ?php endif; ?> -->
 
 
-                                        <b><span class="comment-user"><?php echo $comentario->usuario; ?>:</span></b>
+                                        <!-- <b><span class="comment-user">< ?php echo $comentario->usuario; ?>:</span></b> -->
+                                        <b><span class="comment-user"></span></b>
                                     </div>
                                     <div class="dropdown-comment-menu">
                                         <span class="menu-icon dropdown-comment-icon"><i class="fas fa-ellipsis-h fa-xs"></i></i></span>
@@ -216,10 +203,11 @@
                                         </div>
                                     </div> 
                                 </div>
-                                <p class="comment-text"><?php echo $comentario->texto; ?></p>
+                                <!-- <p class="comment-text">< ?php echo $comentario->texto; ?></p> -->
+                                <p class="comment-text"></p>
                             </div>
                         </div>
-                        <?php endforeach; ?>
+                        <!-- < ?php endforeach; ?> -->
                     </div>
                     
                     <div id="more-comments">
@@ -228,12 +216,13 @@
 
                 <div class="write-comments">
                     <form class="submit-comment" action="" method="post">
-                        <input type="hidden" name="id_postagem" value=<?=$postagem->id_postagem ?>>
+                        <!-- <input type="hidden" name="id_postagem" value=< ?=$postagem->id_postagem ?>> -->
+                        <input type="hidden" name="id_postagem" id="id_postagem" value="">
                         <textarea class="message" name="texto" type="button" placeholder="Escreva um comentário"></textarea>
                         <button class="send-comment" type="button">➝</button>
                     </form>
                 </div>
-            <?php endforeach;?>              
+            </div>         
         </section>
         
         

@@ -11,6 +11,47 @@ class PostController extends Fauna_Controller {
 
         $this->id_usuario = $_SESSION['id'];
         $this->email = $_SESSION['email'];
+
+        $this->load->model('PostagemModel');
+        $this->load->model('ComentarioModel');
+        $this->load->model('CadastrosModel');
+        $this->load->model('PetsModel');
+    }
+
+    public function getPostagemComentarioRequest() {
+        header('Content-Type: application/json');
+
+        $postagens = $this->PostagemModel->getDadosPostagemModel();
+
+        $pets = $this->PetsModel->getDadosPetModel($this->id_usuario);
+        $categories = $this->CadastrosModel->getCategoriaModel();
+
+        $dados_postagens = [];
+
+        foreach($postagens as $postagem) {
+            $postagem = [
+                'id_postagem' => $postagem->id_postagem,
+                'usuario' => $postagem->usuario,
+                'perfil' => base_url().'/profile/'.$postagem->id_usuario,
+                'animal' => $postagem->animal,
+                'email' => $postagem->email,
+                'foto_usuario' => $postagem->foto_usuario,
+                'descricao' => $postagem->descricao,
+                'midia' => $postagem->midia,
+                'midia_url' => $postagem->email.'/'.$postagem->midia,
+                'dh_post' => $postagem->dh_post,
+                'comentarios' => $this->ComentarioModel->getDadosComentarioModel($postagem->id_postagem)
+            ];
+            $dados_postagens[] = $postagem;
+        }
+
+        $dados = [
+            'postagens'=> $dados_postagens,
+            'pets' => $pets,
+            'categorias' => $categories
+        ];
+
+        echo json_encode($dados);
     }
 
     public function createPostagem() {

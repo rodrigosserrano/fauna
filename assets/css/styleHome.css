@@ -24,6 +24,7 @@ main{
 }
 
 .post{
+    display: none;
     background-color: #fff;
     padding: 10px;
     border: 1px solid #ccc;
@@ -185,7 +186,7 @@ main{
 }
 
 .comment{
-    display: flex;
+    display: none;
     align-items: center;
     margin-bottom: 6px;
 }

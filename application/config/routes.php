@@ -62,7 +62,7 @@ $route['register'] = 'RegisterController';
 $route['register-validate']['post'] = 'RegisterController/validateRegister'; //REQUISIÇÃO POST
 
 //Usuário
-$route['get-dados-user'] = 'UserController/getSettingsRequest';
+$route['get-dados-user']['get'] = 'UserController/getSettingsRequest';
 
 //Usuários configs
 // $route['usuario-dados']  = 'UserController';
@@ -88,6 +88,8 @@ $route['create-pet']['post'] = 'UserController/createPet';
 //Feed
 $route['home'] = 'HomeController';
 
+//Postagem comentario get
+$route['get-post-comment'] = 'PostController/getPostagemComentarioRequest';
 //Posts
 $route['delete-postagem']['post'] = 'PostController/deletePostagem';
 $route['edit-postagem']['post'] = 'PostController/editPostagem';
