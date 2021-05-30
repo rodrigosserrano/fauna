@@ -43,7 +43,7 @@
                                 </div>
                                 <div class="line"></div>
                                 <!-- br pode ser removido dps -->
-                                <input type="file" name="midia" id="new-post" hidden>
+                                <input type="file" name="midia" accept="image/png, image/jpeg, image/gif" id="new-post" hidden>
                                 <div class="content-footer">
                                     <label class="file-label mt-1" for="new-post">
                                         <i class="fas fa-paperclip"></i>
@@ -95,7 +95,7 @@
                                 <div class="line"></div>
                                 <!-- br pode ser removido dps -->
                                 <input type="hidden" name="id_postagem">
-                                <input type="file" name="midia" id="edit-post" hidden>
+                                <input type="file" name="midia" accept="image/png, image/jpeg, image/gif" id="edit-post" hidden>
                                 <div class="content-footer">
                                     <label class="file-label mt-1" for="edit-post">
                                         <i class="fas fa-paperclip"></i>
@@ -273,6 +273,26 @@
                 menuBars[2].style.display = "none";
             }
         })
+
+        const editImg = document.querySelector("#edit-img > img")
+        const editPost = document.getElementById("edit-post")
+        const newImg = document.querySelector("#new-img > img")
+        const newPost = document.getElementById("new-post")
+
+        const openFile = function(e, output){
+            const input = e.target;
+            
+            const reader = new FileReader();
+            reader.onload = function(){
+                const dataURL = reader.result;
+                output.style.display = "block";
+                output.src = dataURL;
+            };
+            reader.readAsDataURL(input.files[0]);
+        };
+
+        editPost.addEventListener("input", e => openFile(e, editImg))
+        newPost.addEventListener("input", e => openFile(e, newImg))
     }
 </script>
 </html>
