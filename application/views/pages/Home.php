@@ -33,40 +33,35 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
 
-
                     <div class="modal-body">
                         <form id="form-criar-post">
-                            <div>
+                            <div class="post-content">
                                 <!-- colocar um overflow auto para aparecer a barra de rolagem -->
-                                <textarea name="descricao" placeholder="Escreva uma mensagem..." rows="4" cols="40"></textarea>
-                                <br>
+                                <div class="content-main">
+                                    <textarea name="descricao" placeholder="Escreva uma mensagem..." rows="4" cols="40"></textarea>
+                                    <div class="preview" id="new-img"><img></div>
+                                </div>
+                                <div class="line"></div>
                                 <!-- br pode ser removido dps -->
-                                <input type="file" name="midia">
-                                <label for="midia">Inserir mídia</label>
+                                <input type="file" name="midia" id="new-post" hidden>
+                                <div class="content-footer">
+                                    <label class="file-label mt-1" for="new-post">
+                                        <i class="fas fa-paperclip"></i>
+                                        <span>Inserir mídia</span>
+                                    </label>
+                                    <select class="modal-select" name="id_categoria">
+                                        <option selected disabled>Categoria</option>
+                                        <!-- Loop de categorias -->
+                                    </select>
+                                    <select class="modal-select" name="id_animal">
+                                        <option selected disabled>Pet relacionado</option>
+                                        <!-- Loop de pets -->
+                                    </select>
+                                </div>
                             </div>
-
-                            <br><br>
-
-                            <select name="id_categoria">
-                                <option selected disabled>Categoria</option>
-                                    <!-- <option value="< ?= $categoria->id_categoria ?>">< ?= $categoria->descricao ?></option> -->
-                                <!-- Loop de categorias -->
-                            </select>
-
-                            <br><br>
-
-                            <select name="id_animal">
-                                <option selected disabled>Pet relacionado</option>
-                                    <!-- <option value="< ?= $pet->id_animal ?>">< ?= $pet->nome_animal ?></option> -->
-                                <!-- Loop de pets -->
-                            </select>
-
-                            <br><br>
-                            
-                            <button type="button" id="btn-cria-postagem">Criar Postagem</button>
+                            <div class="btn-container"><button type="button" id="btn-cria-postagem">Criar postagem</button></div>
                         </form>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -89,35 +84,34 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
 
-
                     <div class="modal-body">
-                        <form id="form-criar-post">
-                            <div>
+                        <form id="form-editar-post">
+                            <div class="post-content">
                                 <!-- colocar um overflow auto para aparecer a barra de rolagem -->
-                                <textarea name="descricao" rows="4" cols="40"></textarea>
-                                <br>
+                                <div class="content-main">
+                                    <textarea name="descricao" rows="4" cols="40"></textarea>
+                                    <div class="preview" id="edit-img"><img></div>
+                                </div>
+                                <div class="line"></div>
                                 <!-- br pode ser removido dps -->
-                                <input type="file" name="midia">
-                                <label for="midia">Escolher mídia</label>
+                                <input type="hidden" name="id_postagem">
+                                <input type="file" name="midia" id="edit-post" hidden>
+                                <div class="content-footer">
+                                    <label class="file-label mt-1" for="edit-post">
+                                        <i class="fas fa-paperclip"></i>
+                                        <span>Inserir mídia</span>
+                                    </label>
+                                    <select class="modal-select" name="id_categoria">
+                                        <option selected disabled>Categoria</option>
+                                        <!-- Loop de categorias -->
+                                    </select>
+                                    <select class="modal-select" name="id_animal">
+                                        <option selected disabled>Pet relacionado</option>
+                                        <!-- Loop de pets -->
+                                    </select>
+                                </div>
                             </div>
-
-                            <br><br>
-
-                            <select name="id_categoria">
-                                <option selected disabled>Categoria</option>
-                                <!-- Loop de categorias -->
-                            </select>
-
-                            <br><br>
-
-                            <select name="id_animal">
-                                <option selected disabled>Pet relacionado</option>
-                                <!-- Loop de pets -->
-                            </select>
-
-                            <br><br>
-                            
-                            <button type="button" id="btn-altera-postagem">Editar Postagem</button>
+                            <div class="btn-container"><button type="button" id="btn-altera-postagem">Editar Postagem</button></div>
                         </form>
                     </div>
 
@@ -215,10 +209,10 @@
                     </div>
 
                 <div class="write-comments">
-                    <form class="submit-comment" action="" method="post">
+                    <form class="form-comment" action="" method="post">
                         <!-- <input type="hidden" name="id_postagem" value=< ?=$postagem->id_postagem ?>> -->
                         <input type="hidden" name="id_postagem" id="id_postagem" value="">
-                        <textarea class="message" name="texto" type="button" placeholder="Escreva um comentário"></textarea>
+                        <textarea class="message" name="texto" placeholder="Escreva um comentário"></textarea>
                         <button class="send-comment" type="button">➝</button>
                     </form>
                 </div>
@@ -252,85 +246,33 @@
         </section>
     </main>
 </body>
+
 <script>
-window.onload = function(){
-    // document.getElementById("message").addEventListener("focus", e => {
-    //     if(e.target.value === "Escreva um comentário")
-    //         e.target.value = ""; 
-    // })
-    // document.getElementById("message").addEventListener("blur", e => {
-    //     if(e.target.value === "")
-    //         e.target.value = "Escreva um comentário";
-    // })
+    window.onload = function(){
+        // Menu Mobile
+        const mobileMenuButton = document.getElementById("navigation-menu-mobile");
+        const mobileMenu = document.getElementById("navigation-links-mobile");
 
-    document.querySelector("#like-icon").addEventListener("click", e => {
-        if(e.target.getAttribute("src") === "<?= base_url()?>assets/img/icon/paw-like-unset.png"){
-            e.target.setAttribute("src", "<?= base_url()?>assets/img/icon/paw-like-set.png");
-        }
-        else
-            e.target.setAttribute("src", "<?= base_url()?>assets/img/icon/paw-like-unset.png");
-    })
+        mobileMenuButton.addEventListener('click', () => {
+            let menuBars = document.querySelectorAll('.mobile-bars');
 
-    Array.from(document.querySelectorAll(".menu-icon")).forEach((el, i) => {
-        el.addEventListener("click", e => {
-            e.stopPropagation();
-            const listOpts = Array.from(document.querySelectorAll(".list-opts"));
-            for(j in listOpts){
-                if(j != i)
-                    if(listOpts[j].classList.contains("display-block")){
-                        listOpts[j].classList.remove("display-block");
-                        listOpts[j].classList.add("display-none");
-                    }
-            }
+            if (mobileMenu.style.display === "flex") {
+                mobileMenu.style.display = "none";
 
-            if(listOpts[i].classList.contains("display-none")){
-                listOpts[i].classList.remove("display-none");
-                listOpts[i].classList.add("display-block");
-            }
-            else if(listOpts[i].classList.contains("display-block")){
-                listOpts[i].classList.remove("display-block");
-                listOpts[i].classList.add("display-none");
+                menuBars[0].style.marginBottom = "0";
+                menuBars[0].style.transform = 'rotate(0deg)';
+                menuBars[1].style.transform = 'rotate(0deg)';
+                menuBars[2].style.display = "flex";
+
+            } else {
+                mobileMenu.style.display = "flex";
+                
+                menuBars[0].style.marginBottom = "-10px";
+                menuBars[0].style.transform = 'rotate(45deg)';
+                menuBars[1].style.transform = 'rotate(-45deg)';
+                menuBars[2].style.display = "none";
             }
         })
-    })
-
-    document.getElementsByTagName("body")[0].addEventListener("click", () => {
-        Array.from(document.querySelectorAll(".menu-list")).forEach(el => {
-            if(el.classList.contains("display-block")){
-                el.classList.remove("display-block");
-                el.classList.add("display-none");
-            }
-        })
-    })
-
-    // Menu Mobile
-    const mobileMenuButton = document.getElementById("navigation-menu-mobile");
-    const mobileMenu = document.getElementById("navigation-links-mobile");
-
-
-    mobileMenuButton.addEventListener('click', () => {
-        let menuBars = document.querySelectorAll('.mobile-bars');
-        
-
-        if (mobileMenu.style.display === "flex") {
-            mobileMenu.style.display = "none";
-
-            menuBars[0].style.marginBottom = "0";
-            menuBars[0].style.transform = 'rotate(0deg)';
-            menuBars[1].style.transform = 'rotate(0deg)';
-            menuBars[2].style.display = "flex";
-
-
-        } else {
-            mobileMenu.style.display = "flex";
-            
-            menuBars[0].style.marginBottom = "-10px";
-            menuBars[0].style.transform = 'rotate(45deg)';
-            menuBars[1].style.transform = 'rotate(-45deg)';
-            menuBars[2].style.display = "none";
-        }
-    })
-}
-
+    }
 </script>
 </html>

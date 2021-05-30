@@ -55,6 +55,21 @@ main{
     border-radius: 50%;
     background-color: #ccc;
     margin-right: 5px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.profile-photo:hover {
+    opacity: 70%;
+}
+
+#user-name {
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+#user-name:hover {
+    color: var(--link-color);
 }
 
 .user-pet-name{
@@ -213,12 +228,27 @@ main{
     word-wrap:break-word;
 }
 
+.comment-user {
+    transition: 0.2s;
+    cursor: pointer
+}
+
+.comment-user:hover {
+    color: var(--link-color);
+}
+
 .comment-user-photo{
     width: 25px;
     height: 25px;
     border-radius: 50%;
     background-color: #ccc;
     margin-right: 3px;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.comment-user-photo:hover {
+    opacity: 70%;
 }
 
 .dropdown-comment-menu{

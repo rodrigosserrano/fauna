@@ -35,8 +35,10 @@ class PostController extends Fauna_Controller {
             $postagem = [
                 'id_postagem' => $postagem->id_postagem,
                 'usuario' => $postagem->usuario,
-                'perfil' => base_url().'/profile/'.$postagem->id_usuario,
+                'perfil' => base_url().'profile/'.$postagem->id_usuario,
+                'id_animal' => $postagem->id_animal,
                 'animal' => $postagem->animal,
+                'id_categoria' => $postagem->id_categoria,
                 'email' => $postagem->email,
                 'foto_usuario' => $postagem->foto_usuario,
                 'descricao' => $postagem->descricao,
@@ -99,7 +101,8 @@ class PostController extends Fauna_Controller {
         $this->load->library('form_validation');
         
         // $this->form_validation->set_rules('foto_animal', 'foto_animal', 'required');
-        $this->form_validation->set_rules('id_usuario', 'id_usuario', 'required');
+        // $this->form_validation->set_rules('id_usuario', 'id_usuario', 'required');
+        $this->form_validation->set_rules('id_postagem', 'id_postagem', 'required');
         $this->form_validation->set_rules('id_animal', 'id_animal', 'required');
         $this->form_validation->set_rules('id_categoria', 'id_categoria', 'required');
         $this->form_validation->set_rules('descricao', 'descricao', 'required');
@@ -111,7 +114,8 @@ class PostController extends Fauna_Controller {
                 "id_usuario" => $this->id_usuario,
                 "id_animal" => $this->input->post('id_animal'),
                 "descricao" => $this->input->post('descricao'),
-                "id_categoria" => $this->input->post('id_categoria')
+                "id_categoria" => $this->input->post('id_categoria'),
+                "id_postagem" => $this->input->post('id_postagem')
             ];
             
             $this->load->model('PostagemModel');

@@ -12,8 +12,9 @@ class PostagemModel extends CI_Model {
 
         $dados = [
             'descricao' => $descricao,
-            'midia' => $midia,
-            'id_categoria' => $id_categoria
+            // 'midia' => $midia,
+            'id_categoria' => $id_categoria,
+            'id_animal' => $id_animal
             /*
                 'tipo' => $tipo,
                 'raca' =>  $raca_animal,
@@ -37,7 +38,7 @@ class PostagemModel extends CI_Model {
 
     public function getDadosPostagemModel($filtro_categoria = null){
         //$query = $this->db->get('postagem');
-        $this->db->select('u.id_usuario as id_usuario, p.id_postagem, u.nome_usuario as usuario, u.foto_usuario, u.email, a.nome_animal as animal, p.descricao, p.midia, p.dh_post');
+        $this->db->select('u.id_usuario as id_usuario, p.id_categoria, p.id_animal, p.id_postagem, u.nome_usuario as usuario, u.foto_usuario, u.email, a.nome_animal as animal, p.descricao, p.midia, p.dh_post');
         $this->db->from('postagem p'); 
         $this->db->join('usuario u', 'u.id_usuario = p.id_usuario', 'left');
         $this->db->join('animal a', ' a.id_animal = p.id_animal', 'left');

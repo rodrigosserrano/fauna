@@ -17,7 +17,7 @@
                         <section id="form-pic-area">
                             <div class="form-pic">
                                 <img class="pic" data-img-user="">
-                                <input type="file" name="foto_usuario" enctype="multipart/form-data">
+                                <input type="file" accept="image/png, image/jpg, image/gif" name="foto_usuario" enctype="multipart/form-data">
                             </div>
                         </section>
 
@@ -63,7 +63,7 @@
                                             <section id="form-pic-area">
                                                 <div class="form-pic">       
                                                     <img class="form-pet-pic" id="form-pet-pic-alterar" src="#" alt="#" title="#">
-                                                    <input type="file" id="input-foto-animal-com-foto" name="foto_animal" enctype="multipart/form-data">
+                                                    <input type="file" id="input-foto-animal-com-foto" accept="image/png, image/jpg, image/gif" name="foto_animal" enctype="multipart/form-data">
                                                 </div>
                                             </section>
 
@@ -131,7 +131,7 @@
                                             <section id="form-pic-area">
                                                 <div class="form-pic">
                                                     <p>+</p>
-                                                    <input type="file" name="foto_animal" enctype="multipart/form-data">
+                                                    <input type="file" accept="image/png, image/jpg, image/gif" name="foto_animal" enctype="multipart/form-data">
                                                 </div>
                                             </section>
 
