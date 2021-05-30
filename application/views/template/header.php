@@ -14,8 +14,9 @@
         <script src="<?= base_url()?>assets/js/api_post.js"></script>
         <script src="<?= base_url()?>assets/js/view.js"></script>
         
-        <!-- Uncaught SyntaxError: Unexpected token '<'  -->
-        <script src="<?= $js ?>"></script>
+        <?php if($js) : ?>
+            <script src="<?= $js ?>"></script>
+        <?php endif; ?>
         
         <script src="https://kit.fontawesome.com/598f8e27d9.js" crossorigin="anonymous"></script>
 

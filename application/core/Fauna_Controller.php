@@ -47,8 +47,8 @@ class Fauna_Controller extends CI_Controller{
     public function dadosShow($title, $style = null, $js = null){
         $dados = [
             'title' => $title,
-            'style' => base_url().$style,
-            'js' => base_url().$js
+            'style' => $style ? base_url().$style : null,
+            'js' => $js ? base_url().$js : null
         ];
 
         return $dados;
@@ -75,8 +75,9 @@ class Fauna_Controller extends CI_Controller{
         if($arquivo['name'] != ''){
             $extensao = trim(substr(strchr($arquivo['name'], '.'), 0));
             $acceptedTypes = ['.png', '.jpg', '.gif'];
+            $maxSize = 10000000;
 
-            if(array_search($extensao, $acceptedTypes) && $arquivo['size'] < 10000000) {
+            if(array_search($extensao, $acceptedTypes) && $arquivo['size'] <= $maxSize) {
                 switch($type) {
                     case 'user':
                         $nomefoto = md5($email.time()).$extensao;
