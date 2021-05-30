@@ -20,7 +20,7 @@ class UserController extends Fauna_Controller {
     public function index() {
 
         $dados_view = $this->dadosShow('Altera Conta', 'assets/css/styleConfig.css', 'assets/js/userConfig.js');
-        $view = $this->load->view('/pages/Settings-PassandoParaAjax', null, true);
+        $view = $this->load->view('/pages/Settings', null, true);
 
         $this->show($dados_view, $view, true);
     }
