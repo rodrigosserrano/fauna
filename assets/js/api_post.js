@@ -31,6 +31,7 @@ $(document).ready(function(){
                 var postagens = r.postagens;
 
                 // Modal
+                const editComentarioModal = document.querySelector('#edit-comment-modal');
                 const editPostagemModal = document.querySelector('#edit-post-modal');
                 const newPostagemModal = document.querySelector('#new-post-modal');
 
@@ -128,6 +129,12 @@ $(document).ready(function(){
 
                         //Comentário
                         newComment.querySelector('.comment-text').innerText = comentario.texto;
+
+                        // Editar Comentário
+                        newComment.querySelector('#edit-comment').addEventListener('click', () => {
+                            editComentarioModal.querySelector('textarea').value = comentario.texto;
+                            editComentarioModal.querySelector('input[name=id_comentario]').value = comentario.id_comentario;
+                        })
                         
                         // Deletar Comentário
                         newComment.querySelector('#delete-comment').addEventListener('click', () => {
@@ -303,6 +310,30 @@ $(document).ready(function(){
             $.ajax({
                 type: "POST",
                 url: base_url+"edit-postagem",
+                data: form,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    if(response.mensagem){
+                        alert(response.mensagem);
+                        window.location.reload();
+                    }
+                },
+                error: function (request, status, error) {
+                    console.log(request.responseText);
+                }
+            });
+        });
+
+
+        // Alterar Comentário
+        $("#btn-altera-comentario").click(function(){
+
+            let form = new FormData(document.getElementById('form-editar-comentario'));
+
+            $.ajax({
+                type: "POST",
+                url: base_url+"edit-comentario",
                 data: form,
                 processData: false,
                 contentType: false,

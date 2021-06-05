@@ -20,12 +20,13 @@ class ComentarioModel extends CI_Model {
             */
         ];
         
-        $this->db->where('id_postagem', $id_postagem);
-        return $this->db->update('postagem', $dados);
+        $this->db->where('id_comentario', $id_comentario);
+        $this->db->where('id_usuario', $id_usuario);
+        return $this->db->update('comentario', $dados);
     }
 
-    public function deleteComentarioModel($id_comentario){
-        return $this->db->where('id_comentario', $id_comentario)->delete('comentario');
+    public function deleteComentarioModel($id_comentario, $id_usuario){
+        return $this->db->where('id_comentario', $id_comentario)->where('id_usuario', $id_usuario)->delete('comentario');
     }
 
     public function getDadosComentarioModel($id_postagem){

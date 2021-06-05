@@ -75,7 +75,7 @@
 
     <!-- MODAL EDITAR POSTAGEM -->
         
-    <div class="modal fade" id="edit-post-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="new-post-area" aria-hidden="true">
+    <div class="modal fade" id="edit-post-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="edit-post-area" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
 
@@ -112,6 +112,32 @@
                                 </div>
                             </div>
                             <div class="btn-container"><button type="button" id="btn-altera-postagem">Editar Postagem</button></div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!--  -->
+
+
+        <!-- MODAL EDITAR POSTAGEM -->
+        
+    <div class="modal fade" id="edit-comment-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="edit-comment-area" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Editar Comentário</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <form id="form-editar-comentario">
+                            <textarea name="texto"></textarea>
+                            <input type="hidden" name="id_comentario">
+                            <button type="button" id="btn-altera-comentario">Editar Comentário</button>
                         </form>
                     </div>
 
@@ -191,7 +217,7 @@
                                         <span class="menu-icon dropdown-comment-icon"><i class="fas fa-ellipsis-h fa-xs"></i></i></span>
                                         <div class="list-opts dropdown-comment-list menu-list display-none">
                                             <ul>
-                                                <li id="edit-comment" style="cursor:pointer;">Editar comentário</li>
+                                                <li id="edit-comment" data-bs-toggle="modal" data-bs-target="#edit-comment-modal" style="cursor:pointer;">Editar comentário</li>
                                                 <li id="delete-comment" style="cursor:pointer;">Apagar comentário</li>
                                             </ul>
                                         </div>

@@ -135,7 +135,7 @@ class PostController extends Fauna_Controller {
         header('Content-Type: application/json');
         
         $this->load->model('PostagemModel');
-        if($this->PostagemModel->deletePostagemModel($this->id_postagem)){
+        if($this->PostagemModel->deletePostagemModel($this->id_postagem, $this->id_usuario)){
             echo json_encode(['mensagem'=>'Postagem excluida com sucesso.']);
         }else{
             echo json_encode(['mensagem'=>'Erro ao deletar']);
@@ -183,13 +183,12 @@ class PostController extends Fauna_Controller {
         $this->load->library('form_validation');
         
         // $this->form_validation->set_rules('foto_animal', 'foto_animal', 'required');
-        $this->form_validation->set_rules('id_usuario', 'id_usuario');
         $this->form_validation->set_rules('id_comentario', 'id_comentario');
         $this->form_validation->set_rules('texto', 'texto', 'required');        
 
         if($this->form_validation->run()){
             $dados_cadastro = [    
-                "id_usuario" => $this->input->post('id_usuario'),
+                "id_usuario" => $this->id_usuario,
                 "id_comentario" => $this->input->post('id_comentario'),
                 "texto" => $this->input->post('texto')
                 //"dh_comentario" => $now = new DateTime().getTimestamp
