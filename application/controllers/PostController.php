@@ -24,7 +24,6 @@ class PostController extends Fauna_Controller {
 
     public function getPostagemComentarioRequest($filter = null) {
         header('Content-Type: application/json');
-
         $postagens = $this->PostagemModel->getDadosPostagemModel($filter);
 
         $pets = $this->PetsModel->getDadosPetModel($this->id_usuario);

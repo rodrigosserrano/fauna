@@ -66,6 +66,10 @@ $(document).ready(function(){
                 var postagens = r.postagens;
                 var usuario = r.usuario;
 
+                if(!postagens.length) {
+                    window.location.href = `${base_url}home`;
+                }
+
                 // Modal
                 const editComentarioModal = document.querySelector('#edit-comment-modal');
                 const editPostagemModal = document.querySelector('#edit-post-modal');
