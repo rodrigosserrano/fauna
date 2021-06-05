@@ -13,6 +13,7 @@ class PostController extends Fauna_Controller {
         $this->id_comentario = isset($_POST['id_comentario']) ? $_POST['id_comentario'] : '';
 
         $this->id_usuario = $_SESSION['id'];
+        $this->nivel_usuario = $_SESSION['nivel_usuario'];
         $this->email = $_SESSION['email'];
 
         $this->load->model('PostagemModel');
@@ -35,6 +36,7 @@ class PostController extends Fauna_Controller {
             $postagem = [
                 'id_postagem' => $postagem->id_postagem,
                 'usuario' => $postagem->usuario,
+                'id_usuario' => $postagem->id_usuario,
                 'perfil' => base_url().'profile/'.$postagem->id_usuario,
                 'id_animal' => $postagem->id_animal,
                 'animal' => $postagem->animal,
@@ -49,11 +51,17 @@ class PostController extends Fauna_Controller {
             ];
             $dados_postagens[] = $postagem;
         }
+        
+        $usuario = [
+            'id_usuario' => $this->id_usuario,
+            'is_admin' => $this->nivel_usuario == 1 ? true : false
+        ];
 
         $dados = [
             'postagens'=> $dados_postagens,
             'pets' => $pets,
-            'categorias' => $categories
+            'categorias' => $categories,
+            'usuario' => $usuario,
         ];
 
         echo json_encode($dados);
@@ -119,7 +127,7 @@ class PostController extends Fauna_Controller {
             ];
             
             $this->load->model('PostagemModel');
-            $verifica_cadastro = $this->PostagemModel->alterarDadosPostagemModel($dados_cadastro);
+            $verifica_cadastro = $this->PostagemModel->alterarDadosPostagemModel($dados_cadastro, $this->nivel_usuario);
         
             if($verifica_cadastro){
                 echo json_encode(['mensagem'=>'Postagem alterada com sucesso!']);
@@ -135,7 +143,7 @@ class PostController extends Fauna_Controller {
         header('Content-Type: application/json');
         
         $this->load->model('PostagemModel');
-        if($this->PostagemModel->deletePostagemModel($this->id_postagem, $this->id_usuario)){
+        if($this->PostagemModel->deletePostagemModel($this->id_postagem, $this->id_usuario, $this->nivel_usuario)){
             echo json_encode(['mensagem'=>'Postagem excluida com sucesso.']);
         }else{
             echo json_encode(['mensagem'=>'Erro ao deletar']);
@@ -195,7 +203,7 @@ class PostController extends Fauna_Controller {
             ];
             
             $this->load->model('ComentarioModel');
-            $verifica_cadastro = $this->ComentarioModel->alterarDadosComentarioModel($dados_cadastro);
+            $verifica_cadastro = $this->ComentarioModel->alterarDadosComentarioModel($dados_cadastro, $this->nivel_usuario);
         
             if($verifica_cadastro){
                 echo json_encode(['mensagem'=>'Comentario alterado com sucesso !']);
@@ -211,7 +219,7 @@ class PostController extends Fauna_Controller {
         header('Content-Type: application/json');
 
         $this->load->model('ComentarioModel');
-        if($this->ComentarioModel->deleteComentarioModel($this->id_comentario)){
+        if($this->ComentarioModel->deleteComentarioModel($this->id_comentario, $this->id_usuario, $this->nivel_usuario)){
             echo json_encode(['mensagem'=>'Comentario excluido com sucesso.']);
         }else{
             echo json_encode(['mensagem'=>'Erro ao deletar']);

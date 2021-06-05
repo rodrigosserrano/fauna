@@ -7,7 +7,7 @@ class PostagemModel extends CI_Model {
             return true;
     }
 
-    public function alterarDadosPostagemModel($dados_update){
+    public function alterarDadosPostagemModel($dados_update, $nivel_usuario){
         extract($dados_update);
 
         $dados = [
@@ -27,11 +27,19 @@ class PostagemModel extends CI_Model {
         }
         
         $this->db->where('id_postagem', $id_postagem);
-        $this->db->where('id_usuario', $id_usuario);
+
+        if($nivel_usuario != 1) {
+            $this->db->where('id_usuario', $id_usuario);
+        }
+        
         return $this->db->update('postagem', $dados);
     }
 
-    public function deletePostagemModel($id_postagem, $id_usuario){
+    public function deletePostagemModel($id_postagem, $id_usuario, $nivel_usuario){
+        if($nivel_usuario == 1) {
+            if($this->db->where('id_postagem', $id_postagem)->delete('comentario'))
+            return $this->db->where('id_postagem', $id_postagem)->delete('postagem');
+        }
         if($this->db->where('id_postagem', $id_postagem)->where('id_usuario', $id_usuario)->delete('comentario'))
         return $this->db->where('id_postagem', $id_postagem)->delete('postagem');
     }

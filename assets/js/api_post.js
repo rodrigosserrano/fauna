@@ -25,10 +25,11 @@ $(document).ready(function(){
                 var path_user = base_url+'assets/img/user';
                 // var path_pet = base_url+'assets/img/pet';
 
-                // console.log(r);
+                console.log(r);
                 var categorias = r.categorias;
                 var pets = r.pets;
                 var postagens = r.postagens;
+                var usuario = r.usuario;
 
                 // Modal
                 const editComentarioModal = document.querySelector('#edit-comment-modal');
@@ -60,6 +61,7 @@ $(document).ready(function(){
                     newPost.style.display = 'block';
 
                     newPost.id = postagem.id_postagem;
+
                     // Foto Usuário
                     if(postagem.foto_usuario == null) {
                         newPost.querySelector('.profile-photo').src = `${path_user}/unknown.jpg`;
@@ -130,30 +132,36 @@ $(document).ready(function(){
                         //Comentário
                         newComment.querySelector('.comment-text').innerText = comentario.texto;
 
-                        // Editar Comentário
-                        newComment.querySelector('#edit-comment').addEventListener('click', () => {
-                            editComentarioModal.querySelector('textarea').value = comentario.texto;
-                            editComentarioModal.querySelector('input[name=id_comentario]').value = comentario.id_comentario;
-                        })
-                        
-                        // Deletar Comentário
-                        newComment.querySelector('#delete-comment').addEventListener('click', () => {
-                            let id = newComment.id;
-                            $.ajax({
-                                type: "POST",
-                                url: base_url+"delete-comentario",
-                                data: {id_comentario:id},
-                                success: function (response) {
-                                    if(response.mensagem){
-                                        alert(response.mensagem);
-                                        window.location.reload();
+                        if(comentario.id_usuario == usuario.id_usuario || usuario.is_admin) {
+                            // Editar Comentário
+                            newComment.querySelector('#edit-comment').addEventListener('click', () => {
+                                editComentarioModal.querySelector('textarea').value = comentario.texto;
+                                editComentarioModal.querySelector('input[name=id_comentario]').value = comentario.id_comentario;
+                            })
+                            
+                            // Deletar Comentário
+                            newComment.querySelector('#delete-comment').addEventListener('click', () => {
+                                let id = newComment.id;
+                                $.ajax({
+                                    type: "POST",
+                                    url: base_url+"delete-comentario",
+                                    data: {id_comentario:id},
+                                    success: function (response) {
+                                        if(response.mensagem){
+                                            alert(response.mensagem);
+                                            window.location.reload();
+                                        }
+                                    },
+                                    error: function (request, status, error) {
+                                        console.log(request.responseText);
                                     }
-                                },
-                                error: function (request, status, error) {
-                                    console.log(request.responseText);
-                                }
-                            });
-                        })
+                                });
+                            })
+                        } else {
+                            // Remover opções de comentário se o usuário não for o dono dele
+                            let menu = newComment.querySelectorAll('.comment-info')[0];
+                            menu.removeChild(menu.childNodes[3]);
+                        }
     
                         newPost.querySelector('.comments').appendChild(newComment);
                     })
@@ -182,6 +190,64 @@ $(document).ready(function(){
                         });
                     })
 
+                    if(postagem.id_usuario == usuario.id_usuario || usuario.is_admin) {
+                        // Editar Postagem
+                        newPost.querySelector('#edit-post').addEventListener('click', () => {
+                            editPostagemModal.querySelector('textarea').innerText = postagem.descricao;
+                            editPostagemModal.querySelector('[name="id_postagem"]').value = postagem.id_postagem;
+
+                            editPostagemModal.querySelector('[name="id_categoria"]').innerHTML = '<option disabled>Categoria</option>';
+                            editPostagemModal.querySelector('[name="id_animal"]').innerHTML = '<option disabled>Pet relacionado</option>';
+
+                            // Carregar a categoria da postagem a ser editada
+                            categorias.map(({
+                                id_categoria,
+                                descricao
+                            }) => {
+                                if(id_categoria == postagem.id_categoria) {
+                                    editPostagemModal.querySelector('[name="id_categoria"]').innerHTML += `<option selected value='${id_categoria}'>`+trataString(descricao)+`</option>`;
+                                } else {
+                                    editPostagemModal.querySelector('[name="id_categoria"]').innerHTML += `<option value='${id_categoria}'>`+trataString(descricao)+`</option>`;
+                                }
+                            });
+                
+                            // Carregar o animal da postagem a ser editada
+                            pets.map(({
+                                id_animal,
+                                nome_animal
+                            }) => {
+                                if(id_animal == postagem.id_animal) {
+                                    editPostagemModal.querySelector('[name="id_animal"]').innerHTML += `<option selected value='${id_animal}'>`+trataString(nome_animal)+`</option>`;
+                                } else {
+                                    editPostagemModal.querySelector('[name="id_animal"]').innerHTML += `<option value='${id_animal}'>`+trataString(nome_animal)+`</option>`;
+                                }
+                                
+                            });
+                        })
+
+                        // Deletar Postagem
+                        newPost.querySelector('#delete-post').addEventListener('click', () => {
+                            let id = newPost.id;
+                            $.ajax({
+                                type: "POST",
+                                url: base_url+"delete-postagem",
+                                data: {id_postagem:id},
+                                success: function (response) {
+                                    if(response.mensagem){
+                                        alert(response.mensagem);
+                                        window.location.reload();
+                                    }
+                                },
+                                error: function (request, status, error) {
+                                    console.log(request.responseText);
+                                }
+                            });
+                        })
+                    } else {
+                        // Remover botões se o usuário não for o dono da postagem
+                        let menu = newPost.querySelector('.desc-n-menu');
+                        menu.removeChild(menu.childNodes[5]);
+                    }
 
                     // Botões de Menu da Postagem
                     Array.from(newPost.querySelectorAll(".menu-icon")).forEach((el, i) => {
@@ -207,7 +273,6 @@ $(document).ready(function(){
                         })
                     })
 
-
                     // Botões de Menu sumirem ao clicar em outra área da tela
                     document.getElementsByTagName("body")[0].addEventListener("click", () => {
                         Array.from(newPost.querySelectorAll(".menu-list")).forEach(el => {
@@ -216,60 +281,6 @@ $(document).ready(function(){
                                 el.classList.add("display-none");
                             }
                         })
-                    })
-
-
-                    // Editar Postagem
-                    newPost.querySelector('#edit-post').addEventListener('click', () => {
-                        editPostagemModal.querySelector('textarea').innerText = postagem.descricao;
-                        editPostagemModal.querySelector('[name="id_postagem"]').value = postagem.id_postagem;
-
-                        editPostagemModal.querySelector('[name="id_categoria"]').innerHTML = '<option disabled>Categoria</option>';
-                        editPostagemModal.querySelector('[name="id_animal"]').innerHTML = '<option disabled>Pet relacionado</option>';
-
-                        // Carregar a categoria da postagem a ser editada
-                        categorias.map(({
-                            id_categoria,
-                            descricao
-                        }) => {
-                            if(id_categoria == postagem.id_categoria) {
-                                editPostagemModal.querySelector('[name="id_categoria"]').innerHTML += `<option selected value='${id_categoria}'>`+trataString(descricao)+`</option>`;
-                            } else {
-                                editPostagemModal.querySelector('[name="id_categoria"]').innerHTML += `<option value='${id_categoria}'>`+trataString(descricao)+`</option>`;
-                            }
-                        });
-            
-                        // Carregar o animal da postagem a ser editada
-                        pets.map(({
-                            id_animal,
-                            nome_animal
-                        }) => {
-                            if(id_animal == postagem.id_animal) {
-                                editPostagemModal.querySelector('[name="id_animal"]').innerHTML += `<option selected value='${id_animal}'>`+trataString(nome_animal)+`</option>`;
-                            } else {
-                                editPostagemModal.querySelector('[name="id_animal"]').innerHTML += `<option value='${id_animal}'>`+trataString(nome_animal)+`</option>`;
-                            }
-                            
-                        });
-                    })
-
-                    // Deletar Postagem
-                    newPost.querySelector('#delete-post').addEventListener('click', () => {
-                        let id = newPost.id;
-                        $.ajax({
-                            type: "POST",
-                            url: base_url+"delete-postagem",
-                            data: {id_postagem:id},
-                            success: function (response) {
-                                if(response.mensagem){
-                                    alert(response.mensagem);
-                                    window.location.reload();
-                                }
-                            },
-                            error: function (request, status, error) {
-                                console.log(request.responseText);
-                            }
-                        });
                     })
                     
                     document.querySelector('.posts').appendChild(newPost);

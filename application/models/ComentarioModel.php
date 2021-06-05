@@ -7,7 +7,7 @@ class ComentarioModel extends CI_Model {
             return true;
     }
 
-    public function alterarDadosComentarioModel($dados_update){
+    public function alterarDadosComentarioModel($dados_update, $nivel_usuario){
         extract($dados_update);
 
         $dados = [
@@ -21,11 +21,20 @@ class ComentarioModel extends CI_Model {
         ];
         
         $this->db->where('id_comentario', $id_comentario);
-        $this->db->where('id_usuario', $id_usuario);
+
+        // Não for admin
+        if($nivel_usuario != 1) {
+            $this->db->where('id_usuario', $id_usuario);
+        }
+        
         return $this->db->update('comentario', $dados);
     }
 
-    public function deleteComentarioModel($id_comentario, $id_usuario){
+    public function deleteComentarioModel($id_comentario, $id_usuario, $nivel_usuario){
+        if($nivel_usuario == 1) {
+            return $this->db->where('id_comentario', $id_comentario)->delete('comentario');
+        }
+
         return $this->db->where('id_comentario', $id_comentario)->where('id_usuario', $id_usuario)->delete('comentario');
     }
 
