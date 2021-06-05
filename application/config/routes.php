@@ -87,9 +87,11 @@ $route['create-pet']['post'] = 'UserController/createPet';
 
 //Feed
 $route['home'] = 'HomeController';
+$route['home/(:any)'] = 'HomeController';
 
 //Postagem comentario get
 $route['get-post-comment'] = 'PostController/getPostagemComentarioRequest';
+$route['get-post-comment/(:any)'] = 'PostController/getPostagemComentarioRequest/$1';
 //Posts
 $route['delete-postagem']['post'] = 'PostController/deletePostagem';
 $route['edit-postagem']['post'] = 'PostController/editPostagem';

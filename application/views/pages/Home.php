@@ -11,9 +11,9 @@
     <div class="topnav">
         <!-- Navigation links (hidden by default) -->
         <div id="navigation-links-mobile">
-            <a class="menu-mobile-item" href="#news">Explorar</a>
-            <a class="menu-mobile-item" href="#contact">Adoção</a>
-            <a class="menu-mobile-item" href="#about">Animais Perdidos</a>
+            <a id="explore-mobile" class="menu-mobile-item" href="">Explorar</a>
+            <a id="adoption-mobile" class="menu-mobile-item" href="">Adoção</a>
+            <a id="lost-animals-mobile" class="menu-mobile-item" href="">Animais Perdidos</a>
         </div>
     </div>
 

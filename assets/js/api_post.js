@@ -15,12 +15,47 @@ $(document).ready(function(){
         return stringTratada;
     }
 
-    // Requisição GET das Postagens e Comentários via AJAX
-    if( checkURL('home') ) {
+    function uriRoute() {
+        let route = window.location.href.replace(base_url, '').split('/');
+        return route;
+    }
 
+    // Requisição GET das Postagens e Comentários via AJAX
+
+    if( uriRoute()[0] == 'home' ) {
+
+        // Navegação
+        document.querySelector('#explore').addEventListener('click', () => {
+            window.location.href = `${base_url}home`;
+        })
+
+        document.querySelector('#adoption').addEventListener('click', () => {
+            window.location.href = `${base_url}home/adocao`;
+        })
+
+        document.querySelector('#lost-animals').addEventListener('click', () => {
+            window.location.href = `${base_url}home/desaparecimento`;
+        })
+
+        // Navegação Mobile
+        document.querySelector('#explore-mobile').href = `${base_url}home`;
+        document.querySelector('#adoption-mobile').href = `${base_url}home/adocao`;
+        document.querySelector('#lost-animals-mobile').href = `${base_url}home/desaparecimento`;
+
+
+        // Filtro
+        let filter = uriRoute()[1];
+
+        get_url = `${base_url}get-post-comment`;
+
+        if(filter) {
+            get_url += `/${filter}`;
+        }
+
+        // Busca
         $.ajax({
             type: "GET",
-            url: base_url+"get-post-comment",
+            url: get_url,
             success: function (r) {
                 var path_user = base_url+'assets/img/user';
                 // var path_pet = base_url+'assets/img/pet';

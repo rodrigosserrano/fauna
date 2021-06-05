@@ -50,8 +50,9 @@ class PostagemModel extends CI_Model {
         $this->db->from('postagem p'); 
         $this->db->join('usuario u', 'u.id_usuario = p.id_usuario', 'left');
         $this->db->join('animal a', ' a.id_animal = p.id_animal', 'left');
-        if($filtro_categoria) {
-            $this->db->where('p.categoria', $filtro_categoria);
+        if($filtro_categoria == 'adocao' || $filtro_categoria == 'desaparecimento') {
+            $this->db->join('categoria c', 'c.id_categoria = p.id_categoria', 'left');
+            $this->db->where('c.descricao', $filtro_categoria);
         }
         $this->db->order_by('p.dh_post','desc');
         $query = $this->db->get(); 
