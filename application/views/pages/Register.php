@@ -6,6 +6,7 @@
         <form id="form-register" enctype="multipart/form-data">
             <div class="sections-container">
                 <section class="left-form-container">
+                    <div class="cat-responsive"></div>
                     <div class="description">
                         <span>Registre-se</span><br>
                         <span>Cadastre-se para ter acesso à rede social mais fofa do planeta</span>

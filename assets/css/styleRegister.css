@@ -49,7 +49,7 @@ main form{
 }
 
 main .sections-container{
-    padding: 0 8%;
+    /*padding: 0 8%;*/
     margin: 4% 0 2% 0;
     display: flex;
     justify-content: space-between;
@@ -156,19 +156,6 @@ section label div{
     margin-right: 8px;
 }
 
-.cat{
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    background-image: url("../../assets/img/gato_registrar.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    top: -100px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 200;
-}
-
 main button{
     background-color: var(--darker-color);
     color: var(--input-color);
@@ -196,4 +183,103 @@ footer{
     position: absolute;
     bottom: 0;
     background-color: var(--darker-color);
+    z-index: 300;
+}
+
+@media (min-width:1000px){
+    .cat{
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        background-image: url("../../assets/img/gato_registrar.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        top: -100px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 200;
+    }
+}
+
+@Media (min-width:600px){
+    main .sections-container{
+        padding: 0 8%;
+    }
+}
+
+@media (max-width: 1000px){
+    .left-form-container{
+        /*text-align: center;*/
+        /*margin:auto;*/
+        width:150%;
+        /*padding-right:5px;*/
+        /*left: 0%;*/
+        top:100px;
+    }
+
+    .middle-form-container{
+        text-align: center;
+       /* margin:auto;*/
+        width:80%;
+        position:absolute;
+        
+        left: 10%;
+        top:600px;
+    }
+
+    .right-form-container{
+        text-align: center;
+        /* margin:auto;*/
+         width:80%;
+         position:absolute;
+         
+         left: 10%;
+        top:1100px;
+        padding-bottom: 130px;
+    }
+
+    .cat-responsive{
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        background-image: url("../../assets/img/gato_registrar.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        top: -100px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 200;
+    }
+
+    footer{
+        font-size: 1rem;
+        color: #fff;
+        /*padding:-100px;*/
+        position: fixed;
+        bottom: 0px;
+        background-color: var(--darker-color);
+    }
+}
+
+@media (max-width: 600px){
+    .left-form-container{
+        width:100%;
+        left:0%;   
+    }
+
+    .middle-form-container{
+        width:100%;
+        left:0%;
+        top:550px;
+    }
+
+    .right-form-container{
+        width:100%;
+        left:0%;
+        top:975px;
+    }
+
+    .left-form-container .inputs-container{
+        padding: 20px 20px;
+    } 
 }
