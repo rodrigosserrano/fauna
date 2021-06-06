@@ -36,9 +36,23 @@ class UsuariosModel extends CI_Model {
         return $this->db->update('usuario', $dados);
     }
 
+    public function alterarSenhaModel($email,  $senha){
+        $dados['senha'] = $senha;
+
+       $this->db->where('email', $email);
+       return $this->db->update('usuario', $dados);
+        
+    }
+
     public function deleteModel($id_usuario){
-        if($this->db->where('id_usuario', $id_usuario)->delete('animal'))
-        return $this->db->where('id_usuario', $id_usuario)->delete('usuario');
+        
+        if($this->db->where('id_usuario', $id_usuario)->delete('postagem'))
+            if($this->db->where('id_usuario', $id_usuario)->delete('comentario'))
+                if($this->db->where('id_usuario', $id_usuario)->delete('curtida'))
+                    if($this->db->where('id_seguido', $id_usuario)->or_where('id_seguidor')->delete('seguir'))
+                        if($this->db->where('id_usuario', $id_usuario)->delete('animal'))
+                            return $this->db->where('id_usuario', $id_usuario)->delete('usuario');
+                    
     }
 
     public function getDadosUsuarioModel($id_usuario){
