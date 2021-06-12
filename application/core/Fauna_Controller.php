@@ -76,8 +76,9 @@ class Fauna_Controller extends CI_Controller{
             $extensao = trim(substr(strchr($arquivo['name'], '.'), 0));
             $acceptedTypes = ['.png', '.jpg', '.gif'];
             $maxSize = 10000000;
+            // print_r(array_search($extensao), $acceptedTypes);
 
-            if(array_search($extensao, $acceptedTypes) && $arquivo['size'] <= $maxSize) {
+            if(in_array($extensao, $acceptedTypes) && $arquivo['size'] <= $maxSize) {
                 switch($type) {
                     case 'user':
                         $nomefoto = md5($email.time()).$extensao;
