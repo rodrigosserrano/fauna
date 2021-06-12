@@ -32,7 +32,7 @@ class SeguirModel extends CI_Model {
 
             $this->db->select('u.id_usuario, u.nome_usuario as usuario, u.foto_usuario, u.email');
             $this->db->from('seguir s'); 
-            $this->db->join('usuario u', 'u.id_usuario = c.id_seguido', 'left');
+            $this->db->join('usuario u', 'u.id_usuario = s.id_seguido', 'left');
             $this->db->where('s.id_seguidor = '. $id_usuario);
             $this->db->order_by('u.nome_usuario','asc');
             $query = $this->db->get(); 
@@ -43,7 +43,7 @@ class SeguirModel extends CI_Model {
                 
             $this->db->select('u.id_usuario, u.nome_usuario as usuario, u.foto_usuario, u.email');
             $this->db->from('seguir s'); 
-            $this->db->join('usuario u', 'u.id_usuario = c.id_seguidor', 'left');
+            $this->db->join('usuario u', 'u.id_usuario = s.id_seguidor', 'left');
             $this->db->where('s.id_seguido = '. $id_usuario);
             $this->db->order_by('u.nome_usuario','asc');
             $query = $this->db->get(); 
