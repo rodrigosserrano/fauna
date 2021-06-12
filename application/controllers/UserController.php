@@ -186,7 +186,10 @@ class UserController extends Fauna_Controller {
             $verifica_cadastro = $this->CadastrosModel->cadastroPetModel($dados_cadastro);
     
             if($verifica_cadastro){
-                echo json_encode(['mensagem'=>'Pet cadastrado com sucesso !']);
+                echo json_encode([
+                    'mensagem'=>'Pet cadastrado com sucesso !',
+                    'id'=>$verifica_cadastro
+                ]);
             }else{
                 echo json_encode(['mensagem'=>'Erro ao cadastrar.']);
             }

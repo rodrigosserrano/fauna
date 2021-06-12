@@ -1,5 +1,6 @@
 <body>
     <main>
+        <div class="alert-area"></div>
         <section id="config">
 
             <section class="nav" id="config-menu" role="tablist">  

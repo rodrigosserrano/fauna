@@ -70,7 +70,7 @@ class CadastrosModel extends CI_Model {
 
     public function cadastroPetModel(array $dados_animal){
         if($this->db->insert('animal', $dados_animal))
-            return true;
+            return $this->db->insert_id();
     }
 
     public function getSexoModel(){
