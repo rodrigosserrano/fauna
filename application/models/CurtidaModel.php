@@ -20,18 +20,14 @@ class CurtidaModel extends CI_Model {
     public function countCurtidaModel($id_postagem=null, $id_comentario=null){
         //$query = $this->db->where(['id_postagem' => $id_postagem])->get('comentario');
         if($id_postagem){
-
-            $this->db->count_all_results('curtida')->where('id_postagem', $id_postagem);
-            $query = $this->db->get(); 
-            return $query->result();
+            $query = $this->db->where('id_postagem', $id_postagem)->count_all_results('curtida');
+            return $query;
 
         }else{
             if($id_comentario){
 
-                $this->db->count_all_results('curtida')->where('id_comentario', $id_comentario);
-                $query = $this->db->get(); 
-                return $query->result();
-
+                $query = $this->db->where('id_comentario', $id_comentario)->count_all_results('curtida');
+                return $query;
             }else{
                 return false; 
             }
