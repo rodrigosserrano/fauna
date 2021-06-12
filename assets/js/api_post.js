@@ -159,12 +159,42 @@ $(document).ready(function(){
                     }
 
                     // Like
+                    let likeAmountElement = newPost.querySelector('#likes-number');
+                    likeAmountElement.innerText = postagem.curtidas;
+
+                    if(postagem.curtiu) {
+                        newPost.querySelector('#like-icon img').src = `${base_url}assets/img/icon/paw-like-set.png`;
+                    } else {
+                        newPost.querySelector('#like-icon img').src = `${base_url}assets/img/icon/paw-like-unset.png`;
+                    }
+
                     newPost.querySelector("#like-icon").addEventListener("click", e => {
                         if(e.target.getAttribute("src") === `${base_url}assets/img/icon/paw-like-unset.png`){
+                            // Dar like
                             e.target.setAttribute("src", `${base_url}assets/img/icon/paw-like-set.png`);
+                            likeAmountElement.innerText = Number(likeAmountElement.innerText) + 1;
+
+                            let postLikeID = postagem.id_postagem;
+
+                            $.ajax({
+                                type: "POST",
+                                url: base_url+"create-curtida",
+                                data: { id_postagem: postLikeID },
+                            })
                         }
-                        else
+                        else {
+                            // Retirar Like
                             e.target.setAttribute("src", `${base_url}assets/img/icon/paw-like-unset.png`);
+                            likeAmountElement.innerText = Number(likeAmountElement.innerText) - 1;
+
+                            let postLikeID = postagem.id_postagem;
+
+                            $.ajax({
+                                type: "POST",
+                                url: base_url+"delete-curtida",
+                                data: { id_postagem: postLikeID },
+                            })
+                        }
                     })
                     
                     //Comentário
@@ -406,7 +436,6 @@ $(document).ready(function(){
                 processData: false,
                 contentType: false,
                 /* success: function (response) {
-                    console.log("funciona caralho");
                     if(response.mensagem){
                         /* alert(response.mensagem);
                         window.location.reload();

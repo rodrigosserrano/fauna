@@ -50,7 +50,8 @@ class PostController extends Fauna_Controller {
                 'midia_url' => $postagem->email.'/'.$postagem->midia,
                 'dh_post' => $postagem->dh_post,
                 'comentarios' => $this->ComentarioModel->getDadosComentarioModel($postagem->id_postagem),
-                'curtidas' =>  $this->CurtidaModel->countCurtidaModel($postagem->id_postagem)
+                'curtidas' =>  $this->CurtidaModel->countCurtidaModel($postagem->id_postagem),
+                'curtiu' => $this->CurtidaModel->checkCurtidaUsuario($postagem->id_postagem, $this->id_usuario) ? true : false
             ];
             $dados_postagens[] = $postagem;
         }
@@ -235,7 +236,6 @@ class PostController extends Fauna_Controller {
     public function createCurtidaPostagem(){
         header('Content-Type: application/json');
 
-       
         if($this->CurtidaModel->createCurtidaModel($this->id_usuario, $this->id_postagem)){
             return true;
         }else{
@@ -257,6 +257,16 @@ class PostController extends Fauna_Controller {
         header('Content-Type: application/json');
 
         if($this->CurtidaModel->deleteCurtidaModel($this->id_curtida)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function deleteCurtidaPostagem(){
+        header('Content-Type: application/json');
+
+        if($this->CurtidaModel->deleteCurtidaModel($this->id_usuario, $this->id_postagem)){
             return true;
         }else{
             return false;

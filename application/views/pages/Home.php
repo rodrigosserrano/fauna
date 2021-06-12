@@ -190,7 +190,10 @@
                         <a id="like-icon">
                             <img src="<?= base_url()?>assets/img/icon/paw-like-unset.png">
                         </a>
-                        <b><span id="likes-amount">55 pessoas curtiram isso</span></b>
+                        <b><span id="likes-amount">
+                            <span id="likes-number"></span> 
+                            pessoas curtiram isso
+                        </span></b>
                     </div>
                     <div class="line"></div>
                     <div class="comments">

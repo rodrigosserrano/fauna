@@ -12,10 +12,14 @@ class CurtidaModel extends CI_Model {
             return true;
     }
 
-    public function deleteCurtidaModel($id_curtida){
-
-        return $this->db->where('id_curtida', $id_curtida)->delete('curtida');
+    public function deleteCurtidaModel($id_usuario, $id_postagem){
+        return $this->db->where('id_usuario', $id_usuario)->where('id_postagem', $id_postagem)->delete('curtida');
     }
+
+    // public function deleteCurtidaModel($id_curtida){
+
+    //     return $this->db->where('id_curtida', $id_curtida)->delete('curtida');
+    // }
 
     public function countCurtidaModel($id_postagem=null, $id_comentario=null){
         //$query = $this->db->where(['id_postagem' => $id_postagem])->get('comentario');
@@ -33,6 +37,15 @@ class CurtidaModel extends CI_Model {
             }
         }
         
+    }
+
+    public function checkCurtidaUsuario($id_postagem, $id_usuario) {
+        $this->db->select('*');
+        $this->db->from('curtida');
+        $this->db->where('id_postagem', $id_postagem);
+        $this->db->where('id_usuario', $id_usuario);
+        $query = $this->db->get();
+        return $query->result();
     }
 
 }

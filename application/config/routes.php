@@ -104,9 +104,10 @@ $route['edit-comentario']['post'] = 'PostController/editComentario';
 $route['create-comentario']['post'] = 'PostController/createComentario';
 
 //Like
-$route['delete-curtida']['post'] = 'PostController/deleteCurtida';
-$route['create-like']['post'] = 'PostController/createCurtidaPostagem';
-$route['create-like']['post'] = 'PostController/createCurtidaComentario';
+// $route['delete-curtida']['post'] = 'PostController/deleteCurtida';
+$route['delete-curtida']['post'] = 'PostController/deleteCurtidaPostagem';
+$route['create-curtida']['post'] = 'PostController/createCurtidaPostagem';
+$route['create-curtida-comentario']['post'] = 'PostController/createCurtidaComentario';
 
 //Seguir
 $route['delete-seguidor']['post'] = 'PostController/deleteSeguidor';
