@@ -7,7 +7,7 @@
             <?php if(substr(strchr($foto_user, '.'), 0) != '') :?>
                 <img class="nav-userpic" src="<?= $foto_user ?>" title="<?=$nome_user?>" alt="<?=$nome_user?>">
             <?php else :?>
-                <img class="nav-userpic" src="assets/img/user/unknown.jpg" title="Nome" alt="Nome">
+                <img class="nav-userpic" src="<?= base_url() ?>assets/img/user/unknown.jpg" title="Nome" alt="Nome">
             <?php endif; ?>
         </a>
 
