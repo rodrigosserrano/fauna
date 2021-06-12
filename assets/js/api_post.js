@@ -229,6 +229,7 @@ $(document).ready(function(){
                         //Comentário
                         newComment.querySelector('.comment-text').innerText = comentario.texto;
 
+                        console.log(comentario.id_usuario);
                         if(comentario.id_usuario == usuario.id_usuario || usuario.is_admin) {
                             // Editar Comentário
                             newComment.querySelector('#edit-comment').addEventListener('click', () => {
@@ -291,7 +292,7 @@ $(document).ready(function(){
                                     if(response.id) {
                                         let comentario = loadProps(formData);
                                         comentario['id_comentario'] = response.id;
-                                        comentario['id_usuario'] = usuario.id;
+                                        comentario['id_usuario'] = usuario.id_usuario;
                                         comentario['usuario'] = document.querySelector('.nav-userpic').alt;
                                         comentario['blob'] = document.querySelector('.nav-userpic').src;
                                         newPost.querySelector('.message').value = '';
