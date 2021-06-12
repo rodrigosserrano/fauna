@@ -1,8 +1,8 @@
 
     <body>
+        <div class="w-100 logo-box"><span class="logo">Fauna</span></div>
         <div class="alertArea"></div>
         <main>
-
             <section id="slogan">
                 <p class="slogan-text">
                     Entre e divirta-se em uma comunidade que ama animais de estimação.
@@ -31,7 +31,7 @@
                         <button id="btn-login" type="button" class="btn-login">Entrar</button>
                     </form>
 
-                    <a href="" class="link">Esqueci minha senha</a>
+                    <a href="<?= base_url()?>esqueci-minha-senha" class="link">Esqueci minha senha</a>
                 </div>
 
                 <div class="mini-container">

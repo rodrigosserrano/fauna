@@ -56,6 +56,7 @@ $route['translate_uri_dashes'] = FALSE;
 //Usuario Login
 $route['validate']['post'] = 'LoginController/validateLogin'; //REQUISIÇÃO POST
 $route['logout'] = 'LoginController/logout';
+$route['esqueci-minha-senha']['get'] = 'LoginController/forgotPasswordPage';
 
 //Usuario registro
 $route['register'] = 'RegisterController';

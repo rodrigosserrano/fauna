@@ -5,6 +5,17 @@
     box-sizing: border-box;
 }
 
+.logo-box{
+    background-color: var(--background-color);
+}
+
+.logo{
+    font-family: 'Indie Flower', cursive;
+    font-size: 36px;
+    margin-left: 2%;
+    color: #000;
+}
+
 main {
     background-color: var(--background-color);
     height: 100vh;

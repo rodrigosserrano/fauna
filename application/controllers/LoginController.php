@@ -61,4 +61,11 @@ class LoginController extends Fauna_Controller {
             echo json_encode(['mensagem'=>'Você não está logado.']);
         }
     }
+
+    public function forgotPasswordPage(){
+        $dados_view = $this->dadosShow('Recuperar senha', 'assets/css/stylePassword.css');
+		$view = $this->load->view('pages/forgotPassword', null, true);
+
+        $this->show($dados_view, $view);
+    }
 }

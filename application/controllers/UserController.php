@@ -265,5 +265,4 @@ class UserController extends Fauna_Controller {
             echo json_encode(['mensagem'=>'Erro ao deixar de seguir usuario.']);
         }
      }
-    
 }
