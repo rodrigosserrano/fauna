@@ -176,7 +176,10 @@ class PostController extends Fauna_Controller {
             $verifica_cadastro = $this->ComentarioModel->cadastroComentarioModel($dados_cadastro);
 
             if($verifica_cadastro){
-                echo json_encode(['mensagem'=>'Comentario feito com sucesso !']);
+                echo json_encode([
+                    'mensagem'=>'Comentario feito com sucesso !',
+                    'id'=>$verifica_cadastro
+                ]);
             }else{
                 echo json_encode(['mensagem'=>'Erro ao realizar Comentario.']);
             }

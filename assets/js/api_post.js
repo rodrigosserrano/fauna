@@ -5,6 +5,8 @@ $(document).ready(function(){
         base_url = `${window.location.origin}/fauna/`;
     }
 
+    const bodyElement = document.querySelector('body');
+
     // Checagem de rota
     function checkURL(route) {
         return window.location.href == base_url + route;
@@ -20,9 +22,37 @@ $(document).ready(function(){
         return route;
     }
 
+    function closeModal(modal) {
+        bodyElement.removeAttribute('class');
+        modal.style.display = 'none';
+        modal.className = 'modal fade';
+        modal.setAttribute('aria-hidden', true);
+        modal.removeAttribute('role');
+        modal.removeAttribute('aria-modal');
+        bodyElement.removeChild(document.querySelector('.modal-backdrop'));
+    }
+
+    function loadProps(form, blob = null) {
+        let item = {}
+        form.forEach((value, key) => {
+            item[key] = value;
+        });
+
+        if(blob) {
+            item['blob'] = blob.substr(5).slice(0, -2);
+        }
+        
+        return item;
+    }
+
     // Requisição GET das Postagens e Comentários via AJAX
 
     if( uriRoute()[0] == 'home' ) {
+
+        // Modal
+        const editComentarioModal = document.querySelector('#edit-comment-modal');
+        const editPostagemModal = document.querySelector('#edit-post-modal');
+        const newPostagemModal = document.querySelector('#new-post-modal');
 
         // Navegação
         document.querySelector('#explore').addEventListener('click', () => {
@@ -69,11 +99,6 @@ $(document).ready(function(){
                 if(!postagens.length) {
                     window.location.href = `${base_url}home`;
                 }
-
-                // Modal
-                const editComentarioModal = document.querySelector('#edit-comment-modal');
-                const editPostagemModal = document.querySelector('#edit-post-modal');
-                const newPostagemModal = document.querySelector('#new-post-modal');
 
                 //Criar postagem
                 categorias.map(({
@@ -143,7 +168,8 @@ $(document).ready(function(){
                     })
                     
                     //Comentário
-                    postagem.comentarios.map((comentario) => {
+
+                    function loadComentario(comentario, isNew = null) {                       
                         let newComment = document.querySelector('.comment').cloneNode(true);
                         newComment.style.display = 'flex';
                         
@@ -151,7 +177,9 @@ $(document).ready(function(){
 
                         
                         //Foto usuário
-                        if(comentario.foto_usuario == null) {
+                        if(comentario.blob) {
+                            newComment.querySelector('.comment-user-photo').src = comentario.blob;
+                        } else if(comentario.foto_usuario == null || comentario.blob?.name == '') {
                             newComment.querySelector('.comment-user-photo').src = `${path_user}/unknown.jpg`;
                         } else {
                             newComment.querySelector('.comment-user-photo').src = `${path_user}/${comentario.email}/${comentario.foto_usuario}`;
@@ -187,8 +215,11 @@ $(document).ready(function(){
                                     data: {id_comentario:id},
                                     success: function (response) {
                                         if(response.mensagem){
+                                            let commentSection = newPost.querySelector('.comments');
+                                            commentSection.removeChild(newComment);
+                                            refreshMenuPost();
                                             /* alert(response.mensagem); */
-                                            window.location.reload();
+                                            // window.location.reload();
                                         }
                                     },
                                     error: function (request, status, error) {
@@ -201,15 +232,23 @@ $(document).ready(function(){
                             let menu = newComment.querySelectorAll('.comment-info')[0];
                             menu.removeChild(menu.childNodes[3]);
                         }
-    
-                        newPost.querySelector('.comments').appendChild(newComment);
-                    })
+                        
+                        if(isNew) {
+                            newPost.querySelector('.comments').prepend(newComment);
+                        } else {
+                            newPost.querySelector('.comments').appendChild(newComment);
+                        }
+                        
+                    }
 
+                    postagem.comentarios.map((comentario) => {
+                        loadComentario(comentario);
+                    })
 
                     // Criar Comentário
                     newPost.querySelector("#id_postagem").value = postagem.id_postagem;
 
-                    newPost.querySelector('.send-comment').addEventListener('click', () => {
+                    function criarComentario() {
                         let formData = new FormData(newPost.querySelector('.form-comment'));
                         $.ajax({
                             type: "POST",
@@ -219,14 +258,34 @@ $(document).ready(function(){
                             contentType: false,
                             success: function (response) {
                                 if(response.mensagem){
+                                    if(response.id) {
+                                        let comentario = loadProps(formData);
+                                        comentario['id_comentario'] = response.id;
+                                        comentario['id_usuario'] = usuario.id;
+                                        comentario['usuario'] = document.querySelector('.nav-userpic').alt;
+                                        comentario['blob'] = document.querySelector('.nav-userpic').src;
+                                        newPost.querySelector('.message').value = '';
+                                        loadComentario(comentario, true);
+                                        refreshMenuPost();
+                                    }
                                     /* alert(response.mensagem); */
-                                    window.location.reload();
+                                    // window.location.reload();
                                 }
                             },
                             error: function (request, status, error) {
                                 console.log(request.responseText);
                             }
                         });
+                    }
+
+                    newPost.querySelector('.send-comment').addEventListener('click', () => {
+                        criarComentario();
+                    })
+
+                    newPost.querySelector('.message').addEventListener('keydown', (event) => {
+                        if(event.code == 'Enter' || event.code == 'NumpadEnter') {
+                            criarComentario();
+                        }
                     })
 
                     if(postagem.id_usuario == usuario.id_usuario || usuario.is_admin) {
@@ -289,28 +348,34 @@ $(document).ready(function(){
                     }
 
                     // Botões de Menu da Postagem
-                    Array.from(newPost.querySelectorAll(".menu-icon")).forEach((el, i) => {
-                        el.addEventListener("click", e => {
-                            e.stopPropagation();
-                            const listOpts = Array.from(newPost.querySelectorAll(".list-opts"));
-                            for(j in listOpts){
-                                if(j != i)
-                                    if(listOpts[j].classList.contains("display-block")){
-                                        listOpts[j].classList.remove("display-block");
-                                        listOpts[j].classList.add("display-none");
-                                    }
-                            }
-                
-                            if(listOpts[i].classList.contains("display-none")){
-                                listOpts[i].classList.remove("display-none");
-                                listOpts[i].classList.add("display-block");
-                            }
-                            else if(listOpts[i].classList.contains("display-block")){
-                                listOpts[i].classList.remove("display-block");
-                                listOpts[i].classList.add("display-none");
-                            }
+
+                    function refreshMenuPost() {
+                        Array.from(newPost.querySelectorAll(".menu-icon")).forEach((el, i) => {
+                            el.addEventListener("click", e => {
+                                e.stopPropagation();
+                                const listOpts = Array.from(newPost.querySelectorAll(".list-opts"));
+
+                                for(j in listOpts){
+                                    if(j != i)
+                                        if(listOpts[j].classList.contains("display-block")){
+                                            listOpts[j].classList.remove("display-block");
+                                            listOpts[j].classList.add("display-none");
+                                        }
+                                }
+                    
+                                if(listOpts[i].classList.contains("display-none")){
+                                    listOpts[i].classList.remove("display-none");
+                                    listOpts[i].classList.add("display-block");
+                                }
+                                else if(listOpts[i].classList.contains("display-block")){
+                                    listOpts[i].classList.remove("display-block");
+                                    listOpts[i].classList.add("display-none");
+                                }
+                            })
                         })
-                    })
+                    }
+                    refreshMenuPost();
+                    
 
                     // Botões de Menu sumirem ao clicar em outra área da tela
                     document.getElementsByTagName("body")[0].addEventListener("click", () => {
@@ -396,8 +461,14 @@ $(document).ready(function(){
                 contentType: false,
                 success: function (response) {
                     if(response.mensagem){
+                        let id = editComentarioModal.querySelector('[name=id_comentario]').value;
+                        let texto = editComentarioModal.querySelector('[name=texto]').value;
+                        let comentarioElement = document.querySelector(`[class=comment][id='${id}']`);
+
+                        comentarioElement.querySelector('.comment-text').innerText = texto;
+                        closeModal(editComentarioModal);
                         /* alert(response.mensagem); */
-                        window.location.reload();
+                        // window.location.reload();
                     }
                 },
                 error: function (request, status, error) {

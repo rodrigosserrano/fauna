@@ -4,7 +4,7 @@ class ComentarioModel extends CI_Model {
 
     public function cadastroComentarioModel(array $dados_comentario){
         if($this->db->insert('comentario', $dados_comentario))
-            return true;
+            return $this->db->insert_id();
     }
 
     public function alterarDadosComentarioModel($dados_update, $nivel_usuario){
