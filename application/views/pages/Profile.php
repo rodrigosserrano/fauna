@@ -20,7 +20,7 @@
                     <!--  -->
 
 
-                    <button id="btn-option-user" class="btn-option" type="button">•••</button>
+                    <!-- <button id="btn-option-user" class="btn-option" type="button">•••</button>
                     <ul id="div-option-dropdown" class="option-dropdown-close">
                         <li>
                             <button id="" type="button" class="btn-dropdown">Botão</button>
@@ -32,7 +32,7 @@
                             <button id="" type="button" class="btn-dropdown">Botão</button>
                         </li>
                     </ul>
-
+ -->
                     
                 </div>
             </div>

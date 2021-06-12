@@ -336,8 +336,9 @@ main{
 }
 
 .navigation{
+    position: fixed;
+    right: 5%;
     background-color: #fff;
-    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0px 0px 15px #0000002e;
@@ -503,6 +504,24 @@ button.icon {
     border-radius: 3px;
 }
 /*  */
+
+@media screen and (max-width: 1230px){
+    .navigation{
+        padding: 15px;
+        right: 2%;
+        border-radius: 3px;
+        width: 150px;
+    }
+    
+    .categories-title{
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .nav-btns{
+        font-size: 14px;
+    }
+}
 
 @media (max-width: 1000px){
     .navigation{
