@@ -59,16 +59,14 @@ class SeguirModel extends CI_Model {
         //$query = $this->db->where(['id_postagem' => $id_postagem])->get('comentario');
         if($seguindo){
 
-            $this->db->count_all_results('seguir')->where('id_seguidor', $id_usuario);
-            $query = $this->db->get(); 
-            return $query->result();
+            $query = $this->db->where('id_seguidor', $id_usuario)->count_all_results('seguir');
+            return $query;
 
         }else{
             if($seguidores){
 
-                $this->db->count_all_results('seguir')->where('id_seguido', $id_usuario);
-                $query = $this->db->get(); 
-                return $query->result();
+                $query = $this->db->where('id_seguido', $id_usuario)->count_all_results('seguir');
+                return $query;
 
             }else{
                 return false; 
