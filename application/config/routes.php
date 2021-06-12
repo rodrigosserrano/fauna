@@ -101,3 +101,13 @@ $route['create-postagem']['post'] = 'PostController/createPostagem';
 $route['delete-comentario']['post'] = 'PostController/deleteComentario';
 $route['edit-comentario']['post'] = 'PostController/editComentario';
 $route['create-comentario']['post'] = 'PostController/createComentario';
+
+//Like
+$route['delete-curtida']['post'] = 'PostController/deleteCurtida';
+$route['create-like']['post'] = 'PostController/createCurtidaPostagem';
+$route['create-like']['post'] = 'PostController/createCurtidaComentario';
+
+//Seguir
+$route['delete-seguidor']['post'] = 'PostController/deleteSeguidor';
+$route['delete-seguindo']['post'] = 'PostController/deleteSeguindo';
+$route['create-seguir']['post'] = 'PostController/createSeguidores';

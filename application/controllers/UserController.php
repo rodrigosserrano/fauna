@@ -10,10 +10,12 @@ class UserController extends Fauna_Controller {
 
         $this->id_usuario = $_SESSION['id'];
         $this->id_animal = isset($_POST['id_animal']) ? $_POST['id_animal'] : '';
+        $this->id_usuario_2 = isset($_POST['id_usuario']) ? $_POST['id_usuario'] : '';
 
         $this->load->model('UsuariosModel');
         $this->load->model('PetsModel');
         $this->load->model('CadastrosModel');
+        $this->load->model('SeguirModel');
         $this->load->helper('Tools');
     }
 
@@ -133,17 +135,14 @@ class UserController extends Fauna_Controller {
                 'sexo_usuario' => $dados_usuario->sexo_usuario, 
                 'foto_usuario' => $dados_usuario->foto_usuario ? base_url().'assets/img/user/'.$dados_usuario->email.'/'.$dados_usuario->foto_usuario : '',
             ];
-
-            if(!empty($dados_pet)){
-                $mensagem = '';
-            }else{
-                $mensagem = 'Você não possui pets';
-            }
             
             $dados_view = [
                 'usuario' => (object) $usuario,
                 'pet' => $dados_pet,
-                'mensagem' =>  $mensagem
+                'n_seguindo' => $this->SeguirModel->countSeguirModel($this->id_usuario,true),
+                'seguindo' => $this->SeguirModel->getDadosSeguirModel($this->id_usuario,true),
+                'n_seguidores' => $this->SeguirModel->countSeguirModel($this->id_usuario,null, true),
+                'seguidores' => $this->SeguirModel->getDadosSeguirModel($this->id_usuario,null,true)
             ];
 
             $dados = $this->dadosShow('Perfil', 'assets/css/styleProfile.css', 'assets/js/profile_scripts.js');
@@ -239,9 +238,32 @@ class UserController extends Fauna_Controller {
     }
 
       /**
-     * DADOS Postagem 
+     * DADOS SEGUIR 
      * create, edit & delete
      */
 
+     public function createSeguidores(){
+        if($this->SeguirModel->createSeguirModel($this->id_usuario, $this->id_usuario_2)){
+            echo json_encode(['mensagem'=>'Usuario seguido com sucesso.']);
+        }else{
+            echo json_encode(['mensagem'=>'Erro ao seguir usuario.']);
+        }
+     }
+
+     public function  deleteSeguidor(){
+        if($this->SeguirModel->deleteSeguirModel($this->id_usuario, null , $this->id_usuario_2)){
+            echo json_encode(['mensagem'=>'Seguidor Excluido com sucesso.']);
+        }else{
+            echo json_encode(['mensagem'=>'Erro ao excluir seguidor usuario.']);
+        }
+     }
+
+     public function  deleteSeguindo(){
+        if($this->SeguirModel->deleteSeguirModel($this->id_usuario, $this->id_usuario_2)){
+            echo json_encode(['mensagem'=>'Você deixou de seguir o usuario selecionado.']);
+        }else{
+            echo json_encode(['mensagem'=>'Erro ao deixar de seguir usuario.']);
+        }
+     }
     
 }

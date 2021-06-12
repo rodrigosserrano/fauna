@@ -2,7 +2,7 @@
 
 class CurtidaModel extends CI_Model {
 
-    public function cadastroCurtidaModel($id_usuario, $id_postagem  = null,  $id_comentario = null){
+    public function createCurtidaModel($id_usuario, $id_postagem  = null,  $id_comentario = null){
 
         $dados_curtida['id_usuario'] = $id_usuario;
         $dados_curtida['id_postagem'] = $id_postagem;

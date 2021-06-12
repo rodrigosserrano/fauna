@@ -11,6 +11,7 @@ class PostController extends Fauna_Controller {
 
         $this->id_postagem = isset($_POST['id_postagem']) ? $_POST['id_postagem'] : '';
         $this->id_comentario = isset($_POST['id_comentario']) ? $_POST['id_comentario'] : '';
+        $this->id_curtida = isset($_POST['id_curtida']) ? $_POST['id_curtida'] : '';
 
         $this->id_usuario = $_SESSION['id'];
         $this->nivel_usuario = $_SESSION['nivel_usuario'];
@@ -18,6 +19,7 @@ class PostController extends Fauna_Controller {
 
         $this->load->model('PostagemModel');
         $this->load->model('ComentarioModel');
+        $this->load->model('CurtidaModel');
         $this->load->model('CadastrosModel');
         $this->load->model('PetsModel');
     }
@@ -32,6 +34,7 @@ class PostController extends Fauna_Controller {
         $dados_postagens = [];
 
         foreach($postagens as $postagem) {
+           
             $postagem = [
                 'id_postagem' => $postagem->id_postagem,
                 'usuario' => $postagem->usuario,
@@ -46,7 +49,8 @@ class PostController extends Fauna_Controller {
                 'midia' => $postagem->midia,
                 'midia_url' => $postagem->email.'/'.$postagem->midia,
                 'dh_post' => $postagem->dh_post,
-                'comentarios' => $this->ComentarioModel->getDadosComentarioModel($postagem->id_postagem)
+                'comentarios' => $this->ComentarioModel->getDadosComentarioModel($postagem->id_postagem),
+                'curtidas' =>  $this->CurtidaModel->countCurtidaModel($postagem->id_postagem)
             ];
             $dados_postagens[] = $postagem;
         }
@@ -90,7 +94,6 @@ class PostController extends Fauna_Controller {
 
             print_r($dados_cadastro);
             
-            $this->load->model('PostagemModel');
             $verifica_cadastro = $this->PostagemModel->cadastroPostagemModel($dados_cadastro);
 
             if($verifica_cadastro){
@@ -125,7 +128,6 @@ class PostController extends Fauna_Controller {
                 "id_postagem" => $this->input->post('id_postagem')
             ];
             
-            $this->load->model('PostagemModel');
             $verifica_cadastro = $this->PostagemModel->alterarDadosPostagemModel($dados_cadastro, $this->nivel_usuario);
         
             if($verifica_cadastro){
@@ -141,7 +143,6 @@ class PostController extends Fauna_Controller {
     public function deletePostagem() {
         header('Content-Type: application/json');
         
-        $this->load->model('PostagemModel');
         if($this->PostagemModel->deletePostagemModel($this->id_postagem, $this->id_usuario, $this->nivel_usuario)){
             echo json_encode(['mensagem'=>'Postagem excluida com sucesso.']);
         }else{
@@ -172,7 +173,6 @@ class PostController extends Fauna_Controller {
                 "texto" => $this->input->post('texto')
             ];
             
-            $this->load->model('ComentarioModel');
             $verifica_cadastro = $this->ComentarioModel->cadastroComentarioModel($dados_cadastro);
 
             if($verifica_cadastro){
@@ -201,7 +201,6 @@ class PostController extends Fauna_Controller {
                 //"dh_comentario" => $now = new DateTime().getTimestamp
             ];
             
-            $this->load->model('ComentarioModel');
             $verifica_cadastro = $this->ComentarioModel->alterarDadosComentarioModel($dados_cadastro, $this->nivel_usuario);
         
             if($verifica_cadastro){
@@ -217,11 +216,49 @@ class PostController extends Fauna_Controller {
     public function deleteComentario() {
         header('Content-Type: application/json');
 
-        $this->load->model('ComentarioModel');
         if($this->ComentarioModel->deleteComentarioModel($this->id_comentario, $this->id_usuario, $this->nivel_usuario)){
             echo json_encode(['mensagem'=>'Comentario excluido com sucesso.']);
         }else{
             echo json_encode(['mensagem'=>'Erro ao deletar']);
         }     
     }
+
+    
+    /**
+     * DADOS Curtida 
+     * create / delete / Count 
+     */
+
+    public function createCurtidaPostagem(){
+        header('Content-Type: application/json');
+
+       
+        if($this->CurtidaModel->createCurtidaModel($this->id_usuario, $this->id_postagem)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function createCurtidaComentario(){
+        header('Content-Type: application/json');
+
+        if($this->CurtidaModel->createCurtidaModel($this->id_usuario, null,$this->id_comentario)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function deleteCurtida(){
+        header('Content-Type: application/json');
+
+        if($this->CurtidaModel->deleteCurtidaModel($this->id_curtida)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+  
 }

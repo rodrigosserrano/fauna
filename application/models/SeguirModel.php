@@ -2,7 +2,7 @@
 
 class SeguirModel extends CI_Model {
 
-    public function cadastroSeguirModel($id_usuario,  $id_usuario_seguido){
+    public function createSeguirModel($id_usuario,  $id_usuario_seguido){
 
         $dados_seguir['id_seguido'] = $id_usuario_seguido;
         $dados_seguir['id_seguidor'] = $id_usuario;
