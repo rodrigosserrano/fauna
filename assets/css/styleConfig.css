@@ -183,7 +183,6 @@ h1.info-title-pets {
 input.form-input::placeholder, select.form-input, input.form-input[type="date"]{
     font-size: 16px;
     opacity: 100%;
-    color: #888;
 }
 
 .form-fields-edit-user-data {

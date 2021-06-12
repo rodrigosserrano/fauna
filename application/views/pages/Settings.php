@@ -32,12 +32,12 @@
 
                                 <div class="form-fields-edit-user-data">
                                     <label> Data de Nascimento:</label>
-                                    <input type="date" value="" class="form-input" name="data_nascimento">
+                                    <input id="birth-input" type="text" value="" class="form-input" placeholder="dd/mm/aaaa" name="data_nascimento" required>
                                 </div>
 
                                 <div class="form-fields-edit-user-data">
-                                    <label> Núemro de Telefone</label>
-                                    <input type="text" value="" class="form-input" name="telefone" placeholder="Telefone">
+                                    <label> Número de Telefone</label>
+                                    <input type="text" value="" class="form-input" name="telefone" placeholder="Telefone" required>
                                 </div>
                             </div>
 
@@ -206,3 +206,15 @@
             </section>
     </main>
 </body>
+
+<script>
+    const birthday = document.getElementById("birth-input")
+    birthday.addEventListener("focus", e => {
+        e.target.type = "date"
+    })
+
+    birthday.addEventListener("blur", e => {
+        if(e.target.value == "")
+            e.target.type = "text"
+    })
+</script>
