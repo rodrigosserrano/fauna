@@ -122,20 +122,19 @@
         <!--  -->
 
 
-        <!-- MODAL EDITAR POSTAGEM -->
+        <!-- MODAL EDITAR COMENTÁRIO -->
         
-    <div class="modal fade" id="edit-comment-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="edit-comment-area" aria-hidden="true">
+        <div class="modal fade" id="edit-comment-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="edit-comment-area" aria-hidden="true">
             <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-
+                <div class="edit-comment modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="staticBackdropLabel">Editar Comentário</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
 
-                    <div class="modal-body">
+                    <div class="edit-comment-body modal-body">
                         <form id="form-editar-comentario">
-                            <textarea name="texto"></textarea>
+                            <textarea class="edit-comment-box" name="texto"></textarea>
                             <input type="hidden" name="id_comentario">
                             <button type="button" id="btn-altera-comentario">Editar Comentário</button>
                         </form>
