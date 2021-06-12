@@ -187,7 +187,7 @@ $(document).ready(function(){
                                     data: {id_comentario:id},
                                     success: function (response) {
                                         if(response.mensagem){
-                                            alert(response.mensagem);
+                                            /* alert(response.mensagem); */
                                             window.location.reload();
                                         }
                                     },
@@ -219,7 +219,7 @@ $(document).ready(function(){
                             contentType: false,
                             success: function (response) {
                                 if(response.mensagem){
-                                    alert(response.mensagem);
+                                    /* alert(response.mensagem); */
                                     window.location.reload();
                                 }
                             },
@@ -273,7 +273,7 @@ $(document).ready(function(){
                                 data: {id_postagem:id},
                                 success: function (response) {
                                     if(response.mensagem){
-                                        alert(response.mensagem);
+                                        /* alert(response.mensagem); */
                                         window.location.reload();
                                     }
                                 },
@@ -340,16 +340,20 @@ $(document).ready(function(){
                 data: form,
                 processData: false,
                 contentType: false,
-                success: function (response) {
+                /* success: function (response) {
+                    console.log("funciona caralho");
                     if(response.mensagem){
-                        alert(response.mensagem);
+                        /* alert(response.mensagem);
                         window.location.reload();
                     }
                 },
                 error: function (request, status, error) {
                     console.log(request.responseText);
+                }, */
+                complete: function(){
+                    window.location.reload();
                 }
-            });
+            })
         });
 
         // Alterar Postagem
@@ -363,14 +367,17 @@ $(document).ready(function(){
                 data: form,
                 processData: false,
                 contentType: false,
-                success: function (response) {
+                /* success: function (response) {
                     if(response.mensagem){
-                        alert(response.mensagem);
+                        /* alert(response.mensagem);
                         window.location.reload();
                     }
                 },
                 error: function (request, status, error) {
                     console.log(request.responseText);
+                } */
+                complete: function(){
+                    window.location.reload();
                 }
             });
         });
@@ -389,12 +396,12 @@ $(document).ready(function(){
                 contentType: false,
                 success: function (response) {
                     if(response.mensagem){
-                        alert(response.mensagem);
+                        /* alert(response.mensagem); */
                         window.location.reload();
                     }
                 },
                 error: function (request, status, error) {
-                    console.log(request.responseText);
+                    /* console.log(request.responseText); */
                 }
             });
         });
