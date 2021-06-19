@@ -22,6 +22,14 @@ $(document).ready(function(){
         return route;
     }
 
+    function alertFunc(message) {
+        var alertBox = document.createElement('div');
+        alertBox.setAttribute('class', 'alert-msg');
+        alertBox.appendChild(document.createTextNode(message));
+        document.querySelector('.alert-area').appendChild(alertBox);
+        setTimeout(function() { document.querySelector('.alert-area').removeChild(alertBox) }, 4000);
+    }
+
     function closeModal(modal) {
         bodyElement.removeAttribute('class');
         modal.style.display = 'none';
@@ -90,14 +98,17 @@ $(document).ready(function(){
                 var path_user = base_url+'assets/img/user';
                 // var path_pet = base_url+'assets/img/pet';
 
-                console.log(r);
+                // console.log(r);
                 var categorias = r.categorias;
                 var pets = r.pets;
                 var postagens = r.postagens;
                 var usuario = r.usuario;
 
                 if(!postagens.length) {
-                    window.location.href = `${base_url}home`;
+                    let noPostAlert = document.createElement('div');
+                    noPostAlert.id = 'empty-page';
+                    noPostAlert.innerText = 'Nenhuma postagem encontrada.';
+                    document.querySelector('.posts').appendChild(noPostAlert);
                 }
 
                 //Criar postagem
@@ -229,8 +240,14 @@ $(document).ready(function(){
                         //Comentário
                         newComment.querySelector('.comment-text').innerText = comentario.texto;
 
-                        console.log(comentario.id_usuario);
+                        // console.log(comentario.id_usuario);
                         if(comentario.id_usuario == usuario.id_usuario || usuario.is_admin) {
+                            // Carregar menu
+                            let menu = newComment.querySelectorAll('.comment-info')[0].childNodes[3];
+                            let menuButton = menu.childNodes[1];
+                            let menuList = menu.childNodes[3];
+                            loadMenu(menuButton, menuList);
+
                             // Editar Comentário
                             newComment.querySelector('#edit-comment').addEventListener('click', () => {
                                 editComentarioModal.querySelector('textarea').value = comentario.texto;
@@ -248,7 +265,7 @@ $(document).ready(function(){
                                         if(response.mensagem){
                                             let commentSection = newPost.querySelector('.comments');
                                             commentSection.removeChild(newComment);
-                                            refreshMenuPost();
+                                            // refreshMenuPost();
                                             /* alert(response.mensagem); */
                                             // window.location.reload();
                                         }
@@ -272,9 +289,41 @@ $(document).ready(function(){
                         
                     }
 
+                    const maxComments = 2;
+                    let indexComments = 0;
+                    let moreButton = newPost.querySelector('#more-comments');
+
+                    if(postagem.comentarios.length == 0) {
+                        newPost.removeChild(newPost.childNodes[13]);
+                    }
+
                     postagem.comentarios.map((comentario) => {
-                        loadComentario(comentario);
+                        // Caso haja mais que duas postagens
+                        if(postagem.comentarios.length > maxComments) {
+                            // Carregar apenas duas
+                            if(indexComments < maxComments) {
+                                loadComentario(comentario);
+                                indexComments++;
+
+                            } else {
+                                // Restante aparece ao clicar em "Mais comentários"
+                                moreButton.addEventListener('click', () => {
+                                    loadComentario(comentario);
+                                });
+                            }
+
+                        } else {
+                            // Caso haja menos de duas postagens não mostrar botão
+                            loadComentario(comentario);
+                            newPost.removeChild(newPost.childNodes[13]);
+                        }
+                        
                     })
+
+                    // Dps de clicar no botão, ele deve desaparecer
+                    moreButton.addEventListener('click', () => {
+                        newPost.removeChild(moreButton);
+                    });
 
                     // Criar Comentário
                     newPost.querySelector("#id_postagem").value = postagem.id_postagem;
@@ -297,7 +346,7 @@ $(document).ready(function(){
                                         comentario['blob'] = document.querySelector('.nav-userpic').src;
                                         newPost.querySelector('.message').value = '';
                                         loadComentario(comentario, true);
-                                        refreshMenuPost();
+                                        // refreshMenuPost();
                                     }
                                     /* alert(response.mensagem); */
                                     // window.location.reload();
@@ -319,7 +368,36 @@ $(document).ready(function(){
                         }
                     })
 
+                    function loadMenu(menuButton, menuList) {
+                        menuButton.addEventListener('click', () => {
+                            let allMenus = document.querySelectorAll('.list-opts');
+                            Object.values(allMenus).map(item => {
+                                if (menuList != item && item.classList.contains('display-block')) {
+                                    item.classList.remove('display-block');
+                                    item.classList.add('display-none');
+                                }
+                            })
+
+                            if (menuList.classList.contains('display-none')) {
+                                menuList.classList.remove('display-none');
+                                menuList.classList.add('display-block');
+
+                            } else if(menuList.classList.contains('display-block')) {
+                                menuList.classList.remove('display-block');
+                                menuList.classList.add('display-none');
+                            }
+                        });
+
+                    }
+
                     if(postagem.id_usuario == usuario.id_usuario || usuario.is_admin) {
+                        // Menu
+                        let menu = newPost.querySelector('.desc-n-menu').childNodes[5];
+                        let menuButton = menu.childNodes[1];
+                        let menuList = menu.childNodes[3];
+                        loadMenu(menuButton, menuList);
+                        
+
                         // Editar Postagem
                         newPost.querySelector('#edit-post').addEventListener('click', () => {
                             editPostagemModal.querySelector('textarea').innerText = postagem.descricao;
@@ -380,49 +458,64 @@ $(document).ready(function(){
 
                     // Botões de Menu da Postagem
 
-                    function refreshMenuPost() {
-                        Array.from(newPost.querySelectorAll(".menu-icon")).forEach((el, i) => {
-                            el.addEventListener("click", e => {
-                                e.stopPropagation();
-                                const listOpts = Array.from(newPost.querySelectorAll(".list-opts"));
+                    // function refreshMenuPost() {
+                    //     Array.from(newPost.querySelectorAll(".menu-icon")).forEach((el, i) => {
+                    //         el.addEventListener("click", e => {
+                    //             e.stopPropagation();
+                    //             const listOpts = Array.from(newPost.querySelectorAll(".list-opts"));
 
-                                for(j in listOpts){
-                                    if(j != i)
-                                        if(listOpts[j].classList.contains("display-block")){
-                                            listOpts[j].classList.remove("display-block");
-                                            listOpts[j].classList.add("display-none");
-                                        }
-                                }
+                    //             for(j in listOpts){
+                    //                 if(j != i)
+                    //                     if(listOpts[j].classList.contains("display-block")){
+                    //                         listOpts[j].classList.remove("display-block");
+                    //                         listOpts[j].classList.add("display-none");
+                    //                     }
+                    //             }
                     
-                                if(listOpts[i].classList.contains("display-none")){
-                                    listOpts[i].classList.remove("display-none");
-                                    listOpts[i].classList.add("display-block");
-                                }
-                                else if(listOpts[i].classList.contains("display-block")){
-                                    listOpts[i].classList.remove("display-block");
-                                    listOpts[i].classList.add("display-none");
-                                }
-                            })
-                        })
-                    }
-                    refreshMenuPost();
-                    
-
-                    // Botões de Menu sumirem ao clicar em outra área da tela
-                    document.getElementsByTagName("body")[0].addEventListener("click", () => {
-                        Array.from(newPost.querySelectorAll(".menu-list")).forEach(el => {
-                            if(el.classList.contains("display-block")){
-                                el.classList.remove("display-block");
-                                el.classList.add("display-none");
-                            }
-                        })
-                    })
+                    //             if(listOpts[i].classList.contains("display-none")){
+                    //                 listOpts[i].classList.remove("display-none");
+                    //                 listOpts[i].classList.add("display-block");
+                    //             }
+                    //             else if(listOpts[i].classList.contains("display-block")){
+                    //                 listOpts[i].classList.remove("display-block");
+                    //                 listOpts[i].classList.add("display-none");
+                    //             }
+                    //         })
+                    //     })
+                    // }
+                    // refreshMenuPost();
                     
                     document.querySelector('.posts').appendChild(newPost);
                     
                 })
             }
         });
+
+        // Botões de Menu sumirem ao clicar em outra área da tela
+        document.getElementsByTagName("body")[0].addEventListener("click", (element) => {
+            let allowedClasses = ['menu-icon dropdown-post-icon', 'menu-icon dropdown-comment-icon'];
+            let check = false;
+
+            // Clicou no botão?
+            if( allowedClasses.find(value => value == element.target.className) ) {
+                check = true;
+            }
+
+            // Clicou no ícone?
+            if( element.target.tagName == 'I' ) {
+                check = true;
+            }
+
+            // Caso não, esconder todos os menus
+            if( !check ) {
+                Array.from(document.querySelectorAll(".menu-list")).forEach(el => {
+                    if(el.classList.contains("display-block")){
+                        el.classList.remove("display-block");
+                        el.classList.add("display-none");
+                    }
+                })
+            }
+        })
 
 
         // Criar Postagem
@@ -436,17 +529,15 @@ $(document).ready(function(){
                 data: form,
                 processData: false,
                 contentType: false,
-                /* success: function (response) {
-                    if(response.mensagem){
-                        /* alert(response.mensagem);
+                success: function (response) {
+                    if(response.success){
                         window.location.reload();
+                    } else {
+                        alertFunc(response.mensagem);
                     }
                 },
                 error: function (request, status, error) {
                     console.log(request.responseText);
-                }, */
-                complete: function(){
-                    window.location.reload();
                 }
             })
         });
@@ -462,17 +553,15 @@ $(document).ready(function(){
                 data: form,
                 processData: false,
                 contentType: false,
-                /* success: function (response) {
-                    if(response.mensagem){
-                        /* alert(response.mensagem);
+                success: function (response) {
+                    if(response.success){
                         window.location.reload();
+                    } else {
+                        alertFunc(response.mensagem);
                     }
                 },
                 error: function (request, status, error) {
                     console.log(request.responseText);
-                } */
-                complete: function(){
-                    window.location.reload();
                 }
             });
         });
