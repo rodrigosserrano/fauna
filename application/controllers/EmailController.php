@@ -13,34 +13,50 @@ class EmailController extends Fauna_Controller {
         $this->load->view('email/contact');
     }
 
-    function send($email, $senha) {
-        $this->load->config('email');
-        $this->load->library('email');
+    function send() {
+        // Receber o email do front
+        header('Content-Type: application/json');
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('email', 'E-mail', 'required|valid_email');
 
-        $this->load->model('UsuariosModel.php');
+        if($this->form_validation->run()){
+            $email = $this->input->post('email');
 
-        $senha  = md5(time());
+            // Configurar o email
+            $this->load->config('email');
+            $this->load->library('email');
 
-        if($this->UsuariosModel->alterarSenhaModel($email, $senha)){
+            $this->load->model('UsuariosModel');
 
-            $from = $this->config->item('smtp_user');
-            $to = $email;
-            $subject = 'Solicitação de alteração de senha';
-            $message = 'Sua senha agora é' + $senha;
-    
-            $this->email->set_newline("\r\n");
-            $this->email->from($from);
-            $this->email->to($to);
-            $this->email->subject($subject);
-            $this->email->message($message);
-    
-            if ($this->email->send()) {
-                echo 'Seu Email foi enviado com sucesso.';
+            $senha = md5(time());
+
+            if( $this->UsuariosModel->alterarSenhaModel($email, md5($senha)) ) {
+                $from = $this->config->item('smtp_user');
+                $to = $email;
+                $subject = 'Solicitação de alteração de senha';
+                $message = 'Sua senha foi alterada para ' . $senha;
+        
+                $this->email->set_newline("\r\n");
+                $this->email->from($from);
+                $this->email->to($to);
+                $this->email->subject($subject);
+                $this->email->message($message);
+        
+                if ($this->email->send()) {
+                    // echo 'Seu email foi enviado com sucesso.';
+                    echo json_encode(['mensagem'=>'Seu email foi enviado com sucesso.']);
+                } else {
+                    // show_error($this->email->print_debugger());
+                    echo json_encode(['mensagem'=>'Erro.']);
+                }
             } else {
-                show_error($this->email->print_debugger());
+                echo json_encode(['mensagem'=>'Email não cadastrado.']);
             }
+        } else {
+            echo json_encode(['mensagem'=>'Email inválido.']);
         }
-        }
+
+    }
         
 
 }

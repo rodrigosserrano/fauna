@@ -452,4 +452,31 @@ $(document).ready(function(){
         //  }
     }
 
+
+    // Esqueci minha senha
+    if( checkURL('forgot') ) {
+        document.querySelector('.logo').addEventListener('click', () => {
+            window.location.href = `${base_url}home`;
+        })
+
+        $("#btn-recuperar").click(function() {
+            let form = new FormData(document.getElementById('form-recovery'));
+
+            $.ajax({
+                type: "POST",
+                url: base_url+"send-mail",
+                data: form,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    if(response.mensagem) {
+                        alertFunc(response.mensagem);
+                    }
+                },
+                error: function (request, status, error) {
+                    console.log(request.responseText);
+                } 
+            })
+        });
+    }
 });

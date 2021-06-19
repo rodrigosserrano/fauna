@@ -31,7 +31,7 @@
                         <button id="btn-login" type="button" class="btn-login">Entrar</button>
                     </form>
 
-                    <a href="<?= base_url()?>esqueci-minha-senha" class="link">Esqueci minha senha</a>
+                    <a href="<?= base_url()?>forgot" class="link">Esqueci minha senha</a>
                 </div>
 
                 <div class="mini-container">
