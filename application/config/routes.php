@@ -75,6 +75,9 @@ $route['settings']  = 'UserController';
 $route['profile']  = 'UserController/profile';
 $route['profile/(:num)']  = 'UserController/profile/$1';
 
+$route['get-profile']['get'] = 'UserController/getProfile';
+$route['get-profile/(:num)']['get'] = 'UserController/getProfile/$1';
+
 // $route['settings/delete']  = 'UserController/deletaContaView';
 // $route['settings/pet'] = 'UserController/petDadosView';
 
