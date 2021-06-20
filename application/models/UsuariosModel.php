@@ -27,6 +27,10 @@ class UsuariosModel extends CI_Model {
             'telefone' => $telefone,
             'data_nascimento' => $data_nascimento
         ];
+     
+        if($senha) {
+            $dados['senha'] = md5($senha);
+        }
 
         if($foto_usuario) {
             $dados['foto_usuario'] = $foto_usuario;

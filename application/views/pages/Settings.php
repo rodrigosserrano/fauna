@@ -32,6 +32,11 @@
                                 </div>
 
                                 <div class="form-fields-edit-user-data">
+                                    <label> Senha:</label>
+                                    <input type="password" value="" class="form-input" name="senha" placeholder="NovaSenha" required>
+                                </div>
+
+                                <div class="form-fields-edit-user-data">
                                     <label> Data de Nascimento:</label>
                                     <input id="birth-input" type="date" value="" class="form-input" placeholder="dd/mm/aaaa" name="data_nascimento" required>
                                 </div>

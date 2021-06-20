@@ -71,6 +71,7 @@ class UserController extends Fauna_Controller {
         $this->form_validation->set_rules('email', 'E-mail', 'required|valid_email');
         // $this->form_validation->set_rules('senha', 'Senha', 'required');
         $this->form_validation->set_rules('nome_usuario', 'nome_usuario', 'required');
+        $this->form_validation->set_rules('senha', 'senha');
         $this->form_validation->set_rules('telefone', 'telefone', 'required');
         $this->form_validation->set_rules('data_nascimento', 'data_nascimento', 'required');
         // $this->form_validation->set_rules('sexo_usuario', 'sexo_usuario', 'required');
@@ -82,6 +83,7 @@ class UserController extends Fauna_Controller {
                 // "senha" => $this->input->post('senha'),
                 "foto_usuario" => $this->uploadImage($_FILES['foto_usuario'], $this->input->post('email'), 'user'),
                 "nome_usuario" => $this->input->post('nome_usuario'),
+                "senha"=> $this->input->post('senha'),
                 "telefone" => $this->input->post('telefone'),
                 // "sexo_usuario" => $this->input->post('sexo_usuario'),
                 "data_nascimento" => $this->input->post('data_nascimento')
