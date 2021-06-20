@@ -41,11 +41,16 @@ class UsuariosModel extends CI_Model {
     }
 
     public function alterarSenhaModel($email,  $senha){
-        $dados['senha'] = $senha;
+        $dados = [
+            'email' => $email,
+            'senha' => $senha
+        ];
 
-       $this->db->where('email', $email);
-       return $this->db->update('usuario', $dados);
-        
+        // $this->db->where('email', $email);
+        if( $this->db->where('email', $email)->get('usuario')->result() ) {
+            return $this->db->where('email', $email)->update('usuario', $dados);
+        }
+        return null;
     }
 
     public function deleteModel($id_usuario){

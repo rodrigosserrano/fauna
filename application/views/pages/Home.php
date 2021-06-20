@@ -21,8 +21,10 @@
 
     
     <main>
+        <div class="alert-area"></div>
 
         <!-- MODAL CRIAR POSTAGEM -->
+        
         
         <div class="modal fade" id="new-post-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="new-post-area" aria-hidden="true">
             <div class="modal-dialog modal-lg">
@@ -145,96 +147,94 @@
         </div>
 
         <!--  -->
-
-
         <section class="posts">
-                <div class="post">
-                    <div class="info-post">
-                        <div class="profile-info">
+            <div class="post">
+                <div class="info-post">
+                    <div class="profile-info">
 
-                            <img src="" class="profile-photo">
+                        <img src="" class="profile-photo">
 
-                            <div class="user-pet-name">
-                                <!-- <b><span id="user-name">< ?php echo $postagem->usuario;?></span></b> -->
-                                <!-- <b><span id="user-name">< ?php echo $postagem->usuario;?></span></b> -->
-                                <b><span id="user-name"></span></b>
-                                <span id="pet-name"></span>
-                            </div>
-                        </div>
-                        <!-- <div class="date-post"><span id="date-post">< ?php echo date("d/m/Y", strtotime($postagem->dh_post));?></span></div> -->
-                        <div class="date-post"><span id="date-post"></span></div>
-                    </div>
-                    <div class="desc-n-menu">
-                        <!-- <div class="desc">< ?php echo $postagem->descricao;?></div> -->
-                        <div id="desc-post" class="desc"></div>
-                        <div class="dropdown-post-menu">
-                            <span class="menu-icon dropdown-post-icon"><i class="fas fa-ellipsis-h fa-xs"></i></i></span>
-                            <div class="list-opts display-none dropdown-post-list menu-list">
-                                <ul>
-                                    <li id="edit-post" data-bs-toggle="modal" data-bs-target="#edit-post-modal" style="cursor:pointer;">Editar publicação</li>
-                                    <li id="delete-post" style="cursor:pointer;">Apagar publicação</li>
-                                </ul>
-                            </div>
+                        <div class="user-pet-name">
+                            <!-- <b><span id="user-name">< ?php echo $postagem->usuario;?></span></b> -->
+                            <!-- <b><span id="user-name">< ?php echo $postagem->usuario;?></span></b> -->
+                            <b><span id="user-name"></span></b>
+                            <span id="pet-name"></span>
                         </div>
                     </div>
-                        
-                    <div class="post-photo">
-                        <!-- < ?php //if($postagem->midia) : ?> -->
-                            <!-- <img src="< ?= base_url()?>assets/img/post/< ?= $postagem->midia_url ?>"> -->
-                        <!-- < ?php else : ?> -->
-                            <img id="post-photo" src="">
-                        <!-- < ?php endif; ?> -->
-                    </div>
-                                        
-                    <div class="post-likes">
-                        <a id="like-icon">
-                            <img src="<?= base_url()?>assets/img/icon/paw-like-unset.png">
-                        </a>
-                        <b><span id="likes-amount">
-                            <span id="likes-number"></span> 
-                            pessoas curtiram isso
-                        </span></b>
-                    </div>
-                    <div class="line"></div>
-                    <div class="comments">
-                        <!-- < ?php foreach ($postagem->comentarios as $comentario):?> -->
-                        <div class="comment">
-                            <div class="comment-content">
-                                <div class="comment-info">
-                                    <div class="comment-info">
-
-
-                                        <!-- < ?php if(empty($comentario->foto_usuario)) : ?> -->
-                                            <!-- <img src="" class="profile-photo"> -->
-                                            <img src="" class="comment-user-photo">
-                                        <!-- < ?php else : ?> -->
-                                            <!-- <img src="< ?= base_url()?>assets/img/user/< ?php echo $comentario->email.'/'.$comentario->foto_usuario; ?>" class="comment-user-photo"> -->
-                                        <!-- < ?php endif; ?> -->
-
-
-                                        <!-- <b><span class="comment-user">< ?php echo $comentario->usuario; ?>:</span></b> -->
-                                        <b><span class="comment-user"></span></b>
-                                    </div>
-                                    <div class="dropdown-comment-menu">
-                                        <span class="menu-icon dropdown-comment-icon"><i class="fas fa-ellipsis-h fa-xs"></i></i></span>
-                                        <div class="list-opts dropdown-comment-list menu-list display-none">
-                                            <ul>
-                                                <li id="edit-comment" data-bs-toggle="modal" data-bs-target="#edit-comment-modal" style="cursor:pointer;">Editar comentário</li>
-                                                <li id="delete-comment" style="cursor:pointer;">Apagar comentário</li>
-                                            </ul>
-                                        </div>
-                                    </div> 
-                                </div>
-                                <!-- <p class="comment-text">< ?php echo $comentario->texto; ?></p> -->
-                                <p class="comment-text"></p>
-                            </div>
+                    <!-- <div class="date-post"><span id="date-post">< ?php echo date("d/m/Y", strtotime($postagem->dh_post));?></span></div> -->
+                    <div class="date-post"><span id="date-post"></span></div>
+                </div>
+                <div class="desc-n-menu">
+                    <!-- <div class="desc">< ?php echo $postagem->descricao;?></div> -->
+                    <div id="desc-post" class="desc"></div>
+                    <div class="dropdown-post-menu">
+                        <span class="menu-icon dropdown-post-icon"><i class="fas fa-ellipsis-h fa-xs"></i></i></span>
+                        <div class="list-opts display-none dropdown-post-list menu-list">
+                            <ul>
+                                <li id="edit-post" data-bs-toggle="modal" data-bs-target="#edit-post-modal" style="cursor:pointer;">Editar publicação</li>
+                                <li id="delete-post" style="cursor:pointer;">Apagar publicação</li>
+                            </ul>
                         </div>
-                        <!-- < ?php endforeach; ?> -->
                     </div>
+                </div>
                     
-                    <div id="more-comments">
-                        <a style="color: #0870AB; cursor: pointer;">Mais comentários...</a>
+                <div class="post-photo">
+                    <!-- < ?php //if($postagem->midia) : ?> -->
+                        <!-- <img src="< ?= base_url()?>assets/img/post/< ?= $postagem->midia_url ?>"> -->
+                    <!-- < ?php else : ?> -->
+                        <img id="post-photo" src="">
+                    <!-- < ?php endif; ?> -->
+                </div>
+                                    
+                <div class="post-likes">
+                    <a id="like-icon">
+                        <img src="<?= base_url()?>assets/img/icon/paw-like-unset.png">
+                    </a>
+                    <b><span id="likes-amount">
+                        <span id="likes-number"></span> 
+                        pessoas curtiram isso
+                    </span></b>
+                </div>
+                <div class="line"></div>
+                <div class="comments">
+                    <!-- < ?php foreach ($postagem->comentarios as $comentario):?> -->
+                    <div class="comment">
+                        <div class="comment-content">
+                            <div class="comment-info">
+                                <div class="comment-info">
+
+
+                                    <!-- < ?php if(empty($comentario->foto_usuario)) : ?> -->
+                                        <!-- <img src="" class="profile-photo"> -->
+                                        <img src="" class="comment-user-photo">
+                                    <!-- < ?php else : ?> -->
+                                        <!-- <img src="< ?= base_url()?>assets/img/user/< ?php echo $comentario->email.'/'.$comentario->foto_usuario; ?>" class="comment-user-photo"> -->
+                                    <!-- < ?php endif; ?> -->
+
+
+                                    <!-- <b><span class="comment-user">< ?php echo $comentario->usuario; ?>:</span></b> -->
+                                    <b><span class="comment-user"></span></b>
+                                </div>
+                                <div class="dropdown-comment-menu">
+                                    <span class="menu-icon dropdown-comment-icon"><i class="fas fa-ellipsis-h fa-xs"></i></i></span>
+                                    <div class="list-opts dropdown-comment-list menu-list display-none">
+                                        <ul>
+                                            <li id="edit-comment" data-bs-toggle="modal" data-bs-target="#edit-comment-modal" style="cursor:pointer;">Editar comentário</li>
+                                            <li id="delete-comment" style="cursor:pointer;">Apagar comentário</li>
+                                        </ul>
+                                    </div>
+                                </div> 
+                            </div>
+                            <!-- <p class="comment-text">< ?php echo $comentario->texto; ?></p> -->
+                            <p class="comment-text"></p>
+                        </div>
                     </div>
+                    <!-- < ?php endforeach; ?> -->
+                </div>
+                
+                <div id="more-comments">
+                    <a style="color: #0870AB; cursor: pointer;">Mais comentários...</a>
+                </div>
 
                 <div class="write-comments">
                     <form class="form-comment" action="" method="post">

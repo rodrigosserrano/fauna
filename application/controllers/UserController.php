@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class UserController extends Fauna_Controller {    
 
+    
     public function __construct()
     {
         parent::__construct();
@@ -11,6 +12,7 @@ class UserController extends Fauna_Controller {
         $this->id_usuario = $_SESSION['id'];
         $this->id_animal = isset($_POST['id_animal']) ? $_POST['id_animal'] : '';
         $this->id_usuario_2 = isset($_POST['id_usuario']) ? $_POST['id_usuario'] : '';
+        $this->id_profile = '';
 
         $this->load->model('UsuariosModel');
         $this->load->model('PetsModel');
@@ -117,12 +119,39 @@ class UserController extends Fauna_Controller {
     }
 
     // precisa mudar o id default dps
-    public function profile($id = false) {
-        if(!$id) {
-            $id = $this->id_usuario;
+        public function profile($id = false) {
+
+        $id = $this->id_usuario;
+        if($id){
+            $this->id_profile = $id;
         }
 
+        $dados = $this->dadosShow('Perfil', 'assets/css/styleProfile.css', 'assets/js/profile_scripts.js');
+        $view = $this->load->view('pages/Profile', null, true);
+        
+        $this->show($dados, $view, true);
+            
+        // } else {
+        //     redirect('home');
+        // }
+        
+    }
+
+    public function getProfile($id = false) {
+        header('Content-Type: application/json');
+        // print_r($this->id_profile);
+        // die();
+        // $id = $this->id_profile ? $this->id_profile : false;
+        
+        // if(!$id) {
+            $id = $id ? $id : $this->id_usuario;
+            // }
+            // print_r($id);
+        // die();
+
         $dados_usuario = $this->UsuariosModel->getDadosUsuarioModel($id);
+        $sexo = $this->CadastrosModel->getSexoModel();
+        $tipo = $this->CadastrosModel->getTipoModel();
 
         if($dados_usuario) {
             $dados_usuario = $dados_usuario[0];
@@ -130,6 +159,7 @@ class UserController extends Fauna_Controller {
             $dados_pet = $this->PetsModel->getDadosPetModel($id);
 
             $usuario = [
+                'id' => $id,
                 'email' => $dados_usuario->email,
                 'nome_usuario' => $dados_usuario->nome_usuario,
                 'data_nascimento' => $dados_usuario->data_nascimento,
@@ -137,24 +167,22 @@ class UserController extends Fauna_Controller {
                 'sexo_usuario' => $dados_usuario->sexo_usuario, 
                 'foto_usuario' => $dados_usuario->foto_usuario ? base_url().'assets/img/user/'.$dados_usuario->email.'/'.$dados_usuario->foto_usuario : '',
             ];
-            
-            $dados_view = [
-                'usuario' => (object) $usuario,
+
+            $dados = [
+                'usuario' => $usuario,
                 'pet' => $dados_pet,
                 'n_seguindo' => $this->SeguirModel->countSeguirModel($this->id_usuario,true),
                 'seguindo' => $this->SeguirModel->getDadosSeguirModel($this->id_usuario,true),
                 'n_seguidores' => $this->SeguirModel->countSeguirModel($this->id_usuario,null, true),
-                'seguidores' => $this->SeguirModel->getDadosSeguirModel($this->id_usuario,null,true)
+                'seguidores' => $this->SeguirModel->getDadosSeguirModel($this->id_usuario,null,true),
+                'sexo' => $sexo,
+                'tipo' => $tipo,
             ];
-
-            $dados = $this->dadosShow('Perfil', 'assets/css/styleProfile.css', 'assets/js/profile_scripts.js');
-            $view = $this->load->view('pages/Profile', $dados_view, true);
-
-            $this->show($dados, $view, true);
+        
+            echo json_encode($dados);
         } else {
             redirect('home');
         }
-        
     }
 
     /**

@@ -42,32 +42,37 @@
             <div class="profile-info">
                 <div class="profile-info-half">
                     <div class="profile-pic">
-                            <img data-img-user>
+                        <?php if(substr(strchr($usuario->foto_usuario, '.'), 0) != '') :?>
+                            <img src="<?= $usuario->foto_usuario ?>" alt="<?=$usuario->nome_usuario?>" title="<?=$usuario->nome_usuario?>">
+                        <?php else :?>
+                            <img src="<?= base_url() ?>assets/img/user/unknown.jpg" title="<?= $usuario->nome_usuario ?>" alt="<?= $usuario->nome_usuario ?>">
+                        <?php endif; ?>
                     </div>
 
-                    <p class="profile-name" id="nome-usuario-profile"></p>
+                    <p class="profile-name"><?= $usuario->nome_usuario ?></p>
                 </div>
                 <div class="profile-info-half">
 
                     <div class="info-item-area">
                         <div class="info-item">
                             <img class="info-item-icon" src="<?= base_url() ?>assets/img/icon/calendar.png" alt="Calendário" title="Data de Nascimento">
-                            <p class="info-item-description" name="data_nascimento">
-                            
+                            <p class="info-item-description">
+                                Nasceu em
+                                <?= date("d/m/Y", strtotime($usuario->data_nascimento)); ?>
                             </p>
                         </div>
                         
                         <div class="info-item">
                             <img class="info-item-icon" src="<?= base_url() ?>assets/img/icon/mobile-phone.png" alt="Celular" title="Número de Celular">
-                            <p class="info-item-description" name="telefone">
-                              
+                            <p class="info-item-description">
+                                +055 <?= $usuario->telefone ?>
                             </p>
                         </div>
 
                         <div class="info-item">
                             <img class="info-item-icon" src="<?= base_url() ?>assets/img/icon/gender.png" alt="Gênero" title="Gênero Sexual">
-                            <p class="info-item-description" name="sexo">
-
+                            <p class="info-item-description">
+                                Masculino
                             </p>
                         </div>
                     </div>
@@ -80,7 +85,8 @@
 
                     <!-- Loop de Pet -->
                     <!-- Lembrando q cada modal precisa ter o ID específico de cada pet -->
-                    <div class="modal fade " id="pet-info" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="pet-info-area" aria-hidden="true">
+                    <?php foreach($pet as $dado_pet) : ?>
+                    <div class="modal fade" id="pet-info" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="pet-info-area" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
 
@@ -96,10 +102,16 @@
                                     <div class="profile-info">
                                         <div class="profile-info-half">
                                             <div class="profile-pic">
-                                                    <img data-pet-img>
+
+                                                <?php if(substr(strchr($dado_pet->foto_animal, '.'), 0) != '') :?>
+                                                    <img src="<?= base_url().'assets/img/pet/'.$usuario->email.'/'.$dado_pet->foto_animal ?>" alt="<?=$dado_pet->nome_animal ?>" title="<?=$dado_pet->nome_animal ?>">
+                                                <?php else :?>
+                                                    <img src="<?= base_url() ?>assets/img/pet/unknown.jpg" title="<?= $dado_pet->nome_animal ?>" alt="<?= $dado_pet->nome_animal  ?>">
+                                                <?php endif; ?>
+
                                             </div>
 
-                                            <p class="profile-name" id="pet-name"></p>
+                                            <p class="profile-name"><?= $dado_pet->nome_animal ?></p>
                                         </div>
 
                                         <div class="profile-info-half">
@@ -108,22 +120,22 @@
                                             <div class="info-item-area">
                                                 <div class="info-item">
                                                     <img class="info-item-icon" src="<?= base_url() ?>assets/img/icon/dices.png" alt="Tipo de Animal" title="Tipo de Animal">
-                                                    <p class="info-item-description" id="tipo-pet">
-
+                                                    <p class="info-item-description">
+                                                        Cachorro
                                                     </p>
                                                 </div>
                                                 
                                                 <div class="info-item">
                                                     <img class="info-item-icon" src="<?= base_url() ?>assets/img/icon/kitty.png" alt="Raça" title="Raça">
-                                                    <p class="info-item-description" id="raca-pet">
-                                                        
+                                                    <p class="info-item-description">
+                                                        <?= $dado_pet->raca ?>
                                                     </p>
                                                 </div>
 
                                                 <div class="info-item">
                                                     <img class="info-item-icon" src="<?= base_url() ?>assets/img/icon/gender.png" alt="Gênero" title="Gênero Sexual">
-                                                    <p class="info-item-description" id="sexo-animal">
-                                                        
+                                                    <p class="info-item-description">
+                                                        Masculino
                                                     </p>
                                                 </div>
                                             </div>
@@ -139,11 +151,19 @@
                     <div class="unit">
                         <button class="card" data-bs-toggle="modal" data-bs-target="#pet-info">
                             <div class="unit-pic-area">
-                                <img class="unit-pic" data-pet-img >
+
+                                <?php if(substr(strchr($dado_pet->foto_animal, '.'), 0) != '') :?>
+                                    <img class="unit-pic" src="<?= base_url().'assets/img/pet/'.$usuario->email.'/'.$dado_pet->foto_animal ?>" alt="<?=$dado_pet->nome_animal ?>" title="<?=$dado_pet->nome_animal ?>">
+                                <?php else :?>
+                                    <img class="unit-pic" src="<?= base_url() ?>assets/img/pet/unknown.jpg" title="<?= $dado_pet->nome_animal ?>" alt="<?= $dado_pet->nome_animal  ?>">
+                                <?php endif; ?>
+
+                        
                             </div>
-                            <p class="unit-name" id="pet-name"></p>
+                            <p class="unit-name"><?= $dado_pet->nome_animal ?></p>
                         </button>
                     </div>
+                    <?php endforeach; ?>
                     <!--  -->
 
             </div>

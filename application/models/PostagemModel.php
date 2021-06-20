@@ -3,8 +3,7 @@
 class PostagemModel extends CI_Model {
 
     public function cadastroPostagemModel(array $dados_postagem){
-        if($this->db->insert('postagem', $dados_postagem))
-            return true;
+        return $this->db->insert('postagem', $dados_postagem);
     }
 
     public function alterarDadosPostagemModel($dados_update, $nivel_usuario){

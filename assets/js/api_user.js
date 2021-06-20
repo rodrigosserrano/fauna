@@ -309,4 +309,174 @@ $(document).ready(function(){
             }
         });
     }
+
+    function uriRoute() {
+        let route = window.location.href.replace(base_url, '').split('/');
+        return route;
+    }
+
+    if( uriRoute()[0] == 'profile' ) {
+
+        let id = uriRoute()[1];
+        let url = id ? `${base_url}get-profile/${id}` : `${base_url}get-profile`;
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function (r) {
+                // console.log(r.tipo);
+                let user = r.usuario
+                let pets = r.pet
+                let sexo
+                let n_seguindo = r.n_seguindo
+                let n_seguidores = r.n_seguidores
+                let seguindo = r.seguindo
+                let seguidores = r.seguidores
+                let date = new Date(user.data_nascimento);
+                let dataFormatada = ((date.getDate() + 1)) + "/" + ((date.getMonth() + 1)) + "/" + date.getFullYear(); 
+
+                r.sexo.map((sexo) => {
+                    id_sexo = sexo.id_sexo,
+                    desc_sexo = sexo.descricao
+
+                    if(id_sexo == user.sexo_usuario){
+                        $('[name="sexo"]').html(desc_sexo[0].toUpperCase() + desc_sexo.substr(1));
+                    }
+                })
+
+                if(user.foto_usuario == null){
+                    $('[data-img-user]').attr('src', `${path_user}/unknown.jpg`);
+                }else{
+                    $('[data-img-user]').attr('src', `${user.foto_usuario}`);
+                }
+                $('[data-img-user]').attr('alt', `Foto de ${user.nome_usuario}`);
+                $('[data-img-user]').attr('title', `Foto de ${user.nome_usuario}`);
+
+                //Populate profile user
+                $('#nome-usuario-profile').html(user.nome_usuario);
+                $('[name="data_nascimento"]').html(`Nasceu em ${dataFormatada}`);
+                $('[name="telefone"]').html(`+055 ${user.telefone}`);
+
+                pets.map((pet) => {
+                    showPetProfile(pet, r.tipo, r.sexo, r.usuario)
+                })
+
+            },
+            error: function (err) {
+                console.log(err)
+              }
+        });
+
+        function showPetProfile(pet, tipos, sexos, user){ 
+            // console.log(user)
+            let newPetContainerProfile = document.querySelector('.unit').cloneNode(true);
+            newPetContainerProfile.style.display = 'flex';
+            if(pet.id_animal) {
+                newPetContainerProfile.id = pet.id_animal;
+            }
+            
+            // Foto
+            if(pet.blob) {
+                newPetContainerProfile.querySelector('[data-pet-img]').src = pet.blob;
+                
+            } else if(pet.foto_animal == null || pet.foto_animal.name == '') {
+                newPetContainerProfile.querySelector('[data-pet-img]').setAttribute('src', `${path_pet}/unknown.jpg`);
+            } else {
+                newPetContainerProfile.querySelector('[data-pet-img]').setAttribute('src', `${path_pet}/${user.email}/${pet.foto_animal}`);
+                newPetContainerProfile.querySelector('[data-pet-img]').setAttribute('alt', pet.nome_animal);
+                newPetContainerProfile.querySelector('[data-pet-img]').setAttribute('title', pet.nome_animal);
+            }
+            
+            if(pet.nome_animal.length > 10) {
+                newPetContainerProfile.querySelector('#pet-name').innerText = `${pet.nome_animal.substring(0, 10)}...`;
+            } else {
+                newPetContainerProfile.querySelector('#pet-name').innerText = pet.nome_animal;
+            }
+            
+            tipos.map((tipo) => {
+                if(tipo.id_tipo == pet.tipo){
+                    newPetContainerProfile.querySelector('#tipo-pet').innerText = tipo.descricao;
+                }
+            });
+
+            newPetContainerProfile.querySelector('#raca-pet').innerText = pet.raca;
+
+            sexos.map((sexo) => {
+                if(sexo.id_sexo == pet.sexo_animal){
+                    newPetContainerProfile.querySelector('#sexo-animal').innerText = sexo.desc_sexo;
+                }
+            })
+    
+            document.querySelector('#user-profile-pet-area').appendChild(newPetContainerProfile);
+         }
+        // function showPetProfile(pet, tipos, sexos, user){ 
+        //     // console.log(user)
+        //     let newPetContainerProfile = document.querySelector('.pet-info').cloneNode(true);
+        //     newPetContainerProfile.style.display = 'flex';
+        //     if(pet.id_animal) {
+        //         newPetContainerProfile.id = pet.id_animal;
+        //     }
+            
+        //     // Foto
+        //     if(pet.blob) {
+        //         newPetContainerProfile.querySelector('[data-pet-img]').src = pet.blob;
+                
+        //     } else if(pet.foto_animal == null || pet.foto_animal.name == '') {
+        //         newPetContainerProfile.querySelector('[data-pet-img]').setAttribute('src', `${path_pet}/unknown.jpg`);
+        //     } else {
+        //         newPetContainerProfile.querySelector('[data-pet-img]').setAttribute('src', `${path_pet}/${user.email}/${pet.foto_animal}`);
+        //         newPetContainerProfile.querySelector('[data-pet-img]').setAttribute('alt', pet.nome_animal);
+        //         newPetContainerProfile.querySelector('[data-pet-img]').setAttribute('title', pet.nome_animal);
+        //     }
+            
+        //     if(pet.nome_animal.length > 10) {
+        //         newPetContainerProfile.querySelector('#pet-name').innerText = `${pet.nome_animal.substring(0, 10)}...`;
+        //     } else {
+        //         newPetContainerProfile.querySelector('#pet-name').innerText = pet.nome_animal;
+        //     }
+            
+        //     tipos.map((tipo) => {
+        //         if(tipo.id_tipo == pet.tipo){
+        //             newPetContainerProfile.querySelector('#tipo-pet').innerText = tipo.descricao;
+        //         }
+        //     });
+
+        //     newPetContainerProfile.querySelector('#raca-pet').innerText = pet.raca;
+
+        //     sexos.map((sexo) => {
+        //         if(sexo.id_sexo == pet.sexo_animal){
+        //             newPetContainerProfile.querySelector('#sexo-animal').innerText = sexo.desc_sexo;
+        //         }
+        //     })
+    
+        //     document.querySelector('#user-profile-pet-area').appendChild(newPetContainerProfile);
+        //  }
+    }
+
+
+    // Esqueci minha senha
+    if( checkURL('forgot') ) {
+        document.querySelector('.logo').addEventListener('click', () => {
+            window.location.href = `${base_url}home`;
+        })
+
+        $("#btn-recuperar").click(function() {
+            let form = new FormData(document.getElementById('form-recovery'));
+
+            $.ajax({
+                type: "POST",
+                url: base_url+"send-mail",
+                data: form,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    if(response.mensagem) {
+                        alertFunc(response.mensagem);
+                    }
+                },
+                error: function (request, status, error) {
+                    console.log(request.responseText);
+                } 
+            })
+        });
+    }
 });

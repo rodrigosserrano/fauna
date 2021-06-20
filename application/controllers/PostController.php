@@ -92,13 +92,14 @@ class PostController extends Fauna_Controller {
                 "descricao" => $this->input->post('descricao'),
                 "midia" => $this->uploadImage($_FILES['midia'], $this->email, 'post'),
             ];
-
-            print_r($dados_cadastro);
             
             $verifica_cadastro = $this->PostagemModel->cadastroPostagemModel($dados_cadastro);
 
             if($verifica_cadastro){
-                echo json_encode(['mensagem'=>'Postagem feita com sucesso!']);
+                echo json_encode([
+                    'mensagem'=>'Postagem feita com sucesso!',
+                    'success'=>true
+                ]);
             }else{
                 echo json_encode(['mensagem'=>'Erro ao realizar Postagem.']);
             }
@@ -132,7 +133,10 @@ class PostController extends Fauna_Controller {
             $verifica_cadastro = $this->PostagemModel->alterarDadosPostagemModel($dados_cadastro, $this->nivel_usuario);
         
             if($verifica_cadastro){
-                echo json_encode(['mensagem'=>'Postagem alterada com sucesso!']);
+                echo json_encode([
+                    'mensagem'=>'Postagem alterada com sucesso!',
+                    'success'=>true
+                ]);
             }else{
                 echo json_encode(['mensagem'=>'Erro ao alterar.']);
             }

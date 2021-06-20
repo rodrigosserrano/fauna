@@ -56,11 +56,14 @@ $route['translate_uri_dashes'] = FALSE;
 //Usuario Login
 $route['validate']['post'] = 'LoginController/validateLogin'; //REQUISIÇÃO POST
 $route['logout'] = 'LoginController/logout';
-$route['esqueci-minha-senha']['get'] = 'LoginController/forgotPasswordPage';
+$route['forgot']['get'] = 'LoginController/forgotPasswordPage';
 
 //Usuario registro
 $route['register'] = 'RegisterController';
 $route['register-validate']['post'] = 'RegisterController/validateRegister'; //REQUISIÇÃO POST
+
+//Usuário recuperar conta
+$route['send-mail']['post'] = 'EmailController/send';
 
 //Usuário
 $route['get-dados-user']['get'] = 'UserController/getSettingsRequest';
@@ -74,6 +77,9 @@ $route['settings']  = 'UserController';
 
 $route['profile']  = 'UserController/profile';
 $route['profile/(:num)']  = 'UserController/profile/$1';
+
+$route['get-profile']['get'] = 'UserController/getProfile';
+$route['get-profile/(:num)']['get'] = 'UserController/getProfile/$1';
 
 // $route['settings/delete']  = 'UserController/deletaContaView';
 // $route['settings/pet'] = 'UserController/petDadosView';
