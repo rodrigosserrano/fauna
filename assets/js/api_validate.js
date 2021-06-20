@@ -10,6 +10,15 @@ $(document).ready(function(){
         return window.location.href == base_url + route;
     }
 
+    // Alerta
+    function alertFunc(message) {
+        var alertBox = document.createElement('div');
+        alertBox.setAttribute('class', 'alert-msg');
+        alertBox.appendChild(document.createTextNode(message));
+        document.querySelector('.alert-area').appendChild(alertBox);
+        setTimeout(function() { document.querySelector('.alert-area').removeChild(alertBox) }, 4000);
+    }
+
     if( checkURL('') ) {
 
         //request Login
@@ -86,7 +95,7 @@ $(document).ready(function(){
                 contentType: false,
                 success: function (response) {
                     if(response.mensagem)
-                        alert(response.mensagem);
+                        alertFunc(response.mensagem);
                     
                     if(response.error == 0)
                         window.location.href= base_url;

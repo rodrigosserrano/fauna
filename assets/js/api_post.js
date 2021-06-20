@@ -148,11 +148,21 @@ $(document).ready(function(){
                     });
 
                     //Nome usuário e pet
-                    newPost.querySelector('#user-name').innerText = postagem.usuario;
+                    if(postagem.usuario.length > 24) {
+                        newPost.querySelector('#user-name').innerText = `${postagem.usuario.substring(0, 24)}...`;
+                    } else {
+                        newPost.querySelector('#user-name').innerText = postagem.usuario;
+                    }
+
                     newPost.querySelector('#user-name').addEventListener('click', () =>{
                         window.location.href = postagem.perfil;
                     });
-                    newPost.querySelector('#pet-name').innerText = postagem.animal;
+
+                    if(postagem.animal.length > 24) {
+                        newPost.querySelector('#pet-name').innerText = `${postagem.animal.substring(0, 24)}...`;
+                    } else {
+                        newPost.querySelector('#pet-name').innerText = postagem.animal;
+                    }
 
                     //Data postagem
                     let data = new Date(postagem.dh_post);
@@ -164,7 +174,7 @@ $(document).ready(function(){
                     
                     //Foto postagem
                     if(postagem.midia == null) {
-                        newPost.querySelector('#post-photo').src = `${base_url}/assets/teste/pitbull.png`;
+                        newPost.querySelector('#post-photo').src = `${base_url}/assets/img/post/unknown.jpg`;
                     } else {
                         newPost.querySelector('#post-photo').src = `${base_url}/assets/img/post/${postagem.midia_url}`;
                     }
@@ -231,7 +241,11 @@ $(document).ready(function(){
                         });
 
                         //Nome usuario
-                        newComment.querySelector('.comment-user').innerText = comentario.usuario;
+                        if(comentario.usuario.length > 24) {
+                            newComment.querySelector('.comment-user').innerText = `${comentario.usuario.substring(0, 24)}...`;
+                        } else {
+                            newComment.querySelector('.comment-user').innerText = comentario.usuario;
+                        }
 
                         newComment.querySelector('.comment-user').addEventListener('click', () => {
                             window.location.href = `${base_url}profile/${comentario.id_usuario}`;

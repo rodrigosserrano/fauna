@@ -580,6 +580,18 @@ main {
         width: 100%;
         border-radius: 0;
     }
+
+    .delete-follower {
+        right: 30px;
+        top: 10px;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .delete-follower {
+        right: 20px;
+        top: 5px;
+    }
 }
 
 @media screen and (max-width: 470px) {
@@ -649,6 +661,7 @@ main {
     
     .unit-name {
         font-size: 10pt;
+        white-space: nowrap;
     }
 
     .profile-pic, .profile-pic img {
@@ -664,6 +677,11 @@ main {
     .more {
         height: 40px;
     }
+
+    .delete-follower {
+        right: 10px;
+        top: 0px;
+    }
 }
 
 @media screen and (max-width: 300px) {
@@ -677,5 +695,10 @@ main {
     
     .post-date {
         font-size: 8pt;
+    }
+
+    .delete-follower {
+        right: 0px;
+        top: 5px;
     }
 }

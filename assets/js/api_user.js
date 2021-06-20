@@ -205,7 +205,12 @@ $(document).ready(function(){
                                 pet['foto_animal'] = editPetModal.querySelector('.form-pet-pic').src;
 
                                 let editedPet = document.getElementById(pet.id_animal);
-                                editedPet.querySelector('.pet-name').innerText = pet.nome_animal;
+
+                                if(pet.nome_animal.length > 10) {
+                                    editedPet.querySelector('.pet-name').innerText = `${pet.nome_animal.substring(0, 10)}...`;
+                                } else {
+                                    editedPet.querySelector('.pet-name').innerText = pet.nome_animal;
+                                }
                                 editedPet.querySelector('.pet-pic').src = pet.foto_animal;
 
 
@@ -429,7 +434,12 @@ $(document).ready(function(){
                 $('[data-img-user]').attr('title', `Foto de ${user.nome_usuario}`);
 
                 //Populate profile user
-                $('#nome-usuario-profile').html(user.nome_usuario);
+                if(user.nome_usuario.length > 15) {
+                    $('#nome-usuario-profile').html(`${user.nome_usuario.substring(0, 15)}...`);
+                } else {
+                    $('#nome-usuario-profile').html(user.nome_usuario);
+                }
+
                 $('[name="data_nascimento"]').html(`Nasceu em ${dataFormatada}`);
                 $('[name="telefone"]').html(`+055 ${user.telefone}`);
 
@@ -546,15 +556,19 @@ $(document).ready(function(){
             newPost.style.display = 'flex';
 
             if(post.midia == null) {
-                newPost.querySelector('.post-pic img').setAttribute('src', `${base_url}assets/teste/pitbull.png`);
+                newPost.querySelector('.post-pic img').setAttribute('src', `${base_url}assets/img/post/unknown.jpg`);
             } else {
                 newPost.querySelector('.post-pic img').setAttribute('src', `${base_url}assets/img/post/${post.midia_url}`);
                 newPost.querySelector('.post-pic img').setAttribute('alt', 'Foto da Postagem');
             }
 
             newPost.querySelector('.post-description').innerText = post.descricao;
-            newPost.querySelector('.post-date').innerText = post.dh_post;
             newPost.querySelector('.like-amount').innerText = post.curtidas;
+
+            // Postagem
+            let date = new Date(post.dh_post);
+            let dataFormatada = ((date.getDate() + 1)) + "/" + ((date.getMonth() + 1)) + "/" + date.getFullYear();
+            newPost.querySelector('.post-date').innerText = dataFormatada;
 
             newPost.querySelector('.post-pic').href = `${base_url}home/${post.id_postagem}`;
 

@@ -490,3 +490,9 @@ input[type="file"] {
 .btn-type {
     display: none;
 }
+
+@media screen and (max-width: 400px) {
+    .pet-name {
+        opacity: 0%;
+    }
+}

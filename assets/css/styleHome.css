@@ -57,6 +57,7 @@ main{
     margin-right: 5px;
     cursor: pointer;
     transition: 0.2s;
+    object-fit: cover;
 }
 
 .profile-photo:hover {
@@ -245,6 +246,7 @@ main{
     margin-right: 3px;
     transition: 0.2s;
     cursor: pointer;
+    object-fit: cover;
 }
 
 .comment-user-photo:hover {

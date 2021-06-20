@@ -3,6 +3,7 @@
         <div class="logo"><span><a style="text-decoration:none; color: #fff;" href="<?= base_url() ?>">Fauna</a></span></div>
     </header>
     <main>
+        <div class="alert-area"></div>
         <form id="form-register" enctype="multipart/form-data">
             <div class="sections-container">
                 <section class="left-form-container">
