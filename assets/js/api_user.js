@@ -348,6 +348,9 @@ $(document).ready(function(){
                     }
                 })
 
+                document.querySelector('#profile-following span').innerText = n_seguindo;
+                document.querySelector('#profile-followers span').innerText = n_seguidores;
+
                 let btnsArea = document.querySelector('#btns-area');
                 if(is_user) {
                     document.querySelector('#user-profile-title').removeChild(btnsArea);
@@ -383,6 +386,9 @@ $(document).ready(function(){
                                     }
 
                                     showFollowingProfile(seguidor, '#menu-follower');
+
+                                    let followers = document.querySelector('#profile-followers span');
+                                    followers.innerText = Number(followers.innerText) + 1;
                                 }
                             })
                         } else {
@@ -395,6 +401,9 @@ $(document).ready(function(){
                                     let listaSeguidores = document.querySelector('#menu-follower').querySelector('.follow-area');
                                     let userFollow = listaSeguidores.querySelector(`div[id='${r.logged_user.id}']`);
                                     listaSeguidores.removeChild(userFollow);
+
+                                    let followers = document.querySelector('#profile-followers span');
+                                    followers.innerText = Number(followers.innerText) - 1;
                                 }
                             })
                         }
@@ -605,6 +614,9 @@ $(document).ready(function(){
                     let listaSeguidores = document.querySelector('#menu-follower').querySelector('.follow-area');
                     let userFollow = listaSeguidores.querySelector(`div[id='${id}']`);
                     listaSeguidores.removeChild(userFollow);
+                    
+                    let followers = document.querySelector('#profile-followers span');
+                    followers.innerText = Number(followers.innerText) - 1;
                 }
             })
         })

@@ -151,8 +151,8 @@
             <div id="user-menu">
                 <section class="nav" id="profile-menu" role="tablist">  
                     <button class="profile-option-selected" id="profile-posts" data-bs-toggle="tab" data-bs-target="#menu-post" type="button" role="tab" aria-controls="menu-post" aria-selected="true">Postagens</button>
-                    <button class="profile-option" id="profile-following" data-bs-toggle="tab" data-bs-target="#menu-following" type="button" role="tab" aria-controls="menu-following" aria-selected="false">Seguindo</button>
-                    <button class="profile-option" id="profile-followers" data-bs-toggle="tab" data-bs-target="#menu-follower" type="button" role="tab" aria-controls="menu-follower" aria-selected="false">Seguidores</button>
+                    <button class="profile-option" id="profile-following" data-bs-toggle="tab" data-bs-target="#menu-following" type="button" role="tab" aria-controls="menu-following" aria-selected="false">Seguindo (<span>0</span>)</button>
+                    <button class="profile-option" id="profile-followers" data-bs-toggle="tab" data-bs-target="#menu-follower" type="button" role="tab" aria-controls="menu-follower" aria-selected="false">Seguidores (<span>0</span>)</button>
                 </section>
 
                 <section id="profile-user-info" class="tab-content">
