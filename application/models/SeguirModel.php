@@ -38,8 +38,7 @@ class SeguirModel extends CI_Model {
             $query = $this->db->get(); 
             return $query->result();
 
-        }else{
-            if($seguidores){
+        }else if($seguidores){
                 
             $this->db->select('u.id_usuario, u.nome_usuario as usuario, u.foto_usuario, u.email');
             $this->db->from('seguir s'); 
@@ -49,10 +48,13 @@ class SeguirModel extends CI_Model {
             $query = $this->db->get(); 
             return $query->result();
 
-            }else{
-                return false;
-            }
+        }else{
+            return false;
         }
+    }
+
+    public function getIsFollowing($id_usuario, $id_seguidor) {
+        return $this->db->where('id_seguido', $id_usuario)->where('id_seguidor', $id_seguidor)->get('seguir')->result();
     }
 
     public function countSeguirModel($id_usuario, $seguindo = null, $seguidores = null){

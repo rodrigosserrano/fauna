@@ -63,7 +63,7 @@ main {
 /* Botões no canto superior direito*/
 #btns-area {
     position: absolute;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     right: 15px;
@@ -245,7 +245,7 @@ main {
     width: 20%;
     height: 120px;
     
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -349,7 +349,7 @@ main {
 
 /* Postagem */
 .post-card {
-    display: flex;
+    display: none;
     align-items: center;
 
     margin: 25px auto;

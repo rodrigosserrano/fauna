@@ -1,27 +1,4 @@
 $(document).ready(function() {
-
-    // Botão Seguir
-    let btnFollowElement = document.querySelector('.btn-follow');
-
-    btnFollowElement.addEventListener('click', () => {
-
-        if(btnFollowElement.id == 'btn-seguir') {
-            startFollowing(btnFollowElement);
-        } else {
-            stopFollowing(btnFollowElement);
-        }
-    })
-
-    function startFollowing(btn) {
-        btn.innerText = 'Seguindo';
-        btn.id = 'btn-deixar-seguir';
-    }
-
-    function stopFollowing(btn) {
-        btn.innerText = 'Seguir';
-        btn.id = 'btn-seguir';
-    }
-
     // Botão Opções do Usuário
     let btnOptionArray = document.getElementsByClassName('btn-option');
 

@@ -69,7 +69,12 @@ class PostagemModel extends CI_Model {
     }
 
     public function getDadosPostagemUsuarioModel($id_usuario){
-        $query = $this->db->where(['id_usuario' => $id_usuario])->get('postagem');
+        $this->db->select('p.id_postagem, p.descricao, p.midia, p.dh_post, u.email');
+        $this->db->from('postagem p'); 
+        $this->db->join('usuario u', 'u.id_usuario = p.id_usuario', 'left');
+        $this->db->where('p.id_usuario', $id_usuario);
+        $this->db->order_by('p.dh_post', 'desc');
+        $query = $this->db->get();
         return $query->result(); 
     }
 

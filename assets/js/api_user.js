@@ -324,15 +324,18 @@ $(document).ready(function(){
             url: url,
             success: function (r) {
                 // console.log(r.tipo);
-                let user = r.usuario
-                let pets = r.pet
-                let sexo
-                let n_seguindo = r.n_seguindo
-                let n_seguidores = r.n_seguidores
-                let seguindo = r.seguindo
-                let seguidores = r.seguidores
+                let user = r.usuario;
+                let pets = r.pet;
+                let sexo;
+                let n_seguindo = r.n_seguindo;
+                let n_seguidores = r.n_seguidores;
+                let seguindo = r.seguindo;
+                let seguidores = r.seguidores;
+                let postagens = r.postagens;
+                let is_user = r.is_user;
+                let is_following = r.is_following;
                 let date = new Date(user.data_nascimento);
-                let dataFormatada = ((date.getDate() + 1)) + "/" + ((date.getMonth() + 1)) + "/" + date.getFullYear(); 
+                let dataFormatada = ((date.getDate() + 1)) + "/" + ((date.getMonth() + 1)) + "/" + date.getFullYear();
 
                 r.sexo.map((sexo) => {
                     id_sexo = sexo.id_sexo,
@@ -342,6 +345,69 @@ $(document).ready(function(){
                         $('[name="sexo"]').html(desc_sexo[0].toUpperCase() + desc_sexo.substr(1));
                     }
                 })
+
+                let btnsArea = document.querySelector('#btns-area');
+                if(is_user) {
+                    document.querySelector('#user-profile-title').removeChild(btnsArea);
+                } else {
+                    btnsArea.style.display = 'flex';
+
+                    // Botão Seguir
+                    let btnFollowElement = document.querySelector('.btn-follow');
+
+                    if(is_following) {
+                        startFollowing(btnFollowElement);
+                    } else {
+                        stopFollowing(btnFollowElement);
+                    }
+
+                    btnFollowElement.addEventListener('click', () => {
+
+                        if(btnFollowElement.id == 'btn-seguir') {
+                            $.ajax({
+                                type: "POST",
+                                url: base_url+"create-seguir",
+                                data: { id_usuario: user.id },
+                                success: function () {
+                                    startFollowing(btnFollowElement);
+
+                                    let navItem = document.querySelector('.nav-userpic')
+
+                                    let seguidor = {
+                                        email: r.logged_user.email,
+                                        foto_usuario: navItem.src.split('/').slice(-1).pop(),
+                                        id_usuario: r.logged_user.id,
+                                        usuario: navItem.title,
+                                    }
+
+                                    showFollowingProfile(seguidor, '#menu-follower');
+                                }
+                            })
+                        } else {
+                            $.ajax({
+                                type: "POST",
+                                url: base_url+"delete-seguindo",
+                                data: { id_usuario: user.id },
+                                success: function () {
+                                    stopFollowing(btnFollowElement);
+                                    let listaSeguidores = document.querySelector('#menu-follower').querySelector('.follow-area');
+                                    let userFollow = listaSeguidores.querySelector(`div[id='${r.logged_user.id}']`);
+                                    listaSeguidores.removeChild(userFollow);
+                                }
+                            })
+                        }
+                    })
+
+                    function startFollowing(btn) {
+                        btn.innerText = 'Seguindo';
+                        btn.id = 'btn-deixar-seguir';
+                    }
+
+                    function stopFollowing(btn) {
+                        btn.innerText = 'Seguir';
+                        btn.id = 'btn-seguir';
+                    }
+                }
 
                 if(user.foto_usuario == null){
                     $('[data-img-user]').attr('src', `${path_user}/unknown.jpg`);
@@ -357,33 +423,68 @@ $(document).ready(function(){
                 $('[name="telefone"]').html(`+055 ${user.telefone}`);
 
                 pets.map((pet) => {
-                    showPetProfile(pet, r.tipo, r.sexo, r.usuario)
+                    showPetProfile(pet, r.tipo, r.sexo, r.usuario);
                 })
 
+                let postPerLoad = 3;
+                let postIndex = 0;
+                let check = postagens.length > postPerLoad;
+
+                let menu = document.querySelector('#menu-post');
+                let btn = menu.querySelector('.more')
+
+                if(postagens.length == 0) {
+                    btn.innerText = 'Nenhuma postagem';
+                    btn.style.marginTop = '10px';
+                }
+
+                postagens.map((post) => {
+                    if(check) {
+                        if(postIndex < postPerLoad) {
+                            showPost(post);
+                            postIndex++;
+                        } else {
+                            
+                            menu.appendChild(btn);
+                            btn.addEventListener('click', () => {
+                                showPost(post);
+                                menu.removeChild(btn);
+                            })
+                        }
+                    } else {
+                        menu.removeChild(btn);
+                    }
+                    
+                })
+
+                seguindo.map((seguido) => {
+                    showFollowingProfile(seguido, '#menu-following');
+                })
+
+                seguidores.map((seguidor) => {
+                    showFollowingProfile(seguidor, '#menu-follower');
+                })
             },
             error: function (err) {
                 console.log(err)
               }
         });
 
+        const petModal = document.querySelector('#pet-info');
+
         function showPetProfile(pet, tipos, sexos, user){ 
             // console.log(user)
-            let newPetContainerProfile = document.querySelector('.unit').cloneNode(true);
+            let petArea = document.querySelector('#user-profile-pet-area');
+            let newPetContainerProfile = petArea.querySelector('.unit').cloneNode(true);
             newPetContainerProfile.style.display = 'flex';
-            if(pet.id_animal) {
-                newPetContainerProfile.id = pet.id_animal;
-            }
-            
+
             // Foto
-            if(pet.blob) {
-                newPetContainerProfile.querySelector('[data-pet-img]').src = pet.blob;
-                
-            } else if(pet.foto_animal == null || pet.foto_animal.name == '') {
-                newPetContainerProfile.querySelector('[data-pet-img]').setAttribute('src', `${path_pet}/unknown.jpg`);
+            if(pet.foto_animal == null) {
+                newPetContainerProfile.querySelector('.unit-pic').setAttribute('src', `${path_pet}/unknown.jpg`);
             } else {
-                newPetContainerProfile.querySelector('[data-pet-img]').setAttribute('src', `${path_pet}/${user.email}/${pet.foto_animal}`);
-                newPetContainerProfile.querySelector('[data-pet-img]').setAttribute('alt', pet.nome_animal);
-                newPetContainerProfile.querySelector('[data-pet-img]').setAttribute('title', pet.nome_animal);
+                newPetContainerProfile.querySelector('.unit-pic').setAttribute('src', `${path_pet}/${user.email}/${pet.foto_animal}`);
+                newPetContainerProfile.querySelector('.unit-pic').setAttribute('alt', pet.nome_animal);
+                newPetContainerProfile.querySelector('.unit-pic').setAttribute('title', pet.nome_animal);
             }
             
             if(pet.nome_animal.length > 10) {
@@ -391,65 +492,90 @@ $(document).ready(function(){
             } else {
                 newPetContainerProfile.querySelector('#pet-name').innerText = pet.nome_animal;
             }
-            
-            tipos.map((tipo) => {
-                if(tipo.id_tipo == pet.tipo){
-                    newPetContainerProfile.querySelector('#tipo-pet').innerText = tipo.descricao;
-                }
-            });
 
-            newPetContainerProfile.querySelector('#raca-pet').innerText = pet.raca;
-
-            sexos.map((sexo) => {
-                if(sexo.id_sexo == pet.sexo_animal){
-                    newPetContainerProfile.querySelector('#sexo-animal').innerText = sexo.desc_sexo;
+            newPetContainerProfile.addEventListener('click', () => {
+                // Foto
+                if(pet.foto_animal == null) {
+                    petModal.querySelector('[data-pet-img]').setAttribute('src', `${path_pet}/unknown.jpg`);
+                } else {
+                    petModal.querySelector('[data-pet-img]').setAttribute('src', `${path_pet}/${user.email}/${pet.foto_animal}`);
+                    petModal.querySelector('[data-pet-img]').setAttribute('alt', pet.nome_animal);
+                    petModal.querySelector('[data-pet-img]').setAttribute('title', pet.nome_animal);
                 }
-            })
-    
-            document.querySelector('#user-profile-pet-area').appendChild(newPetContainerProfile);
-         }
-        // function showPetProfile(pet, tipos, sexos, user){ 
-        //     // console.log(user)
-        //     let newPetContainerProfile = document.querySelector('.pet-info').cloneNode(true);
-        //     newPetContainerProfile.style.display = 'flex';
-        //     if(pet.id_animal) {
-        //         newPetContainerProfile.id = pet.id_animal;
-        //     }
-            
-        //     // Foto
-        //     if(pet.blob) {
-        //         newPetContainerProfile.querySelector('[data-pet-img]').src = pet.blob;
                 
-        //     } else if(pet.foto_animal == null || pet.foto_animal.name == '') {
-        //         newPetContainerProfile.querySelector('[data-pet-img]').setAttribute('src', `${path_pet}/unknown.jpg`);
-        //     } else {
-        //         newPetContainerProfile.querySelector('[data-pet-img]').setAttribute('src', `${path_pet}/${user.email}/${pet.foto_animal}`);
-        //         newPetContainerProfile.querySelector('[data-pet-img]').setAttribute('alt', pet.nome_animal);
-        //         newPetContainerProfile.querySelector('[data-pet-img]').setAttribute('title', pet.nome_animal);
-        //     }
-            
-        //     if(pet.nome_animal.length > 10) {
-        //         newPetContainerProfile.querySelector('#pet-name').innerText = `${pet.nome_animal.substring(0, 10)}...`;
-        //     } else {
-        //         newPetContainerProfile.querySelector('#pet-name').innerText = pet.nome_animal;
-        //     }
-            
-        //     tipos.map((tipo) => {
-        //         if(tipo.id_tipo == pet.tipo){
-        //             newPetContainerProfile.querySelector('#tipo-pet').innerText = tipo.descricao;
-        //         }
-        //     });
-
-        //     newPetContainerProfile.querySelector('#raca-pet').innerText = pet.raca;
-
-        //     sexos.map((sexo) => {
-        //         if(sexo.id_sexo == pet.sexo_animal){
-        //             newPetContainerProfile.querySelector('#sexo-animal').innerText = sexo.desc_sexo;
-        //         }
-        //     })
+                if(pet.nome_animal.length > 10) {
+                    petModal.querySelector('#pet-name').innerText = `${pet.nome_animal.substring(0, 10)}...`;
+                } else {
+                    petModal.querySelector('#pet-name').innerText = pet.nome_animal;
+                }
+                
+                tipos.map((tipo) => {
+                    if(tipo.id_tipo == pet.tipo){
+                        petModal.querySelector('#tipo-pet').innerText = tipo.descricao;
+                    }
+                });
     
-        //     document.querySelector('#user-profile-pet-area').appendChild(newPetContainerProfile);
-        //  }
+                petModal.querySelector('#raca-pet').innerText = pet.raca;
+    
+                sexos.map((sexo) => {
+                    if(sexo.id_sexo == pet.sexo_animal){
+                        petModal.querySelector('#sexo-animal').innerText = sexo.descricao;
+                    }
+                })
+        })
+
+            petArea.appendChild(newPetContainerProfile);
+        }
+
+        function showPost(post) {
+            let postArea = document.querySelector('#menu-post');
+
+            let newPost = postArea.querySelector('.post-card').cloneNode(true);
+            newPost.style.display = 'flex';
+
+            if(post.midia == null) {
+                newPost.querySelector('.post-pic img').setAttribute('src', `${base_url}assets/teste/pitbull.png`);
+            } else {
+                newPost.querySelector('.post-pic img').setAttribute('src', `${base_url}assets/img/post/${post.midia_url}`);
+                newPost.querySelector('.post-pic img').setAttribute('alt', 'Foto da Postagem');
+            }
+
+            newPost.querySelector('.post-description').innerText = post.descricao;
+            newPost.querySelector('.post-date').innerText = post.dh_post;
+            newPost.querySelector('.like-amount').innerText = post.curtidas;
+
+            newPost.querySelector('.post-pic').href = `${base_url}home/${post.id_postagem}`;
+
+            postArea.appendChild(newPost);
+        }
+
+         function showFollowingProfile(seguidor, element) {
+            let followingArea = document.querySelector(element);
+
+            let newFollowingContainer = followingArea.querySelector('.unit').cloneNode(true);
+            newFollowingContainer.id = seguidor.id_usuario;
+            newFollowingContainer.style.display = 'flex';
+            
+            if(seguidor.foto_usuario == null) {
+                newFollowingContainer.querySelector('.unit-pic').setAttribute('src', `${path_user}/unknown.jpg`);
+            } else {
+                newFollowingContainer.querySelector('.unit-pic').setAttribute('src', `${path_user}/${seguidor.email}/${seguidor.foto_usuario}`);
+                newFollowingContainer.querySelector('.unit-pic').setAttribute('alt', seguidor.usuario);
+                newFollowingContainer.querySelector('.unit-pic').setAttribute('title', seguidor.usuario);
+            }
+            
+            if(seguidor.usuario.length > 10) {
+                newFollowingContainer.querySelector('.unit-name').innerText = `${seguidor.usuario.substring(0, 10)}...`;
+            } else {
+                newFollowingContainer.querySelector('.unit-name').innerText = seguidor.usuario;
+            }
+
+            newFollowingContainer.addEventListener('click', () => {
+                window.location.href = `${base_url}profile/${seguidor.id_usuario}`;
+            })
+            
+            followingArea.querySelector('.follow-area').appendChild(newFollowingContainer);
+         }
     }
 
 

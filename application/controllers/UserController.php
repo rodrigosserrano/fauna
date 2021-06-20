@@ -10,13 +10,16 @@ class UserController extends Fauna_Controller {
         $this->verifySession();
 
         $this->id_usuario = $_SESSION['id'];
+        $this->email = $_SESSION['email'];
         $this->id_animal = isset($_POST['id_animal']) ? $_POST['id_animal'] : '';
         $this->id_usuario_2 = isset($_POST['id_usuario']) ? $_POST['id_usuario'] : '';
         $this->id_profile = '';
 
         $this->load->model('UsuariosModel');
         $this->load->model('PetsModel');
+        $this->load->model('PostagemModel');
         $this->load->model('CadastrosModel');
+        $this->load->model('CurtidaModel');
         $this->load->model('SeguirModel');
         $this->load->helper('Tools');
     }
@@ -168,15 +171,39 @@ class UserController extends Fauna_Controller {
                 'foto_usuario' => $dados_usuario->foto_usuario ? base_url().'assets/img/user/'.$dados_usuario->email.'/'.$dados_usuario->foto_usuario : '',
             ];
 
+            $logged_user = [
+                'id' => $this->id_usuario,
+                'email' => $this->email,
+            ];
+
+            $postagens = $this->PostagemModel->getDadosPostagemUsuarioModel($id);
+            $dados_postagens = [];
+
+            foreach($postagens as $postagem) {
+                $postagem = [
+                    'id_postagem' => $postagem->id_postagem,
+                    'descricao' => $postagem->descricao,
+                    'midia' => $postagem->midia,
+                    'midia_url' => $postagem->email.'/'.$postagem->midia,
+                    'dh_post' => $postagem->dh_post,
+                    'curtidas' =>  $this->CurtidaModel->countCurtidaModel($postagem->id_postagem),
+                ];
+                $dados_postagens[] = $postagem;
+            }
+
             $dados = [
                 'usuario' => $usuario,
                 'pet' => $dados_pet,
-                'n_seguindo' => $this->SeguirModel->countSeguirModel($this->id_usuario,true),
-                'seguindo' => $this->SeguirModel->getDadosSeguirModel($this->id_usuario,true),
-                'n_seguidores' => $this->SeguirModel->countSeguirModel($this->id_usuario,null, true),
-                'seguidores' => $this->SeguirModel->getDadosSeguirModel($this->id_usuario,null,true),
+                'n_seguindo' => $this->SeguirModel->countSeguirModel($id, true),
+                'seguindo' => $this->SeguirModel->getDadosSeguirModel($id, true),
+                'n_seguidores' => $this->SeguirModel->countSeguirModel($id, null, true),
+                'seguidores' => $this->SeguirModel->getDadosSeguirModel($id, null, true),
                 'sexo' => $sexo,
                 'tipo' => $tipo,
+                'is_user' => $id == $this->id_usuario ? true : false,
+                'is_following' => $this->SeguirModel->getIsFollowing($id, $this->id_usuario) ? true : false,
+                'logged_user' => $logged_user,
+                'postagens' => $dados_postagens
             ];
         
             echo json_encode($dados);

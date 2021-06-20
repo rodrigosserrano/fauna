@@ -141,7 +141,7 @@
                             <div class="unit-pic-area">
                                 <img class="unit-pic" data-pet-img >
                             </div>
-                            <p class="unit-name" id="pet-name"></p>
+                            <p class="unit-name" id="pet-name">aa</p>
                         </button>
                     </div>
                     <!--  -->
@@ -165,7 +165,7 @@
 
                         <!-- Loop de Post -->
                         <div class="post-card">
-                            <a href="home" class="post-pic">
+                            <a class="post-pic">
                                 <img src="https://avatars.githubusercontent.com/u/51789589?v=4" alt="Postagem">
                             </a>
 
@@ -209,7 +209,7 @@
                         <div class="follow-area">
                             <!-- Loop de Pessoas Seguindo -->
                             <div class="unit">
-                                <a class="card" href="#">
+                                <a class="card">
                                     <div class="unit-pic-area">
                                         <img class="unit-pic" src="<?= base_url() ?>assets/img/cachorro_login.png" alt="NOME" title="NOME">
                                     </div>
@@ -227,7 +227,7 @@
                         <div class="follow-area">
                             <!-- Loop de Seguidores -->
                             <div class="unit">
-                                <a class="card" href="#">
+                                <a class="card">
                                     <div class="unit-pic-area">
                                         <img class="unit-pic" src="<?= base_url() ?>assets/img/cachorro_login.png" alt="NOME" title="NOME">
                                     </div>

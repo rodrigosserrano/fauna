@@ -116,6 +116,6 @@ $route['create-curtida']['post'] = 'PostController/createCurtidaPostagem';
 $route['create-curtida-comentario']['post'] = 'PostController/createCurtidaComentario';
 
 //Seguir
-$route['delete-seguidor']['post'] = 'PostController/deleteSeguidor';
-$route['delete-seguindo']['post'] = 'PostController/deleteSeguindo';
-$route['create-seguir']['post'] = 'PostController/createSeguidores';
+$route['delete-seguidor']['post'] = 'UserController/deleteSeguidor';
+$route['delete-seguindo']['post'] = 'UserController/deleteSeguindo';
+$route['create-seguir']['post'] = 'UserController/createSeguidores';
