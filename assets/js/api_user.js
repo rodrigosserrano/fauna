@@ -317,6 +317,8 @@ $(document).ready(function(){
 
     if( uriRoute()[0] == 'profile' ) {
 
+        const deleteModal = document.querySelector('#modal-delete-seguidor');
+
         let id = uriRoute()[1];
         let url = id ? `${base_url}get-profile/${id}` : `${base_url}get-profile`;
         $.ajax({
@@ -436,6 +438,7 @@ $(document).ready(function(){
                 if(postagens.length == 0) {
                     btn.innerText = 'Nenhuma postagem';
                     btn.style.marginTop = '10px';
+                    btn.style.color = '#000';
                 }
 
                 postagens.map((post) => {
@@ -458,11 +461,11 @@ $(document).ready(function(){
                 })
 
                 seguindo.map((seguido) => {
-                    showFollowingProfile(seguido, '#menu-following');
+                    showFollowingProfile(seguido, '#menu-following', is_user);
                 })
 
                 seguidores.map((seguidor) => {
-                    showFollowingProfile(seguidor, '#menu-follower');
+                    showFollowingProfile(seguidor, '#menu-follower', is_user);
                 })
             },
             error: function (err) {
@@ -549,7 +552,7 @@ $(document).ready(function(){
             postArea.appendChild(newPost);
         }
 
-         function showFollowingProfile(seguidor, element) {
+        function showFollowingProfile(seguidor, element, is_user) {
             let followingArea = document.querySelector(element);
 
             let newFollowingContainer = followingArea.querySelector('.unit').cloneNode(true);
@@ -570,12 +573,42 @@ $(document).ready(function(){
                 newFollowingContainer.querySelector('.unit-name').innerText = seguidor.usuario;
             }
 
-            newFollowingContainer.addEventListener('click', () => {
+            newFollowingContainer.querySelector('.card').addEventListener('click', () => {
                 window.location.href = `${base_url}profile/${seguidor.id_usuario}`;
             })
+
+            if(element == '#menu-follower') {
+                if(is_user) {
+                    newFollowingContainer.querySelector('.delete-follower').addEventListener('click', () => {
+                        deleteModal.querySelector('.modal-title span').innerText = seguidor.usuario;
+                        deleteModal.querySelector('.modal-btn').setAttribute('data-id', seguidor.id_usuario);
+                    });
+                } else {
+                    newFollowingContainer.removeChild(newFollowingContainer.querySelector('.delete-follower'));
+                }
+            }
             
             followingArea.querySelector('.follow-area').appendChild(newFollowingContainer);
-         }
+        }
+
+        // Deletar Seguidor
+        let btnDeletar = document.querySelector('#btn-deletar-seguidor');
+        btnDeletar.addEventListener('click', () => {
+            let id = btnDeletar.getAttribute('data-id');
+
+            $.ajax({
+                type: "POST",
+                url: base_url+"delete-seguidor",
+                data: { id_usuario: id },
+                success: function () {
+                    closeModal(deleteModal);
+                    let listaSeguidores = document.querySelector('#menu-follower').querySelector('.follow-area');
+                    let userFollow = listaSeguidores.querySelector(`div[id='${id}']`);
+                    listaSeguidores.removeChild(userFollow);
+                }
+            })
+        })
+            
     }
 
 

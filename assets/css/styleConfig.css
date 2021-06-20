@@ -15,7 +15,7 @@ main {
     justify-content: space-between;
     align-items: center;
     width: 715px;
-    height: 416px;
+    height: 435px;
 }
 
 /* Menu */
@@ -70,7 +70,7 @@ main {
 
 #config-info {
     width: 715px;
-    height: 360px;
+    height: 380px;
 
     display: flex;
     flex-direction: column;

@@ -141,7 +141,7 @@
                             <div class="unit-pic-area">
                                 <img class="unit-pic" data-pet-img >
                             </div>
-                            <p class="unit-name" id="pet-name">aa</p>
+                            <p class="unit-name" id="pet-name"></p>
                         </button>
                     </div>
                     <!--  -->
@@ -233,8 +233,33 @@
                                     </div>
                                     <p class="unit-name">Nome</p>
                                 </a>
+                                <img class="delete-follower" src="<?= base_url() ?>assets/img/icon/delete.png" data-bs-toggle="modal" data-bs-target="#modal-delete-seguidor">
                             </div>
                             <!--  -->
+                        </div>
+
+                        <!-- Deletar Seguidor -->
+                        <div class="modal fade " id="modal-delete-seguidor" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+
+
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="staticBackdropLabel">
+                                            Remover seguidor
+                                            <span></span>
+                                        </h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+
+
+                                    <div class="modal-body">
+                                        <h1 class="modal-description">Tem certeza que deseja remover este seguidor?</h1>
+                                        <button id="btn-deletar-seguidor" class="modal-btn">Remover</button>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
 
                     </div>
