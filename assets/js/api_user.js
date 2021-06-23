@@ -52,6 +52,24 @@ $(document).ready(function(){
 
     if( checkURL('settings') ) {
 
+        // Modal Criar Pet
+        const petCriarModal = document.querySelector('#pet-criar-modal');
+
+        document.querySelector('#btn-criar-pet').addEventListener('click', () => {
+            petCriarModal.querySelector('#frm_criar_nome_animal').value = '';
+            petCriarModal.querySelector('#frm_criar_raca').value = '';
+            petCriarModal.querySelector('#frm_criar_tipo').value = 'Tipo de animal';
+            petCriarModal.querySelector('#frm_criar_sexo_animal').value = 'Gênero';
+            petCriarModal.querySelector('.form-pic').style.backgroundImage = 'unset';
+
+            let plus = petCriarModal.querySelector('.form-pic').querySelector('p');
+            if(!plus) {
+                let pElement = document.createElement('p');
+                pElement.innerText = '+'
+                petCriarModal.querySelector('.form-pic').prepend(pElement);
+            }
+        })
+
         //USUARIO
 
         //Excluir conta
@@ -460,6 +478,10 @@ $(document).ready(function(){
                     btn.style.color = '#000';
                 }
 
+                if(!check) {
+                    menu.removeChild(btn);
+                }
+
                 postagens.map((post) => {
                     if(check) {
                         if(postIndex < postPerLoad) {
@@ -474,9 +496,8 @@ $(document).ready(function(){
                             })
                         }
                     } else {
-                        menu.removeChild(btn);
+                        showPost(post);
                     }
-                    
                 })
 
                 seguindo.map((seguido) => {

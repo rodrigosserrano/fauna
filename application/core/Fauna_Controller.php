@@ -74,9 +74,8 @@ class Fauna_Controller extends CI_Controller{
     public function uploadImage($arquivo, $email, $type) {
         if($arquivo['name'] != ''){
             $extensao = trim(substr(strchr($arquivo['name'], '.'), 0));
-            $acceptedTypes = ['.png', '.jpg', '.gif'];
+            $acceptedTypes = ['.png', '.jpg', '.gif', '.jpeg'];
             $maxSize = 10000000;
-            // print_r(array_search($extensao), $acceptedTypes);
 
             if(in_array($extensao, $acceptedTypes) && $arquivo['size'] <= $maxSize) {
                 switch($type) {

@@ -93,6 +93,7 @@
     text-decoration: none;
     color: white;
     transition: 0.2s;
+    cursor: pointer;
 }
 
 #navbar #nav-user .logout:hover {

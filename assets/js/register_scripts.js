@@ -21,6 +21,8 @@ window.onload = function(){
                     div.appendChild(document.createElement("img"));
                     div.querySelector("img").style.relative = "absolute";
                     div.querySelector("img").style.width = "100%";
+                    div.querySelector("img").style.height = "100%";
+                    div.querySelector("img").style.objectFit = "cover";
                     div.querySelector("img").src = event.target.result;
                 }
             });

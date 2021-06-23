@@ -120,6 +120,8 @@ $(document).ready(function(){
                     // $('[name="id_categoria"]').append(`<option value='${id_categoria}'>`+trataString(descricao)+`</option>`);
                 });
 
+                newPostagemModal.querySelector('[name="id_animal"]').innerHTML += "<option value='11'>Nenhum</option>";
+
                 pets.map(({
                     id_animal,
                     nome_animal
@@ -419,6 +421,8 @@ $(document).ready(function(){
 
                             editPostagemModal.querySelector('[name="id_categoria"]').innerHTML = '<option disabled>Categoria</option>';
                             editPostagemModal.querySelector('[name="id_animal"]').innerHTML = '<option disabled>Pet relacionado</option>';
+
+                            editPostagemModal.querySelector('[name="id_animal"]').innerHTML += "<option value='11'>Nenhum</option>";
 
                             // Carregar a categoria da postagem a ser editada
                             categorias.map(({

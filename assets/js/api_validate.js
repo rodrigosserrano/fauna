@@ -71,7 +71,7 @@ $(document).ready(function(){
                 type: "POST",
                 url: base_url+"logout",
                 success: function (response) {
-                    if(response.mensagem)
+                    // if(response.mensagem)
                         window.location.href = base_url;
                 },
                 error: function (request, status, error) {
