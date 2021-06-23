@@ -78,11 +78,11 @@ $(document).ready(function(){
                 type: "POST",
                 url: base_url+"delete",
                 success: function (response) {
-                    if(response.mensagem){
-                        AlertFunc(response.mensagem);
+                    // if(response.mensagem){
+                    //     AlertFunc(response.mensagem);
                         // alert(response.mensagem);
                         window.location.reload();
-                    }
+                    // }
                 },
                 error: function (request, status, error) {
                     console.log(request.responseText);
