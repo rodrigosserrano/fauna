@@ -46,8 +46,9 @@ $(document).ready(function(){
                 data: formData,
                 success: function (response) {
                     if(response.mensagem && !response.is_logado){
-                        $(".box-mensagem").removeClass("hidden");
-                        $("#mensagem").html(response.mensagem);
+                        // $(".box-mensagem").removeClass("hidden");
+                        // $("#mensagem").html(response.mensagem);
+                        alertFunc(response.mensagem);
                     }
                     
                     if(response.is_logado){

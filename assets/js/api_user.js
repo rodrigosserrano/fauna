@@ -442,8 +442,8 @@ $(document).ready(function(){
                         btn.id = 'btn-seguir';
                     }
                 }
-
-                if(user.foto_usuario == null){
+                
+                if(!user.foto_usuario){
                     $('[data-img-user]').attr('src', `${path_user}/unknown.jpg`);
                 }else{
                     $('[data-img-user]').attr('src', `${user.foto_usuario}`);

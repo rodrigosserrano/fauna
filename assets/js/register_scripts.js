@@ -31,11 +31,19 @@ window.onload = function(){
     }
 
     document.querySelector('#file-input1').addEventListener('input', e => {
-        document.querySelector('#user-pic').textContent = e.target.files[0].name;
+        if(e.target.files[0].name.length > 24) {
+            document.querySelector('#user-pic').textContent = `${e.target.files[0].name.substring(0, 24)}...`;
+        } else {
+            document.querySelector('#user-pic').textContent = e.target.files[0].name;
+        }
         readImage(e.target.files[0], e.target);
     });
     document.querySelector('#file-input2').addEventListener('input', e => {
-        document.querySelector('#pet-pic').textContent = e.target.files[0].name;
+        if(e.target.files[0].name.length > 24) {
+            document.querySelector('#pet-pic').textContent = `${e.target.files[0].name.substring(0, 24)}...`;
+        } else {
+            document.querySelector('#pet-pic').textContent = e.target.files[0].name;
+        }
         readImage(e.target.files[0], e.target);
     }); 
 

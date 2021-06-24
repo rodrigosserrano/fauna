@@ -1,7 +1,7 @@
 
     <body>
         <div class="w-100 logo-box"><span class="logo">Fauna</span></div>
-        <div class="alertArea"></div>
+        <div class="alert-area"></div>
         <main>
             <section id="slogan">
                 <p class="slogan-text">
